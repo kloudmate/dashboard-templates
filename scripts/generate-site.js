@@ -153,6 +153,7 @@ templates.forEach(template => {
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="icon" href="https://app.kloudmate.com/favicon.ico">
   <title>${template.title}</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <script>
@@ -170,12 +171,31 @@ templates.forEach(template => {
     <h1 class="text-4xl font-bold mb-4">${template.title}</h1>
     <p class="text-gray-400 mb-8">${template.description}</p>
     ${template.hasScreenshot ? `<img src="screenshot.png" alt="${template.title}" class="w-full rounded-lg shadow-lg mb-8">` : ''}
-    <h2 class="text-2xl font-bold mb-4">Template JSON</h2>
+    <div class="flex justify-between items-center mb-4">
+        <h2 class="text-2xl font-bold">Template JSON</h2>
+        <button id="how-to-use-btn" class="bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-md">How to Use</button>
+    </div>
     <div class="relative">
-        <pre><code class="json rounded-lg">${JSON.stringify(template.template, null, 2)}</code></pre>
+        <pre id="json-viewer" class="max-h-96 overflow-y-auto transition-all duration-500"><code class="json rounded-lg">${JSON.stringify(template.template, null, 2)}</code></pre>
         <button class="absolute top-2 right-2 bg-gray-700 hover:bg-gray-600 text-white font-bold py-1 px-3 rounded-md" onclick="copyToClipboard()">Copy</button>
     </div>
+    <button id="expand-btn" class="mt-4 bg-gray-700 hover:bg-gray-600 text-white font-bold py-2 px-4 rounded-md">Show More</button>
   </div>
+
+  <div id="how-to-use-modal" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center hidden">
+    <div class="bg-gray-800 text-white rounded-lg shadow-lg p-8 max-w-lg w-full">
+        <h2 class="text-2xl font-bold mb-4">How to Use This Template</h2>
+        <ol class="list-decimal list-inside space-y-2">
+            <li>Copy the JSON from the template viewer.</li>
+            <li>Go to the "Dashboards" page in your KloudMate account.</li>
+            <li>Click the "Import" button.</li>
+            <li>Paste the JSON into the text area.</li>
+            <li>Click "Submit" to create the new dashboard.</li>
+        </ol>
+        <button id="close-modal-btn" class="mt-6 bg-gray-700 hover:bg-gray-600 text-white font-bold py-2 px-4 rounded-md">Close</button>
+    </div>
+  </div>
+
   <script>
     function copyToClipboard() {
       const textToCopy = ${JSON.stringify(JSON.stringify(template.template, null, 2))};
@@ -186,6 +206,35 @@ templates.forEach(template => {
         alert('Failed to copy to clipboard.');
       });
     }
+
+    const jsonViewer = document.getElementById('json-viewer');
+    const expandBtn = document.getElementById('expand-btn');
+    const howToUseBtn = document.getElementById('how-to-use-btn');
+    const closeModalBtn = document.getElementById('close-modal-btn');
+    const modal = document.getElementById('how-to-use-modal');
+
+    expandBtn.addEventListener('click', () => {
+      jsonViewer.classList.toggle('max-h-96');
+      if (jsonViewer.classList.contains('max-h-96')) {
+        expandBtn.textContent = 'Show More';
+      } else {
+        expandBtn.textContent = 'Show Less';
+      }
+    });
+
+    howToUseBtn.addEventListener('click', () => {
+        modal.classList.remove('hidden');
+    });
+
+    closeModalBtn.addEventListener('click', () => {
+        modal.classList.add('hidden');
+    });
+
+    modal.addEventListener('click', (e) => {
+        if (e.target === modal) {
+            modal.classList.add('hidden');
+        }
+    });
   </script>
 </body>
 </html>
