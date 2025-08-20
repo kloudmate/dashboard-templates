@@ -14,22 +14,23 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/atom-one-dark.min.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
   </head>
-    <body class="bg-gray-900 text-gray-100">
-      <div class="container mx-auto px-4">
-        <a href="../index.html" class="inline-block bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full my-8"><- Back to Templates</a>
-        <div class="flex items-center mb-2">
-            <h1 class="text-4xl font-bold">Host Metrics</h1>
-            <svg class="w-8 h-8 text-blue-500 ml-3" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path></svg>
-        </div>
-        <p class="text-lg text-gray-500 mb-4">By KloudMate</p>
-        <p class="text-gray-400 mb-8">Gather various system-level performance indicators directly from a host's operating system. These metrics provide insights into the resource utilization and health of the physical or virtual server where the Collector is deployed as an agent.</p>
-        <img src="screenshot.png" alt="Host Metrics" class="w-full rounded-lg shadow-lg mb-8">
-        <div class="flex justify-between items-center mb-4">
-            <h2 class="text-2xl font-bold">Template JSON</h2>
-            <button id="how-to-use-btn" class="bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-md">How to Use</button>
-        </div>
-        <div class="relative">
-            <pre id="json-viewer" class="max-h-96 overflow-y-auto transition-all duration-500"><code class="json rounded-lg">{
+    <body class="bg-gray-900 text-gray-100 flex flex-col min-h-screen">
+      <main class="flex-grow">
+        <div class="container mx-auto px-4">
+          <a href="../index.html" class="inline-block bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full my-8"><- Back to Templates</a>
+          <div class="flex items-center mb-2">
+              <h1 class="text-4xl font-bold">Host Metrics</h1>
+              <svg class="w-8 h-8 text-blue-500 ml-3" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path></svg>
+          </div>
+          <p class="text-lg text-gray-500 mb-4">By KloudMate</p>
+          <p class="text-gray-400 mb-8">Gather various system-level performance indicators directly from a host's operating system. These metrics provide insights into the resource utilization and health of the physical or virtual server where the Collector is deployed as an agent.</p>
+          <img src="screenshot.png" alt="Host Metrics" class="w-full rounded-lg shadow-lg mb-8">
+          <div class="flex justify-between items-center mb-4">
+              <h2 class="text-2xl font-bold">Template JSON</h2>
+              <button id="how-to-use-btn" class="bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-md">How to Use</button>
+          </div>
+          <div class="relative">
+              <pre id="json-viewer" class="max-h-96 overflow-y-auto transition-all duration-500"><code class="json rounded-lg">{
   "name": "HostMetrics",
   "description": "This Dashboard is for OpenTelemetry hostmetrics receiver. Here default  datasource is opentelemetry.",
   "data": {
@@ -1408,10 +1409,25 @@
   },
   "tags": []
 }</code></pre>
-            <button class="absolute top-2 right-2 bg-gray-700 hover:bg-gray-600 text-white font-bold py-1 px-3 rounded-md" onclick="copyToClipboard()">Copy</button>
+              <button class="absolute top-2 right-2 bg-gray-700 hover:bg-gray-600 text-white font-bold py-1 px-3 rounded-md" onclick="copyToClipboard()">Copy</button>
+          </div>
+          <button id="expand-btn" class="mt-4 bg-gray-700 hover:bg-gray-600 text-white font-bold py-2 px-4 rounded-md">Show More</button>
         </div>
-        <button id="expand-btn" class="mt-4 bg-gray-700 hover:bg-gray-600 text-white font-bold py-2 px-4 rounded-md">Show More</button>
+      </main>
+      
+  <footer class="bg-gray-800 text-gray-400 mt-16">
+    <div class="container mx-auto px-4 py-8 flex flex-col md:flex-row justify-between items-center">
+      <div class="mb-4 md:mb-0">
+        <a href="https://kloudmate.com/" target="_blank" rel="noopener noreferrer">
+          <img src="https://app.kloudmate.com/assets/images/logo_full_white.svg" alt="KloudMate Logo" class="h-8">
+        </a>
       </div>
+      <div class="flex space-x-6">
+        <a href="https://app.kloudmate.com/login" target="_blank" rel="noopener noreferrer" class="hover:text-white">Login</a>
+        <a href="https://github.com/kloudmate/dashboard-templates" target="_blank" rel="noopener noreferrer" class="hover:text-white">GitHub</a>
+      </div>
+    </div>
+  </footer>
       <div id="how-to-use-modal" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center hidden">
         <div class="bg-gray-800 text-white rounded-lg shadow-lg p-8 max-w-lg w-full">
             <h2 class="text-2xl font-bold mb-4">How to Use This Template</h2>

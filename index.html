@@ -14,19 +14,20 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/atom-one-dark.min.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
   </head>
-  <body class="bg-gray-900 text-gray-100">
-    <div class="container mx-auto px-4">
-      <h1 class="text-4xl font-bold my-8 text-center">Dashboard Templates</h1>
-      <div class="mb-8">
-          <input type="search" id="search-input" placeholder="Search templates..." class="w-full px-4 py-2 rounded-md bg-gray-800 text-white border border-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500">
-      </div>
-      <div class="mb-8 text-center">
-        <span class="mr-4 font-semibold">Filter by tag:</span>
-        <button class="bg-blue-600 hover:bg-blue-700 text-white text-sm font-semibold py-1 px-3 rounded-full m-1 filter-btn active" data-tag="all">All</button>
-        <button class="bg-gray-700 hover:bg-gray-600 text-white text-sm font-semibold py-1 px-3 rounded-full m-1 filter-btn" data-tag="metrics">metrics</button><button class="bg-gray-700 hover:bg-gray-600 text-white text-sm font-semibold py-1 px-3 rounded-full m-1 filter-btn" data-tag="vm">vm</button>
-      </div>
-      <div id="template-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-        
+  <body class="bg-gray-900 text-gray-100 flex flex-col min-h-screen">
+    <main class="flex-grow">
+      <div class="container mx-auto px-4">
+        <h1 class="text-4xl font-bold my-8 text-center">Dashboard Templates</h1>
+        <div class="mb-8">
+            <input type="search" id="search-input" placeholder="Search templates..." class="w-full px-4 py-2 rounded-md bg-gray-800 text-white border border-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500">
+        </div>
+        <div class="mb-8 text-center">
+          <span class="mr-4 font-semibold">Filter by tag:</span>
+          <button class="bg-blue-600 hover:bg-blue-700 text-white text-sm font-semibold py-1 px-3 rounded-full m-1 filter-btn active" data-tag="all">All</button>
+          <button class="bg-gray-700 hover:bg-gray-600 text-white text-sm font-semibold py-1 px-3 rounded-full m-1 filter-btn" data-tag="metrics">metrics</button><button class="bg-gray-700 hover:bg-gray-600 text-white text-sm font-semibold py-1 px-3 rounded-full m-1 filter-btn" data-tag="vm">vm</button>
+        </div>
+        <div id="template-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          
   <div class="template-card bg-gray-800 rounded-lg shadow-lg overflow-hidden transform hover:scale-105 transition-transform duration-300" data-tags="metrics vm" data-title="Host Metrics" data-description="Gather various system-level performance indicators directly from a host's operating system. These metrics provide insights into the resource utilization and health of the physical or virtual server where the Collector is deployed as an agent.">
     <a href="host-metrics/index.html" class="block">
       <img src="host-metrics/screenshot.png" alt="Host Metrics" class="w-full h-48 object-cover">
@@ -43,8 +44,23 @@
       </div>
     </a>
   </div>
+        </div>
+      </div>
+    </main>
+    
+  <footer class="bg-gray-800 text-gray-400 mt-16">
+    <div class="container mx-auto px-4 py-8 flex flex-col md:flex-row justify-between items-center">
+      <div class="mb-4 md:mb-0">
+        <a href="https://kloudmate.com/" target="_blank" rel="noopener noreferrer">
+          <img src="https://app.kloudmate.com/assets/images/logo_full_white.svg" alt="KloudMate Logo" class="h-8">
+        </a>
+      </div>
+      <div class="flex space-x-6">
+        <a href="https://app.kloudmate.com/login" target="_blank" rel="noopener noreferrer" class="hover:text-white">Login</a>
+        <a href="https://github.com/kloudmate/dashboard-templates" target="_blank" rel="noopener noreferrer" class="hover:text-white">GitHub</a>
       </div>
     </div>
+  </footer>
     <script>
       // Search and filter logic...
       const searchInput = document.getElementById('search-input');
