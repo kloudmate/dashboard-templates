@@ -10,6 +10,14 @@ The system is designed to be as automated as possible. Here's a brief overview o
 2.  **A Node.js script (`scripts/generate-site.js`) generates a static website.** This script reads the template data and creates an `index.html` with a list of all templates, as well as individual detail pages for each one. The generated site is placed in the `/docs` directory.
 3.  **A GitHub Actions workflow (`.github/workflows/publish.yml`) automates the process.** On every push to the `main` branch, the workflow automatically runs the generation script and deploys the contents of the `/docs` directory to GitHub Pages.
 
+## Accessing the Published Site
+
+Once GitHub Pages is enabled and the initial deployment is complete, you can access the site at the following URL:
+
+`https://kloudmate.github.io/dashboard-templates/`
+
+You can find the exact URL in your repository's settings under **Settings > Pages**.
+
 ## How to Add a New Template
 
 To add a new template to the library, follow these steps:
