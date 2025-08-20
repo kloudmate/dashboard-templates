@@ -28,6 +28,27 @@ function generateHead(pageTitle) {
 }
 
 /**
+ * Generates the HTML for the page footer.
+ * @returns {string} The HTML for the footer section.
+ */
+function generateFooter() {
+  return `
+  <footer class="bg-gray-800 text-gray-400 mt-16">
+    <div class="container mx-auto px-4 py-8 flex flex-col md:flex-row justify-between items-center">
+      <div class="mb-4 md:mb-0">
+        <a href="https://kloudmate.com/" target="_blank" rel="noopener noreferrer">
+          <img src="https://app.kloudmate.com/assets/images/logo_full_white.svg" alt="KloudMate Logo" class="h-8">
+        </a>
+      </div>
+      <div class="flex space-x-6">
+        <a href="https://app.kloudmate.com/login" target="_blank" rel="noopener noreferrer" class="hover:text-white">Login</a>
+        <a href="https://github.com/kloudmate/dashboard-templates" target="_blank" rel="noopener noreferrer" class="hover:text-white">GitHub</a>
+      </div>
+    </div>
+  </footer>`;
+}
+
+/**
  * Generates the HTML for a single template card.
  * @param {object} template - The template data object.
  * @returns {string} The HTML for the template card.
@@ -68,21 +89,24 @@ function generateIndexPage(templates, allTags) {
   <!DOCTYPE html>
   <html lang="en" class="dark">
   ${generateHead('Gallery')}
-  <body class="bg-gray-900 text-gray-100">
-    <div class="container mx-auto px-4">
-      <h1 class="text-4xl font-bold my-8 text-center">Dashboard Templates</h1>
-      <div class="mb-8">
-          <input type="search" id="search-input" placeholder="Search templates..." class="w-full px-4 py-2 rounded-md bg-gray-800 text-white border border-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500">
+  <body class="bg-gray-900 text-gray-100 flex flex-col min-h-screen">
+    <main class="flex-grow">
+      <div class="container mx-auto px-4">
+        <h1 class="text-4xl font-bold my-8 text-center">Dashboard Templates</h1>
+        <div class="mb-8">
+            <input type="search" id="search-input" placeholder="Search templates..." class="w-full px-4 py-2 rounded-md bg-gray-800 text-white border border-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500">
+        </div>
+        <div class="mb-8 text-center">
+          <span class="mr-4 font-semibold">Filter by tag:</span>
+          <button class="bg-blue-600 hover:bg-blue-700 text-white text-sm font-semibold py-1 px-3 rounded-full m-1 filter-btn active" data-tag="all">All</button>
+          ${[...allTags].map(tag => `<button class="bg-gray-700 hover:bg-gray-600 text-white text-sm font-semibold py-1 px-3 rounded-full m-1 filter-btn" data-tag="${tag}">${tag}</button>`).join('')}
+        </div>
+        <div id="template-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          ${templates.map(generateTemplateCard).join('')}
+        </div>
       </div>
-      <div class="mb-8 text-center">
-        <span class="mr-4 font-semibold">Filter by tag:</span>
-        <button class="bg-blue-600 hover:bg-blue-700 text-white text-sm font-semibold py-1 px-3 rounded-full m-1 filter-btn active" data-tag="all">All</button>
-        ${[...allTags].map(tag => `<button class="bg-gray-700 hover:bg-gray-600 text-white text-sm font-semibold py-1 px-3 rounded-full m-1 filter-btn" data-tag="${tag}">${tag}</button>`).join('')}
-      </div>
-      <div id="template-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-        ${templates.map(generateTemplateCard).join('')}
-      </div>
-    </div>
+    </main>
+    ${generateFooter()}
     <script>
       // Search and filter logic...
       const searchInput = document.getElementById('search-input');
@@ -137,26 +161,29 @@ function generateDetailPage(template) {
     <!DOCTYPE html>
     <html lang="en" class="dark">
     ${generateHead(template.title)}
-    <body class="bg-gray-900 text-gray-100">
-      <div class="container mx-auto px-4">
-        <a href="../index.html" class="inline-block bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full my-8"><- Back to Templates</a>
-        <div class="flex items-center mb-2">
-            <h1 class="text-4xl font-bold">${template.title}</h1>
-            ${template.verified ? verifiedIcon : ''}
+    <body class="bg-gray-900 text-gray-100 flex flex-col min-h-screen">
+      <main class="flex-grow">
+        <div class="container mx-auto px-4">
+          <a href="../index.html" class="inline-block bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full my-8"><- Back to Templates</a>
+          <div class="flex items-center mb-2">
+              <h1 class="text-4xl font-bold">${template.title}</h1>
+              ${template.verified ? verifiedIcon : ''}
+          </div>
+          <p class="text-lg text-gray-500 mb-4">By ${template.author || 'Anonymous'}</p>
+          <p class="text-gray-400 mb-8">${template.description}</p>
+          ${screenshot}
+          <div class="flex justify-between items-center mb-4">
+              <h2 class="text-2xl font-bold">Template JSON</h2>
+              <button id="how-to-use-btn" class="bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-md">How to Use</button>
+          </div>
+          <div class="relative">
+              <pre id="json-viewer" class="max-h-96 overflow-y-auto transition-all duration-500"><code class="json rounded-lg">${jsonString}</code></pre>
+              <button class="absolute top-2 right-2 bg-gray-700 hover:bg-gray-600 text-white font-bold py-1 px-3 rounded-md" onclick="copyToClipboard()">Copy</button>
+          </div>
+          <button id="expand-btn" class="mt-4 bg-gray-700 hover:bg-gray-600 text-white font-bold py-2 px-4 rounded-md">Show More</button>
         </div>
-        <p class="text-lg text-gray-500 mb-4">By ${template.author || 'Anonymous'}</p>
-        <p class="text-gray-400 mb-8">${template.description}</p>
-        ${screenshot}
-        <div class="flex justify-between items-center mb-4">
-            <h2 class="text-2xl font-bold">Template JSON</h2>
-            <button id="how-to-use-btn" class="bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-md">How to Use</button>
-        </div>
-        <div class="relative">
-            <pre id="json-viewer" class="max-h-96 overflow-y-auto transition-all duration-500"><code class="json rounded-lg">${jsonString}</code></pre>
-            <button class="absolute top-2 right-2 bg-gray-700 hover:bg-gray-600 text-white font-bold py-1 px-3 rounded-md" onclick="copyToClipboard()">Copy</button>
-        </div>
-        <button id="expand-btn" class="mt-4 bg-gray-700 hover:bg-gray-600 text-white font-bold py-2 px-4 rounded-md">Show More</button>
-      </div>
+      </main>
+      ${generateFooter()}
       <div id="how-to-use-modal" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center hidden">
         <div class="bg-gray-800 text-white rounded-lg shadow-lg p-8 max-w-lg w-full">
             <h2 class="text-2xl font-bold mb-4">How to Use This Template</h2>
@@ -246,4 +273,4 @@ templates.forEach(template => {
   fs.writeFileSync(path.join(templateDocsDir, 'index.html'), generateDetailPage(template));
 });
 
-console.log('Website generated successfully with refactored code!');
+console.log('Website generated successfully with footer!');
