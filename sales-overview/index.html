@@ -1,0 +1,83 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sales Overview</title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.2.0/styles/default.min.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.2.0/highlight.min.js"></script>
+  <script>hljs.highlightAll();</script>
+</head>
+<body>
+  <div class="container">
+    <a href="../index.html" class="btn btn-primary my-4">Back to Templates</a>
+    <h1>Sales Overview</h1>
+    <p>A dashboard for monitoring key sales metrics.</p>
+    <h3>Template JSON</h3>
+    <pre><code class="json">{
+  "dashboard": {
+    "title": "Sales Overview",
+    "widgets": [
+      {
+        "type": "chart",
+        "title": "Revenue YTD",
+        "data": {
+          "labels": [
+            "Jan",
+            "Feb",
+            "Mar",
+            "Apr"
+          ],
+          "values": {}
+        }
+      },
+      {
+        "type": "kpi",
+        "title": "New Customers",
+        "value": "1,200"
+      }
+    ]
+  }
+}</code></pre>
+    <button class="btn btn-secondary" onclick="copyToClipboard()">Copy to Clipboard</button>
+  </div>
+  <script>
+    function copyToClipboard() {
+      const el = document.createElement('textarea');
+      el.value = JSON.stringify({
+  "dashboard": {
+    "title": "Sales Overview",
+    "widgets": [
+      {
+        "type": "chart",
+        "title": "Revenue YTD",
+        "data": {
+          "labels": [
+            "Jan",
+            "Feb",
+            "Mar",
+            "Apr"
+          ],
+          "values": {}
+        }
+      },
+      {
+        "type": "kpi",
+        "title": "New Customers",
+        "value": "1,200"
+      }
+    ]
+  }
+}, null, 2);
+      document.body.appendChild(el);
+      el.select();
+      document.execCommand('copy');
+      document.body.removeChild(el);
+      alert('Copied to clipboard!');
+    }
+  </script>
+</body>
+</html>
+  
