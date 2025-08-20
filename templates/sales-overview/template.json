@@ -1,0 +1,20 @@
+{
+  "dashboard": {
+    "title": "Sales Overview",
+    "widgets": [
+      {
+        "type": "chart",
+        "title": "Revenue YTD",
+        "data": {
+          "labels": ["Jan", "Feb", "Mar", "Apr"],
+          "values": {}
+        }
+      },
+      {
+        "type": "kpi",
+        "title": "New Customers",
+        "value": "1,200"
+      }
+    ]
+  }
+}
