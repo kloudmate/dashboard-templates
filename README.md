@@ -14,7 +14,6 @@ The system is designed to be as automated as possible. Here's a brief overview o
 
 The site is published to: `https://templates.kloudmate.com/`
 
-
 ## How to Add a New Template
 
 To add a new template to the library, follow these steps:
@@ -24,12 +23,16 @@ To add a new template to the library, follow these steps:
     *   `title`: The title of the dashboard.
     *   `description`: A brief description of what the dashboard is for.
     *   `tags`: An array of strings for categorizing the template.
+    *   `author`: The name of the person or organization that created the template.
+    *   `verified`: A boolean (`true` or `false`) indicating whether the template has been verified by the KloudMate team.
 
     ```json
     {
       "title": "My New Template",
       "description": "A description of my new template.",
-      "tags": ["new", "example"]
+      "tags": ["new", "example"],
+      "author": "Your Name",
+      "verified": false
     }
     ```
 
