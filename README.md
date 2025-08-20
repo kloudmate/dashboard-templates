@@ -12,11 +12,8 @@ The system is designed to be as automated as possible. Here's a brief overview o
 
 ## Accessing the Published Site
 
-Once GitHub Pages is enabled and the initial deployment is complete, you can access the site at the following URL:
+The site is published to: `https://templates.kloudmate.com/`
 
-`https://kloudmate.github.io/dashboard-templates/`
-
-You can find the exact URL in your repository's settings under **Settings > Pages**.
 
 ## How to Add a New Template
 
