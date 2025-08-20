@@ -31,6 +31,24 @@ function generateHead(pageTitle) {
  * Generates the HTML for the page footer.
  * @returns {string} The HTML for the footer section.
  */
+function generateHeader() {
+  return `
+  <header class="bg-gray-800 text-white">
+    <div class="container mx-auto px-4 py-4 flex justify-between items-center">
+      <a href="https://kloudmate.com/" target="_blank" rel="noopener noreferrer">
+        <img src="https://app.kloudmate.com/assets/images/logo_full_white.svg" alt="KloudMate Logo" class="h-8">
+      </a>
+      <nav>
+        <a href="https://github.com/kloudmate/dashboard-templates" target="_blank" rel="noopener noreferrer" class="hover:text-gray-300">GitHub</a>
+      </nav>
+    </div>
+  </header>`;
+}
+
+/**
+ * Generates the HTML for the page footer.
+ * @returns {string} The HTML for the footer section.
+ */
 function generateFooter() {
   return `
   <footer class="bg-gray-800 text-gray-400 mt-16">
@@ -90,9 +108,13 @@ function generateIndexPage(templates, allTags) {
   <html lang="en" class="dark">
   ${generateHead('Gallery')}
   <body class="bg-gray-900 text-gray-100 flex flex-col min-h-screen">
+    ${generateHeader()}
     <main class="flex-grow">
       <div class="container mx-auto px-4">
-        <h1 class="text-4xl font-bold my-8 text-center">Dashboard Templates</h1>
+        <div class="text-center my-12">
+            <h1 class="text-5xl font-extrabold mb-4">KloudMate Dashboard Templates</h1>
+            <p class="text-xl text-gray-400">A collection of community-driven, open-source dashboard templates for KloudMate.</p>
+        </div>
         <div class="mb-8">
             <input type="search" id="search-input" placeholder="Search templates..." class="w-full px-4 py-2 rounded-md bg-gray-800 text-white border border-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500">
         </div>
@@ -162,6 +184,7 @@ function generateDetailPage(template) {
     <html lang="en" class="dark">
     ${generateHead(template.title)}
     <body class="bg-gray-900 text-gray-100 flex flex-col min-h-screen">
+      ${generateHeader()}
       <main class="flex-grow">
         <div class="container mx-auto px-4">
           <a href="../index.html" class="inline-block bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full my-8"><- Back to Templates</a>
