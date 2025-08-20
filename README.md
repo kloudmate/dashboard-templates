@@ -8,7 +8,7 @@ The system is designed to be as automated as possible. Here's a brief overview o
 
 1.  **Templates are stored in the `/templates` directory.** Each template has its own subdirectory containing a `template.json` file, a `metadata.json` file, and an optional `screenshot.png`.
 2.  **A Node.js script (`scripts/generate-site.js`) generates a static website.** This script reads the template data and creates an `index.html` with a list of all templates, as well as individual detail pages for each one. The generated site is placed in the `/docs` directory.
-3.  **A GitHub Actions workflow (`.github/workflows/publish.yml`) automates the process.** On every push to the `main` branch, the workflow automatically runs the generation script and deploys the contents of the `/docs` directory to GitHub Pages.
+3.  **A GitHub Actions workflow (`.github/workflows/publish.yml`) automates the process.** On every push to the `master` branch, the workflow automatically runs the generation script and deploys the contents of the `/docs` directory to GitHub Pages.
 
 ## Accessing the Published Site
 
@@ -38,7 +38,7 @@ To add a new template to the library, follow these steps:
 
 3.  **Add a `template.json` file.** This file contains the actual JSON for the dashboard template.
 4.  **(Optional) Add a `screenshot.png` file.** If you include a screenshot, it will be displayed on the website.
-5.  **Commit and push your changes to the `main` branch.** The GitHub Actions workflow will automatically update the website with your new template.
+5.  **Commit and push your changes to the `master` branch.** The GitHub Actions workflow will automatically update the website with your new template.
 
 ## Local Development
 
