@@ -1,89 +1,85 @@
 
-<!DOCTYPE html>
-<html lang="en" class="dark">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="icon" href="https://app.kloudmate.com/favicon.ico">
-  <title>KloudMate Dashboard Templates Gallery</title>
-  <script src="https://cdn.tailwindcss.com"></script>
-  <script>
-    tailwind.config = {
-      darkMode: 'class',
-    }
-  </script>
-</head>
-<body class="bg-gray-900 text-gray-100">
-  <div class="container mx-auto px-4">
-    <h1 class="text-4xl font-bold my-8 text-center">Dashboard Templates</h1>
-    
-    <div class="mb-8">
-        <input type="search" id="search-input" placeholder="Search templates..." class="w-full px-4 py-2 rounded-md bg-gray-800 text-white border border-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500">
-    </div>
-
-    <div class="mb-8 text-center">
-      <span class="mr-4 font-semibold">Filter by tag:</span>
-      <button class="bg-blue-600 hover:bg-blue-700 text-white text-sm font-semibold py-1 px-3 rounded-full m-1 filter-btn active" data-tag="all">All</button>
-      <button class="bg-gray-700 hover:bg-gray-600 text-white text-sm font-semibold py-1 px-3 rounded-full m-1 filter-btn" data-tag="metrics">metrics</button><button class="bg-gray-700 hover:bg-gray-600 text-white text-sm font-semibold py-1 px-3 rounded-full m-1 filter-btn" data-tag="vm">vm</button>
-    </div>
-    
-    <div id="template-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-      
-        <div class="template-card bg-gray-800 rounded-lg shadow-lg overflow-hidden transform hover:scale-105 transition-transform duration-300" data-tags="metrics vm" data-title="Host Metrics" data-description="Gather various system-level performance indicators directly from a host's operating system. These metrics provide insights into the resource utilization and health of the physical or virtual server where the Collector is deployed as an agent.">
-          <a href="host-metrics/index.html" class="block">
-            <img src="host-metrics/screenshot.png" alt="Host Metrics" class="w-full h-48 object-cover">
-            <div class="p-6">
-              <h2 class="text-2xl font-bold mb-2">Host Metrics</h2>
-              <p class="text-gray-400 mb-4">Gather various system-level performance indicators directly from a host's operating system. These metrics provide insights into the resource utilization and health of the physical or virtual server where the Collector is deployed as an agent.</p>
-              <div>
-                <span class="inline-block bg-blue-600 text-white text-xs font-semibold mr-2 px-2.5 py-0.5 rounded-full">metrics</span><span class="inline-block bg-blue-600 text-white text-xs font-semibold mr-2 px-2.5 py-0.5 rounded-full">vm</span>
-              </div>
-            </div>
-          </a>
-        </div>
-      
-    </div>
-  </div>
+  <!DOCTYPE html>
+  <html lang="en" class="dark">
   
-  <script>
-    const searchInput = document.getElementById('search-input');
-    const filterButtons = document.querySelectorAll('.filter-btn');
-    const templateCards = document.querySelectorAll('.template-card');
-    let currentTag = 'all';
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="https://app.kloudmate.com/favicon.ico">
+    <title>Gallery | KloudMate Dashboard Templates Gallery</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = { darkMode: 'class' }
+    </script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/atom-one-dark.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+  </head>
+  <body class="bg-gray-900 text-gray-100">
+    <div class="container mx-auto px-4">
+      <h1 class="text-4xl font-bold my-8 text-center">Dashboard Templates</h1>
+      <div class="mb-8">
+          <input type="search" id="search-input" placeholder="Search templates..." class="w-full px-4 py-2 rounded-md bg-gray-800 text-white border border-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500">
+      </div>
+      <div class="mb-8 text-center">
+        <span class="mr-4 font-semibold">Filter by tag:</span>
+        <button class="bg-blue-600 hover:bg-blue-700 text-white text-sm font-semibold py-1 px-3 rounded-full m-1 filter-btn active" data-tag="all">All</button>
+        <button class="bg-gray-700 hover:bg-gray-600 text-white text-sm font-semibold py-1 px-3 rounded-full m-1 filter-btn" data-tag="metrics">metrics</button><button class="bg-gray-700 hover:bg-gray-600 text-white text-sm font-semibold py-1 px-3 rounded-full m-1 filter-btn" data-tag="vm">vm</button>
+      </div>
+      <div id="template-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        
+  <div class="template-card bg-gray-800 rounded-lg shadow-lg overflow-hidden transform hover:scale-105 transition-transform duration-300" data-tags="metrics vm" data-title="Host Metrics" data-description="Gather various system-level performance indicators directly from a host's operating system. These metrics provide insights into the resource utilization and health of the physical or virtual server where the Collector is deployed as an agent.">
+    <a href="host-metrics/index.html" class="block">
+      <img src="host-metrics/screenshot.png" alt="Host Metrics" class="w-full h-48 object-cover">
+      <div class="p-6">
+        <div class="flex items-center mb-2">
+          <h2 class="text-2xl font-bold">Host Metrics</h2>
+          <svg class="w-6 h-6 text-blue-500 ml-2" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path></svg>
+        </div>
+        <p class="text-sm text-gray-500 mb-2">By KloudMate</p>
+        <p class="text-gray-400 mb-4">Gather various system-level performance indicators directly from a host's operating system. These metrics provide insights into the resource utilization and health of the physical or virtual server where the Collector is deployed as an agent.</p>
+        <div>
+          <span class="inline-block bg-blue-600 text-white text-xs font-semibold mr-2 px-2.5 py-0.5 rounded-full">metrics</span><span class="inline-block bg-blue-600 text-white text-xs font-semibold mr-2 px-2.5 py-0.5 rounded-full">vm</span>
+        </div>
+      </div>
+    </a>
+  </div>
+      </div>
+    </div>
+    <script>
+      // Search and filter logic...
+      const searchInput = document.getElementById('search-input');
+      const filterButtons = document.querySelectorAll('.filter-btn');
+      const templateCards = document.querySelectorAll('.template-card');
+      let currentTag = 'all';
 
-    function filterAndSearch() {
-        const searchTerm = searchInput.value.toLowerCase();
-
-        templateCards.forEach(card => {
-            const title = card.dataset.title.toLowerCase();
-            const description = card.dataset.description.toLowerCase();
-            const tags = card.dataset.tags;
-
-            const tagMatch = currentTag === 'all' || tags.includes(currentTag);
-            const searchMatch = title.includes(searchTerm) || description.includes(searchTerm);
-
-            if (tagMatch && searchMatch) {
-                card.style.display = 'block';
-            } else {
-                card.style.display = 'none';
-            }
+      function filterAndSearch() {
+          const searchTerm = searchInput.value.toLowerCase();
+          templateCards.forEach(card => {
+              const title = card.dataset.title.toLowerCase();
+              const description = card.dataset.description.toLowerCase();
+              const tags = card.dataset.tags;
+              const tagMatch = currentTag === 'all' || tags.includes(currentTag);
+              const searchMatch = title.includes(searchTerm) || description.includes(searchTerm);
+              if (tagMatch && searchMatch) {
+                  card.style.display = 'block';
+              } else {
+                  card.style.display = 'none';
+              }
+          });
+      }
+      filterButtons.forEach(button => {
+        button.addEventListener('click', () => {
+          currentTag = button.dataset.tag;
+          filterButtons.forEach(btn => {
+              btn.classList.remove('bg-blue-600', 'hover:bg-blue-700');
+              btn.classList.add('bg-gray-700', 'hover:bg-gray-600');
+          });
+          button.classList.add('bg-blue-600', 'hover:bg-blue-700');
+          button.classList.remove('bg-gray-700', 'hover:bg-gray-600');
+          filterAndSearch();
         });
-    }
-
-    filterButtons.forEach(button => {
-      button.addEventListener('click', () => {
-        currentTag = button.dataset.tag;
-        filterButtons.forEach(btn => {
-            btn.classList.remove('bg-blue-600', 'hover:bg-blue-700');
-            btn.classList.add('bg-gray-700', 'hover:bg-gray-600');
-        });
-        button.classList.add('bg-blue-600', 'hover:bg-blue-700');
-        button.classList.remove('bg-gray-700', 'hover:bg-gray-600');
-        filterAndSearch();
       });
-    });
-
-    searchInput.addEventListener('input', filterAndSearch);
-  </script>
-</body>
-</html>
+      searchInput.addEventListener('input', filterAndSearch);
+    </script>
+  </body>
+  </html>
