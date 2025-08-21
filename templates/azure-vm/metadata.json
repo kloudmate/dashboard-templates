@@ -1,0 +1,7 @@
+{
+  "title": "azure-vm",
+  "description": "Monitoring VM level data of Azure",
+  "tags": ["metrics", "vm"],
+  "author": "KloudMate",
+  "verified": true
+}
