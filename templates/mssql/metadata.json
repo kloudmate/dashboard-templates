@@ -1,0 +1,7 @@
+{
+  "title": "MSSQL",
+  "description": "Monitoring metrics of MSSQL Database",
+  "tags": ["metrics", "database"],
+  "author": "KloudMate",
+  "verified": true
+}
