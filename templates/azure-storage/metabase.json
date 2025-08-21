@@ -1,0 +1,7 @@
+{
+  "title": "azure-storage",
+  "description": "Monitoring storage level metrics in Azure",
+  "tags": ["metrics", "vm"],
+  "author": "KloudMate",
+  "verified": true
+}
