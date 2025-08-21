@@ -1,0 +1,7 @@
+{
+  "title": "JVM metrics",
+  "description": "Monitoring jvm runtime metrics",
+  "tags": ["metrics", "application"],
+  "author": "KloudMate",
+  "verified": true
+}
