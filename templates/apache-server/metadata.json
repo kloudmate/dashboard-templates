@@ -1,0 +1,7 @@
+{
+  "title": "apache server",
+  "description": "Monitoring metrics of Apache server",
+  "tags": ["metrics", "vm"],
+  "author": "KloudMate",
+  "verified": true
+}
