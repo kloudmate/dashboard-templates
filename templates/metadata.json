@@ -1,0 +1,7 @@
+{
+  "title": "PostgresSql",
+  "description": "Monitoring metrics of PostgresSql Database",
+  "tags": ["metrics", "database"],
+  "author": "KloudMate",
+  "verified": true
+}

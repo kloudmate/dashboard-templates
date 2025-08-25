@@ -1,0 +1,7 @@
+{
+  "title": "MySql",
+  "description": "Monitoring metrics of MySql Database",
+  "tags": ["metrics", "database"],
+  "author": "KloudMate",
+  "verified": true
+}
