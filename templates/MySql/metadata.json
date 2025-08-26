@@ -1,6 +1,6 @@
 {
   "title": "MySql",
-  "description": "Monitoring metrics of MySql Database",
+  "description": "The MySQL dashboard provides real-time visibility into database performance and resource utilization by leveraging OpenTelemetry (Otel) for metric collection.",
   "tags": ["metrics", "db"],
   "author": "KloudMate",
   "verified": true
