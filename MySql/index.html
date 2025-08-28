@@ -1,0 +1,1475 @@
+
+    <!DOCTYPE html>
+    <html lang="en" class="dark">
+    
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="https://app.kloudmate.com/favicon.ico">
+    <title>MySql | KloudMate Dashboard Templates Gallery</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = { darkMode: 'class' }
+    </script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/atom-one-dark.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+  </head>
+    <body class="bg-gray-900 text-gray-100 flex flex-col min-h-screen">
+      
+  <header class="bg-gray-800 text-white">
+    <div class="container mx-auto px-4 py-4 flex justify-between items-center">
+      <a href="https://kloudmate.com/" target="_blank" rel="noopener noreferrer">
+        <img src="https://app.kloudmate.com/assets/images/logo_full_white.svg" alt="KloudMate Logo" class="h-8">
+      </a>
+      <nav>
+        <a href="https://github.com/kloudmate/dashboard-templates" target="_blank" rel="noopener noreferrer" class="hover:text-gray-300">GitHub</a>
+      </nav>
+    </div>
+  </header>
+      <main class="flex-grow">
+        <div class="container mx-auto px-4">
+          <a href="../index.html" class="inline-block bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full my-8"><- Back to Templates</a>
+          <div class="flex items-center mb-2">
+              <h1 class="text-4xl font-bold">MySql</h1>
+              <svg class="w-8 h-8 text-blue-500 ml-3" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path></svg>
+          </div>
+          <p class="text-lg text-gray-500 mb-4">By KloudMate</p>
+          <p class="text-gray-400 mb-8">The MySQL dashboard provides real-time visibility into database performance and resource utilization by leveraging OpenTelemetry (Otel) for metric collection.</p>
+          <img src="screenshot.png" alt="MySql" class="w-full rounded-lg shadow-lg mb-8">
+          <div class="flex justify-between items-center mb-4">
+              <h2 class="text-2xl font-bold">Template JSON</h2>
+              <button id="how-to-use-btn" class="bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-md">How to Use</button>
+          </div>
+          <div class="relative">
+              <pre id="json-viewer" class="max-h-96 overflow-y-auto transition-all duration-500"><code class="json rounded-lg">{
+  "name": "HostMetrics",
+  "description": "This Dashboard is for OpenTelemetry hostmetrics receiver. Here default  datasource is opentelemetry.",
+  "data": {
+    "tz": "local",
+    "panels": [
+      {
+        "id": "0lnihagpoyp",
+        "tz": "local",
+        "axis": {
+          "x": {
+            "date_style": "auto"
+          }
+        },
+        "title": "Memory Usage",
+        "panelType": "STATS",
+        "timeRange": "1h",
+        "statConfig": {
+          "format": "percentage",
+          "decimals": 2,
+          "statView": "grid",
+          "baseColor": "#4CBB17",
+          "calculation": "last"
+        },
+        "timeseries": {
+          "legend": {
+            "view": "list",
+            "values": []
+          }
+        },
+        "node_configs": [
+          {
+            "exp": "sum by(job) (system_memory_usage{job=\"$hostname\",state=\"used\"}) / sum by(job) (system_memory_usage{job=\"$hostname\"})",
+            "stat": "",
+            "type": "query",
+            "limit": "",
+            "hidden": false,
+            "metric": "",
+            "nodeId": "A",
+            "region": "",
+            "source": "kloudmate",
+            "dataset": "metrics",
+            "filters": [],
+            "groupBy": [],
+            "orderBy": [],
+            "interval": "",
+            "namespace": "",
+            "dimensions": [],
+            "metricType": "",
+            "query_type": "promql",
+            "time_range": {
+              "to": 0,
+              "from": 600
+            },
+            "aggregation": {
+              "stat": "AVG",
+              "type": "",
+              "field": ""
+            },
+            "datasourceId": "kloudmate",
+            "responseType": "series"
+          }
+        ]
+      },
+      {
+        "id": "5o36bl0u15",
+        "tz": "local",
+        "axis": {
+          "x": {
+            "date_style": "auto"
+          }
+        },
+        "title": "CPU Usage",
+        "panelType": "STATS",
+        "timeRange": "1h",
+        "statConfig": {
+          "format": "percentage",
+          "decimals": 1,
+          "statView": "grid",
+          "baseColor": "#4CBB17",
+          "calculation": "last"
+        },
+        "timeseries": {
+          "legend": {
+            "view": "list",
+            "values": []
+          }
+        },
+        "node_configs": [
+          {
+            "exp": "1 - (avg by(job) (irate(system_cpu_time{job=\"$hostname\",state=\"idle\"}[5m])))",
+            "stat": "",
+            "type": "query",
+            "limit": "",
+            "hidden": false,
+            "metric": "",
+            "nodeId": "A",
+            "region": "",
+            "source": "kloudmate",
+            "dataset": "metrics",
+            "filters": [],
+            "groupBy": [],
+            "orderBy": [],
+            "interval": "",
+            "namespace": "",
+            "dimensions": [],
+            "metricType": "",
+            "query_type": "promql",
+            "time_range": {
+              "to": 0,
+              "from": 600
+            },
+            "aggregation": {
+              "stat": "AVG",
+              "type": "",
+              "field": ""
+            },
+            "datasourceId": "kloudmate",
+            "responseType": "series"
+          }
+        ]
+      },
+      {
+        "id": "bj3271tqzx5",
+        "tz": "local",
+        "axis": {
+          "x": {
+            "date_style": "auto"
+          }
+        },
+        "title": "File System Usage",
+        "panelType": "STATS",
+        "timeRange": "1h",
+        "statConfig": {
+          "format": "percentage",
+          "decimals": 1,
+          "statView": "grid",
+          "baseColor": "#4CBB17",
+          "calculation": "last"
+        },
+        "timeseries": {
+          "legend": {
+            "view": "list",
+            "values": []
+          }
+        },
+        "node_configs": [
+          {
+            "exp": "sum by(job) (system_filesystem_usage{job=\"$hostname\",state=\"used\",device!~\"/dev/loop.*\", device!~\"tmpfs|nsfs\"}) / sum by(job) (system_filesystem_usage{job=\"$hostname\",device!~\"/dev/loop.*\", device!~\"tmpfs|nsfs\"})",
+            "stat": "",
+            "type": "query",
+            "limit": "",
+            "hidden": false,
+            "metric": "",
+            "nodeId": "A",
+            "region": "",
+            "source": "kloudmate",
+            "dataset": "metrics",
+            "filters": [],
+            "groupBy": [],
+            "orderBy": [],
+            "interval": "",
+            "namespace": "",
+            "dimensions": [],
+            "metricType": "",
+            "query_type": "promql",
+            "time_range": {
+              "to": 0,
+              "from": 600
+            },
+            "aggregation": {
+              "stat": "AVG",
+              "type": "",
+              "field": ""
+            },
+            "datasourceId": "kloudmate",
+            "responseType": "series"
+          }
+        ]
+      },
+      {
+        "id": "9ud8nh2e0xh",
+        "tz": "local",
+        "axis": {
+          "x": {
+            "date_style": "auto"
+          }
+        },
+        "title": "Inode Usage",
+        "panelType": "STATS",
+        "timeRange": "1h",
+        "statConfig": {
+          "format": "percentage",
+          "decimals": 1,
+          "statView": "grid",
+          "baseColor": "#4CBB17",
+          "calculation": "last"
+        },
+        "timeseries": {
+          "legend": {
+            "view": "list",
+            "values": []
+          }
+        },
+        "node_configs": [
+          {
+            "exp": "sum by(job) (system_filesystem_inodes_usage{job=\"$hostname\",state=\"used\",device!~\"/dev/loop.*\",device!~\"tmpfs|nsfs\"}) / sum by(job) (system_filesystem_inodes_usage{job=\"$hostname\",device!~\"/dev/loop.*\",device!~\"tmpfs|nsfs\"})",
+            "stat": "",
+            "type": "query",
+            "limit": "",
+            "hidden": false,
+            "metric": "",
+            "nodeId": "A",
+            "region": "",
+            "source": "kloudmate",
+            "dataset": "metrics",
+            "filters": [],
+            "groupBy": [],
+            "orderBy": [],
+            "interval": "",
+            "namespace": "",
+            "dimensions": [],
+            "metricType": "",
+            "query_type": "promql",
+            "time_range": {
+              "to": 0,
+              "from": 600
+            },
+            "aggregation": {
+              "stat": "AVG",
+              "type": "",
+              "field": ""
+            },
+            "datasourceId": "kloudmate",
+            "responseType": "series"
+          }
+        ]
+      },
+      {
+        "id": "n4ftzz92bj",
+        "tz": "local",
+        "axis": {
+          "x": {
+            "date_style": "auto"
+          }
+        },
+        "title": "Disk IO (read)",
+        "panelType": "STATS",
+        "timeRange": "1h",
+        "statConfig": {
+          "format": "bytes",
+          "suffix": "/s",
+          "decimals": 1,
+          "statView": "grid",
+          "baseColor": "#4CBB17",
+          "calculation": "last"
+        },
+        "timeseries": {
+          "legend": {
+            "view": "list",
+            "values": []
+          }
+        },
+        "node_configs": [
+          {
+            "exp": "avg by(job) (irate(system_disk_io{job=\"$hostname\",direction=\"read\",device!~\"loop.*\", device!~\"tmpfs|nsfs\"}[5m]))",
+            "stat": "",
+            "type": "query",
+            "limit": "",
+            "hidden": false,
+            "metric": "",
+            "nodeId": "A",
+            "region": "",
+            "source": "kloudmate",
+            "dataset": "metrics",
+            "filters": [],
+            "groupBy": [],
+            "orderBy": [],
+            "interval": "",
+            "namespace": "",
+            "dimensions": [],
+            "metricType": "",
+            "query_type": "promql",
+            "time_range": {
+              "to": 0,
+              "from": 600
+            },
+            "aggregation": {
+              "stat": "AVG",
+              "type": "",
+              "field": ""
+            },
+            "datasourceId": "kloudmate",
+            "responseType": "series"
+          }
+        ]
+      },
+      {
+        "id": "6m1le2t992k",
+        "tz": "local",
+        "axis": {
+          "x": {
+            "date_style": "auto"
+          }
+        },
+        "title": "Disk IO (write)",
+        "panelType": "STATS",
+        "timeRange": "1h",
+        "statConfig": {
+          "format": "bytes",
+          "suffix": "/s",
+          "decimals": 1,
+          "statView": "grid",
+          "baseColor": "#4CBB17",
+          "calculation": "last"
+        },
+        "timeseries": {
+          "legend": {
+            "view": "list",
+            "values": []
+          }
+        },
+        "node_configs": [
+          {
+            "exp": "avg by(job) (irate(system_disk_io{job=\"$hostname\",direction=\"write\",device!~\"loop.*\", device!~\"tmpfs|nsfs\"}[5m]))",
+            "stat": "",
+            "type": "query",
+            "limit": "",
+            "hidden": false,
+            "metric": "",
+            "nodeId": "A",
+            "region": "",
+            "source": "kloudmate",
+            "dataset": "metrics",
+            "filters": [],
+            "groupBy": [],
+            "orderBy": [],
+            "interval": "",
+            "namespace": "",
+            "dimensions": [],
+            "metricType": "",
+            "query_type": "promql",
+            "time_range": {
+              "to": 0,
+              "from": 600
+            },
+            "aggregation": {
+              "stat": "AVG",
+              "type": "",
+              "field": ""
+            },
+            "datasourceId": "kloudmate",
+            "responseType": "series"
+          }
+        ]
+      },
+      {
+        "id": "ngq5aed288",
+        "tz": "local",
+        "axis": {
+          "x": {
+            "date_style": "auto"
+          },
+          "y": {
+            "format": "bytes",
+            "decimals": 1
+          }
+        },
+        "title": "Memory Usage",
+        "panelType": "TimeSeries",
+        "timeRange": "1h",
+        "statConfig": {
+          "statView": "grid",
+          "baseColor": "#4CBB17",
+          "calculation": "last"
+        },
+        "timeseries": {
+          "legend": {
+            "view": "list",
+            "values": []
+          }
+        },
+        "node_configs": [
+          {
+            "exp": "system_memory_usage{job=\"$hostname\",state=~\"buffered|cached|free|used\"}",
+            "stat": "",
+            "type": "query",
+            "limit": "",
+            "hidden": false,
+            "metric": "",
+            "nodeId": "A",
+            "region": "",
+            "source": "kloudmate",
+            "dataset": "metrics",
+            "filters": [],
+            "groupBy": [],
+            "orderBy": [],
+            "interval": "",
+            "namespace": "",
+            "dimensions": [],
+            "metricType": "",
+            "query_type": "promql",
+            "time_range": {
+              "to": 0,
+              "from": 600
+            },
+            "aggregation": {
+              "stat": "AVG",
+              "type": "",
+              "field": ""
+            },
+            "datasourceId": "kloudmate",
+            "legendFormat": "{{state}}",
+            "responseType": "series"
+          }
+        ]
+      },
+      {
+        "id": "e7qt7djxq5d",
+        "tz": "local",
+        "axis": {
+          "x": {
+            "date_style": "auto"
+          },
+          "y": {
+            "format": "percentage",
+            "decimals": 1
+          }
+        },
+        "title": "CPU Utilisation",
+        "panelType": "TimeSeries",
+        "timeRange": "1h",
+        "statConfig": {
+          "statView": "grid",
+          "baseColor": "#4CBB17",
+          "calculation": "last"
+        },
+        "timeseries": {
+          "legend": {
+            "view": "list",
+            "values": []
+          }
+        },
+        "node_configs": [
+          {
+            "exp": "avg by(state) (irate(system_cpu_time{job=\"$hostname\",state!=\"idle\"}[5m]))",
+            "stat": "",
+            "type": "query",
+            "limit": "",
+            "hidden": false,
+            "metric": "",
+            "nodeId": "A",
+            "region": "",
+            "source": "kloudmate",
+            "dataset": "metrics",
+            "filters": [],
+            "groupBy": [],
+            "orderBy": [],
+            "interval": "",
+            "namespace": "",
+            "dimensions": [],
+            "metricType": "",
+            "query_type": "promql",
+            "time_range": {
+              "to": 0,
+              "from": 600
+            },
+            "aggregation": {
+              "stat": "AVG",
+              "type": "",
+              "field": ""
+            },
+            "datasourceId": "kloudmate",
+            "legendFormat": "{{state}}",
+            "responseType": "series"
+          }
+        ]
+      },
+      {
+        "id": "o66mqp4s6jb",
+        "tz": "local",
+        "axis": {
+          "x": {
+            "date_style": "auto"
+          },
+          "y": {
+            "format": "percentage",
+            "decimals": 1
+          }
+        },
+        "title": "CPU Idle",
+        "panelType": "TimeSeries",
+        "timeRange": "1h",
+        "statConfig": {
+          "statView": "grid",
+          "baseColor": "#4CBB17",
+          "calculation": "last"
+        },
+        "timeseries": {
+          "legend": {
+            "view": "list",
+            "values": []
+          }
+        },
+        "node_configs": [
+          {
+            "exp": "avg by(state) (irate(system_cpu_time{job=\"$hostname\",state=\"idle\"}[5m]))",
+            "stat": "",
+            "type": "query",
+            "limit": "",
+            "hidden": false,
+            "metric": "",
+            "nodeId": "A",
+            "region": "",
+            "source": "kloudmate",
+            "dataset": "metrics",
+            "filters": [],
+            "groupBy": [],
+            "orderBy": [],
+            "interval": "",
+            "namespace": "",
+            "dimensions": [],
+            "metricType": "",
+            "query_type": "promql",
+            "time_range": {
+              "to": 0,
+              "from": 600
+            },
+            "aggregation": {
+              "stat": "AVG",
+              "type": "",
+              "field": ""
+            },
+            "datasourceId": "kloudmate",
+            "legendFormat": "{{state}}",
+            "responseType": "series"
+          }
+        ]
+      },
+      {
+        "id": "1t5ak90uf4o",
+        "tz": "local",
+        "axis": {
+          "x": {
+            "date_style": "auto"
+          },
+          "y": {
+            "format": "bytes",
+            "decimals": 1
+          }
+        },
+        "title": "Available storage",
+        "panelType": "TimeSeries",
+        "timeRange": "15m",
+        "statConfig": {
+          "statView": "grid",
+          "baseColor": "#4CBB17",
+          "calculation": "last"
+        },
+        "timeseries": {
+          "legend": {
+            "view": "list",
+            "values": []
+          }
+        },
+        "node_configs": [
+          {
+            "exp": "system_filesystem_usage{job=\"$hostname\",state=\"free\",device!~\"/dev/loop.*\", device!~\"tmpfs | nsfs\"}",
+            "stat": "",
+            "type": "query",
+            "limit": "",
+            "hidden": false,
+            "metric": "",
+            "nodeId": "A",
+            "region": "",
+            "source": "kloudmate",
+            "dataset": "metrics",
+            "filters": [],
+            "groupBy": [],
+            "orderBy": [],
+            "interval": "",
+            "namespace": "",
+            "dimensions": [],
+            "metricType": "",
+            "query_type": "promql",
+            "time_range": {
+              "to": 0,
+              "from": 600
+            },
+            "aggregation": {
+              "stat": "AVG",
+              "type": "",
+              "field": ""
+            },
+            "datasourceId": "kloudmate",
+            "legendFormat": "{{__name__}}",
+            "responseType": "series"
+          }
+        ]
+      },
+      {
+        "id": "1hnt5y731r3",
+        "tz": "local",
+        "axis": {
+          "x": {
+            "date_style": "auto"
+          },
+          "y": {
+            "format": "bytes",
+            "decimals": 2
+          }
+        },
+        "title": "Disk Utilization",
+        "panelType": "TimeSeries",
+        "timeRange": "30m",
+        "statConfig": {
+          "statView": "grid",
+          "baseColor": "#4CBB17",
+          "calculation": "last"
+        },
+        "timeseries": {
+          "legend": {
+            "view": "list",
+            "values": []
+          }
+        },
+        "node_configs": [
+          {
+            "exp": "system_filesystem_usage{job=\"$hostname\",state=\"used\",device!~\"/dev/loop.*\", device!~\"tmpfs | nsfs\"}",
+            "stat": "",
+            "type": "query",
+            "limit": "",
+            "hidden": false,
+            "metric": "",
+            "nodeId": "A",
+            "region": "",
+            "source": "kloudmate",
+            "dataset": "metrics",
+            "filters": [],
+            "groupBy": [],
+            "orderBy": [],
+            "interval": "",
+            "namespace": "",
+            "dimensions": [],
+            "metricType": "",
+            "query_type": "promql",
+            "time_range": {
+              "to": 0,
+              "from": 600
+            },
+            "aggregation": {
+              "stat": "AVG",
+              "type": "",
+              "field": ""
+            },
+            "datasourceId": "kloudmate",
+            "legendFormat": "{{__name__}}",
+            "responseType": "series"
+          }
+        ]
+      },
+      {
+        "id": "lmw6b9asqef",
+        "tz": "local",
+        "axis": {
+          "x": {
+            "date_style": "auto"
+          },
+          "y": {
+            "format": "unformatted",
+            "decimals": 1
+          }
+        },
+        "title": "Average CPU load",
+        "panelType": "TimeSeries",
+        "timeRange": "1h",
+        "statConfig": {
+          "statView": "grid",
+          "baseColor": "#4CBB17",
+          "calculation": "last"
+        },
+        "timeseries": {
+          "legend": {
+            "view": "list",
+            "values": []
+          }
+        },
+        "node_configs": [
+          {
+            "exp": "system_cpu_load_average_1m{job=\"$hostname\"}",
+            "stat": "",
+            "type": "query",
+            "limit": "",
+            "hidden": false,
+            "metric": "",
+            "nodeId": "A",
+            "region": "",
+            "source": "kloudmate",
+            "dataset": "metrics",
+            "filters": [],
+            "groupBy": [],
+            "orderBy": [],
+            "interval": "",
+            "namespace": "",
+            "dimensions": [],
+            "metricType": "",
+            "query_type": "promql",
+            "time_range": {
+              "to": 0,
+              "from": 600
+            },
+            "aggregation": {
+              "stat": "AVG",
+              "type": "",
+              "field": ""
+            },
+            "datasourceId": "kloudmate",
+            "legendFormat": "1m-average",
+            "responseType": "series"
+          },
+          {
+            "exp": "system_cpu_load_average_5m{job=\"$hostname\"}",
+            "stat": "",
+            "type": "query",
+            "limit": "",
+            "hidden": false,
+            "metric": "",
+            "nodeId": "B",
+            "region": "",
+            "source": "kloudmate",
+            "dataset": "metrics",
+            "filters": [],
+            "groupBy": [],
+            "orderBy": [],
+            "interval": "",
+            "namespace": "",
+            "dimensions": [],
+            "metricType": "",
+            "query_type": "promql",
+            "time_range": {
+              "to": 0,
+              "from": 600
+            },
+            "aggregation": {
+              "stat": "AVG",
+              "type": "",
+              "field": ""
+            },
+            "datasourceId": "kloudmate",
+            "legendFormat": "5m-average",
+            "responseType": "series"
+          },
+          {
+            "exp": "system_cpu_load_average_15m{job=\"$hostname\"}",
+            "stat": "",
+            "type": "query",
+            "limit": "",
+            "hidden": false,
+            "metric": "",
+            "nodeId": "C",
+            "region": "",
+            "source": "kloudmate",
+            "dataset": "metrics",
+            "filters": [],
+            "groupBy": [],
+            "orderBy": [],
+            "interval": "",
+            "namespace": "",
+            "dimensions": [],
+            "metricType": "",
+            "query_type": "promql",
+            "time_range": {
+              "to": 0,
+              "from": 600
+            },
+            "aggregation": {
+              "stat": "AVG",
+              "type": "",
+              "field": ""
+            },
+            "datasourceId": "kloudmate",
+            "legendFormat": "15m-average",
+            "responseType": "series"
+          }
+        ]
+      },
+      {
+        "id": "cgvuwpatfm",
+        "tz": "local",
+        "axis": {
+          "x": {
+            "date_style": "auto"
+          },
+          "y": {
+            "format": "unformatted"
+          }
+        },
+        "title": "Total Inode Usage",
+        "panelType": "TimeSeries",
+        "timeRange": "1h",
+        "statConfig": {
+          "statView": "grid",
+          "baseColor": "#4CBB17",
+          "calculation": "last"
+        },
+        "timeseries": {
+          "legend": {
+            "view": "list",
+            "values": []
+          }
+        },
+        "node_configs": [
+          {
+            "exp": "sum by(job, state) (system_filesystem_inodes_usage{job=\"$hostname\",device!~\"/dev/loop.*\",device!~\"tmpfs|nsfs\"})",
+            "stat": "",
+            "type": "query",
+            "limit": "",
+            "hidden": false,
+            "metric": "",
+            "nodeId": "A",
+            "region": "",
+            "source": "kloudmate",
+            "dataset": "metrics",
+            "filters": [],
+            "groupBy": [],
+            "orderBy": [],
+            "interval": "",
+            "namespace": "",
+            "dimensions": [],
+            "metricType": "",
+            "query_type": "promql",
+            "time_range": {
+              "to": 0,
+              "from": 600
+            },
+            "aggregation": {
+              "stat": "AVG",
+              "type": "",
+              "field": ""
+            },
+            "datasourceId": "kloudmate",
+            "legendFormat": "{{state}}",
+            "responseType": "series"
+          }
+        ]
+      },
+      {
+        "id": "3pp5ei0vcrg",
+        "tz": "local",
+        "axis": {
+          "x": {
+            "date_style": "auto"
+          },
+          "y": {
+            "format": "bytes",
+            "suffix": "/s"
+          }
+        },
+        "title": "Total Network IO",
+        "panelType": "TimeSeries",
+        "timeRange": "1h",
+        "statConfig": {
+          "statView": "grid",
+          "baseColor": "#4CBB17",
+          "calculation": "last"
+        },
+        "timeseries": {
+          "legend": {
+            "view": "list",
+            "values": []
+          }
+        },
+        "node_configs": [
+          {
+            "exp": "avg by(direction) (irate(system_network_io{job=\"$hostname\"}[5m]))",
+            "stat": "",
+            "type": "query",
+            "limit": "",
+            "hidden": false,
+            "metric": "",
+            "nodeId": "A",
+            "region": "",
+            "source": "kloudmate",
+            "dataset": "metrics",
+            "filters": [],
+            "groupBy": [],
+            "orderBy": [],
+            "interval": "",
+            "namespace": "",
+            "dimensions": [],
+            "metricType": "",
+            "query_type": "promql",
+            "time_range": {
+              "to": 0,
+              "from": 600
+            },
+            "aggregation": {
+              "stat": "AVG",
+              "type": "",
+              "field": ""
+            },
+            "datasourceId": "kloudmate",
+            "legendFormat": "{{direction}}",
+            "responseType": "series"
+          }
+        ]
+      },
+      {
+        "id": "31x8lmqjw4k",
+        "tz": "local",
+        "axis": {
+          "x": {
+            "date_style": "auto"
+          },
+          "y": {
+            "format": "bytes",
+            "suffix": "/s"
+          }
+        },
+        "title": "Total Disk IO ",
+        "panelType": "TimeSeries",
+        "timeRange": "30m",
+        "statConfig": {
+          "statView": "grid",
+          "baseColor": "#4CBB17",
+          "calculation": "last"
+        },
+        "timeseries": {
+          "legend": {
+            "view": "list",
+            "values": []
+          }
+        },
+        "node_configs": [
+          {
+            "exp": "avg by(direction) (irate(system_disk_io{job=\"$hostname\",device!~\"loop.*\", device!~\"tmpfs|nsfs\"}[5m]))",
+            "stat": "",
+            "type": "query",
+            "limit": "",
+            "hidden": false,
+            "metric": "",
+            "nodeId": "A",
+            "region": "",
+            "source": "kloudmate",
+            "dataset": "metrics",
+            "filters": [],
+            "groupBy": [],
+            "orderBy": [],
+            "interval": "",
+            "namespace": "",
+            "dimensions": [],
+            "metricType": "",
+            "query_type": "promql",
+            "time_range": {
+              "to": 0,
+              "from": 600
+            },
+            "aggregation": {
+              "stat": "AVG",
+              "type": "",
+              "field": ""
+            },
+            "datasourceId": "kloudmate",
+            "legendFormat": "{{direction}}",
+            "responseType": "series"
+          }
+        ]
+      },
+      {
+        "id": "91jwq1wn0n5",
+        "tz": "local",
+        "axis": {
+          "x": {
+            "date_style": "auto"
+          },
+          "y": {
+            "format": "bytes"
+          }
+        },
+        "title": "Total File System Usage",
+        "panelType": "TimeSeries",
+        "timeRange": "1h",
+        "statConfig": {
+          "statView": "grid",
+          "baseColor": "#4CBB17",
+          "calculation": "last"
+        },
+        "timeseries": {
+          "legend": {
+            "view": "list",
+            "values": []
+          }
+        },
+        "node_configs": [
+          {
+            "exp": "sum by(state) (system_filesystem_usage{job=\"$hostname\",device!~\"/dev/loop.*\", device!~\"tmpfs | nsfs\"})",
+            "stat": "",
+            "type": "query",
+            "limit": "",
+            "hidden": false,
+            "metric": "",
+            "nodeId": "A",
+            "region": "",
+            "source": "kloudmate",
+            "dataset": "metrics",
+            "filters": [],
+            "groupBy": [],
+            "orderBy": [],
+            "interval": "",
+            "namespace": "",
+            "dimensions": [],
+            "metricType": "",
+            "query_type": "promql",
+            "time_range": {
+              "to": 0,
+              "from": 600
+            },
+            "aggregation": {
+              "stat": "AVG",
+              "type": "",
+              "field": ""
+            },
+            "datasourceId": "kloudmate",
+            "legendFormat": "{{state}}",
+            "responseType": "series"
+          }
+        ]
+      },
+      {
+        "id": "9auxkevmznk",
+        "tz": "local",
+        "axis": {
+          "x": {
+            "date_style": "auto"
+          },
+          "y": {
+            "format": "number",
+            "suffix": "ops/s"
+          }
+        },
+        "title": "Total Disk Operations",
+        "panelType": "TimeSeries",
+        "timeRange": "1h",
+        "statConfig": {
+          "statView": "grid",
+          "baseColor": "#4CBB17",
+          "calculation": "last"
+        },
+        "timeseries": {
+          "legend": {
+            "view": "list",
+            "values": []
+          }
+        },
+        "node_configs": [
+          {
+            "exp": "avg by(direction) (irate(system_disk_operations{job=\"$hostname\",device!~\"loop.*\",device!~\"tmpfs|nsfs\"}[5m]))",
+            "stat": "",
+            "type": "query",
+            "limit": "",
+            "hidden": false,
+            "metric": "",
+            "nodeId": "A",
+            "region": "",
+            "source": "kloudmate",
+            "dataset": "metrics",
+            "filters": [],
+            "groupBy": [],
+            "orderBy": [],
+            "interval": "",
+            "namespace": "",
+            "dimensions": [],
+            "metricType": "",
+            "query_type": "promql",
+            "time_range": {
+              "to": 0,
+              "from": 600
+            },
+            "aggregation": {
+              "stat": "AVG",
+              "type": "",
+              "field": ""
+            },
+            "datasourceId": "kloudmate",
+            "legendFormat": "{{direction}}",
+            "responseType": "series"
+          }
+        ]
+      }
+    ],
+    "timeRange": "1h",
+    "variables": [
+      {
+        "id": "3195da0e-571b-45fa-b9c3-2b83c06d81c2",
+        "name": "hostname",
+        "type": "query",
+        "label": "hostname",
+        "config": {
+          "otel": {
+            "key": {
+              "type": "string",
+              "field": "job"
+            },
+            "dataset": "metrics",
+            "filters": []
+          },
+          "source": "cloudwatch",
+          "queryType": "otel.values"
+        },
+        "is_multi": false,
+        "description": "",
+        "usedInPanels": [
+          {
+            "id": "0lnihagpoyp",
+            "name": "Memory Usage"
+          },
+          {
+            "id": "5o36bl0u15",
+            "name": "CPU Usage"
+          },
+          {
+            "id": "bj3271tqzx5",
+            "name": "File System Usage"
+          },
+          {
+            "id": "9ud8nh2e0xh",
+            "name": "Inode Usage"
+          },
+          {
+            "id": "n4ftzz92bj",
+            "name": "Disk IO (read)"
+          },
+          {
+            "id": "6m1le2t992k",
+            "name": "Disk IO (write)"
+          },
+          {
+            "id": "ngq5aed288",
+            "name": "Memory Usage"
+          },
+          {
+            "id": "e7qt7djxq5d",
+            "name": "CPU Utilisation"
+          },
+          {
+            "id": "o66mqp4s6jb",
+            "name": "CPU Idle"
+          },
+          {
+            "id": "1t5ak90uf4o",
+            "name": "Available storage"
+          },
+          {
+            "id": "1hnt5y731r3",
+            "name": "Disk Utilization"
+          },
+          {
+            "id": "lmw6b9asqef",
+            "name": "Average CPU load"
+          },
+          {
+            "id": "cgvuwpatfm",
+            "name": "Total Inode Usage"
+          },
+          {
+            "id": "3pp5ei0vcrg",
+            "name": "Total Network IO"
+          },
+          {
+            "id": "31x8lmqjw4k",
+            "name": "Total Disk IO "
+          },
+          {
+            "id": "91jwq1wn0n5",
+            "name": "Total File System Usage"
+          },
+          {
+            "id": "9auxkevmznk",
+            "name": "Total Disk Operations"
+          }
+        ],
+        "usesVariables": [],
+        "show_all_option": true,
+        "usedInVariables": []
+      }
+    ],
+    "panel_layouts": [
+      {
+        "h": 5,
+        "i": "0lnihagpoyp",
+        "w": 4,
+        "x": 4,
+        "y": 0,
+        "minH": 1,
+        "minW": 1,
+        "moved": false,
+        "static": false
+      },
+      {
+        "h": 5,
+        "i": "5o36bl0u15",
+        "w": 4,
+        "x": 0,
+        "y": 0,
+        "minH": 1,
+        "minW": 1,
+        "moved": false,
+        "static": false
+      },
+      {
+        "h": 5,
+        "i": "bj3271tqzx5",
+        "w": 4,
+        "x": 8,
+        "y": 0,
+        "minH": 1,
+        "minW": 1,
+        "moved": false,
+        "static": false
+      },
+      {
+        "h": 5,
+        "i": "9ud8nh2e0xh",
+        "w": 4,
+        "x": 12,
+        "y": 0,
+        "minH": 1,
+        "minW": 1,
+        "moved": false,
+        "static": false
+      },
+      {
+        "h": 5,
+        "i": "n4ftzz92bj",
+        "w": 4,
+        "x": 16,
+        "y": 0,
+        "minH": 1,
+        "minW": 1,
+        "moved": false,
+        "static": false
+      },
+      {
+        "h": 5,
+        "i": "6m1le2t992k",
+        "w": 4,
+        "x": 20,
+        "y": 0,
+        "minH": 1,
+        "minW": 1,
+        "moved": false,
+        "static": false
+      },
+      {
+        "h": 10,
+        "i": "ngq5aed288",
+        "w": 12,
+        "x": 12,
+        "y": 5,
+        "minH": 1,
+        "minW": 1,
+        "moved": false,
+        "static": false
+      },
+      {
+        "h": 10,
+        "i": "e7qt7djxq5d",
+        "w": 12,
+        "x": 0,
+        "y": 5,
+        "minH": 1,
+        "minW": 1,
+        "moved": false,
+        "static": false
+      },
+      {
+        "h": 10,
+        "i": "o66mqp4s6jb",
+        "w": 6,
+        "x": 6,
+        "y": 15,
+        "minH": 1,
+        "minW": 1,
+        "moved": false,
+        "static": false
+      },
+      {
+        "h": 10,
+        "i": "1t5ak90uf4o",
+        "w": 6,
+        "x": 12,
+        "y": 15,
+        "minH": 1,
+        "minW": 1,
+        "moved": false,
+        "static": false
+      },
+      {
+        "h": 10,
+        "i": "1hnt5y731r3",
+        "w": 6,
+        "x": 18,
+        "y": 15,
+        "minH": 1,
+        "minW": 1,
+        "moved": false,
+        "static": false
+      },
+      {
+        "h": 10,
+        "i": "lmw6b9asqef",
+        "w": 6,
+        "x": 0,
+        "y": 15,
+        "minH": 1,
+        "minW": 1,
+        "moved": false,
+        "static": false
+      },
+      {
+        "h": 10,
+        "i": "cgvuwpatfm",
+        "w": 12,
+        "x": 0,
+        "y": 35,
+        "minH": 1,
+        "minW": 1,
+        "moved": false,
+        "static": false
+      },
+      {
+        "h": 10,
+        "i": "3pp5ei0vcrg",
+        "w": 12,
+        "x": 0,
+        "y": 25,
+        "minH": 1,
+        "minW": 1,
+        "moved": false,
+        "static": false
+      },
+      {
+        "h": 10,
+        "i": "31x8lmqjw4k",
+        "w": 6,
+        "x": 12,
+        "y": 35,
+        "minH": 1,
+        "minW": 1,
+        "moved": false,
+        "static": false
+      },
+      {
+        "h": 10,
+        "i": "91jwq1wn0n5",
+        "w": 12,
+        "x": 12,
+        "y": 25,
+        "minH": 1,
+        "minW": 1,
+        "moved": false,
+        "static": false
+      },
+      {
+        "h": 10,
+        "i": "9auxkevmznk",
+        "w": 6,
+        "x": 18,
+        "y": 35,
+        "minH": 1,
+        "minW": 1,
+        "moved": false,
+        "static": false
+      }
+    ],
+    "default_region": "us-east-1"
+  },
+  "tags": []
+}</code></pre>
+              <button class="absolute top-2 right-2 bg-gray-700 hover:bg-gray-600 text-white font-bold py-1 px-3 rounded-md" onclick="copyToClipboard()">Copy</button>
+          </div>
+          <button id="expand-btn" class="mt-4 bg-gray-700 hover:bg-gray-600 text-white font-bold py-2 px-4 rounded-md">Show More</button>
+        </div>
+      </main>
+      
+  <footer class="bg-gray-800 text-gray-400 mt-16">
+    <div class="container mx-auto px-4 py-8 flex flex-col md:flex-row justify-between items-center">
+      <div class="mb-4 md:mb-0">
+        <a href="https://kloudmate.com/" target="_blank" rel="noopener noreferrer">
+          <img src="https://app.kloudmate.com/assets/images/logo_full_white.svg" alt="KloudMate Logo" class="h-8">
+        </a>
+      </div>
+      <div class="flex space-x-6">
+        <a href="https://app.kloudmate.com/login" target="_blank" rel="noopener noreferrer" class="hover:text-white">Login</a>
+        <a href="https://github.com/kloudmate/dashboard-templates" target="_blank" rel="noopener noreferrer" class="hover:text-white">GitHub</a>
+      </div>
+    </div>
+  </footer>
+      <div id="how-to-use-modal" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center hidden">
+        <div class="bg-gray-800 text-white rounded-lg shadow-lg p-8 max-w-lg w-full">
+            <h2 class="text-2xl font-bold mb-4">How to Use This Template</h2>
+            <ol class="list-decimal list-inside space-y-2">
+                <li>Copy the JSON from the template viewer.</li>
+                <li>Go to the "Dashboards" page in your KloudMate account.</li>
+                <li>Click the "Import" button.</li>
+                <li>Paste the JSON into the text area.</li>
+                <li>Click "Submit" to create the new dashboard.</li>
+            </ol>
+            <button id="close-modal-btn" class="mt-6 bg-gray-700 hover:bg-gray-600 text-white font-bold py-2 px-4 rounded-md">Close</button>
+        </div>
+      </div>
+      <script>
+        // Page-specific script...
+        hljs.highlightAll();
+        function copyToClipboard() {
+          navigator.clipboard.writeText("{\n  \"name\": \"HostMetrics\",\n  \"description\": \"This Dashboard is for OpenTelemetry hostmetrics receiver. Here default  datasource is opentelemetry.\",\n  \"data\": {\n    \"tz\": \"local\",\n    \"panels\": [\n      {\n        \"id\": \"0lnihagpoyp\",\n        \"tz\": \"local\",\n        \"axis\": {\n          \"x\": {\n            \"date_style\": \"auto\"\n          }\n        },\n        \"title\": \"Memory Usage\",\n        \"panelType\": \"STATS\",\n        \"timeRange\": \"1h\",\n        \"statConfig\": {\n          \"format\": \"percentage\",\n          \"decimals\": 2,\n          \"statView\": \"grid\",\n          \"baseColor\": \"#4CBB17\",\n          \"calculation\": \"last\"\n        },\n        \"timeseries\": {\n          \"legend\": {\n            \"view\": \"list\",\n            \"values\": []\n          }\n        },\n        \"node_configs\": [\n          {\n            \"exp\": \"sum by(job) (system_memory_usage{job=\\\"$hostname\\\",state=\\\"used\\\"}) / sum by(job) (system_memory_usage{job=\\\"$hostname\\\"})\",\n            \"stat\": \"\",\n            \"type\": \"query\",\n            \"limit\": \"\",\n            \"hidden\": false,\n            \"metric\": \"\",\n            \"nodeId\": \"A\",\n            \"region\": \"\",\n            \"source\": \"kloudmate\",\n            \"dataset\": \"metrics\",\n            \"filters\": [],\n            \"groupBy\": [],\n            \"orderBy\": [],\n            \"interval\": \"\",\n            \"namespace\": \"\",\n            \"dimensions\": [],\n            \"metricType\": \"\",\n            \"query_type\": \"promql\",\n            \"time_range\": {\n              \"to\": 0,\n              \"from\": 600\n            },\n            \"aggregation\": {\n              \"stat\": \"AVG\",\n              \"type\": \"\",\n              \"field\": \"\"\n            },\n            \"datasourceId\": \"kloudmate\",\n            \"responseType\": \"series\"\n          }\n        ]\n      },\n      {\n        \"id\": \"5o36bl0u15\",\n        \"tz\": \"local\",\n        \"axis\": {\n          \"x\": {\n            \"date_style\": \"auto\"\n          }\n        },\n        \"title\": \"CPU Usage\",\n        \"panelType\": \"STATS\",\n        \"timeRange\": \"1h\",\n        \"statConfig\": {\n          \"format\": \"percentage\",\n          \"decimals\": 1,\n          \"statView\": \"grid\",\n          \"baseColor\": \"#4CBB17\",\n          \"calculation\": \"last\"\n        },\n        \"timeseries\": {\n          \"legend\": {\n            \"view\": \"list\",\n            \"values\": []\n          }\n        },\n        \"node_configs\": [\n          {\n            \"exp\": \"1 - (avg by(job) (irate(system_cpu_time{job=\\\"$hostname\\\",state=\\\"idle\\\"}[5m])))\",\n            \"stat\": \"\",\n            \"type\": \"query\",\n            \"limit\": \"\",\n            \"hidden\": false,\n            \"metric\": \"\",\n            \"nodeId\": \"A\",\n            \"region\": \"\",\n            \"source\": \"kloudmate\",\n            \"dataset\": \"metrics\",\n            \"filters\": [],\n            \"groupBy\": [],\n            \"orderBy\": [],\n            \"interval\": \"\",\n            \"namespace\": \"\",\n            \"dimensions\": [],\n            \"metricType\": \"\",\n            \"query_type\": \"promql\",\n            \"time_range\": {\n              \"to\": 0,\n              \"from\": 600\n            },\n            \"aggregation\": {\n              \"stat\": \"AVG\",\n              \"type\": \"\",\n              \"field\": \"\"\n            },\n            \"datasourceId\": \"kloudmate\",\n            \"responseType\": \"series\"\n          }\n        ]\n      },\n      {\n        \"id\": \"bj3271tqzx5\",\n        \"tz\": \"local\",\n        \"axis\": {\n          \"x\": {\n            \"date_style\": \"auto\"\n          }\n        },\n        \"title\": \"File System Usage\",\n        \"panelType\": \"STATS\",\n        \"timeRange\": \"1h\",\n        \"statConfig\": {\n          \"format\": \"percentage\",\n          \"decimals\": 1,\n          \"statView\": \"grid\",\n          \"baseColor\": \"#4CBB17\",\n          \"calculation\": \"last\"\n        },\n        \"timeseries\": {\n          \"legend\": {\n            \"view\": \"list\",\n            \"values\": []\n          }\n        },\n        \"node_configs\": [\n          {\n            \"exp\": \"sum by(job) (system_filesystem_usage{job=\\\"$hostname\\\",state=\\\"used\\\",device!~\\\"/dev/loop.*\\\", device!~\\\"tmpfs|nsfs\\\"}) / sum by(job) (system_filesystem_usage{job=\\\"$hostname\\\",device!~\\\"/dev/loop.*\\\", device!~\\\"tmpfs|nsfs\\\"})\",\n            \"stat\": \"\",\n            \"type\": \"query\",\n            \"limit\": \"\",\n            \"hidden\": false,\n            \"metric\": \"\",\n            \"nodeId\": \"A\",\n            \"region\": \"\",\n            \"source\": \"kloudmate\",\n            \"dataset\": \"metrics\",\n            \"filters\": [],\n            \"groupBy\": [],\n            \"orderBy\": [],\n            \"interval\": \"\",\n            \"namespace\": \"\",\n            \"dimensions\": [],\n            \"metricType\": \"\",\n            \"query_type\": \"promql\",\n            \"time_range\": {\n              \"to\": 0,\n              \"from\": 600\n            },\n            \"aggregation\": {\n              \"stat\": \"AVG\",\n              \"type\": \"\",\n              \"field\": \"\"\n            },\n            \"datasourceId\": \"kloudmate\",\n            \"responseType\": \"series\"\n          }\n        ]\n      },\n      {\n        \"id\": \"9ud8nh2e0xh\",\n        \"tz\": \"local\",\n        \"axis\": {\n          \"x\": {\n            \"date_style\": \"auto\"\n          }\n        },\n        \"title\": \"Inode Usage\",\n        \"panelType\": \"STATS\",\n        \"timeRange\": \"1h\",\n        \"statConfig\": {\n          \"format\": \"percentage\",\n          \"decimals\": 1,\n          \"statView\": \"grid\",\n          \"baseColor\": \"#4CBB17\",\n          \"calculation\": \"last\"\n        },\n        \"timeseries\": {\n          \"legend\": {\n            \"view\": \"list\",\n            \"values\": []\n          }\n        },\n        \"node_configs\": [\n          {\n            \"exp\": \"sum by(job) (system_filesystem_inodes_usage{job=\\\"$hostname\\\",state=\\\"used\\\",device!~\\\"/dev/loop.*\\\",device!~\\\"tmpfs|nsfs\\\"}) / sum by(job) (system_filesystem_inodes_usage{job=\\\"$hostname\\\",device!~\\\"/dev/loop.*\\\",device!~\\\"tmpfs|nsfs\\\"})\",\n            \"stat\": \"\",\n            \"type\": \"query\",\n            \"limit\": \"\",\n            \"hidden\": false,\n            \"metric\": \"\",\n            \"nodeId\": \"A\",\n            \"region\": \"\",\n            \"source\": \"kloudmate\",\n            \"dataset\": \"metrics\",\n            \"filters\": [],\n            \"groupBy\": [],\n            \"orderBy\": [],\n            \"interval\": \"\",\n            \"namespace\": \"\",\n            \"dimensions\": [],\n            \"metricType\": \"\",\n            \"query_type\": \"promql\",\n            \"time_range\": {\n              \"to\": 0,\n              \"from\": 600\n            },\n            \"aggregation\": {\n              \"stat\": \"AVG\",\n              \"type\": \"\",\n              \"field\": \"\"\n            },\n            \"datasourceId\": \"kloudmate\",\n            \"responseType\": \"series\"\n          }\n        ]\n      },\n      {\n        \"id\": \"n4ftzz92bj\",\n        \"tz\": \"local\",\n        \"axis\": {\n          \"x\": {\n            \"date_style\": \"auto\"\n          }\n        },\n        \"title\": \"Disk IO (read)\",\n        \"panelType\": \"STATS\",\n        \"timeRange\": \"1h\",\n        \"statConfig\": {\n          \"format\": \"bytes\",\n          \"suffix\": \"/s\",\n          \"decimals\": 1,\n          \"statView\": \"grid\",\n          \"baseColor\": \"#4CBB17\",\n          \"calculation\": \"last\"\n        },\n        \"timeseries\": {\n          \"legend\": {\n            \"view\": \"list\",\n            \"values\": []\n          }\n        },\n        \"node_configs\": [\n          {\n            \"exp\": \"avg by(job) (irate(system_disk_io{job=\\\"$hostname\\\",direction=\\\"read\\\",device!~\\\"loop.*\\\", device!~\\\"tmpfs|nsfs\\\"}[5m]))\",\n            \"stat\": \"\",\n            \"type\": \"query\",\n            \"limit\": \"\",\n            \"hidden\": false,\n            \"metric\": \"\",\n            \"nodeId\": \"A\",\n            \"region\": \"\",\n            \"source\": \"kloudmate\",\n            \"dataset\": \"metrics\",\n            \"filters\": [],\n            \"groupBy\": [],\n            \"orderBy\": [],\n            \"interval\": \"\",\n            \"namespace\": \"\",\n            \"dimensions\": [],\n            \"metricType\": \"\",\n            \"query_type\": \"promql\",\n            \"time_range\": {\n              \"to\": 0,\n              \"from\": 600\n            },\n            \"aggregation\": {\n              \"stat\": \"AVG\",\n              \"type\": \"\",\n              \"field\": \"\"\n            },\n            \"datasourceId\": \"kloudmate\",\n            \"responseType\": \"series\"\n          }\n        ]\n      },\n      {\n        \"id\": \"6m1le2t992k\",\n        \"tz\": \"local\",\n        \"axis\": {\n          \"x\": {\n            \"date_style\": \"auto\"\n          }\n        },\n        \"title\": \"Disk IO (write)\",\n        \"panelType\": \"STATS\",\n        \"timeRange\": \"1h\",\n        \"statConfig\": {\n          \"format\": \"bytes\",\n          \"suffix\": \"/s\",\n          \"decimals\": 1,\n          \"statView\": \"grid\",\n          \"baseColor\": \"#4CBB17\",\n          \"calculation\": \"last\"\n        },\n        \"timeseries\": {\n          \"legend\": {\n            \"view\": \"list\",\n            \"values\": []\n          }\n        },\n        \"node_configs\": [\n          {\n            \"exp\": \"avg by(job) (irate(system_disk_io{job=\\\"$hostname\\\",direction=\\\"write\\\",device!~\\\"loop.*\\\", device!~\\\"tmpfs|nsfs\\\"}[5m]))\",\n            \"stat\": \"\",\n            \"type\": \"query\",\n            \"limit\": \"\",\n            \"hidden\": false,\n            \"metric\": \"\",\n            \"nodeId\": \"A\",\n            \"region\": \"\",\n            \"source\": \"kloudmate\",\n            \"dataset\": \"metrics\",\n            \"filters\": [],\n            \"groupBy\": [],\n            \"orderBy\": [],\n            \"interval\": \"\",\n            \"namespace\": \"\",\n            \"dimensions\": [],\n            \"metricType\": \"\",\n            \"query_type\": \"promql\",\n            \"time_range\": {\n              \"to\": 0,\n              \"from\": 600\n            },\n            \"aggregation\": {\n              \"stat\": \"AVG\",\n              \"type\": \"\",\n              \"field\": \"\"\n            },\n            \"datasourceId\": \"kloudmate\",\n            \"responseType\": \"series\"\n          }\n        ]\n      },\n      {\n        \"id\": \"ngq5aed288\",\n        \"tz\": \"local\",\n        \"axis\": {\n          \"x\": {\n            \"date_style\": \"auto\"\n          },\n          \"y\": {\n            \"format\": \"bytes\",\n            \"decimals\": 1\n          }\n        },\n        \"title\": \"Memory Usage\",\n        \"panelType\": \"TimeSeries\",\n        \"timeRange\": \"1h\",\n        \"statConfig\": {\n          \"statView\": \"grid\",\n          \"baseColor\": \"#4CBB17\",\n          \"calculation\": \"last\"\n        },\n        \"timeseries\": {\n          \"legend\": {\n            \"view\": \"list\",\n            \"values\": []\n          }\n        },\n        \"node_configs\": [\n          {\n            \"exp\": \"system_memory_usage{job=\\\"$hostname\\\",state=~\\\"buffered|cached|free|used\\\"}\",\n            \"stat\": \"\",\n            \"type\": \"query\",\n            \"limit\": \"\",\n            \"hidden\": false,\n            \"metric\": \"\",\n            \"nodeId\": \"A\",\n            \"region\": \"\",\n            \"source\": \"kloudmate\",\n            \"dataset\": \"metrics\",\n            \"filters\": [],\n            \"groupBy\": [],\n            \"orderBy\": [],\n            \"interval\": \"\",\n            \"namespace\": \"\",\n            \"dimensions\": [],\n            \"metricType\": \"\",\n            \"query_type\": \"promql\",\n            \"time_range\": {\n              \"to\": 0,\n              \"from\": 600\n            },\n            \"aggregation\": {\n              \"stat\": \"AVG\",\n              \"type\": \"\",\n              \"field\": \"\"\n            },\n            \"datasourceId\": \"kloudmate\",\n            \"legendFormat\": \"{{state}}\",\n            \"responseType\": \"series\"\n          }\n        ]\n      },\n      {\n        \"id\": \"e7qt7djxq5d\",\n        \"tz\": \"local\",\n        \"axis\": {\n          \"x\": {\n            \"date_style\": \"auto\"\n          },\n          \"y\": {\n            \"format\": \"percentage\",\n            \"decimals\": 1\n          }\n        },\n        \"title\": \"CPU Utilisation\",\n        \"panelType\": \"TimeSeries\",\n        \"timeRange\": \"1h\",\n        \"statConfig\": {\n          \"statView\": \"grid\",\n          \"baseColor\": \"#4CBB17\",\n          \"calculation\": \"last\"\n        },\n        \"timeseries\": {\n          \"legend\": {\n            \"view\": \"list\",\n            \"values\": []\n          }\n        },\n        \"node_configs\": [\n          {\n            \"exp\": \"avg by(state) (irate(system_cpu_time{job=\\\"$hostname\\\",state!=\\\"idle\\\"}[5m]))\",\n            \"stat\": \"\",\n            \"type\": \"query\",\n            \"limit\": \"\",\n            \"hidden\": false,\n            \"metric\": \"\",\n            \"nodeId\": \"A\",\n            \"region\": \"\",\n            \"source\": \"kloudmate\",\n            \"dataset\": \"metrics\",\n            \"filters\": [],\n            \"groupBy\": [],\n            \"orderBy\": [],\n            \"interval\": \"\",\n            \"namespace\": \"\",\n            \"dimensions\": [],\n            \"metricType\": \"\",\n            \"query_type\": \"promql\",\n            \"time_range\": {\n              \"to\": 0,\n              \"from\": 600\n            },\n            \"aggregation\": {\n              \"stat\": \"AVG\",\n              \"type\": \"\",\n              \"field\": \"\"\n            },\n            \"datasourceId\": \"kloudmate\",\n            \"legendFormat\": \"{{state}}\",\n            \"responseType\": \"series\"\n          }\n        ]\n      },\n      {\n        \"id\": \"o66mqp4s6jb\",\n        \"tz\": \"local\",\n        \"axis\": {\n          \"x\": {\n            \"date_style\": \"auto\"\n          },\n          \"y\": {\n            \"format\": \"percentage\",\n            \"decimals\": 1\n          }\n        },\n        \"title\": \"CPU Idle\",\n        \"panelType\": \"TimeSeries\",\n        \"timeRange\": \"1h\",\n        \"statConfig\": {\n          \"statView\": \"grid\",\n          \"baseColor\": \"#4CBB17\",\n          \"calculation\": \"last\"\n        },\n        \"timeseries\": {\n          \"legend\": {\n            \"view\": \"list\",\n            \"values\": []\n          }\n        },\n        \"node_configs\": [\n          {\n            \"exp\": \"avg by(state) (irate(system_cpu_time{job=\\\"$hostname\\\",state=\\\"idle\\\"}[5m]))\",\n            \"stat\": \"\",\n            \"type\": \"query\",\n            \"limit\": \"\",\n            \"hidden\": false,\n            \"metric\": \"\",\n            \"nodeId\": \"A\",\n            \"region\": \"\",\n            \"source\": \"kloudmate\",\n            \"dataset\": \"metrics\",\n            \"filters\": [],\n            \"groupBy\": [],\n            \"orderBy\": [],\n            \"interval\": \"\",\n            \"namespace\": \"\",\n            \"dimensions\": [],\n            \"metricType\": \"\",\n            \"query_type\": \"promql\",\n            \"time_range\": {\n              \"to\": 0,\n              \"from\": 600\n            },\n            \"aggregation\": {\n              \"stat\": \"AVG\",\n              \"type\": \"\",\n              \"field\": \"\"\n            },\n            \"datasourceId\": \"kloudmate\",\n            \"legendFormat\": \"{{state}}\",\n            \"responseType\": \"series\"\n          }\n        ]\n      },\n      {\n        \"id\": \"1t5ak90uf4o\",\n        \"tz\": \"local\",\n        \"axis\": {\n          \"x\": {\n            \"date_style\": \"auto\"\n          },\n          \"y\": {\n            \"format\": \"bytes\",\n            \"decimals\": 1\n          }\n        },\n        \"title\": \"Available storage\",\n        \"panelType\": \"TimeSeries\",\n        \"timeRange\": \"15m\",\n        \"statConfig\": {\n          \"statView\": \"grid\",\n          \"baseColor\": \"#4CBB17\",\n          \"calculation\": \"last\"\n        },\n        \"timeseries\": {\n          \"legend\": {\n            \"view\": \"list\",\n            \"values\": []\n          }\n        },\n        \"node_configs\": [\n          {\n            \"exp\": \"system_filesystem_usage{job=\\\"$hostname\\\",state=\\\"free\\\",device!~\\\"/dev/loop.*\\\", device!~\\\"tmpfs | nsfs\\\"}\",\n            \"stat\": \"\",\n            \"type\": \"query\",\n            \"limit\": \"\",\n            \"hidden\": false,\n            \"metric\": \"\",\n            \"nodeId\": \"A\",\n            \"region\": \"\",\n            \"source\": \"kloudmate\",\n            \"dataset\": \"metrics\",\n            \"filters\": [],\n            \"groupBy\": [],\n            \"orderBy\": [],\n            \"interval\": \"\",\n            \"namespace\": \"\",\n            \"dimensions\": [],\n            \"metricType\": \"\",\n            \"query_type\": \"promql\",\n            \"time_range\": {\n              \"to\": 0,\n              \"from\": 600\n            },\n            \"aggregation\": {\n              \"stat\": \"AVG\",\n              \"type\": \"\",\n              \"field\": \"\"\n            },\n            \"datasourceId\": \"kloudmate\",\n            \"legendFormat\": \"{{__name__}}\",\n            \"responseType\": \"series\"\n          }\n        ]\n      },\n      {\n        \"id\": \"1hnt5y731r3\",\n        \"tz\": \"local\",\n        \"axis\": {\n          \"x\": {\n            \"date_style\": \"auto\"\n          },\n          \"y\": {\n            \"format\": \"bytes\",\n            \"decimals\": 2\n          }\n        },\n        \"title\": \"Disk Utilization\",\n        \"panelType\": \"TimeSeries\",\n        \"timeRange\": \"30m\",\n        \"statConfig\": {\n          \"statView\": \"grid\",\n          \"baseColor\": \"#4CBB17\",\n          \"calculation\": \"last\"\n        },\n        \"timeseries\": {\n          \"legend\": {\n            \"view\": \"list\",\n            \"values\": []\n          }\n        },\n        \"node_configs\": [\n          {\n            \"exp\": \"system_filesystem_usage{job=\\\"$hostname\\\",state=\\\"used\\\",device!~\\\"/dev/loop.*\\\", device!~\\\"tmpfs | nsfs\\\"}\",\n            \"stat\": \"\",\n            \"type\": \"query\",\n            \"limit\": \"\",\n            \"hidden\": false,\n            \"metric\": \"\",\n            \"nodeId\": \"A\",\n            \"region\": \"\",\n            \"source\": \"kloudmate\",\n            \"dataset\": \"metrics\",\n            \"filters\": [],\n            \"groupBy\": [],\n            \"orderBy\": [],\n            \"interval\": \"\",\n            \"namespace\": \"\",\n            \"dimensions\": [],\n            \"metricType\": \"\",\n            \"query_type\": \"promql\",\n            \"time_range\": {\n              \"to\": 0,\n              \"from\": 600\n            },\n            \"aggregation\": {\n              \"stat\": \"AVG\",\n              \"type\": \"\",\n              \"field\": \"\"\n            },\n            \"datasourceId\": \"kloudmate\",\n            \"legendFormat\": \"{{__name__}}\",\n            \"responseType\": \"series\"\n          }\n        ]\n      },\n      {\n        \"id\": \"lmw6b9asqef\",\n        \"tz\": \"local\",\n        \"axis\": {\n          \"x\": {\n            \"date_style\": \"auto\"\n          },\n          \"y\": {\n            \"format\": \"unformatted\",\n            \"decimals\": 1\n          }\n        },\n        \"title\": \"Average CPU load\",\n        \"panelType\": \"TimeSeries\",\n        \"timeRange\": \"1h\",\n        \"statConfig\": {\n          \"statView\": \"grid\",\n          \"baseColor\": \"#4CBB17\",\n          \"calculation\": \"last\"\n        },\n        \"timeseries\": {\n          \"legend\": {\n            \"view\": \"list\",\n            \"values\": []\n          }\n        },\n        \"node_configs\": [\n          {\n            \"exp\": \"system_cpu_load_average_1m{job=\\\"$hostname\\\"}\",\n            \"stat\": \"\",\n            \"type\": \"query\",\n            \"limit\": \"\",\n            \"hidden\": false,\n            \"metric\": \"\",\n            \"nodeId\": \"A\",\n            \"region\": \"\",\n            \"source\": \"kloudmate\",\n            \"dataset\": \"metrics\",\n            \"filters\": [],\n            \"groupBy\": [],\n            \"orderBy\": [],\n            \"interval\": \"\",\n            \"namespace\": \"\",\n            \"dimensions\": [],\n            \"metricType\": \"\",\n            \"query_type\": \"promql\",\n            \"time_range\": {\n              \"to\": 0,\n              \"from\": 600\n            },\n            \"aggregation\": {\n              \"stat\": \"AVG\",\n              \"type\": \"\",\n              \"field\": \"\"\n            },\n            \"datasourceId\": \"kloudmate\",\n            \"legendFormat\": \"1m-average\",\n            \"responseType\": \"series\"\n          },\n          {\n            \"exp\": \"system_cpu_load_average_5m{job=\\\"$hostname\\\"}\",\n            \"stat\": \"\",\n            \"type\": \"query\",\n            \"limit\": \"\",\n            \"hidden\": false,\n            \"metric\": \"\",\n            \"nodeId\": \"B\",\n            \"region\": \"\",\n            \"source\": \"kloudmate\",\n            \"dataset\": \"metrics\",\n            \"filters\": [],\n            \"groupBy\": [],\n            \"orderBy\": [],\n            \"interval\": \"\",\n            \"namespace\": \"\",\n            \"dimensions\": [],\n            \"metricType\": \"\",\n            \"query_type\": \"promql\",\n            \"time_range\": {\n              \"to\": 0,\n              \"from\": 600\n            },\n            \"aggregation\": {\n              \"stat\": \"AVG\",\n              \"type\": \"\",\n              \"field\": \"\"\n            },\n            \"datasourceId\": \"kloudmate\",\n            \"legendFormat\": \"5m-average\",\n            \"responseType\": \"series\"\n          },\n          {\n            \"exp\": \"system_cpu_load_average_15m{job=\\\"$hostname\\\"}\",\n            \"stat\": \"\",\n            \"type\": \"query\",\n            \"limit\": \"\",\n            \"hidden\": false,\n            \"metric\": \"\",\n            \"nodeId\": \"C\",\n            \"region\": \"\",\n            \"source\": \"kloudmate\",\n            \"dataset\": \"metrics\",\n            \"filters\": [],\n            \"groupBy\": [],\n            \"orderBy\": [],\n            \"interval\": \"\",\n            \"namespace\": \"\",\n            \"dimensions\": [],\n            \"metricType\": \"\",\n            \"query_type\": \"promql\",\n            \"time_range\": {\n              \"to\": 0,\n              \"from\": 600\n            },\n            \"aggregation\": {\n              \"stat\": \"AVG\",\n              \"type\": \"\",\n              \"field\": \"\"\n            },\n            \"datasourceId\": \"kloudmate\",\n            \"legendFormat\": \"15m-average\",\n            \"responseType\": \"series\"\n          }\n        ]\n      },\n      {\n        \"id\": \"cgvuwpatfm\",\n        \"tz\": \"local\",\n        \"axis\": {\n          \"x\": {\n            \"date_style\": \"auto\"\n          },\n          \"y\": {\n            \"format\": \"unformatted\"\n          }\n        },\n        \"title\": \"Total Inode Usage\",\n        \"panelType\": \"TimeSeries\",\n        \"timeRange\": \"1h\",\n        \"statConfig\": {\n          \"statView\": \"grid\",\n          \"baseColor\": \"#4CBB17\",\n          \"calculation\": \"last\"\n        },\n        \"timeseries\": {\n          \"legend\": {\n            \"view\": \"list\",\n            \"values\": []\n          }\n        },\n        \"node_configs\": [\n          {\n            \"exp\": \"sum by(job, state) (system_filesystem_inodes_usage{job=\\\"$hostname\\\",device!~\\\"/dev/loop.*\\\",device!~\\\"tmpfs|nsfs\\\"})\",\n            \"stat\": \"\",\n            \"type\": \"query\",\n            \"limit\": \"\",\n            \"hidden\": false,\n            \"metric\": \"\",\n            \"nodeId\": \"A\",\n            \"region\": \"\",\n            \"source\": \"kloudmate\",\n            \"dataset\": \"metrics\",\n            \"filters\": [],\n            \"groupBy\": [],\n            \"orderBy\": [],\n            \"interval\": \"\",\n            \"namespace\": \"\",\n            \"dimensions\": [],\n            \"metricType\": \"\",\n            \"query_type\": \"promql\",\n            \"time_range\": {\n              \"to\": 0,\n              \"from\": 600\n            },\n            \"aggregation\": {\n              \"stat\": \"AVG\",\n              \"type\": \"\",\n              \"field\": \"\"\n            },\n            \"datasourceId\": \"kloudmate\",\n            \"legendFormat\": \"{{state}}\",\n            \"responseType\": \"series\"\n          }\n        ]\n      },\n      {\n        \"id\": \"3pp5ei0vcrg\",\n        \"tz\": \"local\",\n        \"axis\": {\n          \"x\": {\n            \"date_style\": \"auto\"\n          },\n          \"y\": {\n            \"format\": \"bytes\",\n            \"suffix\": \"/s\"\n          }\n        },\n        \"title\": \"Total Network IO\",\n        \"panelType\": \"TimeSeries\",\n        \"timeRange\": \"1h\",\n        \"statConfig\": {\n          \"statView\": \"grid\",\n          \"baseColor\": \"#4CBB17\",\n          \"calculation\": \"last\"\n        },\n        \"timeseries\": {\n          \"legend\": {\n            \"view\": \"list\",\n            \"values\": []\n          }\n        },\n        \"node_configs\": [\n          {\n            \"exp\": \"avg by(direction) (irate(system_network_io{job=\\\"$hostname\\\"}[5m]))\",\n            \"stat\": \"\",\n            \"type\": \"query\",\n            \"limit\": \"\",\n            \"hidden\": false,\n            \"metric\": \"\",\n            \"nodeId\": \"A\",\n            \"region\": \"\",\n            \"source\": \"kloudmate\",\n            \"dataset\": \"metrics\",\n            \"filters\": [],\n            \"groupBy\": [],\n            \"orderBy\": [],\n            \"interval\": \"\",\n            \"namespace\": \"\",\n            \"dimensions\": [],\n            \"metricType\": \"\",\n            \"query_type\": \"promql\",\n            \"time_range\": {\n              \"to\": 0,\n              \"from\": 600\n            },\n            \"aggregation\": {\n              \"stat\": \"AVG\",\n              \"type\": \"\",\n              \"field\": \"\"\n            },\n            \"datasourceId\": \"kloudmate\",\n            \"legendFormat\": \"{{direction}}\",\n            \"responseType\": \"series\"\n          }\n        ]\n      },\n      {\n        \"id\": \"31x8lmqjw4k\",\n        \"tz\": \"local\",\n        \"axis\": {\n          \"x\": {\n            \"date_style\": \"auto\"\n          },\n          \"y\": {\n            \"format\": \"bytes\",\n            \"suffix\": \"/s\"\n          }\n        },\n        \"title\": \"Total Disk IO \",\n        \"panelType\": \"TimeSeries\",\n        \"timeRange\": \"30m\",\n        \"statConfig\": {\n          \"statView\": \"grid\",\n          \"baseColor\": \"#4CBB17\",\n          \"calculation\": \"last\"\n        },\n        \"timeseries\": {\n          \"legend\": {\n            \"view\": \"list\",\n            \"values\": []\n          }\n        },\n        \"node_configs\": [\n          {\n            \"exp\": \"avg by(direction) (irate(system_disk_io{job=\\\"$hostname\\\",device!~\\\"loop.*\\\", device!~\\\"tmpfs|nsfs\\\"}[5m]))\",\n            \"stat\": \"\",\n            \"type\": \"query\",\n            \"limit\": \"\",\n            \"hidden\": false,\n            \"metric\": \"\",\n            \"nodeId\": \"A\",\n            \"region\": \"\",\n            \"source\": \"kloudmate\",\n            \"dataset\": \"metrics\",\n            \"filters\": [],\n            \"groupBy\": [],\n            \"orderBy\": [],\n            \"interval\": \"\",\n            \"namespace\": \"\",\n            \"dimensions\": [],\n            \"metricType\": \"\",\n            \"query_type\": \"promql\",\n            \"time_range\": {\n              \"to\": 0,\n              \"from\": 600\n            },\n            \"aggregation\": {\n              \"stat\": \"AVG\",\n              \"type\": \"\",\n              \"field\": \"\"\n            },\n            \"datasourceId\": \"kloudmate\",\n            \"legendFormat\": \"{{direction}}\",\n            \"responseType\": \"series\"\n          }\n        ]\n      },\n      {\n        \"id\": \"91jwq1wn0n5\",\n        \"tz\": \"local\",\n        \"axis\": {\n          \"x\": {\n            \"date_style\": \"auto\"\n          },\n          \"y\": {\n            \"format\": \"bytes\"\n          }\n        },\n        \"title\": \"Total File System Usage\",\n        \"panelType\": \"TimeSeries\",\n        \"timeRange\": \"1h\",\n        \"statConfig\": {\n          \"statView\": \"grid\",\n          \"baseColor\": \"#4CBB17\",\n          \"calculation\": \"last\"\n        },\n        \"timeseries\": {\n          \"legend\": {\n            \"view\": \"list\",\n            \"values\": []\n          }\n        },\n        \"node_configs\": [\n          {\n            \"exp\": \"sum by(state) (system_filesystem_usage{job=\\\"$hostname\\\",device!~\\\"/dev/loop.*\\\", device!~\\\"tmpfs | nsfs\\\"})\",\n            \"stat\": \"\",\n            \"type\": \"query\",\n            \"limit\": \"\",\n            \"hidden\": false,\n            \"metric\": \"\",\n            \"nodeId\": \"A\",\n            \"region\": \"\",\n            \"source\": \"kloudmate\",\n            \"dataset\": \"metrics\",\n            \"filters\": [],\n            \"groupBy\": [],\n            \"orderBy\": [],\n            \"interval\": \"\",\n            \"namespace\": \"\",\n            \"dimensions\": [],\n            \"metricType\": \"\",\n            \"query_type\": \"promql\",\n            \"time_range\": {\n              \"to\": 0,\n              \"from\": 600\n            },\n            \"aggregation\": {\n              \"stat\": \"AVG\",\n              \"type\": \"\",\n              \"field\": \"\"\n            },\n            \"datasourceId\": \"kloudmate\",\n            \"legendFormat\": \"{{state}}\",\n            \"responseType\": \"series\"\n          }\n        ]\n      },\n      {\n        \"id\": \"9auxkevmznk\",\n        \"tz\": \"local\",\n        \"axis\": {\n          \"x\": {\n            \"date_style\": \"auto\"\n          },\n          \"y\": {\n            \"format\": \"number\",\n            \"suffix\": \"ops/s\"\n          }\n        },\n        \"title\": \"Total Disk Operations\",\n        \"panelType\": \"TimeSeries\",\n        \"timeRange\": \"1h\",\n        \"statConfig\": {\n          \"statView\": \"grid\",\n          \"baseColor\": \"#4CBB17\",\n          \"calculation\": \"last\"\n        },\n        \"timeseries\": {\n          \"legend\": {\n            \"view\": \"list\",\n            \"values\": []\n          }\n        },\n        \"node_configs\": [\n          {\n            \"exp\": \"avg by(direction) (irate(system_disk_operations{job=\\\"$hostname\\\",device!~\\\"loop.*\\\",device!~\\\"tmpfs|nsfs\\\"}[5m]))\",\n            \"stat\": \"\",\n            \"type\": \"query\",\n            \"limit\": \"\",\n            \"hidden\": false,\n            \"metric\": \"\",\n            \"nodeId\": \"A\",\n            \"region\": \"\",\n            \"source\": \"kloudmate\",\n            \"dataset\": \"metrics\",\n            \"filters\": [],\n            \"groupBy\": [],\n            \"orderBy\": [],\n            \"interval\": \"\",\n            \"namespace\": \"\",\n            \"dimensions\": [],\n            \"metricType\": \"\",\n            \"query_type\": \"promql\",\n            \"time_range\": {\n              \"to\": 0,\n              \"from\": 600\n            },\n            \"aggregation\": {\n              \"stat\": \"AVG\",\n              \"type\": \"\",\n              \"field\": \"\"\n            },\n            \"datasourceId\": \"kloudmate\",\n            \"legendFormat\": \"{{direction}}\",\n            \"responseType\": \"series\"\n          }\n        ]\n      }\n    ],\n    \"timeRange\": \"1h\",\n    \"variables\": [\n      {\n        \"id\": \"3195da0e-571b-45fa-b9c3-2b83c06d81c2\",\n        \"name\": \"hostname\",\n        \"type\": \"query\",\n        \"label\": \"hostname\",\n        \"config\": {\n          \"otel\": {\n            \"key\": {\n              \"type\": \"string\",\n              \"field\": \"job\"\n            },\n            \"dataset\": \"metrics\",\n            \"filters\": []\n          },\n          \"source\": \"cloudwatch\",\n          \"queryType\": \"otel.values\"\n        },\n        \"is_multi\": false,\n        \"description\": \"\",\n        \"usedInPanels\": [\n          {\n            \"id\": \"0lnihagpoyp\",\n            \"name\": \"Memory Usage\"\n          },\n          {\n            \"id\": \"5o36bl0u15\",\n            \"name\": \"CPU Usage\"\n          },\n          {\n            \"id\": \"bj3271tqzx5\",\n            \"name\": \"File System Usage\"\n          },\n          {\n            \"id\": \"9ud8nh2e0xh\",\n            \"name\": \"Inode Usage\"\n          },\n          {\n            \"id\": \"n4ftzz92bj\",\n            \"name\": \"Disk IO (read)\"\n          },\n          {\n            \"id\": \"6m1le2t992k\",\n            \"name\": \"Disk IO (write)\"\n          },\n          {\n            \"id\": \"ngq5aed288\",\n            \"name\": \"Memory Usage\"\n          },\n          {\n            \"id\": \"e7qt7djxq5d\",\n            \"name\": \"CPU Utilisation\"\n          },\n          {\n            \"id\": \"o66mqp4s6jb\",\n            \"name\": \"CPU Idle\"\n          },\n          {\n            \"id\": \"1t5ak90uf4o\",\n            \"name\": \"Available storage\"\n          },\n          {\n            \"id\": \"1hnt5y731r3\",\n            \"name\": \"Disk Utilization\"\n          },\n          {\n            \"id\": \"lmw6b9asqef\",\n            \"name\": \"Average CPU load\"\n          },\n          {\n            \"id\": \"cgvuwpatfm\",\n            \"name\": \"Total Inode Usage\"\n          },\n          {\n            \"id\": \"3pp5ei0vcrg\",\n            \"name\": \"Total Network IO\"\n          },\n          {\n            \"id\": \"31x8lmqjw4k\",\n            \"name\": \"Total Disk IO \"\n          },\n          {\n            \"id\": \"91jwq1wn0n5\",\n            \"name\": \"Total File System Usage\"\n          },\n          {\n            \"id\": \"9auxkevmznk\",\n            \"name\": \"Total Disk Operations\"\n          }\n        ],\n        \"usesVariables\": [],\n        \"show_all_option\": true,\n        \"usedInVariables\": []\n      }\n    ],\n    \"panel_layouts\": [\n      {\n        \"h\": 5,\n        \"i\": \"0lnihagpoyp\",\n        \"w\": 4,\n        \"x\": 4,\n        \"y\": 0,\n        \"minH\": 1,\n        \"minW\": 1,\n        \"moved\": false,\n        \"static\": false\n      },\n      {\n        \"h\": 5,\n        \"i\": \"5o36bl0u15\",\n        \"w\": 4,\n        \"x\": 0,\n        \"y\": 0,\n        \"minH\": 1,\n        \"minW\": 1,\n        \"moved\": false,\n        \"static\": false\n      },\n      {\n        \"h\": 5,\n        \"i\": \"bj3271tqzx5\",\n        \"w\": 4,\n        \"x\": 8,\n        \"y\": 0,\n        \"minH\": 1,\n        \"minW\": 1,\n        \"moved\": false,\n        \"static\": false\n      },\n      {\n        \"h\": 5,\n        \"i\": \"9ud8nh2e0xh\",\n        \"w\": 4,\n        \"x\": 12,\n        \"y\": 0,\n        \"minH\": 1,\n        \"minW\": 1,\n        \"moved\": false,\n        \"static\": false\n      },\n      {\n        \"h\": 5,\n        \"i\": \"n4ftzz92bj\",\n        \"w\": 4,\n        \"x\": 16,\n        \"y\": 0,\n        \"minH\": 1,\n        \"minW\": 1,\n        \"moved\": false,\n        \"static\": false\n      },\n      {\n        \"h\": 5,\n        \"i\": \"6m1le2t992k\",\n        \"w\": 4,\n        \"x\": 20,\n        \"y\": 0,\n        \"minH\": 1,\n        \"minW\": 1,\n        \"moved\": false,\n        \"static\": false\n      },\n      {\n        \"h\": 10,\n        \"i\": \"ngq5aed288\",\n        \"w\": 12,\n        \"x\": 12,\n        \"y\": 5,\n        \"minH\": 1,\n        \"minW\": 1,\n        \"moved\": false,\n        \"static\": false\n      },\n      {\n        \"h\": 10,\n        \"i\": \"e7qt7djxq5d\",\n        \"w\": 12,\n        \"x\": 0,\n        \"y\": 5,\n        \"minH\": 1,\n        \"minW\": 1,\n        \"moved\": false,\n        \"static\": false\n      },\n      {\n        \"h\": 10,\n        \"i\": \"o66mqp4s6jb\",\n        \"w\": 6,\n        \"x\": 6,\n        \"y\": 15,\n        \"minH\": 1,\n        \"minW\": 1,\n        \"moved\": false,\n        \"static\": false\n      },\n      {\n        \"h\": 10,\n        \"i\": \"1t5ak90uf4o\",\n        \"w\": 6,\n        \"x\": 12,\n        \"y\": 15,\n        \"minH\": 1,\n        \"minW\": 1,\n        \"moved\": false,\n        \"static\": false\n      },\n      {\n        \"h\": 10,\n        \"i\": \"1hnt5y731r3\",\n        \"w\": 6,\n        \"x\": 18,\n        \"y\": 15,\n        \"minH\": 1,\n        \"minW\": 1,\n        \"moved\": false,\n        \"static\": false\n      },\n      {\n        \"h\": 10,\n        \"i\": \"lmw6b9asqef\",\n        \"w\": 6,\n        \"x\": 0,\n        \"y\": 15,\n        \"minH\": 1,\n        \"minW\": 1,\n        \"moved\": false,\n        \"static\": false\n      },\n      {\n        \"h\": 10,\n        \"i\": \"cgvuwpatfm\",\n        \"w\": 12,\n        \"x\": 0,\n        \"y\": 35,\n        \"minH\": 1,\n        \"minW\": 1,\n        \"moved\": false,\n        \"static\": false\n      },\n      {\n        \"h\": 10,\n        \"i\": \"3pp5ei0vcrg\",\n        \"w\": 12,\n        \"x\": 0,\n        \"y\": 25,\n        \"minH\": 1,\n        \"minW\": 1,\n        \"moved\": false,\n        \"static\": false\n      },\n      {\n        \"h\": 10,\n        \"i\": \"31x8lmqjw4k\",\n        \"w\": 6,\n        \"x\": 12,\n        \"y\": 35,\n        \"minH\": 1,\n        \"minW\": 1,\n        \"moved\": false,\n        \"static\": false\n      },\n      {\n        \"h\": 10,\n        \"i\": \"91jwq1wn0n5\",\n        \"w\": 12,\n        \"x\": 12,\n        \"y\": 25,\n        \"minH\": 1,\n        \"minW\": 1,\n        \"moved\": false,\n        \"static\": false\n      },\n      {\n        \"h\": 10,\n        \"i\": \"9auxkevmznk\",\n        \"w\": 6,\n        \"x\": 18,\n        \"y\": 35,\n        \"minH\": 1,\n        \"minW\": 1,\n        \"moved\": false,\n        \"static\": false\n      }\n    ],\n    \"default_region\": \"us-east-1\"\n  },\n  \"tags\": []\n}").then(() => alert('Copied to clipboard!'), () => alert('Failed to copy.'));
+        }
+        const jsonViewer = document.getElementById('json-viewer');
+        const expandBtn = document.getElementById('expand-btn');
+        const howToUseBtn = document.getElementById('how-to-use-btn');
+        const closeModalBtn = document.getElementById('close-modal-btn');
+        const modal = document.getElementById('how-to-use-modal');
+        expandBtn.addEventListener('click', () => {
+          jsonViewer.classList.toggle('max-h-96');
+          expandBtn.textContent = jsonViewer.classList.contains('max-h-96') ? 'Show More' : 'Show Less';
+        });
+        howToUseBtn.addEventListener('click', () => modal.classList.remove('hidden'));
+        closeModalBtn.addEventListener('click', () => modal.classList.add('hidden'));
+        modal.addEventListener('click', (e) => { if (e.target === modal) modal.classList.add('hidden'); });
+      </script>
+    </body>
+    </html>

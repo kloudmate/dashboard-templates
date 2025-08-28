@@ -38,10 +38,58 @@
         <div class="mb-8 text-center">
           <span class="mr-4 font-semibold">Filter by tag:</span>
           <button class="bg-blue-600 hover:bg-blue-700 text-white text-sm font-semibold py-1 px-3 rounded-full m-1 filter-btn active" data-tag="all">All</button>
-          <button class="bg-gray-700 hover:bg-gray-600 text-white text-sm font-semibold py-1 px-3 rounded-full m-1 filter-btn" data-tag="metrics">metrics</button><button class="bg-gray-700 hover:bg-gray-600 text-white text-sm font-semibold py-1 px-3 rounded-full m-1 filter-btn" data-tag="vm">vm</button>
+          <button class="bg-gray-700 hover:bg-gray-600 text-white text-sm font-semibold py-1 px-3 rounded-full m-1 filter-btn" data-tag="metrics">metrics</button><button class="bg-gray-700 hover:bg-gray-600 text-white text-sm font-semibold py-1 px-3 rounded-full m-1 filter-btn" data-tag="db">db</button><button class="bg-gray-700 hover:bg-gray-600 text-white text-sm font-semibold py-1 px-3 rounded-full m-1 filter-btn" data-tag="vm">vm</button><button class="bg-gray-700 hover:bg-gray-600 text-white text-sm font-semibold py-1 px-3 rounded-full m-1 filter-btn" data-tag="app">app</button>
         </div>
         <div id="template-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           
+  <div class="template-card bg-gray-800 rounded-lg shadow-lg overflow-hidden transform hover:scale-105 transition-transform duration-300" data-tags="metrics db" data-title="MySql" data-description="The MySQL dashboard provides real-time visibility into database performance and resource utilization by leveraging OpenTelemetry (Otel) for metric collection.">
+    <a href="MySql/index.html" class="block">
+      <img src="MySql/screenshot.png" alt="MySql" class="w-full h-48 object-cover">
+      <div class="p-6">
+        <div class="flex items-center mb-2">
+          <h2 class="text-2xl font-bold">MySql</h2>
+          <svg class="w-6 h-6 text-blue-500 ml-2" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path></svg>
+        </div>
+        <p class="text-sm text-gray-500 mb-2">By KloudMate</p>
+        <p class="text-gray-400 mb-4">The MySQL dashboard provides real-time visibility into database performance and resource utilization by leveraging OpenTelemetry (Otel) for metric collection.</p>
+        <div>
+          <span class="inline-block bg-blue-600 text-white text-xs font-semibold mr-2 px-2.5 py-0.5 rounded-full">metrics</span><span class="inline-block bg-blue-600 text-white text-xs font-semibold mr-2 px-2.5 py-0.5 rounded-full">db</span>
+        </div>
+      </div>
+    </a>
+  </div>
+  <div class="template-card bg-gray-800 rounded-lg shadow-lg overflow-hidden transform hover:scale-105 transition-transform duration-300" data-tags="metrics vm" data-title="Apache Server" data-description="The Apache server dashboard offers end-to-end visibility into web server health, performance, resource utilization and traffic insights by integrating with OpenTelemetry (Otel)">
+    <a href="apache-server/index.html" class="block">
+      <div class="w-full h-48 bg-gray-700 flex items-center justify-center"><span class="text-gray-500">No Screenshot</span></div>
+      <div class="p-6">
+        <div class="flex items-center mb-2">
+          <h2 class="text-2xl font-bold">Apache Server</h2>
+          <svg class="w-6 h-6 text-blue-500 ml-2" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path></svg>
+        </div>
+        <p class="text-sm text-gray-500 mb-2">By KloudMate</p>
+        <p class="text-gray-400 mb-4">The Apache server dashboard offers end-to-end visibility into web server health, performance, resource utilization and traffic insights by integrating with OpenTelemetry (Otel)</p>
+        <div>
+          <span class="inline-block bg-blue-600 text-white text-xs font-semibold mr-2 px-2.5 py-0.5 rounded-full">metrics</span><span class="inline-block bg-blue-600 text-white text-xs font-semibold mr-2 px-2.5 py-0.5 rounded-full">vm</span>
+        </div>
+      </div>
+    </a>
+  </div>
+  <div class="template-card bg-gray-800 rounded-lg shadow-lg overflow-hidden transform hover:scale-105 transition-transform duration-300" data-tags="metrics vm" data-title="Azure VM" data-description="The Azure Virtual Machine (VM) dashboard provides visibility into the compute performance, availability, and resource utilization of virtual machines through OpenTelemetry (Otel) integration.">
+    <a href="azure-vm/index.html" class="block">
+      <div class="w-full h-48 bg-gray-700 flex items-center justify-center"><span class="text-gray-500">No Screenshot</span></div>
+      <div class="p-6">
+        <div class="flex items-center mb-2">
+          <h2 class="text-2xl font-bold">Azure VM</h2>
+          <svg class="w-6 h-6 text-blue-500 ml-2" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path></svg>
+        </div>
+        <p class="text-sm text-gray-500 mb-2">By KloudMate</p>
+        <p class="text-gray-400 mb-4">The Azure Virtual Machine (VM) dashboard provides visibility into the compute performance, availability, and resource utilization of virtual machines through OpenTelemetry (Otel) integration.</p>
+        <div>
+          <span class="inline-block bg-blue-600 text-white text-xs font-semibold mr-2 px-2.5 py-0.5 rounded-full">metrics</span><span class="inline-block bg-blue-600 text-white text-xs font-semibold mr-2 px-2.5 py-0.5 rounded-full">vm</span>
+        </div>
+      </div>
+    </a>
+  </div>
   <div class="template-card bg-gray-800 rounded-lg shadow-lg overflow-hidden transform hover:scale-105 transition-transform duration-300" data-tags="metrics vm" data-title="Host Metrics" data-description="Gather various system-level performance indicators directly from a host's operating system. These metrics provide insights into the resource utilization and health of the physical or virtual server where the Collector is deployed as an agent.">
     <a href="host-metrics/index.html" class="block">
       <img src="host-metrics/screenshot.png" alt="Host Metrics" class="w-full h-48 object-cover">
@@ -54,6 +102,54 @@
         <p class="text-gray-400 mb-4">Gather various system-level performance indicators directly from a host's operating system. These metrics provide insights into the resource utilization and health of the physical or virtual server where the Collector is deployed as an agent.</p>
         <div>
           <span class="inline-block bg-blue-600 text-white text-xs font-semibold mr-2 px-2.5 py-0.5 rounded-full">metrics</span><span class="inline-block bg-blue-600 text-white text-xs font-semibold mr-2 px-2.5 py-0.5 rounded-full">vm</span>
+        </div>
+      </div>
+    </a>
+  </div>
+  <div class="template-card bg-gray-800 rounded-lg shadow-lg overflow-hidden transform hover:scale-105 transition-transform duration-300" data-tags="metrics app" data-title="JVM Metrics" data-description="The JVM dashboard provides comprehensive visibility into Java application performance and runtime behavior like memory, CPU, threads and I/O by integrating with OpenTelemetry (Otel).">
+    <a href="jvm/index.html" class="block">
+      <div class="w-full h-48 bg-gray-700 flex items-center justify-center"><span class="text-gray-500">No Screenshot</span></div>
+      <div class="p-6">
+        <div class="flex items-center mb-2">
+          <h2 class="text-2xl font-bold">JVM Metrics</h2>
+          <svg class="w-6 h-6 text-blue-500 ml-2" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path></svg>
+        </div>
+        <p class="text-sm text-gray-500 mb-2">By KloudMate</p>
+        <p class="text-gray-400 mb-4">The JVM dashboard provides comprehensive visibility into Java application performance and runtime behavior like memory, CPU, threads and I/O by integrating with OpenTelemetry (Otel).</p>
+        <div>
+          <span class="inline-block bg-blue-600 text-white text-xs font-semibold mr-2 px-2.5 py-0.5 rounded-full">metrics</span><span class="inline-block bg-blue-600 text-white text-xs font-semibold mr-2 px-2.5 py-0.5 rounded-full">app</span>
+        </div>
+      </div>
+    </a>
+  </div>
+  <div class="template-card bg-gray-800 rounded-lg shadow-lg overflow-hidden transform hover:scale-105 transition-transform duration-300" data-tags="metrics db" data-title="MSSQL" data-description="The Microsoft SQL Server (MSSQL) dashboard provides full-stack observability into database performance, availability, and resource utilization through OpenTelemetry (Otel) integration.">
+    <a href="mssql/index.html" class="block">
+      <div class="w-full h-48 bg-gray-700 flex items-center justify-center"><span class="text-gray-500">No Screenshot</span></div>
+      <div class="p-6">
+        <div class="flex items-center mb-2">
+          <h2 class="text-2xl font-bold">MSSQL</h2>
+          <svg class="w-6 h-6 text-blue-500 ml-2" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path></svg>
+        </div>
+        <p class="text-sm text-gray-500 mb-2">By KloudMate</p>
+        <p class="text-gray-400 mb-4">The Microsoft SQL Server (MSSQL) dashboard provides full-stack observability into database performance, availability, and resource utilization through OpenTelemetry (Otel) integration.</p>
+        <div>
+          <span class="inline-block bg-blue-600 text-white text-xs font-semibold mr-2 px-2.5 py-0.5 rounded-full">metrics</span><span class="inline-block bg-blue-600 text-white text-xs font-semibold mr-2 px-2.5 py-0.5 rounded-full">db</span>
+        </div>
+      </div>
+    </a>
+  </div>
+  <div class="template-card bg-gray-800 rounded-lg shadow-lg overflow-hidden transform hover:scale-105 transition-transform duration-300" data-tags="metrics db" data-title="PostgreSQL" data-description="The PostgreSQL dashboard provides deep visibility into database health, performance, and resource usage by integrating with OpenTelemetry (Otel).">
+    <a href="postgress/index.html" class="block">
+      <img src="postgress/screenshot.png" alt="PostgreSQL" class="w-full h-48 object-cover">
+      <div class="p-6">
+        <div class="flex items-center mb-2">
+          <h2 class="text-2xl font-bold">PostgreSQL</h2>
+          <svg class="w-6 h-6 text-blue-500 ml-2" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path></svg>
+        </div>
+        <p class="text-sm text-gray-500 mb-2">By KloudMate</p>
+        <p class="text-gray-400 mb-4">The PostgreSQL dashboard provides deep visibility into database health, performance, and resource usage by integrating with OpenTelemetry (Otel).</p>
+        <div>
+          <span class="inline-block bg-blue-600 text-white text-xs font-semibold mr-2 px-2.5 py-0.5 rounded-full">metrics</span><span class="inline-block bg-blue-600 text-white text-xs font-semibold mr-2 px-2.5 py-0.5 rounded-full">db</span>
         </div>
       </div>
     </a>

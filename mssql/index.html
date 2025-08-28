@@ -1,0 +1,2097 @@
+
+    <!DOCTYPE html>
+    <html lang="en" class="dark">
+    
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="https://app.kloudmate.com/favicon.ico">
+    <title>MSSQL | KloudMate Dashboard Templates Gallery</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = { darkMode: 'class' }
+    </script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/atom-one-dark.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+  </head>
+    <body class="bg-gray-900 text-gray-100 flex flex-col min-h-screen">
+      
+  <header class="bg-gray-800 text-white">
+    <div class="container mx-auto px-4 py-4 flex justify-between items-center">
+      <a href="https://kloudmate.com/" target="_blank" rel="noopener noreferrer">
+        <img src="https://app.kloudmate.com/assets/images/logo_full_white.svg" alt="KloudMate Logo" class="h-8">
+      </a>
+      <nav>
+        <a href="https://github.com/kloudmate/dashboard-templates" target="_blank" rel="noopener noreferrer" class="hover:text-gray-300">GitHub</a>
+      </nav>
+    </div>
+  </header>
+      <main class="flex-grow">
+        <div class="container mx-auto px-4">
+          <a href="../index.html" class="inline-block bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full my-8"><- Back to Templates</a>
+          <div class="flex items-center mb-2">
+              <h1 class="text-4xl font-bold">MSSQL</h1>
+              <svg class="w-8 h-8 text-blue-500 ml-3" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path></svg>
+          </div>
+          <p class="text-lg text-gray-500 mb-4">By KloudMate</p>
+          <p class="text-gray-400 mb-8">The Microsoft SQL Server (MSSQL) dashboard provides full-stack observability into database performance, availability, and resource utilization through OpenTelemetry (Otel) integration.</p>
+          
+          <div class="flex justify-between items-center mb-4">
+              <h2 class="text-2xl font-bold">Template JSON</h2>
+              <button id="how-to-use-btn" class="bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-md">How to Use</button>
+          </div>
+          <div class="relative">
+              <pre id="json-viewer" class="max-h-96 overflow-y-auto transition-all duration-500"><code class="json rounded-lg">{
+  "name": "MSSQL",
+  "description": "",
+  "data": {
+    "tz": "local",
+    "panels": [
+      {
+        "id": "ciodwed2rd6",
+        "tz": "local",
+        "axis": {
+          "x": {
+            "date_style": "auto"
+          },
+          "y": {
+            "format": "number",
+            "suffix": "{requests}/s",
+            "decimals": 3
+          }
+        },
+        "title": "SQL Batch Requests Received",
+        "panelType": "TimeSeries",
+        "timeRange": "1h",
+        "statConfig": {
+          "statView": "grid",
+          "baseColor": "#4CBB17",
+          "calculation": "last"
+        },
+        "timeseries": {
+          "legend": {
+            "view": "list",
+            "values": []
+          }
+        },
+        "description": "Number of batch requests received by SQL Server.\nIt will track the total number of batch requests over a defined period",
+        "node_configs": [
+          {
+            "stat": "",
+            "type": "query",
+            "limit": "",
+            "hidden": false,
+            "metric": "",
+            "nodeId": "A",
+            "region": "",
+            "source": "kloudmate",
+            "dataset": "metrics",
+            "filters": [
+              {
+                "type": "root",
+                "field": "serviceName",
+                "value": "$ServerName",
+                "operator": "="
+              }
+            ],
+            "groupBy": [
+              {
+                "type": "root",
+                "field": "serviceName"
+              }
+            ],
+            "orderBy": [],
+            "interval": "",
+            "namespace": "",
+            "dimensions": [],
+            "metricType": "",
+            "time_range": {
+              "to": 0,
+              "from": 600
+            },
+            "aggregation": {
+              "stat": "SUM",
+              "type": "",
+              "unit": "{requests}/s",
+              "field": "",
+              "metric": "sqlserver_batch_request_rate",
+              "metricType": "Gauge",
+              "temporality": "Cumulative"
+            },
+            "datasourceId": "kloudmate",
+            "legendFormat": "{{serviceName}}",
+            "responseType": "series"
+          }
+        ],
+        "time_options": {
+          "override": false,
+          "time_shift": ""
+        }
+      },
+      {
+        "id": "2r9mq7bgwln",
+        "tz": "local",
+        "axis": {
+          "x": {
+            "date_style": "auto"
+          },
+          "y": {
+            "format": "number",
+            "suffix": "{compilations}/s",
+            "decimals": 3
+          }
+        },
+        "title": "SQL compilations",
+        "panelType": "TimeSeries",
+        "timeRange": "1h",
+        "statConfig": {
+          "statView": "grid",
+          "baseColor": "#4CBB17",
+          "calculation": "last"
+        },
+        "timeseries": {
+          "legend": {
+            "view": "list",
+            "values": []
+          }
+        },
+        "description": "The number of SQL compilations per second which accumulate the total number of compilations over a specific time period",
+        "node_configs": [
+          {
+            "stat": "",
+            "type": "query",
+            "limit": "",
+            "hidden": false,
+            "metric": "",
+            "nodeId": "A",
+            "region": "",
+            "source": "kloudmate",
+            "dataset": "metrics",
+            "filters": [
+              {
+                "type": "root",
+                "field": "serviceName",
+                "value": "$ServerName",
+                "operator": "="
+              }
+            ],
+            "groupBy": [
+              {
+                "type": "root",
+                "field": "serviceName"
+              }
+            ],
+            "orderBy": [],
+            "interval": "",
+            "namespace": "",
+            "dimensions": [],
+            "metricType": "",
+            "time_range": {
+              "to": 0,
+              "from": 600
+            },
+            "aggregation": {
+              "stat": "SUM",
+              "type": "",
+              "unit": "{compilations}/s",
+              "field": "",
+              "metric": "sqlserver_batch_sql_compilation_rate",
+              "metricType": "Gauge",
+              "temporality": "Cumulative"
+            },
+            "datasourceId": "kloudmate",
+            "legendFormat": "{{serviceName}}",
+            "responseType": "series"
+          }
+        ],
+        "time_options": {
+          "override": false,
+          "time_shift": ""
+        }
+      },
+      {
+        "id": "3dlb2t1flxg",
+        "tz": "local",
+        "axis": {
+          "x": {
+            "date_style": "auto"
+          },
+          "y": {
+            "format": "number",
+            "suffix": "{compilations}/s",
+            "decimals": 3
+          }
+        },
+        "title": "SQL recompilations",
+        "panelType": "TimeSeries",
+        "timeRange": "1h",
+        "statConfig": {
+          "statView": "grid",
+          "baseColor": "#4CBB17",
+          "calculation": "last"
+        },
+        "timeseries": {
+          "legend": {
+            "view": "list",
+            "values": []
+          }
+        },
+        "description": "The number of SQL recompilations needed per second. This specify  trends and spikes in recompilation activity, which can indicate issues with query plans or caching",
+        "node_configs": [
+          {
+            "stat": "",
+            "type": "query",
+            "limit": "",
+            "hidden": false,
+            "metric": "",
+            "nodeId": "A",
+            "region": "",
+            "source": "kloudmate",
+            "dataset": "metrics",
+            "filters": [
+              {
+                "type": "root",
+                "field": "serviceName",
+                "value": "$ServerName",
+                "operator": "="
+              }
+            ],
+            "groupBy": [
+              {
+                "type": "root",
+                "field": "serviceName"
+              }
+            ],
+            "orderBy": [],
+            "interval": "",
+            "namespace": "",
+            "dimensions": [],
+            "metricType": "",
+            "time_range": {
+              "to": 0,
+              "from": 600
+            },
+            "aggregation": {
+              "stat": "SUM",
+              "type": "",
+              "unit": "{compilations}/s",
+              "field": "",
+              "metric": "sqlserver_batch_sql_recompilation_rate",
+              "metricType": "Gauge",
+              "temporality": "Cumulative"
+            },
+            "datasourceId": "kloudmate",
+            "legendFormat": "{{serviceName}}",
+            "responseType": "series"
+          }
+        ],
+        "time_options": {
+          "override": false,
+          "time_shift": ""
+        }
+      },
+      {
+        "id": "0hwlgev9hiip",
+        "tz": "local",
+        "axis": {
+          "x": {
+            "date_style": "auto"
+          },
+          "y": {
+            "format": "number",
+            "suffix": "{requests}/s",
+            "decimals": 3
+          }
+        },
+        "title": "SQL lock requests",
+        "panelType": "TimeSeries",
+        "timeRange": "1h",
+        "statConfig": {
+          "statView": "grid",
+          "baseColor": "#4CBB17",
+          "calculation": "last"
+        },
+        "timeseries": {
+          "legend": {
+            "view": "list",
+            "values": []
+          }
+        },
+        "description": "Number of lock requests resulting in a wait. This will show the total number of lock requests that have resulted in waits over a specified time period",
+        "node_configs": [
+          {
+            "stat": "",
+            "type": "query",
+            "limit": "",
+            "hidden": false,
+            "metric": "",
+            "nodeId": "A",
+            "region": "",
+            "source": "kloudmate",
+            "dataset": "metrics",
+            "filters": [
+              {
+                "type": "root",
+                "field": "serviceName",
+                "value": "$ServerName",
+                "operator": "="
+              }
+            ],
+            "groupBy": [
+              {
+                "type": "root",
+                "field": "serviceName"
+              }
+            ],
+            "orderBy": [],
+            "interval": "",
+            "namespace": "",
+            "dimensions": [],
+            "metricType": "",
+            "time_range": {
+              "to": 0,
+              "from": 600
+            },
+            "aggregation": {
+              "stat": "SUM",
+              "type": "",
+              "unit": "{requests}/s",
+              "field": "",
+              "metric": "sqlserver_lock_wait_rate",
+              "metricType": "Gauge",
+              "temporality": "Cumulative"
+            },
+            "datasourceId": "kloudmate",
+            "legendFormat": "{{serviceName}}",
+            "responseType": "series"
+          }
+        ],
+        "time_options": {
+          "override": false,
+          "time_shift": ""
+        }
+      },
+      {
+        "id": "9xp245vkcar",
+        "tz": "local",
+        "axis": {
+          "x": {
+            "date_style": "auto"
+          },
+          "y": {
+            "format": "number",
+            "suffix": "%",
+            "decimals": 3
+          }
+        },
+        "title": "SQL Buffer Cache Hit Ratio",
+        "panelType": "TimeSeries",
+        "timeRange": "1h",
+        "statConfig": {
+          "statView": "grid",
+          "baseColor": "#4CBB17",
+          "calculation": "last"
+        },
+        "timeseries": {
+          "legend": {
+            "view": "list",
+            "values": []
+          }
+        },
+        "description": "The percentage of pages found in the buffer pool without having to read from disk",
+        "node_configs": [
+          {
+            "stat": "",
+            "type": "query",
+            "limit": "",
+            "hidden": false,
+            "metric": "",
+            "nodeId": "A",
+            "region": "",
+            "source": "kloudmate",
+            "dataset": "metrics",
+            "filters": [
+              {
+                "type": "root",
+                "field": "serviceName",
+                "value": "$ServerName",
+                "operator": "="
+              }
+            ],
+            "groupBy": [
+              {
+                "type": "root",
+                "field": "serviceName"
+              }
+            ],
+            "orderBy": [],
+            "interval": "",
+            "namespace": "",
+            "dimensions": [],
+            "metricType": "",
+            "time_range": {
+              "to": 0,
+              "from": 600
+            },
+            "aggregation": {
+              "stat": "AVG",
+              "type": "",
+              "unit": "%",
+              "field": "",
+              "metric": "sqlserver_page_buffer_cache_hit_ratio",
+              "metricType": "Gauge",
+              "temporality": "Cumulative"
+            },
+            "datasourceId": "kloudmate",
+            "legendFormat": "{{serviceName}}",
+            "responseType": "series"
+          }
+        ],
+        "time_options": {
+          "override": false,
+          "time_shift": ""
+        }
+      },
+      {
+        "id": "1hcsf3qxxni",
+        "tz": "local",
+        "axis": {
+          "x": {
+            "date_style": "auto"
+          },
+          "y": {
+            "format": "number",
+            "suffix": "{connections}",
+            "decimals": 3
+          }
+        },
+        "title": "Maximum SQL Server Connections",
+        "panelType": "STATS",
+        "timeRange": "15m",
+        "statConfig": {
+          "format": "number",
+          "statView": "grid",
+          "baseColor": "#4CBB17",
+          "calculation": "last"
+        },
+        "timeseries": {
+          "legend": {
+            "view": "list",
+            "values": []
+          }
+        },
+        "description": "Number of users connected to the SQL Server.",
+        "node_configs": [
+          {
+            "stat": "",
+            "type": "query",
+            "limit": "",
+            "hidden": false,
+            "metric": "",
+            "nodeId": "A",
+            "region": "",
+            "source": "kloudmate",
+            "dataset": "metrics",
+            "filters": [
+              {
+                "type": "root",
+                "field": "serviceName",
+                "value": "$ServerName",
+                "operator": "="
+              }
+            ],
+            "groupBy": [
+              {
+                "type": "root",
+                "field": "serviceName"
+              }
+            ],
+            "orderBy": [],
+            "interval": "",
+            "namespace": "",
+            "dimensions": [],
+            "metricType": "",
+            "time_range": {
+              "to": 0,
+              "from": 600
+            },
+            "aggregation": {
+              "stat": "MAX",
+              "type": "",
+              "unit": "{connections}",
+              "field": "",
+              "metric": "sqlserver_user_connection_count",
+              "metricType": "Gauge",
+              "temporality": "Cumulative"
+            },
+            "datasourceId": "kloudmate",
+            "legendFormat": "{{serviceName}}",
+            "responseType": "series"
+          }
+        ],
+        "time_options": {
+          "override": false,
+          "time_shift": ""
+        }
+      },
+      {
+        "id": "4u6e4qorrix",
+        "tz": "local",
+        "axis": {
+          "x": {
+            "date_style": "auto"
+          },
+          "y": {
+            "format": "number",
+            "suffix": "{databases}",
+            "decimals": 3
+          }
+        },
+        "title": "Number of Active Databases",
+        "panelType": "STATS",
+        "timeRange": "1h",
+        "statConfig": {
+          "statView": "grid",
+          "baseColor": "#4CBB17",
+          "calculation": "last"
+        },
+        "timeseries": {
+          "legend": {
+            "view": "list",
+            "values": []
+          }
+        },
+        "description": "The total number of active databases on the SQL Server instance",
+        "node_configs": [
+          {
+            "stat": "",
+            "type": "query",
+            "limit": "",
+            "hidden": false,
+            "metric": "",
+            "nodeId": "A",
+            "region": "",
+            "source": "kloudmate",
+            "dataset": "metrics",
+            "filters": [
+              {
+                "type": "root",
+                "field": "serviceName",
+                "value": "$ServerName",
+                "operator": "="
+              },
+              {
+                "type": "string",
+                "field": "database_status",
+                "value": "online",
+                "operator": "="
+              }
+            ],
+            "groupBy": [
+              {
+                "type": "root",
+                "field": "serviceName"
+              }
+            ],
+            "orderBy": [],
+            "interval": "",
+            "namespace": "",
+            "dimensions": [],
+            "metricType": "",
+            "time_range": {
+              "to": 0,
+              "from": 600
+            },
+            "aggregation": {
+              "stat": "SUM",
+              "type": "",
+              "unit": "{databases}",
+              "field": "",
+              "metric": "sqlserver_database_count",
+              "metricType": "Gauge",
+              "temporality": "Cumulative"
+            },
+            "datasourceId": "kloudmate",
+            "responseType": "series"
+          }
+        ],
+        "time_options": {
+          "override": false,
+          "time_shift": ""
+        }
+      },
+      {
+        "id": "2cnjadaj3y3",
+        "tz": "local",
+        "axis": {
+          "x": {
+            "date_style": "auto"
+          },
+          "y": {
+            "format": "bytes",
+            "decimals": 3
+          }
+        },
+        "title": "Database I/O (Bytes)",
+        "panelType": "TimeSeries",
+        "timeRange": "1h",
+        "statConfig": {
+          "statView": "grid",
+          "baseColor": "#4CBB17",
+          "calculation": "last"
+        },
+        "timeseries": {
+          "legend": {
+            "view": "list",
+            "values": []
+          }
+        },
+        "description": "The total number of bytes of I/O operations on the database files",
+        "node_configs": [
+          {
+            "stat": "",
+            "type": "query",
+            "limit": "",
+            "hidden": false,
+            "metric": "",
+            "nodeId": "A",
+            "region": "",
+            "source": "kloudmate",
+            "dataset": "metrics",
+            "filters": [
+              {
+                "type": "root",
+                "field": "serviceName",
+                "value": "$ServerName",
+                "operator": "="
+              }
+            ],
+            "groupBy": [
+              {
+                "type": "string",
+                "field": "direction"
+              }
+            ],
+            "orderBy": [],
+            "interval": "",
+            "namespace": "",
+            "dimensions": [],
+            "metricType": "",
+            "time_range": {
+              "to": 0,
+              "from": 600
+            },
+            "aggregation": {
+              "stat": "AVG",
+              "type": "",
+              "unit": "By",
+              "field": "",
+              "metric": "sqlserver_database_io",
+              "metricType": "Sum",
+              "temporality": "Cumulative"
+            },
+            "datasourceId": "kloudmate",
+            "legendFormat": "{{direction}}",
+            "responseType": "series"
+          }
+        ],
+        "time_options": {
+          "override": false,
+          "time_shift": ""
+        }
+      },
+      {
+        "id": "as7vx7j1ii8",
+        "tz": "local",
+        "axis": {
+          "x": {
+            "date_style": "auto"
+          },
+          "y": {
+            "format": "duration",
+            "decimals": 3,
+            "multiplyBy": 0.001
+          }
+        },
+        "title": "Database Maximum Latency (Seconds)",
+        "panelType": "TimeSeries",
+        "timeRange": "1h",
+        "statConfig": {
+          "statView": "grid",
+          "baseColor": "#4CBB17",
+          "calculation": "last"
+        },
+        "timeseries": {
+          "legend": {
+            "view": "list",
+            "values": []
+          }
+        },
+        "description": "The  total time that users waited for I/O operations on the database files",
+        "node_configs": [
+          {
+            "stat": "",
+            "type": "query",
+            "limit": "",
+            "hidden": false,
+            "metric": "",
+            "nodeId": "A",
+            "region": "",
+            "source": "kloudmate",
+            "dataset": "metrics",
+            "filters": [
+              {
+                "type": "root",
+                "field": "serviceName",
+                "value": "$ServerName",
+                "operator": "="
+              }
+            ],
+            "groupBy": [
+              {
+                "type": "string",
+                "field": "direction"
+              }
+            ],
+            "orderBy": [],
+            "interval": "",
+            "namespace": "",
+            "dimensions": [],
+            "metricType": "",
+            "time_range": {
+              "to": 0,
+              "from": 600
+            },
+            "aggregation": {
+              "stat": "MAX",
+              "type": "",
+              "unit": "s",
+              "field": "",
+              "metric": "sqlserver_database_latency",
+              "metricType": "Sum",
+              "temporality": "Cumulative"
+            },
+            "datasourceId": "kloudmate",
+            "legendFormat": "{{direction}}",
+            "responseType": "series"
+          }
+        ],
+        "time_options": {
+          "override": false,
+          "time_shift": ""
+        }
+      },
+      {
+        "id": "0wykw03ifah",
+        "tz": "local",
+        "axis": {
+          "x": {
+            "date_style": "auto"
+          },
+          "y": {
+            "format": "number",
+            "suffix": "{operations}",
+            "decimals": 3
+          }
+        },
+        "title": "Database Operations Count",
+        "panelType": "TimeSeries",
+        "timeRange": "1h",
+        "statConfig": {
+          "statView": "grid",
+          "baseColor": "#4CBB17",
+          "calculation": "last"
+        },
+        "timeseries": {
+          "legend": {
+            "view": "list",
+            "values": []
+          }
+        },
+        "description": "The  total number of I/O operations issued on the database files",
+        "node_configs": [
+          {
+            "stat": "",
+            "type": "query",
+            "limit": "",
+            "hidden": false,
+            "metric": "",
+            "nodeId": "A",
+            "region": "",
+            "source": "kloudmate",
+            "dataset": "metrics",
+            "filters": [
+              {
+                "type": "root",
+                "field": "serviceName",
+                "value": "$ServerName",
+                "operator": "="
+              }
+            ],
+            "groupBy": [
+              {
+                "type": "string",
+                "field": "direction"
+              }
+            ],
+            "orderBy": [],
+            "interval": "",
+            "namespace": "",
+            "dimensions": [],
+            "metricType": "",
+            "time_range": {
+              "to": 0,
+              "from": 600
+            },
+            "aggregation": {
+              "stat": "COUNT",
+              "type": "",
+              "unit": "{operations}",
+              "field": "",
+              "metric": "sqlserver_database_operations",
+              "metricType": "Sum",
+              "temporality": "Cumulative"
+            },
+            "datasourceId": "kloudmate",
+            "legendFormat": "{{direction}}",
+            "responseType": "series"
+          }
+        ],
+        "time_options": {
+          "override": false,
+          "time_shift": ""
+        }
+      },
+      {
+        "id": "r9s8ru2o8rn",
+        "tz": "local",
+        "axis": {
+          "x": {
+            "date_style": "auto"
+          },
+          "y": {
+            "format": "number",
+            "suffix": "{processes}",
+            "decimals": 3
+          }
+        },
+        "title": "Blocked Processes Count",
+        "panelType": "TimeSeries",
+        "timeRange": "1h",
+        "statConfig": {
+          "statView": "grid",
+          "baseColor": "#4CBB17",
+          "calculation": "last"
+        },
+        "timeseries": {
+          "legend": {
+            "view": "list",
+            "values": []
+          }
+        },
+        "description": "The number of processes that are currently blocked in SQL Server",
+        "node_configs": [
+          {
+            "stat": "",
+            "type": "query",
+            "limit": "",
+            "hidden": false,
+            "metric": "",
+            "nodeId": "A",
+            "region": "",
+            "source": "kloudmate",
+            "dataset": "metrics",
+            "filters": [
+              {
+                "type": "root",
+                "field": "serviceName",
+                "value": "$ServerName",
+                "operator": "="
+              }
+            ],
+            "groupBy": [
+              {
+                "type": "root",
+                "field": "serviceName"
+              }
+            ],
+            "orderBy": [],
+            "interval": "",
+            "namespace": "",
+            "dimensions": [],
+            "metricType": "",
+            "time_range": {
+              "to": 0,
+              "from": 600
+            },
+            "aggregation": {
+              "stat": "SUM",
+              "type": "",
+              "unit": "{processes}",
+              "field": "",
+              "metric": "sqlserver_processes_blocked",
+              "metricType": "Gauge",
+              "temporality": "Cumulative"
+            },
+            "datasourceId": "kloudmate",
+            "legendFormat": "{{serviceName}}",
+            "responseType": "series"
+          }
+        ],
+        "time_options": {
+          "override": false,
+          "time_shift": ""
+        }
+      },
+      {
+        "id": "7glag5igboq",
+        "tz": "local",
+        "axis": {
+          "x": {
+            "date_style": "auto"
+          },
+          "y": {
+            "format": "number",
+            "suffix": "{reads}/s",
+            "decimals": 3
+          }
+        },
+        "title": "Throttled Read Operations Rate",
+        "panelType": "TimeSeries",
+        "timeRange": "1h",
+        "statConfig": {
+          "statView": "grid",
+          "baseColor": "#4CBB17",
+          "calculation": "last"
+        },
+        "timeseries": {
+          "legend": {
+            "view": "list",
+            "values": []
+          }
+        },
+        "description": "The rate of read operations that were throttled in the last second",
+        "node_configs": [
+          {
+            "stat": "",
+            "type": "query",
+            "limit": "",
+            "hidden": false,
+            "metric": "",
+            "nodeId": "A",
+            "region": "",
+            "source": "kloudmate",
+            "dataset": "metrics",
+            "filters": [
+              {
+                "type": "root",
+                "field": "serviceName",
+                "value": "$ServerName",
+                "operator": "="
+              }
+            ],
+            "groupBy": [
+              {
+                "type": "root",
+                "field": "serviceName"
+              }
+            ],
+            "orderBy": [],
+            "interval": "",
+            "namespace": "",
+            "dimensions": [],
+            "metricType": "",
+            "time_range": {
+              "to": 0,
+              "from": 600
+            },
+            "aggregation": {
+              "stat": "SUM",
+              "type": "",
+              "unit": "{reads}/s",
+              "field": "",
+              "metric": "sqlserver_resource_pool_disk_throttled_read_rate",
+              "metricType": "Gauge",
+              "temporality": "Cumulative"
+            },
+            "datasourceId": "kloudmate",
+            "legendFormat": "{{serviceName}}",
+            "responseType": "series"
+          }
+        ],
+        "time_options": {
+          "override": false,
+          "time_shift": ""
+        }
+      },
+      {
+        "id": "ben2o88ati",
+        "tz": "local",
+        "axis": {
+          "x": {
+            "date_style": "auto"
+          },
+          "y": {
+            "format": "number",
+            "suffix": "{writes}/s",
+            "decimals": 3
+          }
+        },
+        "title": "Throttled write Operations Rate",
+        "panelType": "TimeSeries",
+        "timeRange": "1h",
+        "statConfig": {
+          "statView": "grid",
+          "baseColor": "#4CBB17",
+          "calculation": "last"
+        },
+        "timeseries": {
+          "legend": {
+            "view": "list",
+            "values": []
+          }
+        },
+        "description": "The rate of write operations that were throttled in the last second",
+        "node_configs": [
+          {
+            "stat": "",
+            "type": "query",
+            "limit": "",
+            "hidden": false,
+            "metric": "",
+            "nodeId": "A",
+            "region": "",
+            "source": "kloudmate",
+            "dataset": "metrics",
+            "filters": [
+              {
+                "type": "root",
+                "field": "serviceName",
+                "value": "$ServerName",
+                "operator": "="
+              }
+            ],
+            "groupBy": [
+              {
+                "type": "root",
+                "field": "serviceName"
+              }
+            ],
+            "orderBy": [],
+            "interval": "",
+            "namespace": "",
+            "dimensions": [],
+            "metricType": "",
+            "time_range": {
+              "to": 0,
+              "from": 600
+            },
+            "aggregation": {
+              "stat": "SUM",
+              "type": "",
+              "unit": "{writes}/s",
+              "field": "",
+              "metric": "sqlserver_resource_pool_disk_throttled_write_rate",
+              "metricType": "Gauge",
+              "temporality": "Cumulative"
+            },
+            "datasourceId": "kloudmate",
+            "legendFormat": "{{serviceName}}",
+            "responseType": "series"
+          }
+        ],
+        "time_options": {
+          "override": false,
+          "time_shift": ""
+        }
+      },
+      {
+        "id": "3vgp4c3wpra",
+        "tz": "local",
+        "axis": {
+          "x": {
+            "date_style": "auto"
+          }
+        },
+        "title": "CPU Usage",
+        "panelType": "STATS",
+        "timeRange": "1h",
+        "statConfig": {
+          "format": "percentage",
+          "decimals": 1,
+          "statView": "grid",
+          "baseColor": "#4CBB17",
+          "calculation": "last"
+        },
+        "timeseries": {
+          "legend": {
+            "view": "list",
+            "values": []
+          }
+        },
+        "node_configs": [
+          {
+            "exp": "1 - (avg by(job) (irate(system_cpu_time{job=\"$ServerName\",state=\"idle\"}[5m])))",
+            "stat": "",
+            "type": "query",
+            "limit": "",
+            "hidden": false,
+            "metric": "",
+            "nodeId": "A",
+            "region": "",
+            "source": "kloudmate",
+            "dataset": "metrics",
+            "filters": [],
+            "groupBy": [],
+            "orderBy": [],
+            "interval": "",
+            "namespace": "",
+            "dimensions": [],
+            "metricType": "",
+            "query_type": "promql",
+            "time_range": {
+              "to": 0,
+              "from": 600
+            },
+            "aggregation": {
+              "stat": "AVG",
+              "type": "",
+              "field": ""
+            },
+            "datasourceId": "kloudmate",
+            "responseType": "series"
+          }
+        ],
+        "time_options": {
+          "override": false,
+          "time_shift": ""
+        }
+      },
+      {
+        "id": "0q3877lnqhsc",
+        "tz": "local",
+        "axis": {
+          "x": {
+            "date_style": "auto"
+          }
+        },
+        "title": "Memory Usage",
+        "panelType": "STATS",
+        "timeRange": "1h",
+        "statConfig": {
+          "format": "percentage",
+          "decimals": 2,
+          "statView": "grid",
+          "baseColor": "#4CBB17",
+          "calculation": "last"
+        },
+        "timeseries": {
+          "legend": {
+            "view": "list",
+            "values": []
+          }
+        },
+        "node_configs": [
+          {
+            "exp": "sum by(job) (system_memory_usage{job=\"$ServerName\",state=\"used\"}) / sum by(job) (system_memory_usage{job=\"$ServerName\"})",
+            "stat": "",
+            "type": "query",
+            "limit": "",
+            "hidden": false,
+            "metric": "",
+            "nodeId": "A",
+            "region": "",
+            "source": "kloudmate",
+            "dataset": "metrics",
+            "filters": [],
+            "groupBy": [],
+            "orderBy": [],
+            "interval": "",
+            "namespace": "",
+            "dimensions": [],
+            "metricType": "",
+            "query_type": "promql",
+            "time_range": {
+              "to": 0,
+              "from": 600
+            },
+            "aggregation": {
+              "stat": "AVG",
+              "type": "",
+              "field": ""
+            },
+            "datasourceId": "kloudmate",
+            "responseType": "series"
+          }
+        ],
+        "time_options": {
+          "override": false,
+          "time_shift": ""
+        }
+      },
+      {
+        "id": "4jbitaipo3h",
+        "tz": "local",
+        "axis": {
+          "x": {
+            "date_style": "auto"
+          }
+        },
+        "title": "File System Usage",
+        "panelType": "STATS",
+        "timeRange": "1h",
+        "statConfig": {
+          "format": "percentage",
+          "decimals": 1,
+          "statView": "grid",
+          "baseColor": "#4CBB17",
+          "calculation": "last"
+        },
+        "timeseries": {
+          "legend": {
+            "view": "list",
+            "values": []
+          }
+        },
+        "node_configs": [
+          {
+            "exp": "sum by(job) (system_filesystem_usage{job=\"$ServerName\",state=\"used\",device!~\"/dev/loop.*\", device!~\"tmpfs|nsfs\"}) / sum by(job) (system_filesystem_usage{job=\"$ServerName\",device!~\"/dev/loop.*\", device!~\"tmpfs|nsfs\"})",
+            "stat": "",
+            "type": "query",
+            "limit": "",
+            "hidden": false,
+            "metric": "",
+            "nodeId": "A",
+            "region": "",
+            "source": "kloudmate",
+            "dataset": "metrics",
+            "filters": [],
+            "groupBy": [],
+            "orderBy": [],
+            "interval": "",
+            "namespace": "",
+            "dimensions": [],
+            "metricType": "",
+            "query_type": "promql",
+            "time_range": {
+              "to": 0,
+              "from": 600
+            },
+            "aggregation": {
+              "stat": "AVG",
+              "type": "",
+              "field": ""
+            },
+            "datasourceId": "kloudmate",
+            "responseType": "series"
+          }
+        ],
+        "time_options": {
+          "override": false,
+          "time_shift": ""
+        }
+      },
+      {
+        "id": "gkh3answihi",
+        "tz": "local",
+        "axis": {
+          "x": {
+            "date_style": "auto"
+          },
+          "y": {
+            "format": "unformatted",
+            "decimals": 3
+          }
+        },
+        "table": {
+          "columns": [
+            {
+              "key": "A:AVG()",
+              "rename": ""
+            },
+            {
+              "key": "serviceName",
+              "rename": ""
+            }
+          ]
+        },
+        "title": "MSSQL Server Uptime",
+        "panelType": "STATS",
+        "timeRange": "1h",
+        "statConfig": {
+          "format": "duration",
+          "statView": "grid",
+          "baseColor": "#4CBB17",
+          "multiplyBy": 60000,
+          "calculation": "last"
+        },
+        "timeseries": {
+          "legend": {
+            "view": "list",
+            "values": []
+          }
+        },
+        "node_configs": [
+          {
+            "stat": "",
+            "type": "query",
+            "limit": "",
+            "hidden": false,
+            "metric": "",
+            "nodeId": "A",
+            "region": "",
+            "source": "kloudmate",
+            "dataset": "metrics",
+            "filters": [
+              {
+                "type": "root",
+                "field": "serviceName",
+                "value": "$ServerName",
+                "operator": "="
+              }
+            ],
+            "groupBy": [
+              {
+                "type": "root",
+                "field": "serviceName"
+              }
+            ],
+            "orderBy": [],
+            "interval": "",
+            "namespace": "",
+            "dimensions": [],
+            "metricType": "",
+            "time_range": {
+              "to": 0,
+              "from": 600
+            },
+            "aggregation": {
+              "stat": "AVG",
+              "type": "",
+              "unit": "",
+              "field": "",
+              "metric": "sqlserver_uptime_minutes",
+              "metricType": "Gauge",
+              "temporality": "Cumulative"
+            },
+            "datasourceId": "kloudmate",
+            "responseType": "series"
+          }
+        ],
+        "time_options": {
+          "override": false,
+          "time_shift": ""
+        }
+      },
+      {
+        "id": "bc6hjntyk97",
+        "tz": "local",
+        "axis": {
+          "x": {
+            "date_style": "auto"
+          },
+          "y": {
+            "format": "number",
+            "decimals": 3
+          }
+        },
+        "logs": {},
+        "spans": {},
+        "table": {
+          "columns": [
+            {
+              "key": "session_id",
+              "rename": ""
+            },
+            {
+              "key": "service.name",
+              "rename": "Host_Name"
+            },
+            {
+              "key": "login_name",
+              "rename": "Login_Name"
+            },
+            {
+              "key": "last_request_start_time",
+              "rename": ""
+            },
+            {
+              "key": "last_request_end_time",
+              "rename": ""
+            },
+            {
+              "key": "@message",
+              "rename": "Client_IP"
+            }
+          ]
+        },
+        "title": "client connections",
+        "bar_chart": {
+          "axis": {
+            "x": {
+              "date_style": "auto"
+            },
+            "y": {
+              "format": "unformatted",
+              "prefix": "",
+              "suffix": "",
+              "decimals": 3,
+              "multiplyBy": 1
+            }
+          },
+          "legend": {
+            "view": "list",
+            "values": []
+          },
+          "display": {
+            "stacking": "stacked",
+            "orientation": "vertical"
+          }
+        },
+        "panelType": "logs",
+        "pie_chart": {
+          "legend": {
+            "mode": "list",
+            "show": true,
+            "values": [
+              "percent"
+            ],
+            "placement": "right"
+          },
+          "display": {
+            "type": "pie",
+            "labels": [
+              "name"
+            ]
+          },
+          "formatter": {},
+          "value_options": {
+            "type": "reduce",
+            "limit": 20,
+            "reduce": "last",
+            "columns": [
+              "numeric"
+            ]
+          }
+        },
+        "timeRange": "15m",
+        "statConfig": {
+          "statView": "grid",
+          "baseColor": "#4CBB17",
+          "calculation": "last"
+        },
+        "timeseries": {
+          "legend": {
+            "view": "list",
+            "values": []
+          }
+        },
+        "description": "This shows client connections and IP",
+        "node_configs": [
+          {
+            "page": 1,
+            "stat": "",
+            "type": "query",
+            "limit": 10,
+            "hidden": false,
+            "metric": "",
+            "nodeId": "A",
+            "region": "",
+            "source": "kloudmate",
+            "columns": [
+              {
+                "type": "string",
+                "field": "session_id"
+              },
+              {
+                "type": "string",
+                "field": "service.name"
+              },
+              {
+                "type": "string",
+                "field": "login_name"
+              },
+              {
+                "type": "string",
+                "field": "last_request_start_time"
+              },
+              {
+                "type": "string",
+                "field": "last_request_end_time"
+              },
+              {
+                "type": "string",
+                "field": "@message"
+              }
+            ],
+            "dataset": "logs",
+            "filters": [
+              {
+                "type": "root",
+                "field": "serviceName",
+                "value": "$ServerName",
+                "operator": "="
+              },
+              {
+                "type": "string",
+                "field": "log_source",
+                "value": "mssql_client_log",
+                "operator": "="
+              }
+            ],
+            "groupBy": [],
+            "orderBy": [],
+            "interval": "",
+            "namespace": "",
+            "dimensions": [],
+            "metricType": "",
+            "query_type": "raw",
+            "time_range": {
+              "to": 0,
+              "from": 600
+            },
+            "aggregation": {
+              "stat": "AVG",
+              "type": "",
+              "unit": "1",
+              "field": "",
+              "value": "system_cpu_utilization",
+              "metric": "system_cpu_utilization",
+              "metricType": "Gauge",
+              "temporality": "Cumulative"
+            },
+            "datasourceId": "kloudmate",
+            "responseType": "series"
+          }
+        ],
+        "time_options": {
+          "override": false,
+          "time_shift": ""
+        }
+      },
+      {
+        "id": "ld4oygmp30s",
+        "tz": "local",
+        "axis": {
+          "x": {
+            "date_style": "auto"
+          }
+        },
+        "logs": {},
+        "table": {
+          "columns": [
+            {
+              "key": "timestamp",
+              "rename": ""
+            },
+            {
+              "key": "serviceName",
+              "rename": ""
+            },
+            {
+              "key": "@message",
+              "rename": "Login Name"
+            }
+          ]
+        },
+        "title": "User sessions",
+        "panelType": "logs",
+        "timeRange": "1h",
+        "statConfig": {
+          "statView": "grid",
+          "baseColor": "#4CBB17",
+          "calculation": "last"
+        },
+        "timeseries": {
+          "legend": {
+            "view": "list",
+            "values": []
+          }
+        },
+        "node_configs": [
+          {
+            "page": 1,
+            "stat": "",
+            "type": "query",
+            "limit": 10,
+            "hidden": false,
+            "metric": "",
+            "nodeId": "A",
+            "region": "",
+            "source": "kloudmate",
+            "columns": [
+              {
+                "type": "root",
+                "field": "timestamp"
+              },
+              {
+                "type": "root",
+                "field": "serviceName"
+              },
+              {
+                "type": "string",
+                "field": "@message"
+              }
+            ],
+            "dataset": "logs",
+            "filters": [
+              {
+                "type": "root",
+                "field": "serviceName",
+                "value": "$ServerName",
+                "operator": "="
+              },
+              {
+                "type": "string",
+                "field": "log_source",
+                "value": "mssql_user_sessions",
+                "operator": "="
+              }
+            ],
+            "groupBy": [],
+            "orderBy": [],
+            "interval": "",
+            "namespace": "",
+            "dimensions": [],
+            "metricType": "",
+            "query_type": "raw",
+            "time_range": {
+              "to": 0,
+              "from": 600
+            },
+            "aggregation": {
+              "stat": "AVG",
+              "type": "",
+              "field": ""
+            },
+            "datasourceId": "kloudmate",
+            "responseType": "series"
+          }
+        ],
+        "time_options": {
+          "override": false,
+          "time_shift": ""
+        }
+      },
+      {
+        "id": "2jto14kdpj",
+        "tz": "local",
+        "axis": {
+          "x": {
+            "date_style": "auto"
+          }
+        },
+        "logs": {},
+        "table": {
+          "columns": [
+            {
+              "key": "sql_handle",
+              "rename": ""
+            },
+            {
+              "key": "execution_count",
+              "rename": ""
+            },
+            {
+              "key": "last_execution_time",
+              "rename": ""
+            },
+            {
+              "key": "total_elapsed_time",
+              "rename": "Duration in ms"
+            },
+            {
+              "key": "@message",
+              "rename": "Query"
+            }
+          ]
+        },
+        "title": "slow query",
+        "panelType": "logs",
+        "timeRange": "15m",
+        "statConfig": {
+          "statView": "grid",
+          "baseColor": "#4CBB17",
+          "calculation": "last"
+        },
+        "timeseries": {
+          "legend": {
+            "view": "list",
+            "values": []
+          }
+        },
+        "node_configs": [
+          {
+            "page": 1,
+            "stat": "",
+            "type": "query",
+            "limit": 10,
+            "hidden": false,
+            "metric": "",
+            "nodeId": "A",
+            "region": "",
+            "source": "kloudmate",
+            "columns": [
+              {
+                "type": "string",
+                "field": "sql_handle"
+              },
+              {
+                "type": "string",
+                "field": "execution_count"
+              },
+              {
+                "type": "string",
+                "field": "last_execution_time"
+              },
+              {
+                "type": "string",
+                "field": "total_elapsed_time"
+              },
+              {
+                "type": "string",
+                "field": "@message"
+              }
+            ],
+            "dataset": "logs",
+            "filters": [
+              {
+                "type": "root",
+                "field": "serviceName",
+                "value": "$ServerName",
+                "operator": "="
+              },
+              {
+                "type": "string",
+                "field": "log_source",
+                "value": "mssql_slow_query_log",
+                "operator": "="
+              }
+            ],
+            "groupBy": [],
+            "orderBy": [],
+            "interval": "",
+            "namespace": "",
+            "dimensions": [],
+            "metricType": "",
+            "query_type": "raw",
+            "time_range": {
+              "to": 0,
+              "from": 600
+            },
+            "aggregation": {
+              "stat": "AVG",
+              "type": "",
+              "field": ""
+            },
+            "datasourceId": "kloudmate",
+            "responseType": "series"
+          }
+        ],
+        "time_options": {
+          "override": false,
+          "time_shift": ""
+        }
+      }
+    ],
+    "timeRange": "1h",
+    "variables": [
+      {
+        "id": "5a8b8611-080c-41e8-a984-67d6738539d5",
+        "name": "ServerName",
+        "type": "query",
+        "config": {
+          "otel": {
+            "key": {
+              "type": "root",
+              "field": "serviceName"
+            },
+            "dataset": "metrics"
+          },
+          "source": "cloudwatch",
+          "queryType": "otel.values"
+        },
+        "is_multi": false,
+        "description": "The server where database is hosted",
+        "show_all_option": false
+      }
+    ],
+    "panel_layouts": [
+      {
+        "h": 2,
+        "i": "ciodwed2rd6",
+        "w": 4,
+        "x": 4,
+        "y": 4,
+        "minH": 1,
+        "minW": 2,
+        "moved": false,
+        "static": false
+      },
+      {
+        "h": 2,
+        "i": "2r9mq7bgwln",
+        "w": 4,
+        "x": 4,
+        "y": 2,
+        "minH": 1,
+        "minW": 2,
+        "moved": false,
+        "static": false
+      },
+      {
+        "h": 2,
+        "i": "3dlb2t1flxg",
+        "w": 4,
+        "x": 8,
+        "y": 2,
+        "minH": 1,
+        "minW": 2,
+        "moved": false,
+        "static": false
+      },
+      {
+        "h": 2,
+        "i": "0hwlgev9hiip",
+        "w": 6,
+        "x": 6,
+        "y": 6,
+        "minH": 1,
+        "minW": 2,
+        "moved": false,
+        "static": false
+      },
+      {
+        "h": 2,
+        "i": "9xp245vkcar",
+        "w": 4,
+        "x": 8,
+        "y": 4,
+        "minH": 1,
+        "minW": 2,
+        "moved": false,
+        "static": false
+      },
+      {
+        "h": 1,
+        "i": "1hcsf3qxxni",
+        "w": 2,
+        "x": 0,
+        "y": 1,
+        "minH": 1,
+        "minW": 2,
+        "moved": false,
+        "static": false
+      },
+      {
+        "h": 1,
+        "i": "4u6e4qorrix",
+        "w": 2,
+        "x": 2,
+        "y": 1,
+        "minH": 1,
+        "minW": 2,
+        "moved": false,
+        "static": false
+      },
+      {
+        "h": 2,
+        "i": "2cnjadaj3y3",
+        "w": 4,
+        "x": 0,
+        "y": 2,
+        "minH": 1,
+        "minW": 2,
+        "moved": false,
+        "static": false
+      },
+      {
+        "h": 2,
+        "i": "as7vx7j1ii8",
+        "w": 4,
+        "x": 0,
+        "y": 4,
+        "minH": 1,
+        "minW": 2,
+        "moved": false,
+        "static": false
+      },
+      {
+        "h": 2,
+        "i": "0wykw03ifah",
+        "w": 6,
+        "x": 6,
+        "y": 0,
+        "minH": 1,
+        "minW": 2,
+        "moved": false,
+        "static": false
+      },
+      {
+        "h": 2,
+        "i": "r9s8ru2o8rn",
+        "w": 6,
+        "x": 0,
+        "y": 6,
+        "minH": 1,
+        "minW": 2,
+        "moved": false,
+        "static": false
+      },
+      {
+        "h": 2,
+        "i": "7glag5igboq",
+        "w": 6,
+        "x": 0,
+        "y": 8,
+        "minH": 1,
+        "minW": 2,
+        "moved": false,
+        "static": false
+      },
+      {
+        "h": 2,
+        "i": "ben2o88ati",
+        "w": 6,
+        "x": 6,
+        "y": 8,
+        "minH": 1,
+        "minW": 2,
+        "moved": false,
+        "static": false
+      },
+      {
+        "h": 1,
+        "i": "3vgp4c3wpra",
+        "w": 2,
+        "x": 2,
+        "y": 0,
+        "minH": 1,
+        "minW": 2,
+        "moved": false,
+        "static": false
+      },
+      {
+        "h": 1,
+        "i": "0q3877lnqhsc",
+        "w": 2,
+        "x": 4,
+        "y": 0,
+        "minH": 1,
+        "minW": 2,
+        "moved": false,
+        "static": false
+      },
+      {
+        "h": 1,
+        "i": "4jbitaipo3h",
+        "w": 2,
+        "x": 4,
+        "y": 1,
+        "minH": 1,
+        "minW": 2,
+        "moved": false,
+        "static": false
+      },
+      {
+        "h": 1,
+        "i": "gkh3answihi",
+        "w": 2,
+        "x": 0,
+        "y": 0,
+        "minH": 1,
+        "minW": 2,
+        "moved": false,
+        "static": false
+      },
+      {
+        "h": 3,
+        "i": "bc6hjntyk97",
+        "w": 6,
+        "x": 0,
+        "y": 10,
+        "minH": 1,
+        "minW": 2,
+        "moved": false,
+        "static": false
+      },
+      {
+        "h": 3,
+        "i": "ld4oygmp30s",
+        "w": 6,
+        "x": 6,
+        "y": 10,
+        "minH": 1,
+        "minW": 2,
+        "moved": false,
+        "static": false
+      },
+      {
+        "h": 5,
+        "i": "2jto14kdpj",
+        "w": 12,
+        "x": 0,
+        "y": 13,
+        "minH": 1,
+        "minW": 2,
+        "moved": false,
+        "static": false
+      }
+    ],
+    "default_region": "undefined"
+  },
+  "tags": []
+}</code></pre>
+              <button class="absolute top-2 right-2 bg-gray-700 hover:bg-gray-600 text-white font-bold py-1 px-3 rounded-md" onclick="copyToClipboard()">Copy</button>
+          </div>
+          <button id="expand-btn" class="mt-4 bg-gray-700 hover:bg-gray-600 text-white font-bold py-2 px-4 rounded-md">Show More</button>
+        </div>
+      </main>
+      
+  <footer class="bg-gray-800 text-gray-400 mt-16">
+    <div class="container mx-auto px-4 py-8 flex flex-col md:flex-row justify-between items-center">
+      <div class="mb-4 md:mb-0">
+        <a href="https://kloudmate.com/" target="_blank" rel="noopener noreferrer">
+          <img src="https://app.kloudmate.com/assets/images/logo_full_white.svg" alt="KloudMate Logo" class="h-8">
+        </a>
+      </div>
+      <div class="flex space-x-6">
+        <a href="https://app.kloudmate.com/login" target="_blank" rel="noopener noreferrer" class="hover:text-white">Login</a>
+        <a href="https://github.com/kloudmate/dashboard-templates" target="_blank" rel="noopener noreferrer" class="hover:text-white">GitHub</a>
+      </div>
+    </div>
+  </footer>
+      <div id="how-to-use-modal" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center hidden">
+        <div class="bg-gray-800 text-white rounded-lg shadow-lg p-8 max-w-lg w-full">
+            <h2 class="text-2xl font-bold mb-4">How to Use This Template</h2>
+            <ol class="list-decimal list-inside space-y-2">
+                <li>Copy the JSON from the template viewer.</li>
+                <li>Go to the "Dashboards" page in your KloudMate account.</li>
+                <li>Click the "Import" button.</li>
+                <li>Paste the JSON into the text area.</li>
+                <li>Click "Submit" to create the new dashboard.</li>
+            </ol>
+            <button id="close-modal-btn" class="mt-6 bg-gray-700 hover:bg-gray-600 text-white font-bold py-2 px-4 rounded-md">Close</button>
+        </div>
+      </div>
+      <script>
+        // Page-specific script...
+        hljs.highlightAll();
+        function copyToClipboard() {
+          navigator.clipboard.writeText("{\n  \"name\": \"MSSQL\",\n  \"description\": \"\",\n  \"data\": {\n    \"tz\": \"local\",\n    \"panels\": [\n      {\n        \"id\": \"ciodwed2rd6\",\n        \"tz\": \"local\",\n        \"axis\": {\n          \"x\": {\n            \"date_style\": \"auto\"\n          },\n          \"y\": {\n            \"format\": \"number\",\n            \"suffix\": \"{requests}/s\",\n            \"decimals\": 3\n          }\n        },\n        \"title\": \"SQL Batch Requests Received\",\n        \"panelType\": \"TimeSeries\",\n        \"timeRange\": \"1h\",\n        \"statConfig\": {\n          \"statView\": \"grid\",\n          \"baseColor\": \"#4CBB17\",\n          \"calculation\": \"last\"\n        },\n        \"timeseries\": {\n          \"legend\": {\n            \"view\": \"list\",\n            \"values\": []\n          }\n        },\n        \"description\": \"Number of batch requests received by SQL Server.\\nIt will track the total number of batch requests over a defined period\",\n        \"node_configs\": [\n          {\n            \"stat\": \"\",\n            \"type\": \"query\",\n            \"limit\": \"\",\n            \"hidden\": false,\n            \"metric\": \"\",\n            \"nodeId\": \"A\",\n            \"region\": \"\",\n            \"source\": \"kloudmate\",\n            \"dataset\": \"metrics\",\n            \"filters\": [\n              {\n                \"type\": \"root\",\n                \"field\": \"serviceName\",\n                \"value\": \"$ServerName\",\n                \"operator\": \"=\"\n              }\n            ],\n            \"groupBy\": [\n              {\n                \"type\": \"root\",\n                \"field\": \"serviceName\"\n              }\n            ],\n            \"orderBy\": [],\n            \"interval\": \"\",\n            \"namespace\": \"\",\n            \"dimensions\": [],\n            \"metricType\": \"\",\n            \"time_range\": {\n              \"to\": 0,\n              \"from\": 600\n            },\n            \"aggregation\": {\n              \"stat\": \"SUM\",\n              \"type\": \"\",\n              \"unit\": \"{requests}/s\",\n              \"field\": \"\",\n              \"metric\": \"sqlserver_batch_request_rate\",\n              \"metricType\": \"Gauge\",\n              \"temporality\": \"Cumulative\"\n            },\n            \"datasourceId\": \"kloudmate\",\n            \"legendFormat\": \"{{serviceName}}\",\n            \"responseType\": \"series\"\n          }\n        ],\n        \"time_options\": {\n          \"override\": false,\n          \"time_shift\": \"\"\n        }\n      },\n      {\n        \"id\": \"2r9mq7bgwln\",\n        \"tz\": \"local\",\n        \"axis\": {\n          \"x\": {\n            \"date_style\": \"auto\"\n          },\n          \"y\": {\n            \"format\": \"number\",\n            \"suffix\": \"{compilations}/s\",\n            \"decimals\": 3\n          }\n        },\n        \"title\": \"SQL compilations\",\n        \"panelType\": \"TimeSeries\",\n        \"timeRange\": \"1h\",\n        \"statConfig\": {\n          \"statView\": \"grid\",\n          \"baseColor\": \"#4CBB17\",\n          \"calculation\": \"last\"\n        },\n        \"timeseries\": {\n          \"legend\": {\n            \"view\": \"list\",\n            \"values\": []\n          }\n        },\n        \"description\": \"The number of SQL compilations per second which accumulate the total number of compilations over a specific time period\",\n        \"node_configs\": [\n          {\n            \"stat\": \"\",\n            \"type\": \"query\",\n            \"limit\": \"\",\n            \"hidden\": false,\n            \"metric\": \"\",\n            \"nodeId\": \"A\",\n            \"region\": \"\",\n            \"source\": \"kloudmate\",\n            \"dataset\": \"metrics\",\n            \"filters\": [\n              {\n                \"type\": \"root\",\n                \"field\": \"serviceName\",\n                \"value\": \"$ServerName\",\n                \"operator\": \"=\"\n              }\n            ],\n            \"groupBy\": [\n              {\n                \"type\": \"root\",\n                \"field\": \"serviceName\"\n              }\n            ],\n            \"orderBy\": [],\n            \"interval\": \"\",\n            \"namespace\": \"\",\n            \"dimensions\": [],\n            \"metricType\": \"\",\n            \"time_range\": {\n              \"to\": 0,\n              \"from\": 600\n            },\n            \"aggregation\": {\n              \"stat\": \"SUM\",\n              \"type\": \"\",\n              \"unit\": \"{compilations}/s\",\n              \"field\": \"\",\n              \"metric\": \"sqlserver_batch_sql_compilation_rate\",\n              \"metricType\": \"Gauge\",\n              \"temporality\": \"Cumulative\"\n            },\n            \"datasourceId\": \"kloudmate\",\n            \"legendFormat\": \"{{serviceName}}\",\n            \"responseType\": \"series\"\n          }\n        ],\n        \"time_options\": {\n          \"override\": false,\n          \"time_shift\": \"\"\n        }\n      },\n      {\n        \"id\": \"3dlb2t1flxg\",\n        \"tz\": \"local\",\n        \"axis\": {\n          \"x\": {\n            \"date_style\": \"auto\"\n          },\n          \"y\": {\n            \"format\": \"number\",\n            \"suffix\": \"{compilations}/s\",\n            \"decimals\": 3\n          }\n        },\n        \"title\": \"SQL recompilations\",\n        \"panelType\": \"TimeSeries\",\n        \"timeRange\": \"1h\",\n        \"statConfig\": {\n          \"statView\": \"grid\",\n          \"baseColor\": \"#4CBB17\",\n          \"calculation\": \"last\"\n        },\n        \"timeseries\": {\n          \"legend\": {\n            \"view\": \"list\",\n            \"values\": []\n          }\n        },\n        \"description\": \"The number of SQL recompilations needed per second. This specify  trends and spikes in recompilation activity, which can indicate issues with query plans or caching\",\n        \"node_configs\": [\n          {\n            \"stat\": \"\",\n            \"type\": \"query\",\n            \"limit\": \"\",\n            \"hidden\": false,\n            \"metric\": \"\",\n            \"nodeId\": \"A\",\n            \"region\": \"\",\n            \"source\": \"kloudmate\",\n            \"dataset\": \"metrics\",\n            \"filters\": [\n              {\n                \"type\": \"root\",\n                \"field\": \"serviceName\",\n                \"value\": \"$ServerName\",\n                \"operator\": \"=\"\n              }\n            ],\n            \"groupBy\": [\n              {\n                \"type\": \"root\",\n                \"field\": \"serviceName\"\n              }\n            ],\n            \"orderBy\": [],\n            \"interval\": \"\",\n            \"namespace\": \"\",\n            \"dimensions\": [],\n            \"metricType\": \"\",\n            \"time_range\": {\n              \"to\": 0,\n              \"from\": 600\n            },\n            \"aggregation\": {\n              \"stat\": \"SUM\",\n              \"type\": \"\",\n              \"unit\": \"{compilations}/s\",\n              \"field\": \"\",\n              \"metric\": \"sqlserver_batch_sql_recompilation_rate\",\n              \"metricType\": \"Gauge\",\n              \"temporality\": \"Cumulative\"\n            },\n            \"datasourceId\": \"kloudmate\",\n            \"legendFormat\": \"{{serviceName}}\",\n            \"responseType\": \"series\"\n          }\n        ],\n        \"time_options\": {\n          \"override\": false,\n          \"time_shift\": \"\"\n        }\n      },\n      {\n        \"id\": \"0hwlgev9hiip\",\n        \"tz\": \"local\",\n        \"axis\": {\n          \"x\": {\n            \"date_style\": \"auto\"\n          },\n          \"y\": {\n            \"format\": \"number\",\n            \"suffix\": \"{requests}/s\",\n            \"decimals\": 3\n          }\n        },\n        \"title\": \"SQL lock requests\",\n        \"panelType\": \"TimeSeries\",\n        \"timeRange\": \"1h\",\n        \"statConfig\": {\n          \"statView\": \"grid\",\n          \"baseColor\": \"#4CBB17\",\n          \"calculation\": \"last\"\n        },\n        \"timeseries\": {\n          \"legend\": {\n            \"view\": \"list\",\n            \"values\": []\n          }\n        },\n        \"description\": \"Number of lock requests resulting in a wait. This will show the total number of lock requests that have resulted in waits over a specified time period\",\n        \"node_configs\": [\n          {\n            \"stat\": \"\",\n            \"type\": \"query\",\n            \"limit\": \"\",\n            \"hidden\": false,\n            \"metric\": \"\",\n            \"nodeId\": \"A\",\n            \"region\": \"\",\n            \"source\": \"kloudmate\",\n            \"dataset\": \"metrics\",\n            \"filters\": [\n              {\n                \"type\": \"root\",\n                \"field\": \"serviceName\",\n                \"value\": \"$ServerName\",\n                \"operator\": \"=\"\n              }\n            ],\n            \"groupBy\": [\n              {\n                \"type\": \"root\",\n                \"field\": \"serviceName\"\n              }\n            ],\n            \"orderBy\": [],\n            \"interval\": \"\",\n            \"namespace\": \"\",\n            \"dimensions\": [],\n            \"metricType\": \"\",\n            \"time_range\": {\n              \"to\": 0,\n              \"from\": 600\n            },\n            \"aggregation\": {\n              \"stat\": \"SUM\",\n              \"type\": \"\",\n              \"unit\": \"{requests}/s\",\n              \"field\": \"\",\n              \"metric\": \"sqlserver_lock_wait_rate\",\n              \"metricType\": \"Gauge\",\n              \"temporality\": \"Cumulative\"\n            },\n            \"datasourceId\": \"kloudmate\",\n            \"legendFormat\": \"{{serviceName}}\",\n            \"responseType\": \"series\"\n          }\n        ],\n        \"time_options\": {\n          \"override\": false,\n          \"time_shift\": \"\"\n        }\n      },\n      {\n        \"id\": \"9xp245vkcar\",\n        \"tz\": \"local\",\n        \"axis\": {\n          \"x\": {\n            \"date_style\": \"auto\"\n          },\n          \"y\": {\n            \"format\": \"number\",\n            \"suffix\": \"%\",\n            \"decimals\": 3\n          }\n        },\n        \"title\": \"SQL Buffer Cache Hit Ratio\",\n        \"panelType\": \"TimeSeries\",\n        \"timeRange\": \"1h\",\n        \"statConfig\": {\n          \"statView\": \"grid\",\n          \"baseColor\": \"#4CBB17\",\n          \"calculation\": \"last\"\n        },\n        \"timeseries\": {\n          \"legend\": {\n            \"view\": \"list\",\n            \"values\": []\n          }\n        },\n        \"description\": \"The percentage of pages found in the buffer pool without having to read from disk\",\n        \"node_configs\": [\n          {\n            \"stat\": \"\",\n            \"type\": \"query\",\n            \"limit\": \"\",\n            \"hidden\": false,\n            \"metric\": \"\",\n            \"nodeId\": \"A\",\n            \"region\": \"\",\n            \"source\": \"kloudmate\",\n            \"dataset\": \"metrics\",\n            \"filters\": [\n              {\n                \"type\": \"root\",\n                \"field\": \"serviceName\",\n                \"value\": \"$ServerName\",\n                \"operator\": \"=\"\n              }\n            ],\n            \"groupBy\": [\n              {\n                \"type\": \"root\",\n                \"field\": \"serviceName\"\n              }\n            ],\n            \"orderBy\": [],\n            \"interval\": \"\",\n            \"namespace\": \"\",\n            \"dimensions\": [],\n            \"metricType\": \"\",\n            \"time_range\": {\n              \"to\": 0,\n              \"from\": 600\n            },\n            \"aggregation\": {\n              \"stat\": \"AVG\",\n              \"type\": \"\",\n              \"unit\": \"%\",\n              \"field\": \"\",\n              \"metric\": \"sqlserver_page_buffer_cache_hit_ratio\",\n              \"metricType\": \"Gauge\",\n              \"temporality\": \"Cumulative\"\n            },\n            \"datasourceId\": \"kloudmate\",\n            \"legendFormat\": \"{{serviceName}}\",\n            \"responseType\": \"series\"\n          }\n        ],\n        \"time_options\": {\n          \"override\": false,\n          \"time_shift\": \"\"\n        }\n      },\n      {\n        \"id\": \"1hcsf3qxxni\",\n        \"tz\": \"local\",\n        \"axis\": {\n          \"x\": {\n            \"date_style\": \"auto\"\n          },\n          \"y\": {\n            \"format\": \"number\",\n            \"suffix\": \"{connections}\",\n            \"decimals\": 3\n          }\n        },\n        \"title\": \"Maximum SQL Server Connections\",\n        \"panelType\": \"STATS\",\n        \"timeRange\": \"15m\",\n        \"statConfig\": {\n          \"format\": \"number\",\n          \"statView\": \"grid\",\n          \"baseColor\": \"#4CBB17\",\n          \"calculation\": \"last\"\n        },\n        \"timeseries\": {\n          \"legend\": {\n            \"view\": \"list\",\n            \"values\": []\n          }\n        },\n        \"description\": \"Number of users connected to the SQL Server.\",\n        \"node_configs\": [\n          {\n            \"stat\": \"\",\n            \"type\": \"query\",\n            \"limit\": \"\",\n            \"hidden\": false,\n            \"metric\": \"\",\n            \"nodeId\": \"A\",\n            \"region\": \"\",\n            \"source\": \"kloudmate\",\n            \"dataset\": \"metrics\",\n            \"filters\": [\n              {\n                \"type\": \"root\",\n                \"field\": \"serviceName\",\n                \"value\": \"$ServerName\",\n                \"operator\": \"=\"\n              }\n            ],\n            \"groupBy\": [\n              {\n                \"type\": \"root\",\n                \"field\": \"serviceName\"\n              }\n            ],\n            \"orderBy\": [],\n            \"interval\": \"\",\n            \"namespace\": \"\",\n            \"dimensions\": [],\n            \"metricType\": \"\",\n            \"time_range\": {\n              \"to\": 0,\n              \"from\": 600\n            },\n            \"aggregation\": {\n              \"stat\": \"MAX\",\n              \"type\": \"\",\n              \"unit\": \"{connections}\",\n              \"field\": \"\",\n              \"metric\": \"sqlserver_user_connection_count\",\n              \"metricType\": \"Gauge\",\n              \"temporality\": \"Cumulative\"\n            },\n            \"datasourceId\": \"kloudmate\",\n            \"legendFormat\": \"{{serviceName}}\",\n            \"responseType\": \"series\"\n          }\n        ],\n        \"time_options\": {\n          \"override\": false,\n          \"time_shift\": \"\"\n        }\n      },\n      {\n        \"id\": \"4u6e4qorrix\",\n        \"tz\": \"local\",\n        \"axis\": {\n          \"x\": {\n            \"date_style\": \"auto\"\n          },\n          \"y\": {\n            \"format\": \"number\",\n            \"suffix\": \"{databases}\",\n            \"decimals\": 3\n          }\n        },\n        \"title\": \"Number of Active Databases\",\n        \"panelType\": \"STATS\",\n        \"timeRange\": \"1h\",\n        \"statConfig\": {\n          \"statView\": \"grid\",\n          \"baseColor\": \"#4CBB17\",\n          \"calculation\": \"last\"\n        },\n        \"timeseries\": {\n          \"legend\": {\n            \"view\": \"list\",\n            \"values\": []\n          }\n        },\n        \"description\": \"The total number of active databases on the SQL Server instance\",\n        \"node_configs\": [\n          {\n            \"stat\": \"\",\n            \"type\": \"query\",\n            \"limit\": \"\",\n            \"hidden\": false,\n            \"metric\": \"\",\n            \"nodeId\": \"A\",\n            \"region\": \"\",\n            \"source\": \"kloudmate\",\n            \"dataset\": \"metrics\",\n            \"filters\": [\n              {\n                \"type\": \"root\",\n                \"field\": \"serviceName\",\n                \"value\": \"$ServerName\",\n                \"operator\": \"=\"\n              },\n              {\n                \"type\": \"string\",\n                \"field\": \"database_status\",\n                \"value\": \"online\",\n                \"operator\": \"=\"\n              }\n            ],\n            \"groupBy\": [\n              {\n                \"type\": \"root\",\n                \"field\": \"serviceName\"\n              }\n            ],\n            \"orderBy\": [],\n            \"interval\": \"\",\n            \"namespace\": \"\",\n            \"dimensions\": [],\n            \"metricType\": \"\",\n            \"time_range\": {\n              \"to\": 0,\n              \"from\": 600\n            },\n            \"aggregation\": {\n              \"stat\": \"SUM\",\n              \"type\": \"\",\n              \"unit\": \"{databases}\",\n              \"field\": \"\",\n              \"metric\": \"sqlserver_database_count\",\n              \"metricType\": \"Gauge\",\n              \"temporality\": \"Cumulative\"\n            },\n            \"datasourceId\": \"kloudmate\",\n            \"responseType\": \"series\"\n          }\n        ],\n        \"time_options\": {\n          \"override\": false,\n          \"time_shift\": \"\"\n        }\n      },\n      {\n        \"id\": \"2cnjadaj3y3\",\n        \"tz\": \"local\",\n        \"axis\": {\n          \"x\": {\n            \"date_style\": \"auto\"\n          },\n          \"y\": {\n            \"format\": \"bytes\",\n            \"decimals\": 3\n          }\n        },\n        \"title\": \"Database I/O (Bytes)\",\n        \"panelType\": \"TimeSeries\",\n        \"timeRange\": \"1h\",\n        \"statConfig\": {\n          \"statView\": \"grid\",\n          \"baseColor\": \"#4CBB17\",\n          \"calculation\": \"last\"\n        },\n        \"timeseries\": {\n          \"legend\": {\n            \"view\": \"list\",\n            \"values\": []\n          }\n        },\n        \"description\": \"The total number of bytes of I/O operations on the database files\",\n        \"node_configs\": [\n          {\n            \"stat\": \"\",\n            \"type\": \"query\",\n            \"limit\": \"\",\n            \"hidden\": false,\n            \"metric\": \"\",\n            \"nodeId\": \"A\",\n            \"region\": \"\",\n            \"source\": \"kloudmate\",\n            \"dataset\": \"metrics\",\n            \"filters\": [\n              {\n                \"type\": \"root\",\n                \"field\": \"serviceName\",\n                \"value\": \"$ServerName\",\n                \"operator\": \"=\"\n              }\n            ],\n            \"groupBy\": [\n              {\n                \"type\": \"string\",\n                \"field\": \"direction\"\n              }\n            ],\n            \"orderBy\": [],\n            \"interval\": \"\",\n            \"namespace\": \"\",\n            \"dimensions\": [],\n            \"metricType\": \"\",\n            \"time_range\": {\n              \"to\": 0,\n              \"from\": 600\n            },\n            \"aggregation\": {\n              \"stat\": \"AVG\",\n              \"type\": \"\",\n              \"unit\": \"By\",\n              \"field\": \"\",\n              \"metric\": \"sqlserver_database_io\",\n              \"metricType\": \"Sum\",\n              \"temporality\": \"Cumulative\"\n            },\n            \"datasourceId\": \"kloudmate\",\n            \"legendFormat\": \"{{direction}}\",\n            \"responseType\": \"series\"\n          }\n        ],\n        \"time_options\": {\n          \"override\": false,\n          \"time_shift\": \"\"\n        }\n      },\n      {\n        \"id\": \"as7vx7j1ii8\",\n        \"tz\": \"local\",\n        \"axis\": {\n          \"x\": {\n            \"date_style\": \"auto\"\n          },\n          \"y\": {\n            \"format\": \"duration\",\n            \"decimals\": 3,\n            \"multiplyBy\": 0.001\n          }\n        },\n        \"title\": \"Database Maximum Latency (Seconds)\",\n        \"panelType\": \"TimeSeries\",\n        \"timeRange\": \"1h\",\n        \"statConfig\": {\n          \"statView\": \"grid\",\n          \"baseColor\": \"#4CBB17\",\n          \"calculation\": \"last\"\n        },\n        \"timeseries\": {\n          \"legend\": {\n            \"view\": \"list\",\n            \"values\": []\n          }\n        },\n        \"description\": \"The  total time that users waited for I/O operations on the database files\",\n        \"node_configs\": [\n          {\n            \"stat\": \"\",\n            \"type\": \"query\",\n            \"limit\": \"\",\n            \"hidden\": false,\n            \"metric\": \"\",\n            \"nodeId\": \"A\",\n            \"region\": \"\",\n            \"source\": \"kloudmate\",\n            \"dataset\": \"metrics\",\n            \"filters\": [\n              {\n                \"type\": \"root\",\n                \"field\": \"serviceName\",\n                \"value\": \"$ServerName\",\n                \"operator\": \"=\"\n              }\n            ],\n            \"groupBy\": [\n              {\n                \"type\": \"string\",\n                \"field\": \"direction\"\n              }\n            ],\n            \"orderBy\": [],\n            \"interval\": \"\",\n            \"namespace\": \"\",\n            \"dimensions\": [],\n            \"metricType\": \"\",\n            \"time_range\": {\n              \"to\": 0,\n              \"from\": 600\n            },\n            \"aggregation\": {\n              \"stat\": \"MAX\",\n              \"type\": \"\",\n              \"unit\": \"s\",\n              \"field\": \"\",\n              \"metric\": \"sqlserver_database_latency\",\n              \"metricType\": \"Sum\",\n              \"temporality\": \"Cumulative\"\n            },\n            \"datasourceId\": \"kloudmate\",\n            \"legendFormat\": \"{{direction}}\",\n            \"responseType\": \"series\"\n          }\n        ],\n        \"time_options\": {\n          \"override\": false,\n          \"time_shift\": \"\"\n        }\n      },\n      {\n        \"id\": \"0wykw03ifah\",\n        \"tz\": \"local\",\n        \"axis\": {\n          \"x\": {\n            \"date_style\": \"auto\"\n          },\n          \"y\": {\n            \"format\": \"number\",\n            \"suffix\": \"{operations}\",\n            \"decimals\": 3\n          }\n        },\n        \"title\": \"Database Operations Count\",\n        \"panelType\": \"TimeSeries\",\n        \"timeRange\": \"1h\",\n        \"statConfig\": {\n          \"statView\": \"grid\",\n          \"baseColor\": \"#4CBB17\",\n          \"calculation\": \"last\"\n        },\n        \"timeseries\": {\n          \"legend\": {\n            \"view\": \"list\",\n            \"values\": []\n          }\n        },\n        \"description\": \"The  total number of I/O operations issued on the database files\",\n        \"node_configs\": [\n          {\n            \"stat\": \"\",\n            \"type\": \"query\",\n            \"limit\": \"\",\n            \"hidden\": false,\n            \"metric\": \"\",\n            \"nodeId\": \"A\",\n            \"region\": \"\",\n            \"source\": \"kloudmate\",\n            \"dataset\": \"metrics\",\n            \"filters\": [\n              {\n                \"type\": \"root\",\n                \"field\": \"serviceName\",\n                \"value\": \"$ServerName\",\n                \"operator\": \"=\"\n              }\n            ],\n            \"groupBy\": [\n              {\n                \"type\": \"string\",\n                \"field\": \"direction\"\n              }\n            ],\n            \"orderBy\": [],\n            \"interval\": \"\",\n            \"namespace\": \"\",\n            \"dimensions\": [],\n            \"metricType\": \"\",\n            \"time_range\": {\n              \"to\": 0,\n              \"from\": 600\n            },\n            \"aggregation\": {\n              \"stat\": \"COUNT\",\n              \"type\": \"\",\n              \"unit\": \"{operations}\",\n              \"field\": \"\",\n              \"metric\": \"sqlserver_database_operations\",\n              \"metricType\": \"Sum\",\n              \"temporality\": \"Cumulative\"\n            },\n            \"datasourceId\": \"kloudmate\",\n            \"legendFormat\": \"{{direction}}\",\n            \"responseType\": \"series\"\n          }\n        ],\n        \"time_options\": {\n          \"override\": false,\n          \"time_shift\": \"\"\n        }\n      },\n      {\n        \"id\": \"r9s8ru2o8rn\",\n        \"tz\": \"local\",\n        \"axis\": {\n          \"x\": {\n            \"date_style\": \"auto\"\n          },\n          \"y\": {\n            \"format\": \"number\",\n            \"suffix\": \"{processes}\",\n            \"decimals\": 3\n          }\n        },\n        \"title\": \"Blocked Processes Count\",\n        \"panelType\": \"TimeSeries\",\n        \"timeRange\": \"1h\",\n        \"statConfig\": {\n          \"statView\": \"grid\",\n          \"baseColor\": \"#4CBB17\",\n          \"calculation\": \"last\"\n        },\n        \"timeseries\": {\n          \"legend\": {\n            \"view\": \"list\",\n            \"values\": []\n          }\n        },\n        \"description\": \"The number of processes that are currently blocked in SQL Server\",\n        \"node_configs\": [\n          {\n            \"stat\": \"\",\n            \"type\": \"query\",\n            \"limit\": \"\",\n            \"hidden\": false,\n            \"metric\": \"\",\n            \"nodeId\": \"A\",\n            \"region\": \"\",\n            \"source\": \"kloudmate\",\n            \"dataset\": \"metrics\",\n            \"filters\": [\n              {\n                \"type\": \"root\",\n                \"field\": \"serviceName\",\n                \"value\": \"$ServerName\",\n                \"operator\": \"=\"\n              }\n            ],\n            \"groupBy\": [\n              {\n                \"type\": \"root\",\n                \"field\": \"serviceName\"\n              }\n            ],\n            \"orderBy\": [],\n            \"interval\": \"\",\n            \"namespace\": \"\",\n            \"dimensions\": [],\n            \"metricType\": \"\",\n            \"time_range\": {\n              \"to\": 0,\n              \"from\": 600\n            },\n            \"aggregation\": {\n              \"stat\": \"SUM\",\n              \"type\": \"\",\n              \"unit\": \"{processes}\",\n              \"field\": \"\",\n              \"metric\": \"sqlserver_processes_blocked\",\n              \"metricType\": \"Gauge\",\n              \"temporality\": \"Cumulative\"\n            },\n            \"datasourceId\": \"kloudmate\",\n            \"legendFormat\": \"{{serviceName}}\",\n            \"responseType\": \"series\"\n          }\n        ],\n        \"time_options\": {\n          \"override\": false,\n          \"time_shift\": \"\"\n        }\n      },\n      {\n        \"id\": \"7glag5igboq\",\n        \"tz\": \"local\",\n        \"axis\": {\n          \"x\": {\n            \"date_style\": \"auto\"\n          },\n          \"y\": {\n            \"format\": \"number\",\n            \"suffix\": \"{reads}/s\",\n            \"decimals\": 3\n          }\n        },\n        \"title\": \"Throttled Read Operations Rate\",\n        \"panelType\": \"TimeSeries\",\n        \"timeRange\": \"1h\",\n        \"statConfig\": {\n          \"statView\": \"grid\",\n          \"baseColor\": \"#4CBB17\",\n          \"calculation\": \"last\"\n        },\n        \"timeseries\": {\n          \"legend\": {\n            \"view\": \"list\",\n            \"values\": []\n          }\n        },\n        \"description\": \"The rate of read operations that were throttled in the last second\",\n        \"node_configs\": [\n          {\n            \"stat\": \"\",\n            \"type\": \"query\",\n            \"limit\": \"\",\n            \"hidden\": false,\n            \"metric\": \"\",\n            \"nodeId\": \"A\",\n            \"region\": \"\",\n            \"source\": \"kloudmate\",\n            \"dataset\": \"metrics\",\n            \"filters\": [\n              {\n                \"type\": \"root\",\n                \"field\": \"serviceName\",\n                \"value\": \"$ServerName\",\n                \"operator\": \"=\"\n              }\n            ],\n            \"groupBy\": [\n              {\n                \"type\": \"root\",\n                \"field\": \"serviceName\"\n              }\n            ],\n            \"orderBy\": [],\n            \"interval\": \"\",\n            \"namespace\": \"\",\n            \"dimensions\": [],\n            \"metricType\": \"\",\n            \"time_range\": {\n              \"to\": 0,\n              \"from\": 600\n            },\n            \"aggregation\": {\n              \"stat\": \"SUM\",\n              \"type\": \"\",\n              \"unit\": \"{reads}/s\",\n              \"field\": \"\",\n              \"metric\": \"sqlserver_resource_pool_disk_throttled_read_rate\",\n              \"metricType\": \"Gauge\",\n              \"temporality\": \"Cumulative\"\n            },\n            \"datasourceId\": \"kloudmate\",\n            \"legendFormat\": \"{{serviceName}}\",\n            \"responseType\": \"series\"\n          }\n        ],\n        \"time_options\": {\n          \"override\": false,\n          \"time_shift\": \"\"\n        }\n      },\n      {\n        \"id\": \"ben2o88ati\",\n        \"tz\": \"local\",\n        \"axis\": {\n          \"x\": {\n            \"date_style\": \"auto\"\n          },\n          \"y\": {\n            \"format\": \"number\",\n            \"suffix\": \"{writes}/s\",\n            \"decimals\": 3\n          }\n        },\n        \"title\": \"Throttled write Operations Rate\",\n        \"panelType\": \"TimeSeries\",\n        \"timeRange\": \"1h\",\n        \"statConfig\": {\n          \"statView\": \"grid\",\n          \"baseColor\": \"#4CBB17\",\n          \"calculation\": \"last\"\n        },\n        \"timeseries\": {\n          \"legend\": {\n            \"view\": \"list\",\n            \"values\": []\n          }\n        },\n        \"description\": \"The rate of write operations that were throttled in the last second\",\n        \"node_configs\": [\n          {\n            \"stat\": \"\",\n            \"type\": \"query\",\n            \"limit\": \"\",\n            \"hidden\": false,\n            \"metric\": \"\",\n            \"nodeId\": \"A\",\n            \"region\": \"\",\n            \"source\": \"kloudmate\",\n            \"dataset\": \"metrics\",\n            \"filters\": [\n              {\n                \"type\": \"root\",\n                \"field\": \"serviceName\",\n                \"value\": \"$ServerName\",\n                \"operator\": \"=\"\n              }\n            ],\n            \"groupBy\": [\n              {\n                \"type\": \"root\",\n                \"field\": \"serviceName\"\n              }\n            ],\n            \"orderBy\": [],\n            \"interval\": \"\",\n            \"namespace\": \"\",\n            \"dimensions\": [],\n            \"metricType\": \"\",\n            \"time_range\": {\n              \"to\": 0,\n              \"from\": 600\n            },\n            \"aggregation\": {\n              \"stat\": \"SUM\",\n              \"type\": \"\",\n              \"unit\": \"{writes}/s\",\n              \"field\": \"\",\n              \"metric\": \"sqlserver_resource_pool_disk_throttled_write_rate\",\n              \"metricType\": \"Gauge\",\n              \"temporality\": \"Cumulative\"\n            },\n            \"datasourceId\": \"kloudmate\",\n            \"legendFormat\": \"{{serviceName}}\",\n            \"responseType\": \"series\"\n          }\n        ],\n        \"time_options\": {\n          \"override\": false,\n          \"time_shift\": \"\"\n        }\n      },\n      {\n        \"id\": \"3vgp4c3wpra\",\n        \"tz\": \"local\",\n        \"axis\": {\n          \"x\": {\n            \"date_style\": \"auto\"\n          }\n        },\n        \"title\": \"CPU Usage\",\n        \"panelType\": \"STATS\",\n        \"timeRange\": \"1h\",\n        \"statConfig\": {\n          \"format\": \"percentage\",\n          \"decimals\": 1,\n          \"statView\": \"grid\",\n          \"baseColor\": \"#4CBB17\",\n          \"calculation\": \"last\"\n        },\n        \"timeseries\": {\n          \"legend\": {\n            \"view\": \"list\",\n            \"values\": []\n          }\n        },\n        \"node_configs\": [\n          {\n            \"exp\": \"1 - (avg by(job) (irate(system_cpu_time{job=\\\"$ServerName\\\",state=\\\"idle\\\"}[5m])))\",\n            \"stat\": \"\",\n            \"type\": \"query\",\n            \"limit\": \"\",\n            \"hidden\": false,\n            \"metric\": \"\",\n            \"nodeId\": \"A\",\n            \"region\": \"\",\n            \"source\": \"kloudmate\",\n            \"dataset\": \"metrics\",\n            \"filters\": [],\n            \"groupBy\": [],\n            \"orderBy\": [],\n            \"interval\": \"\",\n            \"namespace\": \"\",\n            \"dimensions\": [],\n            \"metricType\": \"\",\n            \"query_type\": \"promql\",\n            \"time_range\": {\n              \"to\": 0,\n              \"from\": 600\n            },\n            \"aggregation\": {\n              \"stat\": \"AVG\",\n              \"type\": \"\",\n              \"field\": \"\"\n            },\n            \"datasourceId\": \"kloudmate\",\n            \"responseType\": \"series\"\n          }\n        ],\n        \"time_options\": {\n          \"override\": false,\n          \"time_shift\": \"\"\n        }\n      },\n      {\n        \"id\": \"0q3877lnqhsc\",\n        \"tz\": \"local\",\n        \"axis\": {\n          \"x\": {\n            \"date_style\": \"auto\"\n          }\n        },\n        \"title\": \"Memory Usage\",\n        \"panelType\": \"STATS\",\n        \"timeRange\": \"1h\",\n        \"statConfig\": {\n          \"format\": \"percentage\",\n          \"decimals\": 2,\n          \"statView\": \"grid\",\n          \"baseColor\": \"#4CBB17\",\n          \"calculation\": \"last\"\n        },\n        \"timeseries\": {\n          \"legend\": {\n            \"view\": \"list\",\n            \"values\": []\n          }\n        },\n        \"node_configs\": [\n          {\n            \"exp\": \"sum by(job) (system_memory_usage{job=\\\"$ServerName\\\",state=\\\"used\\\"}) / sum by(job) (system_memory_usage{job=\\\"$ServerName\\\"})\",\n            \"stat\": \"\",\n            \"type\": \"query\",\n            \"limit\": \"\",\n            \"hidden\": false,\n            \"metric\": \"\",\n            \"nodeId\": \"A\",\n            \"region\": \"\",\n            \"source\": \"kloudmate\",\n            \"dataset\": \"metrics\",\n            \"filters\": [],\n            \"groupBy\": [],\n            \"orderBy\": [],\n            \"interval\": \"\",\n            \"namespace\": \"\",\n            \"dimensions\": [],\n            \"metricType\": \"\",\n            \"query_type\": \"promql\",\n            \"time_range\": {\n              \"to\": 0,\n              \"from\": 600\n            },\n            \"aggregation\": {\n              \"stat\": \"AVG\",\n              \"type\": \"\",\n              \"field\": \"\"\n            },\n            \"datasourceId\": \"kloudmate\",\n            \"responseType\": \"series\"\n          }\n        ],\n        \"time_options\": {\n          \"override\": false,\n          \"time_shift\": \"\"\n        }\n      },\n      {\n        \"id\": \"4jbitaipo3h\",\n        \"tz\": \"local\",\n        \"axis\": {\n          \"x\": {\n            \"date_style\": \"auto\"\n          }\n        },\n        \"title\": \"File System Usage\",\n        \"panelType\": \"STATS\",\n        \"timeRange\": \"1h\",\n        \"statConfig\": {\n          \"format\": \"percentage\",\n          \"decimals\": 1,\n          \"statView\": \"grid\",\n          \"baseColor\": \"#4CBB17\",\n          \"calculation\": \"last\"\n        },\n        \"timeseries\": {\n          \"legend\": {\n            \"view\": \"list\",\n            \"values\": []\n          }\n        },\n        \"node_configs\": [\n          {\n            \"exp\": \"sum by(job) (system_filesystem_usage{job=\\\"$ServerName\\\",state=\\\"used\\\",device!~\\\"/dev/loop.*\\\", device!~\\\"tmpfs|nsfs\\\"}) / sum by(job) (system_filesystem_usage{job=\\\"$ServerName\\\",device!~\\\"/dev/loop.*\\\", device!~\\\"tmpfs|nsfs\\\"})\",\n            \"stat\": \"\",\n            \"type\": \"query\",\n            \"limit\": \"\",\n            \"hidden\": false,\n            \"metric\": \"\",\n            \"nodeId\": \"A\",\n            \"region\": \"\",\n            \"source\": \"kloudmate\",\n            \"dataset\": \"metrics\",\n            \"filters\": [],\n            \"groupBy\": [],\n            \"orderBy\": [],\n            \"interval\": \"\",\n            \"namespace\": \"\",\n            \"dimensions\": [],\n            \"metricType\": \"\",\n            \"query_type\": \"promql\",\n            \"time_range\": {\n              \"to\": 0,\n              \"from\": 600\n            },\n            \"aggregation\": {\n              \"stat\": \"AVG\",\n              \"type\": \"\",\n              \"field\": \"\"\n            },\n            \"datasourceId\": \"kloudmate\",\n            \"responseType\": \"series\"\n          }\n        ],\n        \"time_options\": {\n          \"override\": false,\n          \"time_shift\": \"\"\n        }\n      },\n      {\n        \"id\": \"gkh3answihi\",\n        \"tz\": \"local\",\n        \"axis\": {\n          \"x\": {\n            \"date_style\": \"auto\"\n          },\n          \"y\": {\n            \"format\": \"unformatted\",\n            \"decimals\": 3\n          }\n        },\n        \"table\": {\n          \"columns\": [\n            {\n              \"key\": \"A:AVG()\",\n              \"rename\": \"\"\n            },\n            {\n              \"key\": \"serviceName\",\n              \"rename\": \"\"\n            }\n          ]\n        },\n        \"title\": \"MSSQL Server Uptime\",\n        \"panelType\": \"STATS\",\n        \"timeRange\": \"1h\",\n        \"statConfig\": {\n          \"format\": \"duration\",\n          \"statView\": \"grid\",\n          \"baseColor\": \"#4CBB17\",\n          \"multiplyBy\": 60000,\n          \"calculation\": \"last\"\n        },\n        \"timeseries\": {\n          \"legend\": {\n            \"view\": \"list\",\n            \"values\": []\n          }\n        },\n        \"node_configs\": [\n          {\n            \"stat\": \"\",\n            \"type\": \"query\",\n            \"limit\": \"\",\n            \"hidden\": false,\n            \"metric\": \"\",\n            \"nodeId\": \"A\",\n            \"region\": \"\",\n            \"source\": \"kloudmate\",\n            \"dataset\": \"metrics\",\n            \"filters\": [\n              {\n                \"type\": \"root\",\n                \"field\": \"serviceName\",\n                \"value\": \"$ServerName\",\n                \"operator\": \"=\"\n              }\n            ],\n            \"groupBy\": [\n              {\n                \"type\": \"root\",\n                \"field\": \"serviceName\"\n              }\n            ],\n            \"orderBy\": [],\n            \"interval\": \"\",\n            \"namespace\": \"\",\n            \"dimensions\": [],\n            \"metricType\": \"\",\n            \"time_range\": {\n              \"to\": 0,\n              \"from\": 600\n            },\n            \"aggregation\": {\n              \"stat\": \"AVG\",\n              \"type\": \"\",\n              \"unit\": \"\",\n              \"field\": \"\",\n              \"metric\": \"sqlserver_uptime_minutes\",\n              \"metricType\": \"Gauge\",\n              \"temporality\": \"Cumulative\"\n            },\n            \"datasourceId\": \"kloudmate\",\n            \"responseType\": \"series\"\n          }\n        ],\n        \"time_options\": {\n          \"override\": false,\n          \"time_shift\": \"\"\n        }\n      },\n      {\n        \"id\": \"bc6hjntyk97\",\n        \"tz\": \"local\",\n        \"axis\": {\n          \"x\": {\n            \"date_style\": \"auto\"\n          },\n          \"y\": {\n            \"format\": \"number\",\n            \"decimals\": 3\n          }\n        },\n        \"logs\": {},\n        \"spans\": {},\n        \"table\": {\n          \"columns\": [\n            {\n              \"key\": \"session_id\",\n              \"rename\": \"\"\n            },\n            {\n              \"key\": \"service.name\",\n              \"rename\": \"Host_Name\"\n            },\n            {\n              \"key\": \"login_name\",\n              \"rename\": \"Login_Name\"\n            },\n            {\n              \"key\": \"last_request_start_time\",\n              \"rename\": \"\"\n            },\n            {\n              \"key\": \"last_request_end_time\",\n              \"rename\": \"\"\n            },\n            {\n              \"key\": \"@message\",\n              \"rename\": \"Client_IP\"\n            }\n          ]\n        },\n        \"title\": \"client connections\",\n        \"bar_chart\": {\n          \"axis\": {\n            \"x\": {\n              \"date_style\": \"auto\"\n            },\n            \"y\": {\n              \"format\": \"unformatted\",\n              \"prefix\": \"\",\n              \"suffix\": \"\",\n              \"decimals\": 3,\n              \"multiplyBy\": 1\n            }\n          },\n          \"legend\": {\n            \"view\": \"list\",\n            \"values\": []\n          },\n          \"display\": {\n            \"stacking\": \"stacked\",\n            \"orientation\": \"vertical\"\n          }\n        },\n        \"panelType\": \"logs\",\n        \"pie_chart\": {\n          \"legend\": {\n            \"mode\": \"list\",\n            \"show\": true,\n            \"values\": [\n              \"percent\"\n            ],\n            \"placement\": \"right\"\n          },\n          \"display\": {\n            \"type\": \"pie\",\n            \"labels\": [\n              \"name\"\n            ]\n          },\n          \"formatter\": {},\n          \"value_options\": {\n            \"type\": \"reduce\",\n            \"limit\": 20,\n            \"reduce\": \"last\",\n            \"columns\": [\n              \"numeric\"\n            ]\n          }\n        },\n        \"timeRange\": \"15m\",\n        \"statConfig\": {\n          \"statView\": \"grid\",\n          \"baseColor\": \"#4CBB17\",\n          \"calculation\": \"last\"\n        },\n        \"timeseries\": {\n          \"legend\": {\n            \"view\": \"list\",\n            \"values\": []\n          }\n        },\n        \"description\": \"This shows client connections and IP\",\n        \"node_configs\": [\n          {\n            \"page\": 1,\n            \"stat\": \"\",\n            \"type\": \"query\",\n            \"limit\": 10,\n            \"hidden\": false,\n            \"metric\": \"\",\n            \"nodeId\": \"A\",\n            \"region\": \"\",\n            \"source\": \"kloudmate\",\n            \"columns\": [\n              {\n                \"type\": \"string\",\n                \"field\": \"session_id\"\n              },\n              {\n                \"type\": \"string\",\n                \"field\": \"service.name\"\n              },\n              {\n                \"type\": \"string\",\n                \"field\": \"login_name\"\n              },\n              {\n                \"type\": \"string\",\n                \"field\": \"last_request_start_time\"\n              },\n              {\n                \"type\": \"string\",\n                \"field\": \"last_request_end_time\"\n              },\n              {\n                \"type\": \"string\",\n                \"field\": \"@message\"\n              }\n            ],\n            \"dataset\": \"logs\",\n            \"filters\": [\n              {\n                \"type\": \"root\",\n                \"field\": \"serviceName\",\n                \"value\": \"$ServerName\",\n                \"operator\": \"=\"\n              },\n              {\n                \"type\": \"string\",\n                \"field\": \"log_source\",\n                \"value\": \"mssql_client_log\",\n                \"operator\": \"=\"\n              }\n            ],\n            \"groupBy\": [],\n            \"orderBy\": [],\n            \"interval\": \"\",\n            \"namespace\": \"\",\n            \"dimensions\": [],\n            \"metricType\": \"\",\n            \"query_type\": \"raw\",\n            \"time_range\": {\n              \"to\": 0,\n              \"from\": 600\n            },\n            \"aggregation\": {\n              \"stat\": \"AVG\",\n              \"type\": \"\",\n              \"unit\": \"1\",\n              \"field\": \"\",\n              \"value\": \"system_cpu_utilization\",\n              \"metric\": \"system_cpu_utilization\",\n              \"metricType\": \"Gauge\",\n              \"temporality\": \"Cumulative\"\n            },\n            \"datasourceId\": \"kloudmate\",\n            \"responseType\": \"series\"\n          }\n        ],\n        \"time_options\": {\n          \"override\": false,\n          \"time_shift\": \"\"\n        }\n      },\n      {\n        \"id\": \"ld4oygmp30s\",\n        \"tz\": \"local\",\n        \"axis\": {\n          \"x\": {\n            \"date_style\": \"auto\"\n          }\n        },\n        \"logs\": {},\n        \"table\": {\n          \"columns\": [\n            {\n              \"key\": \"timestamp\",\n              \"rename\": \"\"\n            },\n            {\n              \"key\": \"serviceName\",\n              \"rename\": \"\"\n            },\n            {\n              \"key\": \"@message\",\n              \"rename\": \"Login Name\"\n            }\n          ]\n        },\n        \"title\": \"User sessions\",\n        \"panelType\": \"logs\",\n        \"timeRange\": \"1h\",\n        \"statConfig\": {\n          \"statView\": \"grid\",\n          \"baseColor\": \"#4CBB17\",\n          \"calculation\": \"last\"\n        },\n        \"timeseries\": {\n          \"legend\": {\n            \"view\": \"list\",\n            \"values\": []\n          }\n        },\n        \"node_configs\": [\n          {\n            \"page\": 1,\n            \"stat\": \"\",\n            \"type\": \"query\",\n            \"limit\": 10,\n            \"hidden\": false,\n            \"metric\": \"\",\n            \"nodeId\": \"A\",\n            \"region\": \"\",\n            \"source\": \"kloudmate\",\n            \"columns\": [\n              {\n                \"type\": \"root\",\n                \"field\": \"timestamp\"\n              },\n              {\n                \"type\": \"root\",\n                \"field\": \"serviceName\"\n              },\n              {\n                \"type\": \"string\",\n                \"field\": \"@message\"\n              }\n            ],\n            \"dataset\": \"logs\",\n            \"filters\": [\n              {\n                \"type\": \"root\",\n                \"field\": \"serviceName\",\n                \"value\": \"$ServerName\",\n                \"operator\": \"=\"\n              },\n              {\n                \"type\": \"string\",\n                \"field\": \"log_source\",\n                \"value\": \"mssql_user_sessions\",\n                \"operator\": \"=\"\n              }\n            ],\n            \"groupBy\": [],\n            \"orderBy\": [],\n            \"interval\": \"\",\n            \"namespace\": \"\",\n            \"dimensions\": [],\n            \"metricType\": \"\",\n            \"query_type\": \"raw\",\n            \"time_range\": {\n              \"to\": 0,\n              \"from\": 600\n            },\n            \"aggregation\": {\n              \"stat\": \"AVG\",\n              \"type\": \"\",\n              \"field\": \"\"\n            },\n            \"datasourceId\": \"kloudmate\",\n            \"responseType\": \"series\"\n          }\n        ],\n        \"time_options\": {\n          \"override\": false,\n          \"time_shift\": \"\"\n        }\n      },\n      {\n        \"id\": \"2jto14kdpj\",\n        \"tz\": \"local\",\n        \"axis\": {\n          \"x\": {\n            \"date_style\": \"auto\"\n          }\n        },\n        \"logs\": {},\n        \"table\": {\n          \"columns\": [\n            {\n              \"key\": \"sql_handle\",\n              \"rename\": \"\"\n            },\n            {\n              \"key\": \"execution_count\",\n              \"rename\": \"\"\n            },\n            {\n              \"key\": \"last_execution_time\",\n              \"rename\": \"\"\n            },\n            {\n              \"key\": \"total_elapsed_time\",\n              \"rename\": \"Duration in ms\"\n            },\n            {\n              \"key\": \"@message\",\n              \"rename\": \"Query\"\n            }\n          ]\n        },\n        \"title\": \"slow query\",\n        \"panelType\": \"logs\",\n        \"timeRange\": \"15m\",\n        \"statConfig\": {\n          \"statView\": \"grid\",\n          \"baseColor\": \"#4CBB17\",\n          \"calculation\": \"last\"\n        },\n        \"timeseries\": {\n          \"legend\": {\n            \"view\": \"list\",\n            \"values\": []\n          }\n        },\n        \"node_configs\": [\n          {\n            \"page\": 1,\n            \"stat\": \"\",\n            \"type\": \"query\",\n            \"limit\": 10,\n            \"hidden\": false,\n            \"metric\": \"\",\n            \"nodeId\": \"A\",\n            \"region\": \"\",\n            \"source\": \"kloudmate\",\n            \"columns\": [\n              {\n                \"type\": \"string\",\n                \"field\": \"sql_handle\"\n              },\n              {\n                \"type\": \"string\",\n                \"field\": \"execution_count\"\n              },\n              {\n                \"type\": \"string\",\n                \"field\": \"last_execution_time\"\n              },\n              {\n                \"type\": \"string\",\n                \"field\": \"total_elapsed_time\"\n              },\n              {\n                \"type\": \"string\",\n                \"field\": \"@message\"\n              }\n            ],\n            \"dataset\": \"logs\",\n            \"filters\": [\n              {\n                \"type\": \"root\",\n                \"field\": \"serviceName\",\n                \"value\": \"$ServerName\",\n                \"operator\": \"=\"\n              },\n              {\n                \"type\": \"string\",\n                \"field\": \"log_source\",\n                \"value\": \"mssql_slow_query_log\",\n                \"operator\": \"=\"\n              }\n            ],\n            \"groupBy\": [],\n            \"orderBy\": [],\n            \"interval\": \"\",\n            \"namespace\": \"\",\n            \"dimensions\": [],\n            \"metricType\": \"\",\n            \"query_type\": \"raw\",\n            \"time_range\": {\n              \"to\": 0,\n              \"from\": 600\n            },\n            \"aggregation\": {\n              \"stat\": \"AVG\",\n              \"type\": \"\",\n              \"field\": \"\"\n            },\n            \"datasourceId\": \"kloudmate\",\n            \"responseType\": \"series\"\n          }\n        ],\n        \"time_options\": {\n          \"override\": false,\n          \"time_shift\": \"\"\n        }\n      }\n    ],\n    \"timeRange\": \"1h\",\n    \"variables\": [\n      {\n        \"id\": \"5a8b8611-080c-41e8-a984-67d6738539d5\",\n        \"name\": \"ServerName\",\n        \"type\": \"query\",\n        \"config\": {\n          \"otel\": {\n            \"key\": {\n              \"type\": \"root\",\n              \"field\": \"serviceName\"\n            },\n            \"dataset\": \"metrics\"\n          },\n          \"source\": \"cloudwatch\",\n          \"queryType\": \"otel.values\"\n        },\n        \"is_multi\": false,\n        \"description\": \"The server where database is hosted\",\n        \"show_all_option\": false\n      }\n    ],\n    \"panel_layouts\": [\n      {\n        \"h\": 2,\n        \"i\": \"ciodwed2rd6\",\n        \"w\": 4,\n        \"x\": 4,\n        \"y\": 4,\n        \"minH\": 1,\n        \"minW\": 2,\n        \"moved\": false,\n        \"static\": false\n      },\n      {\n        \"h\": 2,\n        \"i\": \"2r9mq7bgwln\",\n        \"w\": 4,\n        \"x\": 4,\n        \"y\": 2,\n        \"minH\": 1,\n        \"minW\": 2,\n        \"moved\": false,\n        \"static\": false\n      },\n      {\n        \"h\": 2,\n        \"i\": \"3dlb2t1flxg\",\n        \"w\": 4,\n        \"x\": 8,\n        \"y\": 2,\n        \"minH\": 1,\n        \"minW\": 2,\n        \"moved\": false,\n        \"static\": false\n      },\n      {\n        \"h\": 2,\n        \"i\": \"0hwlgev9hiip\",\n        \"w\": 6,\n        \"x\": 6,\n        \"y\": 6,\n        \"minH\": 1,\n        \"minW\": 2,\n        \"moved\": false,\n        \"static\": false\n      },\n      {\n        \"h\": 2,\n        \"i\": \"9xp245vkcar\",\n        \"w\": 4,\n        \"x\": 8,\n        \"y\": 4,\n        \"minH\": 1,\n        \"minW\": 2,\n        \"moved\": false,\n        \"static\": false\n      },\n      {\n        \"h\": 1,\n        \"i\": \"1hcsf3qxxni\",\n        \"w\": 2,\n        \"x\": 0,\n        \"y\": 1,\n        \"minH\": 1,\n        \"minW\": 2,\n        \"moved\": false,\n        \"static\": false\n      },\n      {\n        \"h\": 1,\n        \"i\": \"4u6e4qorrix\",\n        \"w\": 2,\n        \"x\": 2,\n        \"y\": 1,\n        \"minH\": 1,\n        \"minW\": 2,\n        \"moved\": false,\n        \"static\": false\n      },\n      {\n        \"h\": 2,\n        \"i\": \"2cnjadaj3y3\",\n        \"w\": 4,\n        \"x\": 0,\n        \"y\": 2,\n        \"minH\": 1,\n        \"minW\": 2,\n        \"moved\": false,\n        \"static\": false\n      },\n      {\n        \"h\": 2,\n        \"i\": \"as7vx7j1ii8\",\n        \"w\": 4,\n        \"x\": 0,\n        \"y\": 4,\n        \"minH\": 1,\n        \"minW\": 2,\n        \"moved\": false,\n        \"static\": false\n      },\n      {\n        \"h\": 2,\n        \"i\": \"0wykw03ifah\",\n        \"w\": 6,\n        \"x\": 6,\n        \"y\": 0,\n        \"minH\": 1,\n        \"minW\": 2,\n        \"moved\": false,\n        \"static\": false\n      },\n      {\n        \"h\": 2,\n        \"i\": \"r9s8ru2o8rn\",\n        \"w\": 6,\n        \"x\": 0,\n        \"y\": 6,\n        \"minH\": 1,\n        \"minW\": 2,\n        \"moved\": false,\n        \"static\": false\n      },\n      {\n        \"h\": 2,\n        \"i\": \"7glag5igboq\",\n        \"w\": 6,\n        \"x\": 0,\n        \"y\": 8,\n        \"minH\": 1,\n        \"minW\": 2,\n        \"moved\": false,\n        \"static\": false\n      },\n      {\n        \"h\": 2,\n        \"i\": \"ben2o88ati\",\n        \"w\": 6,\n        \"x\": 6,\n        \"y\": 8,\n        \"minH\": 1,\n        \"minW\": 2,\n        \"moved\": false,\n        \"static\": false\n      },\n      {\n        \"h\": 1,\n        \"i\": \"3vgp4c3wpra\",\n        \"w\": 2,\n        \"x\": 2,\n        \"y\": 0,\n        \"minH\": 1,\n        \"minW\": 2,\n        \"moved\": false,\n        \"static\": false\n      },\n      {\n        \"h\": 1,\n        \"i\": \"0q3877lnqhsc\",\n        \"w\": 2,\n        \"x\": 4,\n        \"y\": 0,\n        \"minH\": 1,\n        \"minW\": 2,\n        \"moved\": false,\n        \"static\": false\n      },\n      {\n        \"h\": 1,\n        \"i\": \"4jbitaipo3h\",\n        \"w\": 2,\n        \"x\": 4,\n        \"y\": 1,\n        \"minH\": 1,\n        \"minW\": 2,\n        \"moved\": false,\n        \"static\": false\n      },\n      {\n        \"h\": 1,\n        \"i\": \"gkh3answihi\",\n        \"w\": 2,\n        \"x\": 0,\n        \"y\": 0,\n        \"minH\": 1,\n        \"minW\": 2,\n        \"moved\": false,\n        \"static\": false\n      },\n      {\n        \"h\": 3,\n        \"i\": \"bc6hjntyk97\",\n        \"w\": 6,\n        \"x\": 0,\n        \"y\": 10,\n        \"minH\": 1,\n        \"minW\": 2,\n        \"moved\": false,\n        \"static\": false\n      },\n      {\n        \"h\": 3,\n        \"i\": \"ld4oygmp30s\",\n        \"w\": 6,\n        \"x\": 6,\n        \"y\": 10,\n        \"minH\": 1,\n        \"minW\": 2,\n        \"moved\": false,\n        \"static\": false\n      },\n      {\n        \"h\": 5,\n        \"i\": \"2jto14kdpj\",\n        \"w\": 12,\n        \"x\": 0,\n        \"y\": 13,\n        \"minH\": 1,\n        \"minW\": 2,\n        \"moved\": false,\n        \"static\": false\n      }\n    ],\n    \"default_region\": \"undefined\"\n  },\n  \"tags\": []\n}").then(() => alert('Copied to clipboard!'), () => alert('Failed to copy.'));
+        }
+        const jsonViewer = document.getElementById('json-viewer');
+        const expandBtn = document.getElementById('expand-btn');
+        const howToUseBtn = document.getElementById('how-to-use-btn');
+        const closeModalBtn = document.getElementById('close-modal-btn');
+        const modal = document.getElementById('how-to-use-modal');
+        expandBtn.addEventListener('click', () => {
+          jsonViewer.classList.toggle('max-h-96');
+          expandBtn.textContent = jsonViewer.classList.contains('max-h-96') ? 'Show More' : 'Show Less';
+        });
+        howToUseBtn.addEventListener('click', () => modal.classList.remove('hidden'));
+        closeModalBtn.addEventListener('click', () => modal.classList.add('hidden'));
+        modal.addEventListener('click', (e) => { if (e.target === modal) modal.classList.add('hidden'); });
+      </script>
+    </body>
+    </html>
