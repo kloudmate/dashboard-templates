@@ -1,0 +1,7 @@
+{
+  "title": "PostgreSQL",
+  "description": "The PostgreSQL dashboard provides deep visibility into database health, performance, and resource usage by integrating with OpenTelemetry (Otel).",
+  "tags": ["metrics", "db"],
+  "author": "KloudMate",
+  "verified": true
+}

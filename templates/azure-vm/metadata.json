@@ -1,0 +1,7 @@
+{
+  "title": "Azure VM",
+  "description": "The Azure Virtual Machine (VM) dashboard provides visibility into the compute performance, availability, and resource utilization of virtual machines through OpenTelemetry (Otel) integration.",
+  "tags": ["metrics", "vm"],
+  "author": "KloudMate",
+  "verified": true
+}

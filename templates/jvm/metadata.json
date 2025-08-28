@@ -1,0 +1,7 @@
+{
+  "title": "JVM Metrics",
+  "description": "The JVM dashboard provides comprehensive visibility into Java application performance and runtime behavior like memory, CPU, threads and I/O by integrating with OpenTelemetry (Otel).",
+  "tags": ["metrics", "app"],
+  "author": "KloudMate",
+  "verified": true
+}

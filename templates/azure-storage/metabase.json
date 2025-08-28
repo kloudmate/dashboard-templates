@@ -1,0 +1,7 @@
+{
+  "title": "Azure Storage",
+  "description": "The Azure Storage dashboard provides comprehensive visibility into the health, performance, usage and operational insights of storage accounts by integrating with OpenTelemetry (Otel).",
+  "tags": ["metrics", "vm"],
+  "author": "KloudMate",
+  "verified": true
+}

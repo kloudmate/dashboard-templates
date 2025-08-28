@@ -1,0 +1,7 @@
+{
+  "title": "MSSQL",
+  "description": "The Microsoft SQL Server (MSSQL) dashboard provides full-stack observability into database performance, availability, and resource utilization through OpenTelemetry (Otel) integration.",
+  "tags": ["metrics", "db"],
+  "author": "KloudMate",
+  "verified": true
+}
