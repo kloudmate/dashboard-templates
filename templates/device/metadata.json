@@ -1,6 +1,6 @@
 {
-  "title": "Remote Device (SNMP)",
-  "description": " Monitoring Kubernetes nodes with KM Agents provides critical insights into the health and performance of the underlying infrastructure that powers your cluster, including key node-level metrics such as CPU utilization, memory consumption, disk I/O, filesystem usage, and network throughput..",
+  "title": "Remote Device (SNMP)-battery",
+  "description": "Remote device monitoring through SNMP (Simple Network Management Protocol) provides a standardized way to observe and manage the health, performance, and availability of network-connected devices such as batteries, routers, switches, firewalls, servers, and IoT endpoints.",
   "tags": ["metrics", "Device"],
   "author": "KloudMate",
   "verified": true
