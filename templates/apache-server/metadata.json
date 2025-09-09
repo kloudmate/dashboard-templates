@@ -1,7 +1,7 @@
 {
-  "title": "apache server",
-  "description": "Monitoring metrics of Apache server",
+  "title": "Apache Server",
+  "description": "The Apache server dashboard offers end-to-end visibility into web server health, performance, resource utilization and traffic insights by integrating with OpenTelemetry (Otel)",
   "tags": ["metrics", "vm"],
   "author": "KloudMate",
-  "verified": true
+  "verified": true 
 }
