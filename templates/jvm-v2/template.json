@@ -1,0 +1,589 @@
+{
+  "name": "JVM Metrics-V2",
+  "description": "",
+  "data": {
+    "tz": "local",
+    "panels": [
+      {
+        "id": "lv92wddbvvl",
+        "tz": "local",
+        "axis": {
+          "x": {
+            "date_style": "auto"
+          },
+          "y": {
+            "format": "bytes",
+            "decimals": 3
+          }
+        },
+        "title": "JVM Memory Used",
+        "panelType": "TimeSeries",
+        "timeRange": "1h",
+        "statConfig": {
+          "statView": "grid",
+          "baseColor": "#4CBB17",
+          "calculation": "last"
+        },
+        "timeseries": {
+          "legend": {
+            "view": "list",
+            "values": []
+          }
+        },
+        "node_configs": [
+          {
+            "page": 1,
+            "stat": "",
+            "type": "query",
+            "hidden": false,
+            "metric": "",
+            "nodeId": "A",
+            "region": "",
+            "source": "kloudmate",
+            "dataset": "metrics",
+            "filters": [],
+            "groupBy": [
+              {
+                "type": "string",
+                "field": "service_name"
+              }
+            ],
+            "orderBy": [],
+            "interval": "",
+            "namespace": "",
+            "dimensions": [],
+            "metricType": "",
+            "time_range": {
+              "to": 0,
+              "from": 600
+            },
+            "aggregation": {
+              "stat": "AVG",
+              "type": "",
+              "unit": "bytes",
+              "field": "",
+              "value": "jvm_memory_used",
+              "metric": "jvm_memory_used",
+              "metricType": "Gauge",
+              "temporality": "Cumulative"
+            },
+            "datasourceId": "kloudmate"
+          }
+        ],
+        "time_options": {
+          "override": false,
+          "time_shift": ""
+        }
+      },
+      {
+        "id": "8xw5uq9syng",
+        "tz": "local",
+        "axis": {
+          "x": {
+            "date_style": "auto"
+          },
+          "y": {
+            "format": "bytes",
+            "decimals": 3
+          }
+        },
+        "title": "JVM Memory Limit",
+        "panelType": "TimeSeries",
+        "timeRange": "12h",
+        "statConfig": {
+          "statView": "grid",
+          "baseColor": "#4CBB17",
+          "calculation": "last"
+        },
+        "timeseries": {
+          "legend": {
+            "view": "list",
+            "values": []
+          }
+        },
+        "node_configs": [
+          {
+            "page": 1,
+            "stat": "",
+            "type": "query",
+            "hidden": false,
+            "metric": "",
+            "nodeId": "A",
+            "region": "",
+            "source": "kloudmate",
+            "dataset": "metrics",
+            "filters": [],
+            "groupBy": [
+              {
+                "type": "string",
+                "field": "service_name"
+              }
+            ],
+            "orderBy": [],
+            "interval": "",
+            "namespace": "",
+            "dimensions": [],
+            "metricType": "",
+            "time_range": {
+              "to": 0,
+              "from": 600
+            },
+            "aggregation": {
+              "stat": "AVG",
+              "type": "",
+              "unit": "By",
+              "field": "",
+              "value": "jvm_memory_limit",
+              "metric": "jvm_memory_limit",
+              "metricType": "Sum",
+              "temporality": "Cumulative"
+            },
+            "datasourceId": "kloudmate"
+          }
+        ],
+        "time_options": {
+          "override": false,
+          "time_shift": ""
+        }
+      },
+      {
+        "id": "ik7qok4opu",
+        "tz": "local",
+        "axis": {
+          "x": {
+            "date_style": "auto"
+          },
+          "y": {
+            "format": "duration",
+            "decimals": 3,
+            "multiplyBy": 1000
+          }
+        },
+        "title": "JVM GC Duration",
+        "panelType": "TimeSeries",
+        "timeRange": "1h",
+        "statConfig": {
+          "statView": "grid",
+          "baseColor": "#4CBB17",
+          "calculation": "last"
+        },
+        "timeseries": {
+          "legend": {
+            "view": "list",
+            "values": []
+          }
+        },
+        "node_configs": [
+          {
+            "page": 1,
+            "stat": "",
+            "type": "query",
+            "hidden": false,
+            "metric": "",
+            "nodeId": "A",
+            "region": "",
+            "source": "kloudmate",
+            "dataset": "metrics",
+            "filters": [],
+            "groupBy": [
+              {
+                "type": "string",
+                "field": "service_name"
+              }
+            ],
+            "orderBy": [],
+            "interval": "",
+            "namespace": "",
+            "dimensions": [],
+            "metricType": "",
+            "time_range": {
+              "to": 0,
+              "from": 600
+            },
+            "aggregation": {
+              "stat": "AVG",
+              "type": "",
+              "unit": "s",
+              "field": "",
+              "value": "jvm_gc_duration_sum",
+              "metric": "jvm_gc_duration_sum",
+              "metricType": "Histogram",
+              "temporality": "Cumulative"
+            },
+            "datasourceId": "kloudmate"
+          }
+        ],
+        "time_options": {
+          "override": false,
+          "time_shift": ""
+        }
+      },
+      {
+        "id": "465c36rjhb5",
+        "tz": "local",
+        "axis": {
+          "x": {
+            "date_style": "auto"
+          },
+          "y": {
+            "format": "number",
+            "suffix": "{thread}",
+            "decimals": 3
+          }
+        },
+        "title": "Threads Count",
+        "panelType": "TimeSeries",
+        "timeRange": "1h",
+        "statConfig": {
+          "statView": "grid",
+          "baseColor": "#4CBB17",
+          "calculation": "last"
+        },
+        "timeseries": {
+          "legend": {
+            "view": "list",
+            "values": []
+          }
+        },
+        "node_configs": [
+          {
+            "page": 1,
+            "stat": "",
+            "type": "query",
+            "hidden": false,
+            "metric": "",
+            "nodeId": "A",
+            "region": "",
+            "source": "kloudmate",
+            "dataset": "metrics",
+            "filters": [],
+            "groupBy": [
+              {
+                "type": "string",
+                "field": "service_name"
+              }
+            ],
+            "orderBy": [],
+            "interval": "",
+            "namespace": "",
+            "dimensions": [],
+            "metricType": "",
+            "time_range": {
+              "to": 0,
+              "from": 600
+            },
+            "aggregation": {
+              "stat": "AVG",
+              "type": "",
+              "unit": "{thread}",
+              "field": "",
+              "value": "jvm_thread_count",
+              "metric": "jvm_thread_count",
+              "metricType": "Sum",
+              "temporality": "Cumulative"
+            },
+            "datasourceId": "kloudmate"
+          }
+        ],
+        "time_options": {
+          "override": false,
+          "time_shift": ""
+        }
+      },
+      {
+        "id": "5cvz0k0cxjw",
+        "tz": "local",
+        "axis": {
+          "x": {
+            "date_style": "auto"
+          },
+          "y": {
+            "format": "percentage",
+            "decimals": 3
+          }
+        },
+        "title": "Process Runtime CPU Utilization",
+        "panelType": "TimeSeries",
+        "timeRange": "1h",
+        "statConfig": {
+          "statView": "grid",
+          "baseColor": "#4CBB17",
+          "calculation": "last"
+        },
+        "timeseries": {
+          "legend": {
+            "view": "list",
+            "values": []
+          }
+        },
+        "node_configs": [
+          {
+            "page": 1,
+            "stat": "",
+            "type": "query",
+            "hidden": false,
+            "metric": "",
+            "nodeId": "A",
+            "region": "",
+            "source": "kloudmate",
+            "dataset": "metrics",
+            "filters": [],
+            "groupBy": [],
+            "orderBy": [],
+            "interval": "",
+            "namespace": "",
+            "dimensions": [],
+            "metricType": "",
+            "time_range": {
+              "to": 0,
+              "from": 600
+            },
+            "aggregation": {
+              "stat": "AVG",
+              "type": "",
+              "unit": "1",
+              "field": "",
+              "value": "process_runtime_jvm_cpu_utilization",
+              "metric": "process_runtime_jvm_cpu_utilization",
+              "metricType": "Gauge",
+              "temporality": "Cumulative"
+            },
+            "datasourceId": "kloudmate"
+          }
+        ],
+        "time_options": {
+          "override": false,
+          "time_shift": ""
+        }
+      },
+      {
+        "id": "oked0o609mq",
+        "tz": "local",
+        "axis": {
+          "x": {
+            "date_style": "auto"
+          },
+          "y": {
+            "format": "number",
+            "suffix": "{class}",
+            "decimals": 3
+          }
+        },
+        "title": "JVM Classes Loaded",
+        "panelType": "TimeSeries",
+        "timeRange": "1h",
+        "statConfig": {
+          "statView": "grid",
+          "baseColor": "#4CBB17",
+          "calculation": "last"
+        },
+        "timeseries": {
+          "legend": {
+            "view": "list",
+            "values": []
+          }
+        },
+        "node_configs": [
+          {
+            "page": 1,
+            "stat": "",
+            "type": "query",
+            "hidden": false,
+            "metric": "",
+            "nodeId": "A",
+            "region": "",
+            "source": "kloudmate",
+            "dataset": "metrics",
+            "filters": [],
+            "groupBy": [
+              {
+                "type": "string",
+                "field": "service_name"
+              }
+            ],
+            "orderBy": [],
+            "interval": "",
+            "namespace": "",
+            "dimensions": [],
+            "metricType": "",
+            "time_range": {
+              "to": 0,
+              "from": 600
+            },
+            "aggregation": {
+              "stat": "AVG",
+              "type": "",
+              "unit": "{class}",
+              "field": "",
+              "value": "jvm_class_loaded",
+              "metric": "jvm_class_loaded",
+              "metricType": "Sum",
+              "temporality": "Cumulative"
+            },
+            "datasourceId": "kloudmate"
+          }
+        ],
+        "time_options": {
+          "override": false,
+          "time_shift": ""
+        }
+      },
+      {
+        "id": "172phe1chqe",
+        "tz": "local",
+        "axis": {
+          "x": {
+            "date_style": "auto"
+          },
+          "y": {
+            "format": "duration",
+            "decimals": 3,
+            "multiplyBy": 1000
+          }
+        },
+        "title": "HTTP Server Requests",
+        "panelType": "TimeSeries",
+        "timeRange": "1h",
+        "statConfig": {
+          "statView": "grid",
+          "baseColor": "#4CBB17",
+          "calculation": "last"
+        },
+        "timeseries": {
+          "legend": {
+            "view": "list",
+            "values": []
+          }
+        },
+        "node_configs": [
+          {
+            "page": 1,
+            "stat": "",
+            "type": "query",
+            "hidden": false,
+            "metric": "",
+            "nodeId": "A",
+            "region": "",
+            "source": "kloudmate",
+            "dataset": "metrics",
+            "filters": [],
+            "groupBy": [
+              {
+                "type": "string",
+                "field": "service_name"
+              }
+            ],
+            "orderBy": [],
+            "interval": "",
+            "namespace": "",
+            "dimensions": [],
+            "metricType": "",
+            "time_range": {
+              "to": 0,
+              "from": 600
+            },
+            "aggregation": {
+              "stat": "AVG",
+              "type": "",
+              "unit": "s",
+              "field": "",
+              "value": "http_server_request_duration_sum",
+              "metric": "http_server_request_duration_sum",
+              "metricType": "Histogram",
+              "temporality": "Cumulative"
+            },
+            "datasourceId": "kloudmate"
+          }
+        ],
+        "time_options": {
+          "override": false,
+          "time_shift": ""
+        }
+      }
+    ],
+    "timeRange": "1d",
+    "panel_layouts": [
+      {
+        "h": 10,
+        "i": "lv92wddbvvl",
+        "w": 8,
+        "x": 0,
+        "y": 0,
+        "minH": 1,
+        "minW": 1,
+        "moved": false,
+        "static": false
+      },
+      {
+        "h": 10,
+        "i": "8xw5uq9syng",
+        "w": 8,
+        "x": 8,
+        "y": 0,
+        "minH": 1,
+        "minW": 1,
+        "moved": false,
+        "static": false
+      },
+      {
+        "h": 10,
+        "i": "ik7qok4opu",
+        "w": 8,
+        "x": 0,
+        "y": 10,
+        "minH": 1,
+        "minW": 1,
+        "moved": false,
+        "static": false
+      },
+      {
+        "h": 10,
+        "i": "465c36rjhb5",
+        "w": 8,
+        "x": 8,
+        "y": 10,
+        "minH": 1,
+        "minW": 1,
+        "moved": false,
+        "static": false
+      },
+      {
+        "h": 10,
+        "i": "5cvz0k0cxjw",
+        "w": 8,
+        "x": 16,
+        "y": 0,
+        "minH": 1,
+        "minW": 1,
+        "moved": false,
+        "static": false
+      },
+      {
+        "h": 10,
+        "i": "oked0o609mq",
+        "w": 8,
+        "x": 16,
+        "y": 10,
+        "minH": 1,
+        "minW": 1,
+        "moved": false,
+        "static": false
+      },
+      {
+        "h": 10,
+        "i": "172phe1chqe",
+        "w": 8,
+        "x": 0,
+        "y": 20,
+        "minH": 1,
+        "minW": 1,
+        "moved": false,
+        "static": false
+      }
+    ],
+    "default_region": "us-east-1"
+  },
+  "tags": [
+    "km-agent"
+  ]
+}

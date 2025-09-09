@@ -1,0 +1,7 @@
+{
+  "title": "JVM V2",
+  "description": "Monitoring JVM runtime metrics for java applicatoin running in kubernetes and integrated using KM Agent. You can collect runtime metrics such as memory utilization and limit, garbage collection activity, thread counts, class loading, and CPU consumption.",
+  "tags": ["metrics", "app"],
+  "author": "KloudMate",
+  "verified": true
+}
