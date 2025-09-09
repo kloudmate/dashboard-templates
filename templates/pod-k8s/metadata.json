@@ -1,6 +1,6 @@
 {
-  "title": "Kubernetes Pods",
-  "description": "Gather various system-level performance indicators directly from a host's operating system. These metrics provide insights into the resource utilization and health of the physical or virtual server where the Collector is deployed as an agent.",
+  "title": "Kubernetes Pod",
+  "description": "Monitoring Kubernetes pods with KM Agent provides deep visibility into the performance and health of the smallest deployable units in a cluster, you can collect pod-level metrics such as CPU and memory requests vs. usage and network traffic.",
   "tags": ["metrics", "K8s"],
   "author": "KloudMate",
   "verified": true
