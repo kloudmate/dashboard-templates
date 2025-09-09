@@ -38,7 +38,7 @@
         <div class="mb-8 text-center">
           <span class="mr-4 font-semibold">Filter by tag:</span>
           <button class="bg-blue-600 hover:bg-blue-700 text-white text-sm font-semibold py-1 px-3 rounded-full m-1 filter-btn active" data-tag="all">All</button>
-          <button class="bg-gray-700 hover:bg-gray-600 text-white text-sm font-semibold py-1 px-3 rounded-full m-1 filter-btn" data-tag="metrics">metrics</button><button class="bg-gray-700 hover:bg-gray-600 text-white text-sm font-semibold py-1 px-3 rounded-full m-1 filter-btn" data-tag="db">db</button><button class="bg-gray-700 hover:bg-gray-600 text-white text-sm font-semibold py-1 px-3 rounded-full m-1 filter-btn" data-tag="vm">vm</button><button class="bg-gray-700 hover:bg-gray-600 text-white text-sm font-semibold py-1 px-3 rounded-full m-1 filter-btn" data-tag="app">app</button>
+          <button class="bg-gray-700 hover:bg-gray-600 text-white text-sm font-semibold py-1 px-3 rounded-full m-1 filter-btn" data-tag="metrics">metrics</button><button class="bg-gray-700 hover:bg-gray-600 text-white text-sm font-semibold py-1 px-3 rounded-full m-1 filter-btn" data-tag="db">db</button><button class="bg-gray-700 hover:bg-gray-600 text-white text-sm font-semibold py-1 px-3 rounded-full m-1 filter-btn" data-tag="vm">vm</button><button class="bg-gray-700 hover:bg-gray-600 text-white text-sm font-semibold py-1 px-3 rounded-full m-1 filter-btn" data-tag="app">app</button><button class="bg-gray-700 hover:bg-gray-600 text-white text-sm font-semibold py-1 px-3 rounded-full m-1 filter-btn" data-tag="K8s">K8s</button>
         </div>
         <div id="template-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           
@@ -122,6 +122,22 @@
       </div>
     </a>
   </div>
+  <div class="template-card bg-gray-800 rounded-lg shadow-lg overflow-hidden transform hover:scale-105 transition-transform duration-300" data-tags="metrics app" data-title="JVM V2" data-description="Monitoring JVM runtime metrics for java applicatoin running in kubernetes and integrated using KM Agent. You can collect runtime metrics such as memory utilization and limit, garbage collection activity, thread counts, class loading, and CPU consumption.">
+    <a href="jvm-v2/index.html" class="block">
+      <div class="w-full h-48 bg-gray-700 flex items-center justify-center"><span class="text-gray-500">No Screenshot</span></div>
+      <div class="p-6">
+        <div class="flex items-center mb-2">
+          <h2 class="text-2xl font-bold">JVM V2</h2>
+          <svg class="w-6 h-6 text-blue-500 ml-2" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path></svg>
+        </div>
+        <p class="text-sm text-gray-500 mb-2">By KloudMate</p>
+        <p class="text-gray-400 mb-4">Monitoring JVM runtime metrics for java applicatoin running in kubernetes and integrated using KM Agent. You can collect runtime metrics such as memory utilization and limit, garbage collection activity, thread counts, class loading, and CPU consumption.</p>
+        <div>
+          <span class="inline-block bg-blue-600 text-white text-xs font-semibold mr-2 px-2.5 py-0.5 rounded-full">metrics</span><span class="inline-block bg-blue-600 text-white text-xs font-semibold mr-2 px-2.5 py-0.5 rounded-full">app</span>
+        </div>
+      </div>
+    </a>
+  </div>
   <div class="template-card bg-gray-800 rounded-lg shadow-lg overflow-hidden transform hover:scale-105 transition-transform duration-300" data-tags="metrics db" data-title="MSSQL" data-description="The Microsoft SQL Server (MSSQL) dashboard provides full-stack observability into database performance, availability, and resource utilization through OpenTelemetry (Otel) integration.">
     <a href="mssql/index.html" class="block">
       <div class="w-full h-48 bg-gray-700 flex items-center justify-center"><span class="text-gray-500">No Screenshot</span></div>
@@ -134,6 +150,54 @@
         <p class="text-gray-400 mb-4">The Microsoft SQL Server (MSSQL) dashboard provides full-stack observability into database performance, availability, and resource utilization through OpenTelemetry (Otel) integration.</p>
         <div>
           <span class="inline-block bg-blue-600 text-white text-xs font-semibold mr-2 px-2.5 py-0.5 rounded-full">metrics</span><span class="inline-block bg-blue-600 text-white text-xs font-semibold mr-2 px-2.5 py-0.5 rounded-full">db</span>
+        </div>
+      </div>
+    </a>
+  </div>
+  <div class="template-card bg-gray-800 rounded-lg shadow-lg overflow-hidden transform hover:scale-105 transition-transform duration-300" data-tags="metrics K8s" data-title="Kubernetes Namespace" data-description="Kubernetes namespaces monitoring using KM Agent, provides visibility into key metrics including CPU and memory utilization, pod counts, network traffic aggregated per namespace.">
+    <a href="namespace-k8s/index.html" class="block">
+      <div class="w-full h-48 bg-gray-700 flex items-center justify-center"><span class="text-gray-500">No Screenshot</span></div>
+      <div class="p-6">
+        <div class="flex items-center mb-2">
+          <h2 class="text-2xl font-bold">Kubernetes Namespace</h2>
+          <svg class="w-6 h-6 text-blue-500 ml-2" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path></svg>
+        </div>
+        <p class="text-sm text-gray-500 mb-2">By KloudMate</p>
+        <p class="text-gray-400 mb-4">Kubernetes namespaces monitoring using KM Agent, provides visibility into key metrics including CPU and memory utilization, pod counts, network traffic aggregated per namespace.</p>
+        <div>
+          <span class="inline-block bg-blue-600 text-white text-xs font-semibold mr-2 px-2.5 py-0.5 rounded-full">metrics</span><span class="inline-block bg-blue-600 text-white text-xs font-semibold mr-2 px-2.5 py-0.5 rounded-full">K8s</span>
+        </div>
+      </div>
+    </a>
+  </div>
+  <div class="template-card bg-gray-800 rounded-lg shadow-lg overflow-hidden transform hover:scale-105 transition-transform duration-300" data-tags="metrics K8s" data-title="Kubernetes Node" data-description=" Monitoring Kubernetes nodes with KM Agents provides critical insights into the health and performance of the underlying infrastructure that powers your cluster, including key node-level metrics such as CPU utilization, memory consumption, disk I/O, filesystem usage, and network throughput..">
+    <a href="node-k8s/index.html" class="block">
+      <div class="w-full h-48 bg-gray-700 flex items-center justify-center"><span class="text-gray-500">No Screenshot</span></div>
+      <div class="p-6">
+        <div class="flex items-center mb-2">
+          <h2 class="text-2xl font-bold">Kubernetes Node</h2>
+          <svg class="w-6 h-6 text-blue-500 ml-2" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path></svg>
+        </div>
+        <p class="text-sm text-gray-500 mb-2">By KloudMate</p>
+        <p class="text-gray-400 mb-4"> Monitoring Kubernetes nodes with KM Agents provides critical insights into the health and performance of the underlying infrastructure that powers your cluster, including key node-level metrics such as CPU utilization, memory consumption, disk I/O, filesystem usage, and network throughput..</p>
+        <div>
+          <span class="inline-block bg-blue-600 text-white text-xs font-semibold mr-2 px-2.5 py-0.5 rounded-full">metrics</span><span class="inline-block bg-blue-600 text-white text-xs font-semibold mr-2 px-2.5 py-0.5 rounded-full">K8s</span>
+        </div>
+      </div>
+    </a>
+  </div>
+  <div class="template-card bg-gray-800 rounded-lg shadow-lg overflow-hidden transform hover:scale-105 transition-transform duration-300" data-tags="metrics K8s" data-title="Kubernetes Pod" data-description="Monitoring Kubernetes pods with KM Agent provides deep visibility into the performance and health of the smallest deployable units in a cluster, you can collect pod-level metrics such as CPU and memory requests vs. usage and network traffic.">
+    <a href="pod-k8s/index.html" class="block">
+      <div class="w-full h-48 bg-gray-700 flex items-center justify-center"><span class="text-gray-500">No Screenshot</span></div>
+      <div class="p-6">
+        <div class="flex items-center mb-2">
+          <h2 class="text-2xl font-bold">Kubernetes Pod</h2>
+          <svg class="w-6 h-6 text-blue-500 ml-2" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path></svg>
+        </div>
+        <p class="text-sm text-gray-500 mb-2">By KloudMate</p>
+        <p class="text-gray-400 mb-4">Monitoring Kubernetes pods with KM Agent provides deep visibility into the performance and health of the smallest deployable units in a cluster, you can collect pod-level metrics such as CPU and memory requests vs. usage and network traffic.</p>
+        <div>
+          <span class="inline-block bg-blue-600 text-white text-xs font-semibold mr-2 px-2.5 py-0.5 rounded-full">metrics</span><span class="inline-block bg-blue-600 text-white text-xs font-semibold mr-2 px-2.5 py-0.5 rounded-full">K8s</span>
         </div>
       </div>
     </a>

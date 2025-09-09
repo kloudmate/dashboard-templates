@@ -1,0 +1,2198 @@
+
+    <!DOCTYPE html>
+    <html lang="en" class="dark">
+    
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="https://app.kloudmate.com/favicon.ico">
+    <title>Kubernetes Namespace | KloudMate Dashboard Templates Gallery</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = { darkMode: 'class' }
+    </script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/atom-one-dark.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+  </head>
+    <body class="bg-gray-900 text-gray-100 flex flex-col min-h-screen">
+      
+  <header class="bg-gray-800 text-white">
+    <div class="container mx-auto px-4 py-4 flex justify-between items-center">
+      <a href="https://kloudmate.com/" target="_blank" rel="noopener noreferrer">
+        <img src="https://app.kloudmate.com/assets/images/logo_full_white.svg" alt="KloudMate Logo" class="h-8">
+      </a>
+      <nav>
+        <a href="https://github.com/kloudmate/dashboard-templates" target="_blank" rel="noopener noreferrer" class="hover:text-gray-300">GitHub</a>
+      </nav>
+    </div>
+  </header>
+      <main class="flex-grow">
+        <div class="container mx-auto px-4">
+          <a href="../index.html" class="inline-block bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full my-8"><- Back to Templates</a>
+          <div class="flex items-center mb-2">
+              <h1 class="text-4xl font-bold">Kubernetes Namespace</h1>
+              <svg class="w-8 h-8 text-blue-500 ml-3" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path></svg>
+          </div>
+          <p class="text-lg text-gray-500 mb-4">By KloudMate</p>
+          <p class="text-gray-400 mb-8">Kubernetes namespaces monitoring using KM Agent, provides visibility into key metrics including CPU and memory utilization, pod counts, network traffic aggregated per namespace.</p>
+          
+          <div class="flex justify-between items-center mb-4">
+              <h2 class="text-2xl font-bold">Template JSON</h2>
+              <button id="how-to-use-btn" class="bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-md">How to Use</button>
+          </div>
+          <div class="relative">
+              <pre id="json-viewer" class="max-h-96 overflow-y-auto transition-all duration-500"><code class="json rounded-lg">{
+  "name": "Kubernetes Namespace",
+  "description": "",
+  "data": {
+    "tz": "local",
+    "panels": [
+      {
+        "id": "l4lplsny7n",
+        "tz": "local",
+        "axis": {
+          "x": {
+            "date_style": "auto"
+          },
+          "y": {
+            "format": "number",
+            "suffix": "{cpu}",
+            "decimals": 4
+          }
+        },
+        "table": {},
+        "title": "CPU Usage",
+        "tooltip": {
+          "mode": "all"
+        },
+        "panelType": "TimeSeries",
+        "timeRange": "1h",
+        "TimeSeries": {},
+        "statConfig": {
+          "statView": "grid",
+          "baseColor": "#4CBB17",
+          "calculation": "last"
+        },
+        "timeseries": {
+          "legend": {
+            "view": "list",
+            "values": []
+          }
+        },
+        "node_configs": [
+          {
+            "exp": "avg by (k8s_namespace_name) (avg by (k8s_namespace_name, k8s_pod_name) (k8s_pod_cpu_usage{k8s_namespace_name=\"$namespace\", cluster=\"$cluster\"}))",
+            "page": 1,
+            "stat": "",
+            "type": "query",
+            "limit": null,
+            "hidden": false,
+            "metric": "",
+            "nodeId": "B",
+            "region": "",
+            "source": "kloudmate",
+            "dataset": "metrics",
+            "filters": [],
+            "groupBy": [],
+            "orderBy": [],
+            "interval": "",
+            "namespace": "",
+            "dimensions": [],
+            "metricType": "",
+            "query_type": "promql",
+            "time_range": {
+              "to": 0,
+              "from": 600
+            },
+            "aggregation": {
+              "stat": "AVG",
+              "type": "",
+              "field": ""
+            },
+            "datasourceId": "kloudmate",
+            "legendFormat": "avg",
+            "responseType": "series"
+          },
+          {
+            "exp": "max by (k8s_namespace_name) (avg by (k8s_namespace_name, k8s_pod_name) (k8s_pod_cpu_usage{k8s_namespace_name=\"$namespace\", cluster=\"$cluster\"}))",
+            "page": 1,
+            "stat": "",
+            "type": "query",
+            "limit": null,
+            "hidden": false,
+            "metric": "",
+            "nodeId": "C",
+            "region": "",
+            "source": "kloudmate",
+            "dataset": "metrics",
+            "filters": [],
+            "groupBy": [],
+            "orderBy": [],
+            "interval": "",
+            "namespace": "",
+            "dimensions": [],
+            "metricType": "",
+            "query_type": "promql",
+            "time_range": {
+              "to": 0,
+              "from": 600
+            },
+            "aggregation": {
+              "stat": "AVG",
+              "type": "",
+              "field": ""
+            },
+            "datasourceId": "kloudmate",
+            "legendFormat": "max",
+            "responseType": "series"
+          },
+          {
+            "exp": "min by (k8s_namespace_name) (avg by (k8s_namespace_name, k8s_pod_name) (k8s_pod_cpu_usage{k8s_namespace_name=\"$namespace\", cluster=\"$cluster\"}))",
+            "page": 1,
+            "stat": "",
+            "type": "query",
+            "limit": null,
+            "hidden": false,
+            "metric": "",
+            "nodeId": "D",
+            "region": "",
+            "source": "kloudmate",
+            "dataset": "metrics",
+            "filters": [],
+            "groupBy": [],
+            "orderBy": [],
+            "interval": "",
+            "namespace": "",
+            "dimensions": [],
+            "metricType": "",
+            "query_type": "promql",
+            "time_range": {
+              "to": 0,
+              "from": 600
+            },
+            "aggregation": {
+              "stat": "AVG",
+              "type": "",
+              "field": ""
+            },
+            "datasourceId": "kloudmate",
+            "legendFormat": "min",
+            "responseType": "series"
+          }
+        ],
+        "time_options": {
+          "override": false,
+          "time_shift": ""
+        }
+      },
+      {
+        "id": "rgwuox0l1c",
+        "tz": "local",
+        "axis": {
+          "x": {
+            "date_style": "auto"
+          }
+        },
+        "STATS": {},
+        "table": {},
+        "title": "CPU Request & Limit",
+        "tooltip": {
+          "mode": "all"
+        },
+        "panelType": "TimeSeries",
+        "timeRange": "1h",
+        "TimeSeries": {},
+        "statConfig": {
+          "statView": "grid",
+          "baseColor": "#4CBB17",
+          "calculation": "last"
+        },
+        "timeseries": {
+          "legend": {
+            "view": "list",
+            "values": []
+          }
+        },
+        "node_configs": [
+          {
+            "exp": "sum by (k8s_namespace_name) (avg by (k8s_container_name, k8s_namespace_name, k8s_pod_name) (k8s_container_cpu_limit{k8s_namespace_name=\"$namespace\", k8s_cluster_name=\"$cluster\"}))",
+            "page": 1,
+            "stat": "",
+            "type": "query",
+            "limit": null,
+            "hidden": false,
+            "metric": "",
+            "nodeId": "A",
+            "region": "",
+            "source": "kloudmate",
+            "dataset": "metrics",
+            "filters": [],
+            "groupBy": [],
+            "orderBy": [],
+            "interval": "",
+            "namespace": "",
+            "dimensions": [],
+            "metricType": "",
+            "query_type": "promql",
+            "time_range": {
+              "to": 0,
+              "from": 600
+            },
+            "aggregation": {
+              "stat": "AVG",
+              "type": "",
+              "field": ""
+            },
+            "datasourceId": "kloudmate",
+            "legendFormat": "limit",
+            "responseType": "series"
+          },
+          {
+            "exp": "sum by (k8s_namespace_name) (avg by (k8s_container_name, k8s_namespace_name, k8s_pod_name) (k8s_container_cpu_request{k8s_namespace_name=\"$namespace\", k8s_cluster_name=\"$cluster\"}))",
+            "page": 1,
+            "stat": "",
+            "type": "query",
+            "limit": null,
+            "hidden": false,
+            "metric": "",
+            "nodeId": "B",
+            "region": "",
+            "source": "kloudmate",
+            "dataset": "metrics",
+            "filters": [],
+            "groupBy": [],
+            "orderBy": [],
+            "interval": "",
+            "namespace": "",
+            "dimensions": [],
+            "metricType": "",
+            "query_type": "promql",
+            "time_range": {
+              "to": 0,
+              "from": 600
+            },
+            "aggregation": {
+              "stat": "AVG",
+              "type": "",
+              "field": ""
+            },
+            "datasourceId": "kloudmate",
+            "legendFormat": "request",
+            "responseType": "series"
+          }
+        ],
+        "time_options": {
+          "override": false,
+          "time_shift": ""
+        }
+      },
+      {
+        "id": "202aluq7qem",
+        "tz": "local",
+        "axis": {
+          "x": {
+            "date_style": "auto"
+          },
+          "y": {
+            "format": "bytes"
+          }
+        },
+        "title": "Memory Limit & Request",
+        "tooltip": {
+          "mode": "all"
+        },
+        "panelType": "TimeSeries",
+        "timeRange": "1h",
+        "statConfig": {
+          "statView": "grid",
+          "baseColor": "#4CBB17",
+          "calculation": "last"
+        },
+        "timeseries": {
+          "legend": {
+            "view": "list",
+            "values": []
+          }
+        },
+        "node_configs": [
+          {
+            "exp": "sum by (k8s_namespace_name) (avg by (k8s_container_name, k8s_namespace_name, k8s_pod_name) (k8s_container_memory_limit{k8s_namespace_name=\"$namespace\", k8s_cluster_name=\"$cluster\"}))",
+            "page": 1,
+            "stat": "",
+            "type": "query",
+            "limit": null,
+            "hidden": false,
+            "metric": "",
+            "nodeId": "A",
+            "region": "",
+            "source": "kloudmate",
+            "dataset": "metrics",
+            "filters": [],
+            "groupBy": [],
+            "orderBy": [],
+            "interval": "",
+            "namespace": "",
+            "dimensions": [],
+            "metricType": "",
+            "query_type": "promql",
+            "time_range": {
+              "to": 0,
+              "from": 600
+            },
+            "aggregation": {
+              "stat": "AVG",
+              "type": "",
+              "field": ""
+            },
+            "datasourceId": "kloudmate",
+            "legendFormat": "limit",
+            "responseType": "series"
+          },
+          {
+            "exp": "sum by (k8s_namespace_name) (avg by (k8s_container_name, k8s_namespace_name, k8s_pod_name) (k8s_container_memory_request{k8s_namespace_name=\"$namespace\", k8s_cluster_name=\"$cluster\"}))",
+            "page": 1,
+            "stat": "",
+            "type": "query",
+            "limit": null,
+            "hidden": false,
+            "metric": "",
+            "nodeId": "B",
+            "region": "",
+            "source": "kloudmate",
+            "dataset": "metrics",
+            "filters": [],
+            "groupBy": [],
+            "orderBy": [],
+            "interval": "",
+            "namespace": "",
+            "dimensions": [],
+            "metricType": "",
+            "query_type": "promql",
+            "time_range": {
+              "to": 0,
+              "from": 600
+            },
+            "aggregation": {
+              "stat": "AVG",
+              "type": "",
+              "field": ""
+            },
+            "datasourceId": "kloudmate",
+            "legendFormat": "request",
+            "responseType": "series"
+          }
+        ],
+        "time_options": {
+          "override": false,
+          "time_shift": ""
+        }
+      },
+      {
+        "id": "2tyvefx9wj8",
+        "tz": "local",
+        "axis": {
+          "x": {
+            "date_style": "auto"
+          },
+          "y": {
+            "format": "unformatted",
+            "decimals": 3
+          }
+        },
+        "STATS": {},
+        "title": "Number of Pods",
+        "panelType": "STATS",
+        "timeRange": "1h",
+        "statConfig": {
+          "statView": "grid",
+          "baseColor": "#4CBB17",
+          "calculation": "last"
+        },
+        "timeseries": {
+          "legend": {
+            "view": "list",
+            "values": []
+          }
+        },
+        "node_configs": [
+          {
+            "page": 1,
+            "stat": "",
+            "type": "query",
+            "hidden": true,
+            "metric": "",
+            "nodeId": "A",
+            "region": "",
+            "source": "kloudmate",
+            "dataset": "metrics",
+            "filters": [
+              {
+                "type": "string",
+                "field": "k8s_namespace_name",
+                "value": "$namespace",
+                "operator": "="
+              },
+              {
+                "type": "string",
+                "field": "k8s_cluster_name",
+                "value": "$cluster",
+                "operator": "="
+              }
+            ],
+            "groupBy": [],
+            "orderBy": [],
+            "interval": "",
+            "namespace": "",
+            "dimensions": [],
+            "metricType": "",
+            "time_range": {
+              "to": 0,
+              "from": 600
+            },
+            "aggregation": {
+              "stat": "COUNT",
+              "type": "",
+              "unit": "",
+              "field": "",
+              "value": "k8s_pod_phase",
+              "metric": "k8s_pod_phase",
+              "metricType": "Gauge",
+              "temporality": "Cumulative"
+            },
+            "datasourceId": "kloudmate",
+            "responseType": "series"
+          },
+          {
+            "type": "expression",
+            "hidden": false,
+            "nodeId": "B",
+            "expression": "$A / 2",
+            "responseType": "series",
+            "expressionType": "math"
+          }
+        ],
+        "time_options": {
+          "override": false,
+          "time_shift": ""
+        }
+      },
+      {
+        "id": "euvlglt7jnw",
+        "tz": "local",
+        "axis": {
+          "x": {
+            "date_style": "auto"
+          },
+          "y": {
+            "format": "number",
+            "decimals": 3
+          }
+        },
+        "title": "Network Error",
+        "tooltip": {
+          "mode": "all"
+        },
+        "panelType": "TimeSeries",
+        "timeRange": "1h",
+        "statConfig": {
+          "statView": "grid",
+          "baseColor": "#4CBB17",
+          "calculation": "last"
+        },
+        "timeseries": {
+          "legend": {
+            "view": "list",
+            "values": []
+          }
+        },
+        "node_configs": [
+          {
+            "exp": "sum by (k8s_namespace_name, direction) (avg by (k8s_namespace_name, k8s_pod_name, direction) (k8s_pod_network_errors{k8s_namespace_name=\"$namespace\", cluster=\"$cluster\"}))",
+            "page": 1,
+            "stat": "",
+            "type": "query",
+            "limit": null,
+            "hidden": false,
+            "metric": "",
+            "nodeId": "A",
+            "region": "",
+            "source": "kloudmate",
+            "dataset": "metrics",
+            "filters": [
+              {
+                "type": "string",
+                "field": "k8s_namespace_name",
+                "value": "default",
+                "operator": "="
+              }
+            ],
+            "groupBy": [
+              {
+                "type": "string",
+                "field": "k8s_namespace_name"
+              },
+              {
+                "type": "string",
+                "field": "k8s_pod_name"
+              }
+            ],
+            "orderBy": [],
+            "interval": "",
+            "namespace": "",
+            "dimensions": [],
+            "metricType": "",
+            "query_type": "promql",
+            "time_range": {
+              "to": 0,
+              "from": 600
+            },
+            "aggregation": {
+              "stat": "AVG",
+              "type": "",
+              "unit": "1",
+              "field": "",
+              "value": "k8s_pod_network_errors",
+              "metric": "k8s_pod_network_errors",
+              "metricType": "Sum",
+              "temporality": "Cumulative"
+            },
+            "datasourceId": "kloudmate",
+            "legendFormat": "{{direction}}",
+            "responseType": "series"
+          }
+        ],
+        "time_options": {
+          "override": false,
+          "time_shift": ""
+        }
+      },
+      {
+        "id": "80o3tevrmhn",
+        "tz": "local",
+        "axis": {
+          "x": {
+            "date_style": "auto"
+          },
+          "y": {
+            "format": "bytes",
+            "suffix": "/s",
+            "decimals": 3
+          }
+        },
+        "STATS": {},
+        "table": {},
+        "title": "Network IO Rate",
+        "tooltip": {
+          "mode": "all"
+        },
+        "panelType": "TimeSeries",
+        "timeRange": "1h",
+        "TimeSeries": {},
+        "statConfig": {
+          "statView": "grid",
+          "baseColor": "#4CBB17",
+          "calculation": "last"
+        },
+        "timeseries": {
+          "legend": {
+            "view": "list",
+            "values": []
+          }
+        },
+        "node_configs": [
+          {
+            "exp": "sum by (k8s_namespace_name, direction) (avg by (k8s_namespace_name, k8s_pod_name, direction) (k8s_pod_network_io{k8s_namespace_name=\"$namespace\", cluster=\"$cluster\"}))",
+            "page": 1,
+            "stat": "",
+            "type": "query",
+            "limit": null,
+            "hidden": false,
+            "metric": "",
+            "nodeId": "A",
+            "region": "",
+            "source": "kloudmate",
+            "dataset": "metrics",
+            "filters": [],
+            "groupBy": [],
+            "orderBy": [],
+            "interval": "",
+            "namespace": "",
+            "dimensions": [],
+            "metricType": "",
+            "query_type": "promql",
+            "time_range": {
+              "to": 0,
+              "from": 600
+            },
+            "aggregation": {
+              "stat": "AVG",
+              "type": "",
+              "unit": "By",
+              "field": "",
+              "value": "k8s_pod_network_io",
+              "metric": "k8s_pod_network_io",
+              "metricType": "Sum",
+              "temporality": "Cumulative"
+            },
+            "datasourceId": "kloudmate",
+            "legendFormat": "{{direction}}",
+            "responseType": "series"
+          }
+        ],
+        "time_options": {
+          "override": false,
+          "time_shift": ""
+        }
+      },
+      {
+        "id": "2gqmyayotml",
+        "tz": "local",
+        "axis": {
+          "x": {
+            "date_style": "auto"
+          },
+          "y": {
+            "format": "number",
+            "suffix": "{pod}",
+            "decimals": 3
+          }
+        },
+        "STATS": {},
+        "table": {
+          "columns": [
+            {
+              "key": "A:AVG()",
+              "rename": "Ready"
+            },
+            {
+              "key": "k8s_statefulset_name",
+              "rename": ""
+            },
+            {
+              "key": "B:AVG()",
+              "rename": "Current"
+            },
+            {
+              "key": "C:AVG()",
+              "rename": "Desired"
+            },
+            {
+              "key": "D:AVG()",
+              "format": {
+                "format": "number",
+                "suffix": "",
+                "decimals": 3
+              },
+              "rename": "Updated"
+            }
+          ]
+        },
+        "title": "Statefulsets",
+        "panelType": "table",
+        "timeRange": "1h",
+        "TimeSeries": {},
+        "statConfig": {
+          "statView": "grid",
+          "baseColor": "#4CBB17",
+          "calculation": "last"
+        },
+        "timeseries": {
+          "legend": {
+            "view": "list",
+            "values": []
+          }
+        },
+        "node_configs": [
+          {
+            "exp": "",
+            "page": 1,
+            "stat": "",
+            "type": "query",
+            "limit": null,
+            "hidden": false,
+            "metric": "",
+            "nodeId": "A",
+            "region": "",
+            "source": "kloudmate",
+            "dataset": "metrics",
+            "filters": [
+              {
+                "type": "string",
+                "field": "k8s_namespace_name",
+                "value": "$namespace",
+                "operator": "="
+              }
+            ],
+            "groupBy": [
+              {
+                "type": "string",
+                "field": "k8s_statefulset_name"
+              }
+            ],
+            "orderBy": [],
+            "interval": "",
+            "namespace": "",
+            "dimensions": [],
+            "metricType": "",
+            "query_type": "qb",
+            "time_range": {
+              "to": 0,
+              "from": 600
+            },
+            "aggregation": {
+              "stat": "AVG",
+              "type": "",
+              "unit": "{pod}",
+              "field": "",
+              "value": "k8s_statefulset_ready_pods",
+              "metric": "k8s_statefulset_ready_pods",
+              "metricType": "Gauge",
+              "temporality": "Cumulative"
+            },
+            "datasourceId": "kloudmate",
+            "responseType": "number"
+          },
+          {
+            "page": 1,
+            "stat": "",
+            "type": "query",
+            "limit": null,
+            "hidden": false,
+            "metric": "",
+            "nodeId": "B",
+            "region": "",
+            "source": "kloudmate",
+            "dataset": "metrics",
+            "filters": [
+              {
+                "type": "string",
+                "field": "k8s_namespace_name",
+                "value": "$namespace",
+                "operator": "="
+              }
+            ],
+            "groupBy": [
+              {
+                "type": "string",
+                "field": "k8s_statefulset_name"
+              }
+            ],
+            "orderBy": [],
+            "interval": "",
+            "namespace": "",
+            "dimensions": [],
+            "metricType": "",
+            "query_type": "qb",
+            "time_range": {
+              "to": 0,
+              "from": 600
+            },
+            "aggregation": {
+              "stat": "AVG",
+              "type": "",
+              "unit": "{pod}",
+              "field": "",
+              "value": "k8s_statefulset_current_pods",
+              "metric": "k8s_statefulset_current_pods",
+              "metricType": "Gauge",
+              "temporality": "Cumulative"
+            },
+            "datasourceId": "kloudmate",
+            "responseType": "number"
+          },
+          {
+            "page": 1,
+            "stat": "",
+            "type": "query",
+            "limit": null,
+            "hidden": false,
+            "metric": "",
+            "nodeId": "C",
+            "region": "",
+            "source": "kloudmate",
+            "dataset": "metrics",
+            "filters": [
+              {
+                "type": "string",
+                "field": "k8s_namespace_name",
+                "value": "$namespace",
+                "operator": "="
+              }
+            ],
+            "groupBy": [
+              {
+                "type": "string",
+                "field": "k8s_statefulset_name"
+              }
+            ],
+            "orderBy": [],
+            "interval": "",
+            "namespace": "",
+            "dimensions": [],
+            "metricType": "",
+            "query_type": "qb",
+            "time_range": {
+              "to": 0,
+              "from": 600
+            },
+            "aggregation": {
+              "stat": "AVG",
+              "type": "",
+              "unit": "{pod}",
+              "field": "",
+              "value": "k8s_statefulset_desired_pods",
+              "metric": "k8s_statefulset_desired_pods",
+              "metricType": "Gauge",
+              "temporality": "Cumulative"
+            },
+            "datasourceId": "kloudmate",
+            "responseType": "number"
+          },
+          {
+            "page": 1,
+            "stat": "",
+            "type": "query",
+            "hidden": false,
+            "metric": "",
+            "nodeId": "D",
+            "region": "",
+            "source": "kloudmate",
+            "dataset": "metrics",
+            "filters": [
+              {
+                "type": "string",
+                "field": "k8s_namespace_name",
+                "value": "$namespace",
+                "operator": "="
+              }
+            ],
+            "groupBy": [
+              {
+                "type": "string",
+                "field": "k8s_statefulset_name"
+              }
+            ],
+            "orderBy": [],
+            "interval": "",
+            "namespace": "",
+            "dimensions": [],
+            "metricType": "",
+            "time_range": {
+              "to": 0,
+              "from": 600
+            },
+            "aggregation": {
+              "stat": "AVG",
+              "type": "",
+              "unit": "{pod}",
+              "field": "",
+              "value": "k8s_statefulset_updated_pods",
+              "metric": "k8s_statefulset_updated_pods",
+              "metricType": "Gauge",
+              "temporality": "Cumulative"
+            },
+            "datasourceId": "kloudmate",
+            "responseType": "number"
+          }
+        ],
+        "time_options": {
+          "override": false,
+          "time_shift": ""
+        }
+      },
+      {
+        "id": "0cjxj3gghu05",
+        "tz": "local",
+        "axis": {
+          "x": {
+            "date_style": "auto"
+          },
+          "y": {
+            "format": "number",
+            "suffix": "{pod}",
+            "decimals": 3
+          }
+        },
+        "STATS": {},
+        "table": {
+          "columns": [
+            {
+              "key": "A:AVG()",
+              "rename": "Ready"
+            },
+            {
+              "key": "k8s_daemonset_name",
+              "rename": "Daemonsets"
+            },
+            {
+              "key": "B:AVG()",
+              "rename": "Current"
+            },
+            {
+              "key": "C:AVG()",
+              "format": {
+                "format": "number",
+                "suffix": "",
+                "decimals": 3
+              },
+              "rename": "Desired"
+            },
+            {
+              "key": "D:AVG()",
+              "format": {
+                "format": "number",
+                "suffix": "",
+                "decimals": 3
+              },
+              "rename": "Misscheduled"
+            }
+          ]
+        },
+        "title": "Daemonset",
+        "panelType": "table",
+        "timeRange": "1h",
+        "TimeSeries": {},
+        "statConfig": {
+          "statView": "grid",
+          "baseColor": "#4CBB17",
+          "calculation": "last"
+        },
+        "timeseries": {
+          "legend": {
+            "view": "list",
+            "values": []
+          }
+        },
+        "node_configs": [
+          {
+            "exp": "",
+            "page": 1,
+            "stat": "",
+            "type": "query",
+            "limit": null,
+            "hidden": false,
+            "metric": "",
+            "nodeId": "A",
+            "region": "",
+            "source": "kloudmate",
+            "dataset": "metrics",
+            "filters": [
+              {
+                "type": "string",
+                "field": "k8s_namespace_name",
+                "value": "$namespace",
+                "operator": "="
+              },
+              {
+                "type": "string",
+                "field": "k8s_cluster_name",
+                "value": "$cluster",
+                "operator": "="
+              }
+            ],
+            "groupBy": [
+              {
+                "type": "string",
+                "field": "k8s_daemonset_name"
+              }
+            ],
+            "orderBy": [],
+            "interval": "",
+            "namespace": "",
+            "dimensions": [],
+            "metricType": "",
+            "query_type": "qb",
+            "time_range": {
+              "to": 0,
+              "from": 600
+            },
+            "aggregation": {
+              "stat": "AVG",
+              "type": "",
+              "unit": "{node}",
+              "field": "",
+              "value": "k8s_daemonset_ready_nodes",
+              "metric": "k8s_daemonset_ready_nodes",
+              "metricType": "Gauge",
+              "temporality": "Cumulative"
+            },
+            "datasourceId": "kloudmate",
+            "responseType": "number"
+          },
+          {
+            "page": 1,
+            "stat": "",
+            "type": "query",
+            "limit": null,
+            "hidden": false,
+            "metric": "",
+            "nodeId": "B",
+            "region": "",
+            "source": "kloudmate",
+            "dataset": "metrics",
+            "filters": [
+              {
+                "type": "string",
+                "field": "k8s_namespace_name",
+                "value": "$namespace",
+                "operator": "="
+              },
+              {
+                "type": "string",
+                "field": "k8s_cluster_name",
+                "value": "$cluster",
+                "operator": "="
+              }
+            ],
+            "groupBy": [
+              {
+                "type": "string",
+                "field": "k8s_daemonset_name"
+              }
+            ],
+            "orderBy": [],
+            "interval": "",
+            "namespace": "",
+            "dimensions": [],
+            "metricType": "",
+            "query_type": "qb",
+            "time_range": {
+              "to": 0,
+              "from": 600
+            },
+            "aggregation": {
+              "stat": "AVG",
+              "type": "",
+              "unit": "{node}",
+              "field": "",
+              "value": "k8s_daemonset_current_scheduled_nodes",
+              "metric": "k8s_daemonset_current_scheduled_nodes",
+              "metricType": "Gauge",
+              "temporality": "Cumulative"
+            },
+            "datasourceId": "kloudmate",
+            "responseType": "number"
+          },
+          {
+            "page": 1,
+            "stat": "",
+            "type": "query",
+            "hidden": false,
+            "metric": "",
+            "nodeId": "C",
+            "region": "",
+            "source": "kloudmate",
+            "dataset": "metrics",
+            "filters": [
+              {
+                "type": "string",
+                "field": "k8s_namespace_name",
+                "value": "$namespace",
+                "operator": "="
+              },
+              {
+                "type": "string",
+                "field": "k8s_cluster_name",
+                "value": "$cluster",
+                "operator": "="
+              }
+            ],
+            "groupBy": [
+              {
+                "type": "string",
+                "field": "k8s_daemonset_name"
+              }
+            ],
+            "orderBy": [],
+            "interval": "",
+            "namespace": "",
+            "dimensions": [],
+            "metricType": "",
+            "time_range": {
+              "to": 0,
+              "from": 600
+            },
+            "aggregation": {
+              "stat": "AVG",
+              "type": "",
+              "unit": "{node}",
+              "field": "",
+              "value": "k8s_daemonset_current_scheduled_nodes",
+              "metric": "k8s_daemonset_current_scheduled_nodes",
+              "metricType": "Gauge",
+              "temporality": "Cumulative"
+            },
+            "datasourceId": "kloudmate",
+            "responseType": "number"
+          },
+          {
+            "page": 1,
+            "stat": "",
+            "type": "query",
+            "hidden": false,
+            "metric": "",
+            "nodeId": "D",
+            "region": "",
+            "source": "kloudmate",
+            "dataset": "metrics",
+            "filters": [
+              {
+                "type": "string",
+                "field": "k8s_namespace_name",
+                "value": "$namespace",
+                "operator": "="
+              },
+              {
+                "type": "string",
+                "field": "k8s_cluster_name",
+                "value": "$cluster",
+                "operator": "="
+              }
+            ],
+            "groupBy": [
+              {
+                "type": "string",
+                "field": "k8s_daemonset_name"
+              }
+            ],
+            "orderBy": [],
+            "interval": "",
+            "namespace": "",
+            "dimensions": [],
+            "metricType": "",
+            "time_range": {
+              "to": 0,
+              "from": 600
+            },
+            "aggregation": {
+              "stat": "AVG",
+              "type": "",
+              "unit": "{node}",
+              "field": "",
+              "value": "k8s_daemonset_misscheduled_nodes",
+              "metric": "k8s_daemonset_misscheduled_nodes",
+              "metricType": "Gauge",
+              "temporality": "Cumulative"
+            },
+            "datasourceId": "kloudmate",
+            "responseType": "number"
+          }
+        ],
+        "time_options": {
+          "override": false,
+          "time_shift": ""
+        }
+      },
+      {
+        "id": "le4ucy8wvh",
+        "tz": "local",
+        "axis": {
+          "x": {
+            "date_style": "auto"
+          },
+          "y": {
+            "format": "number",
+            "suffix": "{pod}",
+            "decimals": 3
+          }
+        },
+        "table": {
+          "columns": [
+            {
+              "key": "A:AVG()",
+              "rename": "Available"
+            },
+            {
+              "key": "k8s_replicaset_name",
+              "rename": "Replicaset"
+            },
+            {
+              "key": "B:AVG()",
+              "rename": "Desired"
+            }
+          ]
+        },
+        "title": "Replicaset",
+        "panelType": "table",
+        "timeRange": "1h",
+        "TimeSeries": {},
+        "statConfig": {
+          "statView": "grid",
+          "baseColor": "#4CBB17",
+          "calculation": "last"
+        },
+        "timeseries": {
+          "legend": {
+            "view": "list",
+            "values": []
+          }
+        },
+        "node_configs": [
+          {
+            "page": 1,
+            "stat": "",
+            "type": "query",
+            "limit": null,
+            "hidden": false,
+            "metric": "",
+            "nodeId": "A",
+            "region": "",
+            "source": "kloudmate",
+            "dataset": "metrics",
+            "filters": [
+              {
+                "type": "string",
+                "field": "k8s_namespace_name",
+                "value": "$namespace",
+                "operator": "="
+              },
+              {
+                "type": "string",
+                "field": "k8s_cluster_name",
+                "value": "$cluster",
+                "operator": "="
+              }
+            ],
+            "groupBy": [
+              {
+                "type": "string",
+                "field": "k8s_replicaset_name"
+              }
+            ],
+            "orderBy": [
+              {
+                "field": "AVG",
+                "order": "desc"
+              }
+            ],
+            "interval": "",
+            "namespace": "",
+            "dimensions": [],
+            "metricType": "",
+            "query_type": "qb",
+            "time_range": {
+              "to": 0,
+              "from": 600
+            },
+            "aggregation": {
+              "stat": "AVG",
+              "type": "",
+              "unit": "{pod}",
+              "field": "",
+              "value": "k8s_replicaset_available",
+              "metric": "k8s_replicaset_available",
+              "metricType": "Gauge",
+              "temporality": "Cumulative"
+            },
+            "datasourceId": "kloudmate",
+            "responseType": "number"
+          },
+          {
+            "page": 1,
+            "stat": "",
+            "type": "query",
+            "hidden": false,
+            "metric": "",
+            "nodeId": "B",
+            "region": "",
+            "source": "kloudmate",
+            "dataset": "metrics",
+            "filters": [
+              {
+                "type": "string",
+                "field": "k8s_namespace_name",
+                "value": "$namespace",
+                "operator": "="
+              },
+              {
+                "type": "string",
+                "field": "k8s_cluster_name",
+                "value": "$cluster",
+                "operator": "="
+              }
+            ],
+            "groupBy": [
+              {
+                "type": "string",
+                "field": "k8s_replicaset_name"
+              }
+            ],
+            "orderBy": [],
+            "interval": "",
+            "namespace": "",
+            "dimensions": [],
+            "metricType": "",
+            "time_range": {
+              "to": 0,
+              "from": 600
+            },
+            "aggregation": {
+              "stat": "AVG",
+              "type": "",
+              "unit": "{pod}",
+              "field": "",
+              "value": "k8s_replicaset_desired",
+              "metric": "k8s_replicaset_desired",
+              "metricType": "Gauge",
+              "temporality": "Cumulative"
+            },
+            "datasourceId": "kloudmate",
+            "responseType": "number"
+          }
+        ],
+        "time_options": {
+          "override": false,
+          "time_shift": ""
+        }
+      },
+      {
+        "id": "2tw3u70o9ng",
+        "tz": "local",
+        "axis": {
+          "x": {
+            "date_style": "auto"
+          },
+          "y": {
+            "format": "number",
+            "suffix": "{pod}",
+            "decimals": 3
+          }
+        },
+        "table": {
+          "columns": [
+            {
+              "key": "A:AVG()",
+              "rename": "Available"
+            },
+            {
+              "key": "k8s_deployment_name",
+              "rename": "Deployment"
+            },
+            {
+              "key": "B:AVG()",
+              "rename": "Desired"
+            }
+          ]
+        },
+        "title": "Deployment",
+        "panelType": "table",
+        "timeRange": "1h",
+        "TimeSeries": {},
+        "statConfig": {
+          "statView": "grid",
+          "baseColor": "#4CBB17",
+          "calculation": "last"
+        },
+        "timeseries": {
+          "legend": {
+            "view": "list",
+            "values": []
+          }
+        },
+        "node_configs": [
+          {
+            "page": 1,
+            "stat": "",
+            "type": "query",
+            "limit": null,
+            "hidden": false,
+            "metric": "",
+            "nodeId": "A",
+            "region": "",
+            "source": "kloudmate",
+            "dataset": "metrics",
+            "filters": [
+              {
+                "type": "string",
+                "field": "k8s_namespace_name",
+                "value": "$namespace",
+                "operator": "="
+              },
+              {
+                "type": "string",
+                "field": "k8s_cluster_name",
+                "value": "$cluster",
+                "operator": "="
+              }
+            ],
+            "groupBy": [
+              {
+                "type": "string",
+                "field": "k8s_deployment_name"
+              }
+            ],
+            "orderBy": [],
+            "interval": "",
+            "namespace": "",
+            "dimensions": [],
+            "metricType": "",
+            "query_type": "qb",
+            "time_range": {
+              "to": 0,
+              "from": 600
+            },
+            "aggregation": {
+              "stat": "AVG",
+              "type": "",
+              "unit": "{pod}",
+              "field": "",
+              "value": "k8s_deployment_available",
+              "metric": "k8s_deployment_available",
+              "metricType": "Gauge",
+              "temporality": "Cumulative"
+            },
+            "datasourceId": "kloudmate",
+            "responseType": "number"
+          },
+          {
+            "page": 1,
+            "stat": "",
+            "type": "query",
+            "hidden": false,
+            "metric": "",
+            "nodeId": "B",
+            "region": "",
+            "source": "kloudmate",
+            "dataset": "metrics",
+            "filters": [
+              {
+                "type": "string",
+                "field": "k8s_namespace_name",
+                "value": "$namespace",
+                "operator": "="
+              },
+              {
+                "type": "string",
+                "field": "k8s_cluster_name",
+                "value": "$cluster",
+                "operator": "="
+              }
+            ],
+            "groupBy": [
+              {
+                "type": "string",
+                "field": "k8s_deployment_name"
+              }
+            ],
+            "orderBy": [],
+            "interval": "",
+            "namespace": "",
+            "dimensions": [],
+            "metricType": "",
+            "time_range": {
+              "to": 0,
+              "from": 600
+            },
+            "aggregation": {
+              "stat": "AVG",
+              "type": "",
+              "unit": "{pod}",
+              "field": "",
+              "value": "k8s_deployment_desired",
+              "metric": "k8s_deployment_desired",
+              "metricType": "Gauge",
+              "temporality": "Cumulative"
+            },
+            "datasourceId": "kloudmate",
+            "responseType": "number"
+          }
+        ],
+        "time_options": {
+          "override": false,
+          "time_shift": ""
+        }
+      },
+      {
+        "id": "0vvhh1j8mcd",
+        "tz": "local",
+        "axis": {
+          "x": {
+            "date_style": "auto"
+          },
+          "y": {
+            "format": "percentage",
+            "decimals": 3
+          }
+        },
+        "table": {
+          "columns": [
+            {
+              "key": "A:AVG()",
+              "format": {
+                "format": "percentage"
+              },
+              "rename": "CPU Req Utilization"
+            },
+            {
+              "key": "k8s_namespace_name",
+              "rename": ""
+            },
+            {
+              "key": "k8s_pod_name",
+              "rename": ""
+            }
+          ]
+        },
+        "title": "Pods by CPU Request Utilization by namespace",
+        "panelType": "table",
+        "timeRange": "1h",
+        "statConfig": {
+          "statView": "grid",
+          "baseColor": "#4CBB17",
+          "calculation": "last"
+        },
+        "timeseries": {
+          "legend": {
+            "view": "list",
+            "values": []
+          }
+        },
+        "node_configs": [
+          {
+            "page": 1,
+            "stat": "",
+            "type": "query",
+            "limit": "10",
+            "hidden": false,
+            "metric": "",
+            "nodeId": "A",
+            "region": "",
+            "source": "kloudmate",
+            "dataset": "metrics",
+            "filters": [
+              {
+                "type": "string",
+                "field": "k8s_namespace_name",
+                "value": "$namespace",
+                "operator": "="
+              },
+              {
+                "type": "string",
+                "field": "k8s_cluster_name",
+                "value": "$cluster",
+                "operator": "="
+              }
+            ],
+            "groupBy": [
+              {
+                "type": "string",
+                "field": "k8s_namespace_name"
+              },
+              {
+                "type": "string",
+                "field": "k8s_pod_name"
+              }
+            ],
+            "orderBy": [
+              {
+                "field": "AVG",
+                "order": "desc"
+              }
+            ],
+            "interval": "",
+            "namespace": "",
+            "dimensions": [],
+            "metricType": "",
+            "time_range": {
+              "to": 0,
+              "from": 600
+            },
+            "aggregation": {
+              "stat": "AVG",
+              "type": "",
+              "unit": "1",
+              "field": "",
+              "value": "k8s_pod_cpu_request_utilization",
+              "metric": "k8s_pod_cpu_request_utilization",
+              "metricType": "Gauge",
+              "temporality": "Cumulative"
+            },
+            "datasourceId": "kloudmate",
+            "responseType": "number"
+          }
+        ],
+        "time_options": {
+          "override": false,
+          "time_shift": ""
+        }
+      },
+      {
+        "id": "allj973aib",
+        "tz": "local",
+        "axis": {
+          "x": {
+            "date_style": "auto"
+          },
+          "y": {
+            "format": "number",
+            "decimals": 3
+          }
+        },
+        "table": {
+          "columns": [
+            {
+              "key": "A:AVG()",
+              "format": {
+                "format": "percentage",
+                "decimals": 1
+              },
+              "rename": "Memory Req Utilization"
+            },
+            {
+              "key": "k8s_pod_name",
+              "rename": "Pods"
+            }
+          ]
+        },
+        "title": "Pods by Memory Request Utilization by namespace",
+        "panelType": "table",
+        "timeRange": "1h",
+        "statConfig": {
+          "statView": "grid",
+          "baseColor": "#4CBB17",
+          "calculation": "last"
+        },
+        "timeseries": {
+          "legend": {
+            "view": "list",
+            "values": []
+          }
+        },
+        "node_configs": [
+          {
+            "page": 1,
+            "stat": "",
+            "type": "query",
+            "limit": "",
+            "hidden": false,
+            "metric": "",
+            "nodeId": "A",
+            "region": "",
+            "source": "kloudmate",
+            "dataset": "metrics",
+            "filters": [
+              {
+                "type": "string",
+                "field": "k8s_namespace_name",
+                "value": "$namespace",
+                "operator": "="
+              },
+              {
+                "type": "string",
+                "field": "k8s_cluster_name",
+                "value": "$cluster",
+                "operator": "="
+              }
+            ],
+            "groupBy": [
+              {
+                "type": "string",
+                "field": "k8s_pod_name"
+              }
+            ],
+            "orderBy": [
+              {
+                "field": "AVG",
+                "order": "desc"
+              }
+            ],
+            "interval": "",
+            "namespace": "",
+            "dimensions": [],
+            "metricType": "",
+            "time_range": {
+              "to": 0,
+              "from": 600
+            },
+            "aggregation": {
+              "stat": "AVG",
+              "type": "",
+              "unit": "1",
+              "field": "",
+              "value": "k8s_pod_memory_request_utilization",
+              "metric": "k8s_pod_memory_request_utilization",
+              "metricType": "Gauge",
+              "temporality": "Cumulative"
+            },
+            "datasourceId": "kloudmate",
+            "responseType": "number"
+          }
+        ],
+        "time_options": {
+          "override": false,
+          "time_shift": ""
+        }
+      },
+      {
+        "id": "4t9cvxut4ml",
+        "tz": "local",
+        "axis": {
+          "x": {
+            "date_style": "auto"
+          },
+          "y": {
+            "format": "bytes",
+            "decimals": 3
+          }
+        },
+        "table": {
+          "columns": [
+            {
+              "key": "A:AVG()",
+              "format": {
+                "format": "bytes",
+                "decimals": 1
+              },
+              "rename": "Used"
+            },
+            {
+              "key": "k8s_namespace_name",
+              "rename": "Namespace"
+            },
+            {
+              "key": "k8s_pod_name",
+              "rename": "Pod name"
+            }
+          ]
+        },
+        "title": "Pod Memory Usage by Namespace",
+        "panelType": "table",
+        "timeRange": "1h",
+        "statConfig": {
+          "statView": "grid",
+          "baseColor": "#4CBB17",
+          "calculation": "last"
+        },
+        "timeseries": {
+          "legend": {
+            "view": "list",
+            "values": []
+          }
+        },
+        "node_configs": [
+          {
+            "page": 1,
+            "stat": "",
+            "type": "query",
+            "limit": null,
+            "hidden": false,
+            "metric": "",
+            "nodeId": "A",
+            "region": "",
+            "source": "kloudmate",
+            "dataset": "metrics",
+            "filters": [
+              {
+                "type": "string",
+                "field": "k8s_namespace_name",
+                "value": "$Namespace",
+                "operator": "="
+              }
+            ],
+            "groupBy": [
+              {
+                "type": "string",
+                "field": "k8s_namespace_name"
+              },
+              {
+                "type": "string",
+                "field": "k8s_pod_name"
+              }
+            ],
+            "orderBy": [
+              {
+                "order": "desc"
+              }
+            ],
+            "interval": "",
+            "namespace": "",
+            "dimensions": [],
+            "metricType": "",
+            "time_range": {
+              "to": 0,
+              "from": 600
+            },
+            "aggregation": {
+              "stat": "AVG",
+              "type": "",
+              "unit": "By",
+              "field": "",
+              "value": "k8s_pod_memory_usage",
+              "metric": "k8s_pod_memory_usage",
+              "metricType": "Gauge",
+              "temporality": "Cumulative"
+            },
+            "datasourceId": "kloudmate",
+            "responseType": "number"
+          }
+        ],
+        "time_options": {
+          "override": false,
+          "time_shift": ""
+        }
+      },
+      {
+        "id": "09s7aoqkhgm7",
+        "tz": "local",
+        "axis": {
+          "x": {
+            "date_style": "auto"
+          },
+          "y": {
+            "format": "duration",
+            "decimals": 3,
+            "multiplyBy": 1000
+          }
+        },
+        "table": {
+          "columns": [
+            {
+              "key": "A:RATE()",
+              "format": {
+                "format": "percentage",
+                "decimals": 2
+              },
+              "rename": "Usage"
+            },
+            {
+              "key": "k8s_namespace_name",
+              "rename": "Namespace"
+            },
+            {
+              "key": "k8s_pod_name",
+              "rename": "Pod name"
+            }
+          ]
+        },
+        "title": "Pod CPU Usage by Namespace",
+        "panelType": "table",
+        "timeRange": "1h",
+        "statConfig": {
+          "statView": "grid",
+          "baseColor": "#4CBB17",
+          "calculation": "last"
+        },
+        "timeseries": {
+          "legend": {
+            "view": "list",
+            "values": []
+          }
+        },
+        "node_configs": [
+          {
+            "page": 1,
+            "stat": "",
+            "type": "query",
+            "hidden": false,
+            "metric": "",
+            "nodeId": "A",
+            "region": "",
+            "source": "kloudmate",
+            "dataset": "metrics",
+            "filters": [
+              {
+                "type": "string",
+                "field": "k8s_namespace_name",
+                "value": "$Namespace",
+                "operator": "="
+              }
+            ],
+            "groupBy": [
+              {
+                "type": "string",
+                "field": "k8s_namespace_name"
+              },
+              {
+                "type": "string",
+                "field": "k8s_pod_name"
+              }
+            ],
+            "orderBy": [
+              {
+                "field": "RATE",
+                "order": "desc"
+              }
+            ],
+            "interval": "",
+            "namespace": "",
+            "dimensions": [],
+            "metricType": "",
+            "time_range": {
+              "to": 0,
+              "from": 600
+            },
+            "aggregation": {
+              "stat": "RATE",
+              "type": "",
+              "unit": "s",
+              "field": "",
+              "range": "5m",
+              "value": "k8s_pod_cpu_time",
+              "metric": "k8s_pod_cpu_time",
+              "metricType": "Sum",
+              "temporality": "Cumulative"
+            },
+            "datasourceId": "kloudmate",
+            "responseType": "number"
+          }
+        ],
+        "time_options": {
+          "override": false,
+          "time_shift": ""
+        }
+      }
+    ],
+    "timeRange": "1h",
+    "variables": [
+      {
+        "name": "namespace",
+        "type": "query",
+        "label": "Namespace",
+        "config": {
+          "otel": {
+            "key": {
+              "type": "string",
+              "field": "k8s_namespace_name"
+            },
+            "dataset": "metrics"
+          },
+          "source": "cloudwatch",
+          "queryType": "otel.values"
+        },
+        "is_multi": false,
+        "description": "",
+        "show_all_option": false
+      },
+      {
+        "name": "cluster",
+        "type": "query",
+        "label": "Cluster",
+        "config": {
+          "otel": {
+            "key": {
+              "type": "string",
+              "field": "cluster"
+            },
+            "dataset": "metrics"
+          },
+          "source": "cloudwatch",
+          "queryType": "otel.values"
+        },
+        "is_multi": false,
+        "description": "",
+        "show_all_option": false
+      }
+    ],
+    "panel_layouts": [
+      {
+        "h": 8,
+        "i": "l4lplsny7n",
+        "w": 8,
+        "x": 8,
+        "y": 0,
+        "minH": 1,
+        "minW": 1,
+        "moved": false,
+        "static": false
+      },
+      {
+        "h": 8,
+        "i": "rgwuox0l1c",
+        "w": 8,
+        "x": 16,
+        "y": 0,
+        "minH": 1,
+        "minW": 1,
+        "moved": false,
+        "static": false
+      },
+      {
+        "h": 8,
+        "i": "202aluq7qem",
+        "w": 8,
+        "x": 0,
+        "y": 8,
+        "minH": 1,
+        "minW": 1,
+        "moved": false,
+        "static": false
+      },
+      {
+        "h": 8,
+        "i": "2tyvefx9wj8",
+        "w": 8,
+        "x": 0,
+        "y": 0,
+        "minH": 1,
+        "minW": 1,
+        "moved": false,
+        "static": false
+      },
+      {
+        "h": 8,
+        "i": "euvlglt7jnw",
+        "w": 8,
+        "x": 8,
+        "y": 8,
+        "minH": 1,
+        "minW": 1,
+        "moved": false,
+        "static": false
+      },
+      {
+        "h": 8,
+        "i": "80o3tevrmhn",
+        "w": 8,
+        "x": 16,
+        "y": 8,
+        "minH": 1,
+        "minW": 1,
+        "moved": false,
+        "static": false
+      },
+      {
+        "h": 8,
+        "i": "2gqmyayotml",
+        "w": 12,
+        "x": 0,
+        "y": 16,
+        "minH": 1,
+        "minW": 1,
+        "moved": false,
+        "static": false
+      },
+      {
+        "h": 8,
+        "i": "0cjxj3gghu05",
+        "w": 12,
+        "x": 12,
+        "y": 16,
+        "minH": 1,
+        "minW": 1,
+        "moved": false,
+        "static": false
+      },
+      {
+        "h": 9,
+        "i": "le4ucy8wvh",
+        "w": 12,
+        "x": 0,
+        "y": 24,
+        "minH": 1,
+        "minW": 1,
+        "moved": false,
+        "static": false
+      },
+      {
+        "h": 9,
+        "i": "2tw3u70o9ng",
+        "w": 12,
+        "x": 12,
+        "y": 24,
+        "minH": 1,
+        "minW": 1,
+        "moved": false,
+        "static": false
+      },
+      {
+        "h": 10,
+        "i": "0vvhh1j8mcd",
+        "w": 12,
+        "x": 0,
+        "y": 43,
+        "minH": 1,
+        "minW": 1,
+        "moved": false,
+        "static": false
+      },
+      {
+        "h": 10,
+        "i": "allj973aib",
+        "w": 12,
+        "x": 12,
+        "y": 43,
+        "minH": 1,
+        "minW": 1,
+        "moved": false,
+        "static": false
+      },
+      {
+        "h": 10,
+        "i": "4t9cvxut4ml",
+        "w": 12,
+        "x": 12,
+        "y": 33,
+        "minH": 1,
+        "minW": 1,
+        "moved": false,
+        "static": false
+      },
+      {
+        "h": 10,
+        "i": "09s7aoqkhgm7",
+        "w": 12,
+        "x": 0,
+        "y": 33,
+        "minH": 1,
+        "minW": 1,
+        "moved": false,
+        "static": false
+      }
+    ],
+    "default_region": "us-east-1"
+  },
+  "tags": []
+}</code></pre>
+              <button class="absolute top-2 right-2 bg-gray-700 hover:bg-gray-600 text-white font-bold py-1 px-3 rounded-md" onclick="copyToClipboard()">Copy</button>
+          </div>
+          <button id="expand-btn" class="mt-4 bg-gray-700 hover:bg-gray-600 text-white font-bold py-2 px-4 rounded-md">Show More</button>
+        </div>
+      </main>
+      
+  <footer class="bg-gray-800 text-gray-400 mt-16">
+    <div class="container mx-auto px-4 py-8 flex flex-col md:flex-row justify-between items-center">
+      <div class="mb-4 md:mb-0">
+        <a href="https://kloudmate.com/" target="_blank" rel="noopener noreferrer">
+          <img src="https://app.kloudmate.com/assets/images/logo_full_white.svg" alt="KloudMate Logo" class="h-8">
+        </a>
+      </div>
+      <div class="flex space-x-6">
+        <a href="https://app.kloudmate.com/login" target="_blank" rel="noopener noreferrer" class="hover:text-white">Login</a>
+        <a href="https://github.com/kloudmate/dashboard-templates" target="_blank" rel="noopener noreferrer" class="hover:text-white">GitHub</a>
+      </div>
+    </div>
+  </footer>
+      <div id="how-to-use-modal" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center hidden">
+        <div class="bg-gray-800 text-white rounded-lg shadow-lg p-8 max-w-lg w-full">
+            <h2 class="text-2xl font-bold mb-4">How to Use This Template</h2>
+            <ol class="list-decimal list-inside space-y-2">
+                <li>Copy the JSON from the template viewer.</li>
+                <li>Go to the "Dashboards" page in your KloudMate account.</li>
+                <li>Click the "Import" button.</li>
+                <li>Paste the JSON into the text area.</li>
+                <li>Click "Submit" to create the new dashboard.</li>
+            </ol>
+            <button id="close-modal-btn" class="mt-6 bg-gray-700 hover:bg-gray-600 text-white font-bold py-2 px-4 rounded-md">Close</button>
+        </div>
+      </div>
+      <script>
+        // Page-specific script...
+        hljs.highlightAll();
+        function copyToClipboard() {
+          navigator.clipboard.writeText("{\n  \"name\": \"Kubernetes Namespace\",\n  \"description\": \"\",\n  \"data\": {\n    \"tz\": \"local\",\n    \"panels\": [\n      {\n        \"id\": \"l4lplsny7n\",\n        \"tz\": \"local\",\n        \"axis\": {\n          \"x\": {\n            \"date_style\": \"auto\"\n          },\n          \"y\": {\n            \"format\": \"number\",\n            \"suffix\": \"{cpu}\",\n            \"decimals\": 4\n          }\n        },\n        \"table\": {},\n        \"title\": \"CPU Usage\",\n        \"tooltip\": {\n          \"mode\": \"all\"\n        },\n        \"panelType\": \"TimeSeries\",\n        \"timeRange\": \"1h\",\n        \"TimeSeries\": {},\n        \"statConfig\": {\n          \"statView\": \"grid\",\n          \"baseColor\": \"#4CBB17\",\n          \"calculation\": \"last\"\n        },\n        \"timeseries\": {\n          \"legend\": {\n            \"view\": \"list\",\n            \"values\": []\n          }\n        },\n        \"node_configs\": [\n          {\n            \"exp\": \"avg by (k8s_namespace_name) (avg by (k8s_namespace_name, k8s_pod_name) (k8s_pod_cpu_usage{k8s_namespace_name=\\\"$namespace\\\", cluster=\\\"$cluster\\\"}))\",\n            \"page\": 1,\n            \"stat\": \"\",\n            \"type\": \"query\",\n            \"limit\": null,\n            \"hidden\": false,\n            \"metric\": \"\",\n            \"nodeId\": \"B\",\n            \"region\": \"\",\n            \"source\": \"kloudmate\",\n            \"dataset\": \"metrics\",\n            \"filters\": [],\n            \"groupBy\": [],\n            \"orderBy\": [],\n            \"interval\": \"\",\n            \"namespace\": \"\",\n            \"dimensions\": [],\n            \"metricType\": \"\",\n            \"query_type\": \"promql\",\n            \"time_range\": {\n              \"to\": 0,\n              \"from\": 600\n            },\n            \"aggregation\": {\n              \"stat\": \"AVG\",\n              \"type\": \"\",\n              \"field\": \"\"\n            },\n            \"datasourceId\": \"kloudmate\",\n            \"legendFormat\": \"avg\",\n            \"responseType\": \"series\"\n          },\n          {\n            \"exp\": \"max by (k8s_namespace_name) (avg by (k8s_namespace_name, k8s_pod_name) (k8s_pod_cpu_usage{k8s_namespace_name=\\\"$namespace\\\", cluster=\\\"$cluster\\\"}))\",\n            \"page\": 1,\n            \"stat\": \"\",\n            \"type\": \"query\",\n            \"limit\": null,\n            \"hidden\": false,\n            \"metric\": \"\",\n            \"nodeId\": \"C\",\n            \"region\": \"\",\n            \"source\": \"kloudmate\",\n            \"dataset\": \"metrics\",\n            \"filters\": [],\n            \"groupBy\": [],\n            \"orderBy\": [],\n            \"interval\": \"\",\n            \"namespace\": \"\",\n            \"dimensions\": [],\n            \"metricType\": \"\",\n            \"query_type\": \"promql\",\n            \"time_range\": {\n              \"to\": 0,\n              \"from\": 600\n            },\n            \"aggregation\": {\n              \"stat\": \"AVG\",\n              \"type\": \"\",\n              \"field\": \"\"\n            },\n            \"datasourceId\": \"kloudmate\",\n            \"legendFormat\": \"max\",\n            \"responseType\": \"series\"\n          },\n          {\n            \"exp\": \"min by (k8s_namespace_name) (avg by (k8s_namespace_name, k8s_pod_name) (k8s_pod_cpu_usage{k8s_namespace_name=\\\"$namespace\\\", cluster=\\\"$cluster\\\"}))\",\n            \"page\": 1,\n            \"stat\": \"\",\n            \"type\": \"query\",\n            \"limit\": null,\n            \"hidden\": false,\n            \"metric\": \"\",\n            \"nodeId\": \"D\",\n            \"region\": \"\",\n            \"source\": \"kloudmate\",\n            \"dataset\": \"metrics\",\n            \"filters\": [],\n            \"groupBy\": [],\n            \"orderBy\": [],\n            \"interval\": \"\",\n            \"namespace\": \"\",\n            \"dimensions\": [],\n            \"metricType\": \"\",\n            \"query_type\": \"promql\",\n            \"time_range\": {\n              \"to\": 0,\n              \"from\": 600\n            },\n            \"aggregation\": {\n              \"stat\": \"AVG\",\n              \"type\": \"\",\n              \"field\": \"\"\n            },\n            \"datasourceId\": \"kloudmate\",\n            \"legendFormat\": \"min\",\n            \"responseType\": \"series\"\n          }\n        ],\n        \"time_options\": {\n          \"override\": false,\n          \"time_shift\": \"\"\n        }\n      },\n      {\n        \"id\": \"rgwuox0l1c\",\n        \"tz\": \"local\",\n        \"axis\": {\n          \"x\": {\n            \"date_style\": \"auto\"\n          }\n        },\n        \"STATS\": {},\n        \"table\": {},\n        \"title\": \"CPU Request & Limit\",\n        \"tooltip\": {\n          \"mode\": \"all\"\n        },\n        \"panelType\": \"TimeSeries\",\n        \"timeRange\": \"1h\",\n        \"TimeSeries\": {},\n        \"statConfig\": {\n          \"statView\": \"grid\",\n          \"baseColor\": \"#4CBB17\",\n          \"calculation\": \"last\"\n        },\n        \"timeseries\": {\n          \"legend\": {\n            \"view\": \"list\",\n            \"values\": []\n          }\n        },\n        \"node_configs\": [\n          {\n            \"exp\": \"sum by (k8s_namespace_name) (avg by (k8s_container_name, k8s_namespace_name, k8s_pod_name) (k8s_container_cpu_limit{k8s_namespace_name=\\\"$namespace\\\", k8s_cluster_name=\\\"$cluster\\\"}))\",\n            \"page\": 1,\n            \"stat\": \"\",\n            \"type\": \"query\",\n            \"limit\": null,\n            \"hidden\": false,\n            \"metric\": \"\",\n            \"nodeId\": \"A\",\n            \"region\": \"\",\n            \"source\": \"kloudmate\",\n            \"dataset\": \"metrics\",\n            \"filters\": [],\n            \"groupBy\": [],\n            \"orderBy\": [],\n            \"interval\": \"\",\n            \"namespace\": \"\",\n            \"dimensions\": [],\n            \"metricType\": \"\",\n            \"query_type\": \"promql\",\n            \"time_range\": {\n              \"to\": 0,\n              \"from\": 600\n            },\n            \"aggregation\": {\n              \"stat\": \"AVG\",\n              \"type\": \"\",\n              \"field\": \"\"\n            },\n            \"datasourceId\": \"kloudmate\",\n            \"legendFormat\": \"limit\",\n            \"responseType\": \"series\"\n          },\n          {\n            \"exp\": \"sum by (k8s_namespace_name) (avg by (k8s_container_name, k8s_namespace_name, k8s_pod_name) (k8s_container_cpu_request{k8s_namespace_name=\\\"$namespace\\\", k8s_cluster_name=\\\"$cluster\\\"}))\",\n            \"page\": 1,\n            \"stat\": \"\",\n            \"type\": \"query\",\n            \"limit\": null,\n            \"hidden\": false,\n            \"metric\": \"\",\n            \"nodeId\": \"B\",\n            \"region\": \"\",\n            \"source\": \"kloudmate\",\n            \"dataset\": \"metrics\",\n            \"filters\": [],\n            \"groupBy\": [],\n            \"orderBy\": [],\n            \"interval\": \"\",\n            \"namespace\": \"\",\n            \"dimensions\": [],\n            \"metricType\": \"\",\n            \"query_type\": \"promql\",\n            \"time_range\": {\n              \"to\": 0,\n              \"from\": 600\n            },\n            \"aggregation\": {\n              \"stat\": \"AVG\",\n              \"type\": \"\",\n              \"field\": \"\"\n            },\n            \"datasourceId\": \"kloudmate\",\n            \"legendFormat\": \"request\",\n            \"responseType\": \"series\"\n          }\n        ],\n        \"time_options\": {\n          \"override\": false,\n          \"time_shift\": \"\"\n        }\n      },\n      {\n        \"id\": \"202aluq7qem\",\n        \"tz\": \"local\",\n        \"axis\": {\n          \"x\": {\n            \"date_style\": \"auto\"\n          },\n          \"y\": {\n            \"format\": \"bytes\"\n          }\n        },\n        \"title\": \"Memory Limit & Request\",\n        \"tooltip\": {\n          \"mode\": \"all\"\n        },\n        \"panelType\": \"TimeSeries\",\n        \"timeRange\": \"1h\",\n        \"statConfig\": {\n          \"statView\": \"grid\",\n          \"baseColor\": \"#4CBB17\",\n          \"calculation\": \"last\"\n        },\n        \"timeseries\": {\n          \"legend\": {\n            \"view\": \"list\",\n            \"values\": []\n          }\n        },\n        \"node_configs\": [\n          {\n            \"exp\": \"sum by (k8s_namespace_name) (avg by (k8s_container_name, k8s_namespace_name, k8s_pod_name) (k8s_container_memory_limit{k8s_namespace_name=\\\"$namespace\\\", k8s_cluster_name=\\\"$cluster\\\"}))\",\n            \"page\": 1,\n            \"stat\": \"\",\n            \"type\": \"query\",\n            \"limit\": null,\n            \"hidden\": false,\n            \"metric\": \"\",\n            \"nodeId\": \"A\",\n            \"region\": \"\",\n            \"source\": \"kloudmate\",\n            \"dataset\": \"metrics\",\n            \"filters\": [],\n            \"groupBy\": [],\n            \"orderBy\": [],\n            \"interval\": \"\",\n            \"namespace\": \"\",\n            \"dimensions\": [],\n            \"metricType\": \"\",\n            \"query_type\": \"promql\",\n            \"time_range\": {\n              \"to\": 0,\n              \"from\": 600\n            },\n            \"aggregation\": {\n              \"stat\": \"AVG\",\n              \"type\": \"\",\n              \"field\": \"\"\n            },\n            \"datasourceId\": \"kloudmate\",\n            \"legendFormat\": \"limit\",\n            \"responseType\": \"series\"\n          },\n          {\n            \"exp\": \"sum by (k8s_namespace_name) (avg by (k8s_container_name, k8s_namespace_name, k8s_pod_name) (k8s_container_memory_request{k8s_namespace_name=\\\"$namespace\\\", k8s_cluster_name=\\\"$cluster\\\"}))\",\n            \"page\": 1,\n            \"stat\": \"\",\n            \"type\": \"query\",\n            \"limit\": null,\n            \"hidden\": false,\n            \"metric\": \"\",\n            \"nodeId\": \"B\",\n            \"region\": \"\",\n            \"source\": \"kloudmate\",\n            \"dataset\": \"metrics\",\n            \"filters\": [],\n            \"groupBy\": [],\n            \"orderBy\": [],\n            \"interval\": \"\",\n            \"namespace\": \"\",\n            \"dimensions\": [],\n            \"metricType\": \"\",\n            \"query_type\": \"promql\",\n            \"time_range\": {\n              \"to\": 0,\n              \"from\": 600\n            },\n            \"aggregation\": {\n              \"stat\": \"AVG\",\n              \"type\": \"\",\n              \"field\": \"\"\n            },\n            \"datasourceId\": \"kloudmate\",\n            \"legendFormat\": \"request\",\n            \"responseType\": \"series\"\n          }\n        ],\n        \"time_options\": {\n          \"override\": false,\n          \"time_shift\": \"\"\n        }\n      },\n      {\n        \"id\": \"2tyvefx9wj8\",\n        \"tz\": \"local\",\n        \"axis\": {\n          \"x\": {\n            \"date_style\": \"auto\"\n          },\n          \"y\": {\n            \"format\": \"unformatted\",\n            \"decimals\": 3\n          }\n        },\n        \"STATS\": {},\n        \"title\": \"Number of Pods\",\n        \"panelType\": \"STATS\",\n        \"timeRange\": \"1h\",\n        \"statConfig\": {\n          \"statView\": \"grid\",\n          \"baseColor\": \"#4CBB17\",\n          \"calculation\": \"last\"\n        },\n        \"timeseries\": {\n          \"legend\": {\n            \"view\": \"list\",\n            \"values\": []\n          }\n        },\n        \"node_configs\": [\n          {\n            \"page\": 1,\n            \"stat\": \"\",\n            \"type\": \"query\",\n            \"hidden\": true,\n            \"metric\": \"\",\n            \"nodeId\": \"A\",\n            \"region\": \"\",\n            \"source\": \"kloudmate\",\n            \"dataset\": \"metrics\",\n            \"filters\": [\n              {\n                \"type\": \"string\",\n                \"field\": \"k8s_namespace_name\",\n                \"value\": \"$namespace\",\n                \"operator\": \"=\"\n              },\n              {\n                \"type\": \"string\",\n                \"field\": \"k8s_cluster_name\",\n                \"value\": \"$cluster\",\n                \"operator\": \"=\"\n              }\n            ],\n            \"groupBy\": [],\n            \"orderBy\": [],\n            \"interval\": \"\",\n            \"namespace\": \"\",\n            \"dimensions\": [],\n            \"metricType\": \"\",\n            \"time_range\": {\n              \"to\": 0,\n              \"from\": 600\n            },\n            \"aggregation\": {\n              \"stat\": \"COUNT\",\n              \"type\": \"\",\n              \"unit\": \"\",\n              \"field\": \"\",\n              \"value\": \"k8s_pod_phase\",\n              \"metric\": \"k8s_pod_phase\",\n              \"metricType\": \"Gauge\",\n              \"temporality\": \"Cumulative\"\n            },\n            \"datasourceId\": \"kloudmate\",\n            \"responseType\": \"series\"\n          },\n          {\n            \"type\": \"expression\",\n            \"hidden\": false,\n            \"nodeId\": \"B\",\n            \"expression\": \"$A / 2\",\n            \"responseType\": \"series\",\n            \"expressionType\": \"math\"\n          }\n        ],\n        \"time_options\": {\n          \"override\": false,\n          \"time_shift\": \"\"\n        }\n      },\n      {\n        \"id\": \"euvlglt7jnw\",\n        \"tz\": \"local\",\n        \"axis\": {\n          \"x\": {\n            \"date_style\": \"auto\"\n          },\n          \"y\": {\n            \"format\": \"number\",\n            \"decimals\": 3\n          }\n        },\n        \"title\": \"Network Error\",\n        \"tooltip\": {\n          \"mode\": \"all\"\n        },\n        \"panelType\": \"TimeSeries\",\n        \"timeRange\": \"1h\",\n        \"statConfig\": {\n          \"statView\": \"grid\",\n          \"baseColor\": \"#4CBB17\",\n          \"calculation\": \"last\"\n        },\n        \"timeseries\": {\n          \"legend\": {\n            \"view\": \"list\",\n            \"values\": []\n          }\n        },\n        \"node_configs\": [\n          {\n            \"exp\": \"sum by (k8s_namespace_name, direction) (avg by (k8s_namespace_name, k8s_pod_name, direction) (k8s_pod_network_errors{k8s_namespace_name=\\\"$namespace\\\", cluster=\\\"$cluster\\\"}))\",\n            \"page\": 1,\n            \"stat\": \"\",\n            \"type\": \"query\",\n            \"limit\": null,\n            \"hidden\": false,\n            \"metric\": \"\",\n            \"nodeId\": \"A\",\n            \"region\": \"\",\n            \"source\": \"kloudmate\",\n            \"dataset\": \"metrics\",\n            \"filters\": [\n              {\n                \"type\": \"string\",\n                \"field\": \"k8s_namespace_name\",\n                \"value\": \"default\",\n                \"operator\": \"=\"\n              }\n            ],\n            \"groupBy\": [\n              {\n                \"type\": \"string\",\n                \"field\": \"k8s_namespace_name\"\n              },\n              {\n                \"type\": \"string\",\n                \"field\": \"k8s_pod_name\"\n              }\n            ],\n            \"orderBy\": [],\n            \"interval\": \"\",\n            \"namespace\": \"\",\n            \"dimensions\": [],\n            \"metricType\": \"\",\n            \"query_type\": \"promql\",\n            \"time_range\": {\n              \"to\": 0,\n              \"from\": 600\n            },\n            \"aggregation\": {\n              \"stat\": \"AVG\",\n              \"type\": \"\",\n              \"unit\": \"1\",\n              \"field\": \"\",\n              \"value\": \"k8s_pod_network_errors\",\n              \"metric\": \"k8s_pod_network_errors\",\n              \"metricType\": \"Sum\",\n              \"temporality\": \"Cumulative\"\n            },\n            \"datasourceId\": \"kloudmate\",\n            \"legendFormat\": \"{{direction}}\",\n            \"responseType\": \"series\"\n          }\n        ],\n        \"time_options\": {\n          \"override\": false,\n          \"time_shift\": \"\"\n        }\n      },\n      {\n        \"id\": \"80o3tevrmhn\",\n        \"tz\": \"local\",\n        \"axis\": {\n          \"x\": {\n            \"date_style\": \"auto\"\n          },\n          \"y\": {\n            \"format\": \"bytes\",\n            \"suffix\": \"/s\",\n            \"decimals\": 3\n          }\n        },\n        \"STATS\": {},\n        \"table\": {},\n        \"title\": \"Network IO Rate\",\n        \"tooltip\": {\n          \"mode\": \"all\"\n        },\n        \"panelType\": \"TimeSeries\",\n        \"timeRange\": \"1h\",\n        \"TimeSeries\": {},\n        \"statConfig\": {\n          \"statView\": \"grid\",\n          \"baseColor\": \"#4CBB17\",\n          \"calculation\": \"last\"\n        },\n        \"timeseries\": {\n          \"legend\": {\n            \"view\": \"list\",\n            \"values\": []\n          }\n        },\n        \"node_configs\": [\n          {\n            \"exp\": \"sum by (k8s_namespace_name, direction) (avg by (k8s_namespace_name, k8s_pod_name, direction) (k8s_pod_network_io{k8s_namespace_name=\\\"$namespace\\\", cluster=\\\"$cluster\\\"}))\",\n            \"page\": 1,\n            \"stat\": \"\",\n            \"type\": \"query\",\n            \"limit\": null,\n            \"hidden\": false,\n            \"metric\": \"\",\n            \"nodeId\": \"A\",\n            \"region\": \"\",\n            \"source\": \"kloudmate\",\n            \"dataset\": \"metrics\",\n            \"filters\": [],\n            \"groupBy\": [],\n            \"orderBy\": [],\n            \"interval\": \"\",\n            \"namespace\": \"\",\n            \"dimensions\": [],\n            \"metricType\": \"\",\n            \"query_type\": \"promql\",\n            \"time_range\": {\n              \"to\": 0,\n              \"from\": 600\n            },\n            \"aggregation\": {\n              \"stat\": \"AVG\",\n              \"type\": \"\",\n              \"unit\": \"By\",\n              \"field\": \"\",\n              \"value\": \"k8s_pod_network_io\",\n              \"metric\": \"k8s_pod_network_io\",\n              \"metricType\": \"Sum\",\n              \"temporality\": \"Cumulative\"\n            },\n            \"datasourceId\": \"kloudmate\",\n            \"legendFormat\": \"{{direction}}\",\n            \"responseType\": \"series\"\n          }\n        ],\n        \"time_options\": {\n          \"override\": false,\n          \"time_shift\": \"\"\n        }\n      },\n      {\n        \"id\": \"2gqmyayotml\",\n        \"tz\": \"local\",\n        \"axis\": {\n          \"x\": {\n            \"date_style\": \"auto\"\n          },\n          \"y\": {\n            \"format\": \"number\",\n            \"suffix\": \"{pod}\",\n            \"decimals\": 3\n          }\n        },\n        \"STATS\": {},\n        \"table\": {\n          \"columns\": [\n            {\n              \"key\": \"A:AVG()\",\n              \"rename\": \"Ready\"\n            },\n            {\n              \"key\": \"k8s_statefulset_name\",\n              \"rename\": \"\"\n            },\n            {\n              \"key\": \"B:AVG()\",\n              \"rename\": \"Current\"\n            },\n            {\n              \"key\": \"C:AVG()\",\n              \"rename\": \"Desired\"\n            },\n            {\n              \"key\": \"D:AVG()\",\n              \"format\": {\n                \"format\": \"number\",\n                \"suffix\": \"\",\n                \"decimals\": 3\n              },\n              \"rename\": \"Updated\"\n            }\n          ]\n        },\n        \"title\": \"Statefulsets\",\n        \"panelType\": \"table\",\n        \"timeRange\": \"1h\",\n        \"TimeSeries\": {},\n        \"statConfig\": {\n          \"statView\": \"grid\",\n          \"baseColor\": \"#4CBB17\",\n          \"calculation\": \"last\"\n        },\n        \"timeseries\": {\n          \"legend\": {\n            \"view\": \"list\",\n            \"values\": []\n          }\n        },\n        \"node_configs\": [\n          {\n            \"exp\": \"\",\n            \"page\": 1,\n            \"stat\": \"\",\n            \"type\": \"query\",\n            \"limit\": null,\n            \"hidden\": false,\n            \"metric\": \"\",\n            \"nodeId\": \"A\",\n            \"region\": \"\",\n            \"source\": \"kloudmate\",\n            \"dataset\": \"metrics\",\n            \"filters\": [\n              {\n                \"type\": \"string\",\n                \"field\": \"k8s_namespace_name\",\n                \"value\": \"$namespace\",\n                \"operator\": \"=\"\n              }\n            ],\n            \"groupBy\": [\n              {\n                \"type\": \"string\",\n                \"field\": \"k8s_statefulset_name\"\n              }\n            ],\n            \"orderBy\": [],\n            \"interval\": \"\",\n            \"namespace\": \"\",\n            \"dimensions\": [],\n            \"metricType\": \"\",\n            \"query_type\": \"qb\",\n            \"time_range\": {\n              \"to\": 0,\n              \"from\": 600\n            },\n            \"aggregation\": {\n              \"stat\": \"AVG\",\n              \"type\": \"\",\n              \"unit\": \"{pod}\",\n              \"field\": \"\",\n              \"value\": \"k8s_statefulset_ready_pods\",\n              \"metric\": \"k8s_statefulset_ready_pods\",\n              \"metricType\": \"Gauge\",\n              \"temporality\": \"Cumulative\"\n            },\n            \"datasourceId\": \"kloudmate\",\n            \"responseType\": \"number\"\n          },\n          {\n            \"page\": 1,\n            \"stat\": \"\",\n            \"type\": \"query\",\n            \"limit\": null,\n            \"hidden\": false,\n            \"metric\": \"\",\n            \"nodeId\": \"B\",\n            \"region\": \"\",\n            \"source\": \"kloudmate\",\n            \"dataset\": \"metrics\",\n            \"filters\": [\n              {\n                \"type\": \"string\",\n                \"field\": \"k8s_namespace_name\",\n                \"value\": \"$namespace\",\n                \"operator\": \"=\"\n              }\n            ],\n            \"groupBy\": [\n              {\n                \"type\": \"string\",\n                \"field\": \"k8s_statefulset_name\"\n              }\n            ],\n            \"orderBy\": [],\n            \"interval\": \"\",\n            \"namespace\": \"\",\n            \"dimensions\": [],\n            \"metricType\": \"\",\n            \"query_type\": \"qb\",\n            \"time_range\": {\n              \"to\": 0,\n              \"from\": 600\n            },\n            \"aggregation\": {\n              \"stat\": \"AVG\",\n              \"type\": \"\",\n              \"unit\": \"{pod}\",\n              \"field\": \"\",\n              \"value\": \"k8s_statefulset_current_pods\",\n              \"metric\": \"k8s_statefulset_current_pods\",\n              \"metricType\": \"Gauge\",\n              \"temporality\": \"Cumulative\"\n            },\n            \"datasourceId\": \"kloudmate\",\n            \"responseType\": \"number\"\n          },\n          {\n            \"page\": 1,\n            \"stat\": \"\",\n            \"type\": \"query\",\n            \"limit\": null,\n            \"hidden\": false,\n            \"metric\": \"\",\n            \"nodeId\": \"C\",\n            \"region\": \"\",\n            \"source\": \"kloudmate\",\n            \"dataset\": \"metrics\",\n            \"filters\": [\n              {\n                \"type\": \"string\",\n                \"field\": \"k8s_namespace_name\",\n                \"value\": \"$namespace\",\n                \"operator\": \"=\"\n              }\n            ],\n            \"groupBy\": [\n              {\n                \"type\": \"string\",\n                \"field\": \"k8s_statefulset_name\"\n              }\n            ],\n            \"orderBy\": [],\n            \"interval\": \"\",\n            \"namespace\": \"\",\n            \"dimensions\": [],\n            \"metricType\": \"\",\n            \"query_type\": \"qb\",\n            \"time_range\": {\n              \"to\": 0,\n              \"from\": 600\n            },\n            \"aggregation\": {\n              \"stat\": \"AVG\",\n              \"type\": \"\",\n              \"unit\": \"{pod}\",\n              \"field\": \"\",\n              \"value\": \"k8s_statefulset_desired_pods\",\n              \"metric\": \"k8s_statefulset_desired_pods\",\n              \"metricType\": \"Gauge\",\n              \"temporality\": \"Cumulative\"\n            },\n            \"datasourceId\": \"kloudmate\",\n            \"responseType\": \"number\"\n          },\n          {\n            \"page\": 1,\n            \"stat\": \"\",\n            \"type\": \"query\",\n            \"hidden\": false,\n            \"metric\": \"\",\n            \"nodeId\": \"D\",\n            \"region\": \"\",\n            \"source\": \"kloudmate\",\n            \"dataset\": \"metrics\",\n            \"filters\": [\n              {\n                \"type\": \"string\",\n                \"field\": \"k8s_namespace_name\",\n                \"value\": \"$namespace\",\n                \"operator\": \"=\"\n              }\n            ],\n            \"groupBy\": [\n              {\n                \"type\": \"string\",\n                \"field\": \"k8s_statefulset_name\"\n              }\n            ],\n            \"orderBy\": [],\n            \"interval\": \"\",\n            \"namespace\": \"\",\n            \"dimensions\": [],\n            \"metricType\": \"\",\n            \"time_range\": {\n              \"to\": 0,\n              \"from\": 600\n            },\n            \"aggregation\": {\n              \"stat\": \"AVG\",\n              \"type\": \"\",\n              \"unit\": \"{pod}\",\n              \"field\": \"\",\n              \"value\": \"k8s_statefulset_updated_pods\",\n              \"metric\": \"k8s_statefulset_updated_pods\",\n              \"metricType\": \"Gauge\",\n              \"temporality\": \"Cumulative\"\n            },\n            \"datasourceId\": \"kloudmate\",\n            \"responseType\": \"number\"\n          }\n        ],\n        \"time_options\": {\n          \"override\": false,\n          \"time_shift\": \"\"\n        }\n      },\n      {\n        \"id\": \"0cjxj3gghu05\",\n        \"tz\": \"local\",\n        \"axis\": {\n          \"x\": {\n            \"date_style\": \"auto\"\n          },\n          \"y\": {\n            \"format\": \"number\",\n            \"suffix\": \"{pod}\",\n            \"decimals\": 3\n          }\n        },\n        \"STATS\": {},\n        \"table\": {\n          \"columns\": [\n            {\n              \"key\": \"A:AVG()\",\n              \"rename\": \"Ready\"\n            },\n            {\n              \"key\": \"k8s_daemonset_name\",\n              \"rename\": \"Daemonsets\"\n            },\n            {\n              \"key\": \"B:AVG()\",\n              \"rename\": \"Current\"\n            },\n            {\n              \"key\": \"C:AVG()\",\n              \"format\": {\n                \"format\": \"number\",\n                \"suffix\": \"\",\n                \"decimals\": 3\n              },\n              \"rename\": \"Desired\"\n            },\n            {\n              \"key\": \"D:AVG()\",\n              \"format\": {\n                \"format\": \"number\",\n                \"suffix\": \"\",\n                \"decimals\": 3\n              },\n              \"rename\": \"Misscheduled\"\n            }\n          ]\n        },\n        \"title\": \"Daemonset\",\n        \"panelType\": \"table\",\n        \"timeRange\": \"1h\",\n        \"TimeSeries\": {},\n        \"statConfig\": {\n          \"statView\": \"grid\",\n          \"baseColor\": \"#4CBB17\",\n          \"calculation\": \"last\"\n        },\n        \"timeseries\": {\n          \"legend\": {\n            \"view\": \"list\",\n            \"values\": []\n          }\n        },\n        \"node_configs\": [\n          {\n            \"exp\": \"\",\n            \"page\": 1,\n            \"stat\": \"\",\n            \"type\": \"query\",\n            \"limit\": null,\n            \"hidden\": false,\n            \"metric\": \"\",\n            \"nodeId\": \"A\",\n            \"region\": \"\",\n            \"source\": \"kloudmate\",\n            \"dataset\": \"metrics\",\n            \"filters\": [\n              {\n                \"type\": \"string\",\n                \"field\": \"k8s_namespace_name\",\n                \"value\": \"$namespace\",\n                \"operator\": \"=\"\n              },\n              {\n                \"type\": \"string\",\n                \"field\": \"k8s_cluster_name\",\n                \"value\": \"$cluster\",\n                \"operator\": \"=\"\n              }\n            ],\n            \"groupBy\": [\n              {\n                \"type\": \"string\",\n                \"field\": \"k8s_daemonset_name\"\n              }\n            ],\n            \"orderBy\": [],\n            \"interval\": \"\",\n            \"namespace\": \"\",\n            \"dimensions\": [],\n            \"metricType\": \"\",\n            \"query_type\": \"qb\",\n            \"time_range\": {\n              \"to\": 0,\n              \"from\": 600\n            },\n            \"aggregation\": {\n              \"stat\": \"AVG\",\n              \"type\": \"\",\n              \"unit\": \"{node}\",\n              \"field\": \"\",\n              \"value\": \"k8s_daemonset_ready_nodes\",\n              \"metric\": \"k8s_daemonset_ready_nodes\",\n              \"metricType\": \"Gauge\",\n              \"temporality\": \"Cumulative\"\n            },\n            \"datasourceId\": \"kloudmate\",\n            \"responseType\": \"number\"\n          },\n          {\n            \"page\": 1,\n            \"stat\": \"\",\n            \"type\": \"query\",\n            \"limit\": null,\n            \"hidden\": false,\n            \"metric\": \"\",\n            \"nodeId\": \"B\",\n            \"region\": \"\",\n            \"source\": \"kloudmate\",\n            \"dataset\": \"metrics\",\n            \"filters\": [\n              {\n                \"type\": \"string\",\n                \"field\": \"k8s_namespace_name\",\n                \"value\": \"$namespace\",\n                \"operator\": \"=\"\n              },\n              {\n                \"type\": \"string\",\n                \"field\": \"k8s_cluster_name\",\n                \"value\": \"$cluster\",\n                \"operator\": \"=\"\n              }\n            ],\n            \"groupBy\": [\n              {\n                \"type\": \"string\",\n                \"field\": \"k8s_daemonset_name\"\n              }\n            ],\n            \"orderBy\": [],\n            \"interval\": \"\",\n            \"namespace\": \"\",\n            \"dimensions\": [],\n            \"metricType\": \"\",\n            \"query_type\": \"qb\",\n            \"time_range\": {\n              \"to\": 0,\n              \"from\": 600\n            },\n            \"aggregation\": {\n              \"stat\": \"AVG\",\n              \"type\": \"\",\n              \"unit\": \"{node}\",\n              \"field\": \"\",\n              \"value\": \"k8s_daemonset_current_scheduled_nodes\",\n              \"metric\": \"k8s_daemonset_current_scheduled_nodes\",\n              \"metricType\": \"Gauge\",\n              \"temporality\": \"Cumulative\"\n            },\n            \"datasourceId\": \"kloudmate\",\n            \"responseType\": \"number\"\n          },\n          {\n            \"page\": 1,\n            \"stat\": \"\",\n            \"type\": \"query\",\n            \"hidden\": false,\n            \"metric\": \"\",\n            \"nodeId\": \"C\",\n            \"region\": \"\",\n            \"source\": \"kloudmate\",\n            \"dataset\": \"metrics\",\n            \"filters\": [\n              {\n                \"type\": \"string\",\n                \"field\": \"k8s_namespace_name\",\n                \"value\": \"$namespace\",\n                \"operator\": \"=\"\n              },\n              {\n                \"type\": \"string\",\n                \"field\": \"k8s_cluster_name\",\n                \"value\": \"$cluster\",\n                \"operator\": \"=\"\n              }\n            ],\n            \"groupBy\": [\n              {\n                \"type\": \"string\",\n                \"field\": \"k8s_daemonset_name\"\n              }\n            ],\n            \"orderBy\": [],\n            \"interval\": \"\",\n            \"namespace\": \"\",\n            \"dimensions\": [],\n            \"metricType\": \"\",\n            \"time_range\": {\n              \"to\": 0,\n              \"from\": 600\n            },\n            \"aggregation\": {\n              \"stat\": \"AVG\",\n              \"type\": \"\",\n              \"unit\": \"{node}\",\n              \"field\": \"\",\n              \"value\": \"k8s_daemonset_current_scheduled_nodes\",\n              \"metric\": \"k8s_daemonset_current_scheduled_nodes\",\n              \"metricType\": \"Gauge\",\n              \"temporality\": \"Cumulative\"\n            },\n            \"datasourceId\": \"kloudmate\",\n            \"responseType\": \"number\"\n          },\n          {\n            \"page\": 1,\n            \"stat\": \"\",\n            \"type\": \"query\",\n            \"hidden\": false,\n            \"metric\": \"\",\n            \"nodeId\": \"D\",\n            \"region\": \"\",\n            \"source\": \"kloudmate\",\n            \"dataset\": \"metrics\",\n            \"filters\": [\n              {\n                \"type\": \"string\",\n                \"field\": \"k8s_namespace_name\",\n                \"value\": \"$namespace\",\n                \"operator\": \"=\"\n              },\n              {\n                \"type\": \"string\",\n                \"field\": \"k8s_cluster_name\",\n                \"value\": \"$cluster\",\n                \"operator\": \"=\"\n              }\n            ],\n            \"groupBy\": [\n              {\n                \"type\": \"string\",\n                \"field\": \"k8s_daemonset_name\"\n              }\n            ],\n            \"orderBy\": [],\n            \"interval\": \"\",\n            \"namespace\": \"\",\n            \"dimensions\": [],\n            \"metricType\": \"\",\n            \"time_range\": {\n              \"to\": 0,\n              \"from\": 600\n            },\n            \"aggregation\": {\n              \"stat\": \"AVG\",\n              \"type\": \"\",\n              \"unit\": \"{node}\",\n              \"field\": \"\",\n              \"value\": \"k8s_daemonset_misscheduled_nodes\",\n              \"metric\": \"k8s_daemonset_misscheduled_nodes\",\n              \"metricType\": \"Gauge\",\n              \"temporality\": \"Cumulative\"\n            },\n            \"datasourceId\": \"kloudmate\",\n            \"responseType\": \"number\"\n          }\n        ],\n        \"time_options\": {\n          \"override\": false,\n          \"time_shift\": \"\"\n        }\n      },\n      {\n        \"id\": \"le4ucy8wvh\",\n        \"tz\": \"local\",\n        \"axis\": {\n          \"x\": {\n            \"date_style\": \"auto\"\n          },\n          \"y\": {\n            \"format\": \"number\",\n            \"suffix\": \"{pod}\",\n            \"decimals\": 3\n          }\n        },\n        \"table\": {\n          \"columns\": [\n            {\n              \"key\": \"A:AVG()\",\n              \"rename\": \"Available\"\n            },\n            {\n              \"key\": \"k8s_replicaset_name\",\n              \"rename\": \"Replicaset\"\n            },\n            {\n              \"key\": \"B:AVG()\",\n              \"rename\": \"Desired\"\n            }\n          ]\n        },\n        \"title\": \"Replicaset\",\n        \"panelType\": \"table\",\n        \"timeRange\": \"1h\",\n        \"TimeSeries\": {},\n        \"statConfig\": {\n          \"statView\": \"grid\",\n          \"baseColor\": \"#4CBB17\",\n          \"calculation\": \"last\"\n        },\n        \"timeseries\": {\n          \"legend\": {\n            \"view\": \"list\",\n            \"values\": []\n          }\n        },\n        \"node_configs\": [\n          {\n            \"page\": 1,\n            \"stat\": \"\",\n            \"type\": \"query\",\n            \"limit\": null,\n            \"hidden\": false,\n            \"metric\": \"\",\n            \"nodeId\": \"A\",\n            \"region\": \"\",\n            \"source\": \"kloudmate\",\n            \"dataset\": \"metrics\",\n            \"filters\": [\n              {\n                \"type\": \"string\",\n                \"field\": \"k8s_namespace_name\",\n                \"value\": \"$namespace\",\n                \"operator\": \"=\"\n              },\n              {\n                \"type\": \"string\",\n                \"field\": \"k8s_cluster_name\",\n                \"value\": \"$cluster\",\n                \"operator\": \"=\"\n              }\n            ],\n            \"groupBy\": [\n              {\n                \"type\": \"string\",\n                \"field\": \"k8s_replicaset_name\"\n              }\n            ],\n            \"orderBy\": [\n              {\n                \"field\": \"AVG\",\n                \"order\": \"desc\"\n              }\n            ],\n            \"interval\": \"\",\n            \"namespace\": \"\",\n            \"dimensions\": [],\n            \"metricType\": \"\",\n            \"query_type\": \"qb\",\n            \"time_range\": {\n              \"to\": 0,\n              \"from\": 600\n            },\n            \"aggregation\": {\n              \"stat\": \"AVG\",\n              \"type\": \"\",\n              \"unit\": \"{pod}\",\n              \"field\": \"\",\n              \"value\": \"k8s_replicaset_available\",\n              \"metric\": \"k8s_replicaset_available\",\n              \"metricType\": \"Gauge\",\n              \"temporality\": \"Cumulative\"\n            },\n            \"datasourceId\": \"kloudmate\",\n            \"responseType\": \"number\"\n          },\n          {\n            \"page\": 1,\n            \"stat\": \"\",\n            \"type\": \"query\",\n            \"hidden\": false,\n            \"metric\": \"\",\n            \"nodeId\": \"B\",\n            \"region\": \"\",\n            \"source\": \"kloudmate\",\n            \"dataset\": \"metrics\",\n            \"filters\": [\n              {\n                \"type\": \"string\",\n                \"field\": \"k8s_namespace_name\",\n                \"value\": \"$namespace\",\n                \"operator\": \"=\"\n              },\n              {\n                \"type\": \"string\",\n                \"field\": \"k8s_cluster_name\",\n                \"value\": \"$cluster\",\n                \"operator\": \"=\"\n              }\n            ],\n            \"groupBy\": [\n              {\n                \"type\": \"string\",\n                \"field\": \"k8s_replicaset_name\"\n              }\n            ],\n            \"orderBy\": [],\n            \"interval\": \"\",\n            \"namespace\": \"\",\n            \"dimensions\": [],\n            \"metricType\": \"\",\n            \"time_range\": {\n              \"to\": 0,\n              \"from\": 600\n            },\n            \"aggregation\": {\n              \"stat\": \"AVG\",\n              \"type\": \"\",\n              \"unit\": \"{pod}\",\n              \"field\": \"\",\n              \"value\": \"k8s_replicaset_desired\",\n              \"metric\": \"k8s_replicaset_desired\",\n              \"metricType\": \"Gauge\",\n              \"temporality\": \"Cumulative\"\n            },\n            \"datasourceId\": \"kloudmate\",\n            \"responseType\": \"number\"\n          }\n        ],\n        \"time_options\": {\n          \"override\": false,\n          \"time_shift\": \"\"\n        }\n      },\n      {\n        \"id\": \"2tw3u70o9ng\",\n        \"tz\": \"local\",\n        \"axis\": {\n          \"x\": {\n            \"date_style\": \"auto\"\n          },\n          \"y\": {\n            \"format\": \"number\",\n            \"suffix\": \"{pod}\",\n            \"decimals\": 3\n          }\n        },\n        \"table\": {\n          \"columns\": [\n            {\n              \"key\": \"A:AVG()\",\n              \"rename\": \"Available\"\n            },\n            {\n              \"key\": \"k8s_deployment_name\",\n              \"rename\": \"Deployment\"\n            },\n            {\n              \"key\": \"B:AVG()\",\n              \"rename\": \"Desired\"\n            }\n          ]\n        },\n        \"title\": \"Deployment\",\n        \"panelType\": \"table\",\n        \"timeRange\": \"1h\",\n        \"TimeSeries\": {},\n        \"statConfig\": {\n          \"statView\": \"grid\",\n          \"baseColor\": \"#4CBB17\",\n          \"calculation\": \"last\"\n        },\n        \"timeseries\": {\n          \"legend\": {\n            \"view\": \"list\",\n            \"values\": []\n          }\n        },\n        \"node_configs\": [\n          {\n            \"page\": 1,\n            \"stat\": \"\",\n            \"type\": \"query\",\n            \"limit\": null,\n            \"hidden\": false,\n            \"metric\": \"\",\n            \"nodeId\": \"A\",\n            \"region\": \"\",\n            \"source\": \"kloudmate\",\n            \"dataset\": \"metrics\",\n            \"filters\": [\n              {\n                \"type\": \"string\",\n                \"field\": \"k8s_namespace_name\",\n                \"value\": \"$namespace\",\n                \"operator\": \"=\"\n              },\n              {\n                \"type\": \"string\",\n                \"field\": \"k8s_cluster_name\",\n                \"value\": \"$cluster\",\n                \"operator\": \"=\"\n              }\n            ],\n            \"groupBy\": [\n              {\n                \"type\": \"string\",\n                \"field\": \"k8s_deployment_name\"\n              }\n            ],\n            \"orderBy\": [],\n            \"interval\": \"\",\n            \"namespace\": \"\",\n            \"dimensions\": [],\n            \"metricType\": \"\",\n            \"query_type\": \"qb\",\n            \"time_range\": {\n              \"to\": 0,\n              \"from\": 600\n            },\n            \"aggregation\": {\n              \"stat\": \"AVG\",\n              \"type\": \"\",\n              \"unit\": \"{pod}\",\n              \"field\": \"\",\n              \"value\": \"k8s_deployment_available\",\n              \"metric\": \"k8s_deployment_available\",\n              \"metricType\": \"Gauge\",\n              \"temporality\": \"Cumulative\"\n            },\n            \"datasourceId\": \"kloudmate\",\n            \"responseType\": \"number\"\n          },\n          {\n            \"page\": 1,\n            \"stat\": \"\",\n            \"type\": \"query\",\n            \"hidden\": false,\n            \"metric\": \"\",\n            \"nodeId\": \"B\",\n            \"region\": \"\",\n            \"source\": \"kloudmate\",\n            \"dataset\": \"metrics\",\n            \"filters\": [\n              {\n                \"type\": \"string\",\n                \"field\": \"k8s_namespace_name\",\n                \"value\": \"$namespace\",\n                \"operator\": \"=\"\n              },\n              {\n                \"type\": \"string\",\n                \"field\": \"k8s_cluster_name\",\n                \"value\": \"$cluster\",\n                \"operator\": \"=\"\n              }\n            ],\n            \"groupBy\": [\n              {\n                \"type\": \"string\",\n                \"field\": \"k8s_deployment_name\"\n              }\n            ],\n            \"orderBy\": [],\n            \"interval\": \"\",\n            \"namespace\": \"\",\n            \"dimensions\": [],\n            \"metricType\": \"\",\n            \"time_range\": {\n              \"to\": 0,\n              \"from\": 600\n            },\n            \"aggregation\": {\n              \"stat\": \"AVG\",\n              \"type\": \"\",\n              \"unit\": \"{pod}\",\n              \"field\": \"\",\n              \"value\": \"k8s_deployment_desired\",\n              \"metric\": \"k8s_deployment_desired\",\n              \"metricType\": \"Gauge\",\n              \"temporality\": \"Cumulative\"\n            },\n            \"datasourceId\": \"kloudmate\",\n            \"responseType\": \"number\"\n          }\n        ],\n        \"time_options\": {\n          \"override\": false,\n          \"time_shift\": \"\"\n        }\n      },\n      {\n        \"id\": \"0vvhh1j8mcd\",\n        \"tz\": \"local\",\n        \"axis\": {\n          \"x\": {\n            \"date_style\": \"auto\"\n          },\n          \"y\": {\n            \"format\": \"percentage\",\n            \"decimals\": 3\n          }\n        },\n        \"table\": {\n          \"columns\": [\n            {\n              \"key\": \"A:AVG()\",\n              \"format\": {\n                \"format\": \"percentage\"\n              },\n              \"rename\": \"CPU Req Utilization\"\n            },\n            {\n              \"key\": \"k8s_namespace_name\",\n              \"rename\": \"\"\n            },\n            {\n              \"key\": \"k8s_pod_name\",\n              \"rename\": \"\"\n            }\n          ]\n        },\n        \"title\": \"Pods by CPU Request Utilization by namespace\",\n        \"panelType\": \"table\",\n        \"timeRange\": \"1h\",\n        \"statConfig\": {\n          \"statView\": \"grid\",\n          \"baseColor\": \"#4CBB17\",\n          \"calculation\": \"last\"\n        },\n        \"timeseries\": {\n          \"legend\": {\n            \"view\": \"list\",\n            \"values\": []\n          }\n        },\n        \"node_configs\": [\n          {\n            \"page\": 1,\n            \"stat\": \"\",\n            \"type\": \"query\",\n            \"limit\": \"10\",\n            \"hidden\": false,\n            \"metric\": \"\",\n            \"nodeId\": \"A\",\n            \"region\": \"\",\n            \"source\": \"kloudmate\",\n            \"dataset\": \"metrics\",\n            \"filters\": [\n              {\n                \"type\": \"string\",\n                \"field\": \"k8s_namespace_name\",\n                \"value\": \"$namespace\",\n                \"operator\": \"=\"\n              },\n              {\n                \"type\": \"string\",\n                \"field\": \"k8s_cluster_name\",\n                \"value\": \"$cluster\",\n                \"operator\": \"=\"\n              }\n            ],\n            \"groupBy\": [\n              {\n                \"type\": \"string\",\n                \"field\": \"k8s_namespace_name\"\n              },\n              {\n                \"type\": \"string\",\n                \"field\": \"k8s_pod_name\"\n              }\n            ],\n            \"orderBy\": [\n              {\n                \"field\": \"AVG\",\n                \"order\": \"desc\"\n              }\n            ],\n            \"interval\": \"\",\n            \"namespace\": \"\",\n            \"dimensions\": [],\n            \"metricType\": \"\",\n            \"time_range\": {\n              \"to\": 0,\n              \"from\": 600\n            },\n            \"aggregation\": {\n              \"stat\": \"AVG\",\n              \"type\": \"\",\n              \"unit\": \"1\",\n              \"field\": \"\",\n              \"value\": \"k8s_pod_cpu_request_utilization\",\n              \"metric\": \"k8s_pod_cpu_request_utilization\",\n              \"metricType\": \"Gauge\",\n              \"temporality\": \"Cumulative\"\n            },\n            \"datasourceId\": \"kloudmate\",\n            \"responseType\": \"number\"\n          }\n        ],\n        \"time_options\": {\n          \"override\": false,\n          \"time_shift\": \"\"\n        }\n      },\n      {\n        \"id\": \"allj973aib\",\n        \"tz\": \"local\",\n        \"axis\": {\n          \"x\": {\n            \"date_style\": \"auto\"\n          },\n          \"y\": {\n            \"format\": \"number\",\n            \"decimals\": 3\n          }\n        },\n        \"table\": {\n          \"columns\": [\n            {\n              \"key\": \"A:AVG()\",\n              \"format\": {\n                \"format\": \"percentage\",\n                \"decimals\": 1\n              },\n              \"rename\": \"Memory Req Utilization\"\n            },\n            {\n              \"key\": \"k8s_pod_name\",\n              \"rename\": \"Pods\"\n            }\n          ]\n        },\n        \"title\": \"Pods by Memory Request Utilization by namespace\",\n        \"panelType\": \"table\",\n        \"timeRange\": \"1h\",\n        \"statConfig\": {\n          \"statView\": \"grid\",\n          \"baseColor\": \"#4CBB17\",\n          \"calculation\": \"last\"\n        },\n        \"timeseries\": {\n          \"legend\": {\n            \"view\": \"list\",\n            \"values\": []\n          }\n        },\n        \"node_configs\": [\n          {\n            \"page\": 1,\n            \"stat\": \"\",\n            \"type\": \"query\",\n            \"limit\": \"\",\n            \"hidden\": false,\n            \"metric\": \"\",\n            \"nodeId\": \"A\",\n            \"region\": \"\",\n            \"source\": \"kloudmate\",\n            \"dataset\": \"metrics\",\n            \"filters\": [\n              {\n                \"type\": \"string\",\n                \"field\": \"k8s_namespace_name\",\n                \"value\": \"$namespace\",\n                \"operator\": \"=\"\n              },\n              {\n                \"type\": \"string\",\n                \"field\": \"k8s_cluster_name\",\n                \"value\": \"$cluster\",\n                \"operator\": \"=\"\n              }\n            ],\n            \"groupBy\": [\n              {\n                \"type\": \"string\",\n                \"field\": \"k8s_pod_name\"\n              }\n            ],\n            \"orderBy\": [\n              {\n                \"field\": \"AVG\",\n                \"order\": \"desc\"\n              }\n            ],\n            \"interval\": \"\",\n            \"namespace\": \"\",\n            \"dimensions\": [],\n            \"metricType\": \"\",\n            \"time_range\": {\n              \"to\": 0,\n              \"from\": 600\n            },\n            \"aggregation\": {\n              \"stat\": \"AVG\",\n              \"type\": \"\",\n              \"unit\": \"1\",\n              \"field\": \"\",\n              \"value\": \"k8s_pod_memory_request_utilization\",\n              \"metric\": \"k8s_pod_memory_request_utilization\",\n              \"metricType\": \"Gauge\",\n              \"temporality\": \"Cumulative\"\n            },\n            \"datasourceId\": \"kloudmate\",\n            \"responseType\": \"number\"\n          }\n        ],\n        \"time_options\": {\n          \"override\": false,\n          \"time_shift\": \"\"\n        }\n      },\n      {\n        \"id\": \"4t9cvxut4ml\",\n        \"tz\": \"local\",\n        \"axis\": {\n          \"x\": {\n            \"date_style\": \"auto\"\n          },\n          \"y\": {\n            \"format\": \"bytes\",\n            \"decimals\": 3\n          }\n        },\n        \"table\": {\n          \"columns\": [\n            {\n              \"key\": \"A:AVG()\",\n              \"format\": {\n                \"format\": \"bytes\",\n                \"decimals\": 1\n              },\n              \"rename\": \"Used\"\n            },\n            {\n              \"key\": \"k8s_namespace_name\",\n              \"rename\": \"Namespace\"\n            },\n            {\n              \"key\": \"k8s_pod_name\",\n              \"rename\": \"Pod name\"\n            }\n          ]\n        },\n        \"title\": \"Pod Memory Usage by Namespace\",\n        \"panelType\": \"table\",\n        \"timeRange\": \"1h\",\n        \"statConfig\": {\n          \"statView\": \"grid\",\n          \"baseColor\": \"#4CBB17\",\n          \"calculation\": \"last\"\n        },\n        \"timeseries\": {\n          \"legend\": {\n            \"view\": \"list\",\n            \"values\": []\n          }\n        },\n        \"node_configs\": [\n          {\n            \"page\": 1,\n            \"stat\": \"\",\n            \"type\": \"query\",\n            \"limit\": null,\n            \"hidden\": false,\n            \"metric\": \"\",\n            \"nodeId\": \"A\",\n            \"region\": \"\",\n            \"source\": \"kloudmate\",\n            \"dataset\": \"metrics\",\n            \"filters\": [\n              {\n                \"type\": \"string\",\n                \"field\": \"k8s_namespace_name\",\n                \"value\": \"$Namespace\",\n                \"operator\": \"=\"\n              }\n            ],\n            \"groupBy\": [\n              {\n                \"type\": \"string\",\n                \"field\": \"k8s_namespace_name\"\n              },\n              {\n                \"type\": \"string\",\n                \"field\": \"k8s_pod_name\"\n              }\n            ],\n            \"orderBy\": [\n              {\n                \"order\": \"desc\"\n              }\n            ],\n            \"interval\": \"\",\n            \"namespace\": \"\",\n            \"dimensions\": [],\n            \"metricType\": \"\",\n            \"time_range\": {\n              \"to\": 0,\n              \"from\": 600\n            },\n            \"aggregation\": {\n              \"stat\": \"AVG\",\n              \"type\": \"\",\n              \"unit\": \"By\",\n              \"field\": \"\",\n              \"value\": \"k8s_pod_memory_usage\",\n              \"metric\": \"k8s_pod_memory_usage\",\n              \"metricType\": \"Gauge\",\n              \"temporality\": \"Cumulative\"\n            },\n            \"datasourceId\": \"kloudmate\",\n            \"responseType\": \"number\"\n          }\n        ],\n        \"time_options\": {\n          \"override\": false,\n          \"time_shift\": \"\"\n        }\n      },\n      {\n        \"id\": \"09s7aoqkhgm7\",\n        \"tz\": \"local\",\n        \"axis\": {\n          \"x\": {\n            \"date_style\": \"auto\"\n          },\n          \"y\": {\n            \"format\": \"duration\",\n            \"decimals\": 3,\n            \"multiplyBy\": 1000\n          }\n        },\n        \"table\": {\n          \"columns\": [\n            {\n              \"key\": \"A:RATE()\",\n              \"format\": {\n                \"format\": \"percentage\",\n                \"decimals\": 2\n              },\n              \"rename\": \"Usage\"\n            },\n            {\n              \"key\": \"k8s_namespace_name\",\n              \"rename\": \"Namespace\"\n            },\n            {\n              \"key\": \"k8s_pod_name\",\n              \"rename\": \"Pod name\"\n            }\n          ]\n        },\n        \"title\": \"Pod CPU Usage by Namespace\",\n        \"panelType\": \"table\",\n        \"timeRange\": \"1h\",\n        \"statConfig\": {\n          \"statView\": \"grid\",\n          \"baseColor\": \"#4CBB17\",\n          \"calculation\": \"last\"\n        },\n        \"timeseries\": {\n          \"legend\": {\n            \"view\": \"list\",\n            \"values\": []\n          }\n        },\n        \"node_configs\": [\n          {\n            \"page\": 1,\n            \"stat\": \"\",\n            \"type\": \"query\",\n            \"hidden\": false,\n            \"metric\": \"\",\n            \"nodeId\": \"A\",\n            \"region\": \"\",\n            \"source\": \"kloudmate\",\n            \"dataset\": \"metrics\",\n            \"filters\": [\n              {\n                \"type\": \"string\",\n                \"field\": \"k8s_namespace_name\",\n                \"value\": \"$Namespace\",\n                \"operator\": \"=\"\n              }\n            ],\n            \"groupBy\": [\n              {\n                \"type\": \"string\",\n                \"field\": \"k8s_namespace_name\"\n              },\n              {\n                \"type\": \"string\",\n                \"field\": \"k8s_pod_name\"\n              }\n            ],\n            \"orderBy\": [\n              {\n                \"field\": \"RATE\",\n                \"order\": \"desc\"\n              }\n            ],\n            \"interval\": \"\",\n            \"namespace\": \"\",\n            \"dimensions\": [],\n            \"metricType\": \"\",\n            \"time_range\": {\n              \"to\": 0,\n              \"from\": 600\n            },\n            \"aggregation\": {\n              \"stat\": \"RATE\",\n              \"type\": \"\",\n              \"unit\": \"s\",\n              \"field\": \"\",\n              \"range\": \"5m\",\n              \"value\": \"k8s_pod_cpu_time\",\n              \"metric\": \"k8s_pod_cpu_time\",\n              \"metricType\": \"Sum\",\n              \"temporality\": \"Cumulative\"\n            },\n            \"datasourceId\": \"kloudmate\",\n            \"responseType\": \"number\"\n          }\n        ],\n        \"time_options\": {\n          \"override\": false,\n          \"time_shift\": \"\"\n        }\n      }\n    ],\n    \"timeRange\": \"1h\",\n    \"variables\": [\n      {\n        \"name\": \"namespace\",\n        \"type\": \"query\",\n        \"label\": \"Namespace\",\n        \"config\": {\n          \"otel\": {\n            \"key\": {\n              \"type\": \"string\",\n              \"field\": \"k8s_namespace_name\"\n            },\n            \"dataset\": \"metrics\"\n          },\n          \"source\": \"cloudwatch\",\n          \"queryType\": \"otel.values\"\n        },\n        \"is_multi\": false,\n        \"description\": \"\",\n        \"show_all_option\": false\n      },\n      {\n        \"name\": \"cluster\",\n        \"type\": \"query\",\n        \"label\": \"Cluster\",\n        \"config\": {\n          \"otel\": {\n            \"key\": {\n              \"type\": \"string\",\n              \"field\": \"cluster\"\n            },\n            \"dataset\": \"metrics\"\n          },\n          \"source\": \"cloudwatch\",\n          \"queryType\": \"otel.values\"\n        },\n        \"is_multi\": false,\n        \"description\": \"\",\n        \"show_all_option\": false\n      }\n    ],\n    \"panel_layouts\": [\n      {\n        \"h\": 8,\n        \"i\": \"l4lplsny7n\",\n        \"w\": 8,\n        \"x\": 8,\n        \"y\": 0,\n        \"minH\": 1,\n        \"minW\": 1,\n        \"moved\": false,\n        \"static\": false\n      },\n      {\n        \"h\": 8,\n        \"i\": \"rgwuox0l1c\",\n        \"w\": 8,\n        \"x\": 16,\n        \"y\": 0,\n        \"minH\": 1,\n        \"minW\": 1,\n        \"moved\": false,\n        \"static\": false\n      },\n      {\n        \"h\": 8,\n        \"i\": \"202aluq7qem\",\n        \"w\": 8,\n        \"x\": 0,\n        \"y\": 8,\n        \"minH\": 1,\n        \"minW\": 1,\n        \"moved\": false,\n        \"static\": false\n      },\n      {\n        \"h\": 8,\n        \"i\": \"2tyvefx9wj8\",\n        \"w\": 8,\n        \"x\": 0,\n        \"y\": 0,\n        \"minH\": 1,\n        \"minW\": 1,\n        \"moved\": false,\n        \"static\": false\n      },\n      {\n        \"h\": 8,\n        \"i\": \"euvlglt7jnw\",\n        \"w\": 8,\n        \"x\": 8,\n        \"y\": 8,\n        \"minH\": 1,\n        \"minW\": 1,\n        \"moved\": false,\n        \"static\": false\n      },\n      {\n        \"h\": 8,\n        \"i\": \"80o3tevrmhn\",\n        \"w\": 8,\n        \"x\": 16,\n        \"y\": 8,\n        \"minH\": 1,\n        \"minW\": 1,\n        \"moved\": false,\n        \"static\": false\n      },\n      {\n        \"h\": 8,\n        \"i\": \"2gqmyayotml\",\n        \"w\": 12,\n        \"x\": 0,\n        \"y\": 16,\n        \"minH\": 1,\n        \"minW\": 1,\n        \"moved\": false,\n        \"static\": false\n      },\n      {\n        \"h\": 8,\n        \"i\": \"0cjxj3gghu05\",\n        \"w\": 12,\n        \"x\": 12,\n        \"y\": 16,\n        \"minH\": 1,\n        \"minW\": 1,\n        \"moved\": false,\n        \"static\": false\n      },\n      {\n        \"h\": 9,\n        \"i\": \"le4ucy8wvh\",\n        \"w\": 12,\n        \"x\": 0,\n        \"y\": 24,\n        \"minH\": 1,\n        \"minW\": 1,\n        \"moved\": false,\n        \"static\": false\n      },\n      {\n        \"h\": 9,\n        \"i\": \"2tw3u70o9ng\",\n        \"w\": 12,\n        \"x\": 12,\n        \"y\": 24,\n        \"minH\": 1,\n        \"minW\": 1,\n        \"moved\": false,\n        \"static\": false\n      },\n      {\n        \"h\": 10,\n        \"i\": \"0vvhh1j8mcd\",\n        \"w\": 12,\n        \"x\": 0,\n        \"y\": 43,\n        \"minH\": 1,\n        \"minW\": 1,\n        \"moved\": false,\n        \"static\": false\n      },\n      {\n        \"h\": 10,\n        \"i\": \"allj973aib\",\n        \"w\": 12,\n        \"x\": 12,\n        \"y\": 43,\n        \"minH\": 1,\n        \"minW\": 1,\n        \"moved\": false,\n        \"static\": false\n      },\n      {\n        \"h\": 10,\n        \"i\": \"4t9cvxut4ml\",\n        \"w\": 12,\n        \"x\": 12,\n        \"y\": 33,\n        \"minH\": 1,\n        \"minW\": 1,\n        \"moved\": false,\n        \"static\": false\n      },\n      {\n        \"h\": 10,\n        \"i\": \"09s7aoqkhgm7\",\n        \"w\": 12,\n        \"x\": 0,\n        \"y\": 33,\n        \"minH\": 1,\n        \"minW\": 1,\n        \"moved\": false,\n        \"static\": false\n      }\n    ],\n    \"default_region\": \"us-east-1\"\n  },\n  \"tags\": []\n}").then(() => alert('Copied to clipboard!'), () => alert('Failed to copy.'));
+        }
+        const jsonViewer = document.getElementById('json-viewer');
+        const expandBtn = document.getElementById('expand-btn');
+        const howToUseBtn = document.getElementById('how-to-use-btn');
+        const closeModalBtn = document.getElementById('close-modal-btn');
+        const modal = document.getElementById('how-to-use-modal');
+        expandBtn.addEventListener('click', () => {
+          jsonViewer.classList.toggle('max-h-96');
+          expandBtn.textContent = jsonViewer.classList.contains('max-h-96') ? 'Show More' : 'Show Less';
+        });
+        howToUseBtn.addEventListener('click', () => modal.classList.remove('hidden'));
+        closeModalBtn.addEventListener('click', () => modal.classList.add('hidden'));
+        modal.addEventListener('click', (e) => { if (e.target === modal) modal.classList.add('hidden'); });
+      </script>
+    </body>
+    </html>
