@@ -1,0 +1,1526 @@
+{
+  "name": "Remote device (SNMP)",
+  "description": "",
+  "data": {
+    "tz": "Asia/Dubai",
+    "panels": [
+      {
+        "id": "bb1nhm724bm",
+        "tz": "local",
+        "axis": {
+          "x": {
+            "date_style": "auto"
+          },
+          "y": {
+            "format": "unformatted",
+            "suffix": "Kw",
+            "decimals": 2,
+            "multiplyBy": 0.0001
+          }
+        },
+        "STATS": {},
+        "title": " Battery Remaining Capacity (kWh)",
+        "panelType": "TimeSeries",
+        "timeRange": "2h",
+        "TimeSeries": {},
+        "statConfig": {
+          "suffix": "Ah",
+          "statView": "grid",
+          "baseColor": "#4CBB17",
+          "multiplyBy": 0.1,
+          "calculation": "last"
+        },
+        "timeseries": {
+          "legend": {
+            "view": "list",
+            "values": []
+          }
+        },
+        "description": " Battery Remaining Capacity (kWh)",
+        "node_configs": [
+          {
+            "page": 1,
+            "stat": "",
+            "type": "query",
+            "hidden": true,
+            "metric": "",
+            "nodeId": "A",
+            "region": "",
+            "source": "kloudmate",
+            "dataset": "metrics",
+            "filters": [
+              {
+                "type": "string",
+                "field": "server_address",
+                "value": "$device",
+                "operator": "="
+              }
+            ],
+            "groupBy": [
+              {
+                "type": "string",
+                "field": "server_address"
+              }
+            ],
+            "orderBy": [],
+            "interval": "",
+            "namespace": "",
+            "dimensions": [],
+            "metricType": "",
+            "time_range": {
+              "to": 0,
+              "from": 600
+            },
+            "aggregation": {
+              "stat": "LAST",
+              "type": "",
+              "unit": "",
+              "field": "",
+              "value": "battcapacity",
+              "metric": "battcapacity",
+              "metricType": "Gauge",
+              "temporality": "Cumulative"
+            },
+            "datasourceId": "kloudmate",
+            "legendFormat": "{{server_address}}",
+            "responseType": "series"
+          },
+          {
+            "page": 1,
+            "stat": "",
+            "type": "query",
+            "hidden": true,
+            "metric": "",
+            "nodeId": "B",
+            "region": "",
+            "source": "kloudmate",
+            "dataset": "metrics",
+            "filters": [
+              {
+                "type": "string",
+                "field": "server_address",
+                "value": "$device",
+                "operator": "="
+              }
+            ],
+            "groupBy": [
+              {
+                "type": "string",
+                "field": "server_address"
+              }
+            ],
+            "orderBy": [],
+            "interval": "",
+            "namespace": "",
+            "dimensions": [],
+            "metricType": "",
+            "time_range": {
+              "to": 0,
+              "from": 600
+            },
+            "aggregation": {
+              "stat": "LAST",
+              "type": "",
+              "unit": "",
+              "field": "",
+              "value": "battvoltage",
+              "metric": "battvoltage",
+              "metricType": "Gauge",
+              "temporality": "Cumulative"
+            },
+            "datasourceId": "kloudmate",
+            "legendFormat": "{{server_address}}",
+            "responseType": "series"
+          },
+          {
+            "type": "expression",
+            "hidden": false,
+            "nodeId": "C",
+            "expression": "($A * $B)/1000",
+            "expressionType": "math"
+          }
+        ],
+        "time_options": {
+          "override": false,
+          "time_shift": ""
+        }
+      },
+      {
+        "id": "8b56crd0hvx",
+        "tz": "local",
+        "axis": {
+          "x": {
+            "date_style": "auto"
+          },
+          "y": {
+            "format": "unformatted",
+            "suffix": "V",
+            "decimals": 2,
+            "multiplyBy": 0.001
+          }
+        },
+        "title": " Battery Voltage",
+        "panelType": "TimeSeries",
+        "timeRange": "1h",
+        "statConfig": {
+          "statView": "grid",
+          "baseColor": "#4CBB17",
+          "calculation": "last"
+        },
+        "timeseries": {
+          "legend": {
+            "view": "list",
+            "values": []
+          }
+        },
+        "node_configs": [
+          {
+            "page": 1,
+            "stat": "",
+            "type": "query",
+            "hidden": false,
+            "metric": "",
+            "nodeId": "A",
+            "region": "",
+            "source": "kloudmate",
+            "dataset": "metrics",
+            "filters": [
+              {
+                "type": "string",
+                "field": "server_address",
+                "value": "$device",
+                "operator": "="
+              }
+            ],
+            "groupBy": [
+              {
+                "type": "string",
+                "field": "server_address"
+              }
+            ],
+            "orderBy": [],
+            "interval": "",
+            "namespace": "",
+            "dimensions": [],
+            "metricType": "",
+            "time_range": {
+              "to": 0,
+              "from": 600
+            },
+            "aggregation": {
+              "stat": "AVG",
+              "type": "",
+              "unit": "",
+              "field": "",
+              "value": "battvoltage",
+              "metric": "battvoltage",
+              "metricType": "Gauge",
+              "temporality": "Cumulative"
+            },
+            "datasourceId": "kloudmate",
+            "legendFormat": "{{server_address}}"
+          }
+        ],
+        "time_options": {
+          "override": false,
+          "time_shift": ""
+        }
+      },
+      {
+        "id": "4wqbfrttm6j",
+        "tz": "local",
+        "axis": {
+          "x": {
+            "date_style": "auto"
+          },
+          "y": {
+            "format": "unformatted",
+            "suffix": "V",
+            "decimals": 2,
+            "multiplyBy": 0.001
+          }
+        },
+        "title": "Main Bus Voltage",
+        "panelType": "TimeSeries",
+        "timeRange": "1h",
+        "statConfig": {
+          "statView": "grid",
+          "baseColor": "#4CBB17",
+          "calculation": "last"
+        },
+        "timeseries": {
+          "legend": {
+            "view": "list",
+            "values": []
+          }
+        },
+        "node_configs": [
+          {
+            "page": 1,
+            "stat": "",
+            "type": "query",
+            "hidden": false,
+            "metric": "",
+            "nodeId": "A",
+            "region": "",
+            "source": "kloudmate",
+            "dataset": "metrics",
+            "filters": [
+              {
+                "type": "string",
+                "field": "server_address",
+                "value": "$device",
+                "operator": "="
+              }
+            ],
+            "groupBy": [
+              {
+                "type": "string",
+                "field": "server_address"
+              }
+            ],
+            "orderBy": [],
+            "interval": "",
+            "namespace": "",
+            "dimensions": [],
+            "metricType": "",
+            "time_range": {
+              "to": 0,
+              "from": 600
+            },
+            "aggregation": {
+              "stat": "AVG",
+              "type": "",
+              "unit": "",
+              "field": "",
+              "value": "busvoltage",
+              "metric": "busvoltage",
+              "metricType": "Gauge",
+              "temporality": "Cumulative"
+            },
+            "datasourceId": "kloudmate",
+            "legendFormat": "{{server_address}}"
+          }
+        ],
+        "time_options": {
+          "override": false,
+          "time_shift": ""
+        }
+      },
+      {
+        "id": "2m92g8etng6",
+        "tz": "local",
+        "axis": {
+          "x": {
+            "date_style": "auto"
+          },
+          "y": {
+            "format": "unformatted",
+            "decimals": 3,
+            "multiplyBy": 0.001
+          }
+        },
+        "STATS": {},
+        "title": " Rectifier Voltage",
+        "panelType": "STATS",
+        "timeRange": "1h",
+        "statConfig": {
+          "suffix": "V",
+          "decimals": 0,
+          "statView": "grid",
+          "baseColor": "#4CBB17",
+          "multiplyBy": 0.001,
+          "calculation": "last"
+        },
+        "timeseries": {
+          "legend": {
+            "view": "list",
+            "values": []
+          }
+        },
+        "node_configs": [
+          {
+            "page": 1,
+            "stat": "",
+            "type": "query",
+            "hidden": false,
+            "metric": "",
+            "nodeId": "A",
+            "region": "",
+            "source": "kloudmate",
+            "dataset": "metrics",
+            "filters": [
+              {
+                "type": "string",
+                "field": "server_address",
+                "value": "$device",
+                "operator": "="
+              }
+            ],
+            "groupBy": [
+              {
+                "type": "string",
+                "field": "server_address"
+              }
+            ],
+            "orderBy": [],
+            "interval": "",
+            "namespace": "",
+            "dimensions": [],
+            "metricType": "",
+            "time_range": {
+              "to": 0,
+              "from": 600
+            },
+            "aggregation": {
+              "stat": "LAST",
+              "type": "",
+              "unit": "",
+              "field": "",
+              "value": "rectvoltage",
+              "metric": "rectvoltage",
+              "metricType": "Gauge",
+              "temporality": "Cumulative"
+            },
+            "datasourceId": "kloudmate",
+            "legendFormat": "{{server_address}}",
+            "responseType": "series"
+          }
+        ],
+        "time_options": {
+          "override": false,
+          "time_shift": ""
+        }
+      },
+      {
+        "id": "h3w6oncjtuo",
+        "tz": "local",
+        "axis": {
+          "x": {
+            "date_style": "auto"
+          },
+          "y": {
+            "format": "unformatted",
+            "suffix": "Ah",
+            "decimals": 3,
+            "multiplyBy": 0.001
+          }
+        },
+        "STATS": {},
+        "title": " Rectifier Current Limit",
+        "panelType": "STATS",
+        "timeRange": "1h",
+        "statConfig": {
+          "suffix": "Ah",
+          "decimals": 2,
+          "statView": "grid",
+          "baseColor": "#4CBB17",
+          "multiplyBy": 0.001,
+          "calculation": "last"
+        },
+        "timeseries": {
+          "legend": {
+            "view": "list",
+            "values": []
+          }
+        },
+        "description": " Broadcasted Rectifier Current Limit",
+        "node_configs": [
+          {
+            "page": 1,
+            "stat": "",
+            "type": "query",
+            "hidden": false,
+            "metric": "",
+            "nodeId": "A",
+            "region": "",
+            "source": "kloudmate",
+            "dataset": "metrics",
+            "filters": [
+              {
+                "type": "string",
+                "field": "server_address",
+                "value": "$device",
+                "operator": "="
+              }
+            ],
+            "groupBy": [
+              {
+                "type": "string",
+                "field": "server_address"
+              }
+            ],
+            "orderBy": [],
+            "interval": "",
+            "namespace": "",
+            "dimensions": [],
+            "metricType": "",
+            "time_range": {
+              "to": 0,
+              "from": 600
+            },
+            "aggregation": {
+              "stat": "LAST",
+              "type": "",
+              "unit": "",
+              "field": "",
+              "value": "rectbcastcurrentlimit",
+              "metric": "rectbcastcurrentlimit",
+              "metricType": "Gauge",
+              "temporality": "Cumulative"
+            },
+            "datasourceId": "kloudmate",
+            "legendFormat": "{{server_address}}",
+            "responseType": "series"
+          }
+        ],
+        "time_options": {
+          "override": false,
+          "time_shift": ""
+        }
+      },
+      {
+        "id": "1ph44mi1l5z",
+        "tz": "local",
+        "axis": {
+          "x": {
+            "date_style": "auto"
+          },
+          "y": {
+            "format": "unformatted",
+            "decimals": 3
+          }
+        },
+        "STATS": {},
+        "title": "Rectifier Power Limit",
+        "panelType": "STATS",
+        "timeRange": "1h",
+        "statConfig": {
+          "suffix": "Ah",
+          "statView": "grid",
+          "baseColor": "#4CBB17",
+          "multiplyBy": 0.0001,
+          "calculation": "last"
+        },
+        "timeseries": {
+          "legend": {
+            "view": "list",
+            "values": []
+          }
+        },
+        "description": "Broadcasted Rectifier Power Limit",
+        "node_configs": [
+          {
+            "page": 1,
+            "stat": "",
+            "type": "query",
+            "hidden": false,
+            "metric": "",
+            "nodeId": "A",
+            "region": "",
+            "source": "kloudmate",
+            "dataset": "metrics",
+            "filters": [
+              {
+                "type": "string",
+                "field": "server_address",
+                "value": "$device",
+                "operator": "="
+              }
+            ],
+            "groupBy": [
+              {
+                "type": "string",
+                "field": "server_address"
+              }
+            ],
+            "orderBy": [],
+            "interval": "",
+            "namespace": "",
+            "dimensions": [],
+            "metricType": "",
+            "time_range": {
+              "to": 0,
+              "from": 600
+            },
+            "aggregation": {
+              "stat": "AVG",
+              "type": "",
+              "unit": "",
+              "field": "",
+              "value": "rectbcastpowerlimit",
+              "metric": "rectbcastpowerlimit",
+              "metricType": "Gauge",
+              "temporality": "Cumulative"
+            },
+            "datasourceId": "kloudmate",
+            "legendFormat": "{{server_address}}",
+            "responseType": "series"
+          }
+        ],
+        "time_options": {
+          "override": false,
+          "time_shift": ""
+        }
+      },
+      {
+        "id": "btbg8gnikiu",
+        "tz": "local",
+        "axis": {
+          "x": {
+            "date_style": "auto"
+          },
+          "y": {
+            "format": "unformatted",
+            "decimals": 3
+          }
+        },
+        "STATS": {},
+        "title": "Battery String",
+        "panelType": "STATS",
+        "timeRange": "1h",
+        "statConfig": {
+          "statView": "grid",
+          "baseColor": "#4CBB17",
+          "calculation": "last"
+        },
+        "timeseries": {
+          "legend": {
+            "view": "list",
+            "values": []
+          }
+        },
+        "description": "Number of Battery strings",
+        "node_configs": [
+          {
+            "page": 1,
+            "stat": "",
+            "type": "query",
+            "hidden": false,
+            "metric": "",
+            "nodeId": "A",
+            "region": "",
+            "source": "kloudmate",
+            "dataset": "metrics",
+            "filters": [
+              {
+                "type": "string",
+                "field": "server_address",
+                "value": "$device",
+                "operator": "="
+              }
+            ],
+            "groupBy": [
+              {
+                "type": "string",
+                "field": "server_address"
+              }
+            ],
+            "orderBy": [],
+            "interval": "",
+            "namespace": "",
+            "dimensions": [],
+            "metricType": "",
+            "time_range": {
+              "to": 0,
+              "from": 600
+            },
+            "aggregation": {
+              "stat": "MAX",
+              "type": "",
+              "unit": "",
+              "field": "",
+              "value": "batterystrings",
+              "metric": "batterystrings",
+              "metricType": "Gauge",
+              "temporality": "Cumulative"
+            },
+            "datasourceId": "kloudmate",
+            "legendFormat": "{{server_address}}",
+            "responseType": "series"
+          }
+        ],
+        "time_options": {
+          "override": false,
+          "time_shift": ""
+        }
+      },
+      {
+        "id": "9xg9vlqigot",
+        "tz": "local",
+        "axis": {
+          "x": {
+            "date_style": "auto"
+          },
+          "y": {
+            "format": "unformatted",
+            "decimals": 3
+          }
+        },
+        "STATS": {},
+        "title": "Blocs Per String",
+        "panelType": "STATS",
+        "timeRange": "1h",
+        "statConfig": {
+          "statView": "grid",
+          "baseColor": "#4CBB17",
+          "calculation": "last"
+        },
+        "timeseries": {
+          "legend": {
+            "view": "list",
+            "values": []
+          }
+        },
+        "description": "Number of Blocs Per String",
+        "node_configs": [
+          {
+            "page": 1,
+            "stat": "",
+            "type": "query",
+            "hidden": false,
+            "metric": "",
+            "nodeId": "A",
+            "region": "",
+            "source": "kloudmate",
+            "dataset": "metrics",
+            "filters": [
+              {
+                "type": "string",
+                "field": "server_address",
+                "value": "$device",
+                "operator": "="
+              }
+            ],
+            "groupBy": [
+              {
+                "type": "string",
+                "field": "server_address"
+              }
+            ],
+            "orderBy": [],
+            "interval": "",
+            "namespace": "",
+            "dimensions": [],
+            "metricType": "",
+            "time_range": {
+              "to": 0,
+              "from": 600
+            },
+            "aggregation": {
+              "stat": "MAX",
+              "type": "",
+              "unit": "",
+              "field": "",
+              "value": "batteryblocs",
+              "metric": "batteryblocs",
+              "metricType": "Gauge",
+              "temporality": "Cumulative"
+            },
+            "datasourceId": "kloudmate",
+            "legendFormat": "{{server_address}}",
+            "responseType": "series"
+          }
+        ],
+        "time_options": {
+          "override": false,
+          "time_shift": ""
+        }
+      },
+      {
+        "id": "raioia50wr9",
+        "tz": "local",
+        "axis": {
+          "x": {
+            "date_style": "auto"
+          },
+          "y": {
+            "format": "unformatted",
+            "decimals": 3
+          }
+        },
+        "STATS": {},
+        "title": "Battery Temp",
+        "panelType": "STATS",
+        "timeRange": "1h",
+        "statConfig": {
+          "suffix": "C",
+          "decimals": 1,
+          "statView": "grid",
+          "baseColor": "#4CBB17",
+          "multiplyBy": 0.1,
+          "calculation": "last"
+        },
+        "timeseries": {
+          "legend": {
+            "view": "list",
+            "values": []
+          }
+        },
+        "description": "String Temperature Average",
+        "node_configs": [
+          {
+            "page": 1,
+            "stat": "",
+            "type": "query",
+            "hidden": false,
+            "metric": "",
+            "nodeId": "A",
+            "region": "",
+            "source": "kloudmate",
+            "dataset": "metrics",
+            "filters": [
+              {
+                "type": "string",
+                "field": "server_address",
+                "value": "$device",
+                "operator": "="
+              }
+            ],
+            "groupBy": [
+              {
+                "type": "string",
+                "field": "server_address"
+              }
+            ],
+            "orderBy": [],
+            "interval": "",
+            "namespace": "",
+            "dimensions": [],
+            "metricType": "",
+            "time_range": {
+              "to": 0,
+              "from": 600
+            },
+            "aggregation": {
+              "stat": "LAST",
+              "type": "",
+              "unit": "",
+              "field": "",
+              "value": "battstringtemperatureavg",
+              "metric": "battstringtemperatureavg",
+              "metricType": "Gauge",
+              "temporality": "Cumulative"
+            },
+            "datasourceId": "kloudmate",
+            "legendFormat": "{{server_address}}",
+            "responseType": "series"
+          }
+        ],
+        "time_options": {
+          "override": false,
+          "time_shift": ""
+        }
+      },
+      {
+        "id": "0jr1r01ztrr",
+        "tz": "local",
+        "axis": {
+          "x": {
+            "date_style": "auto"
+          },
+          "y": {
+            "format": "unformatted",
+            "decimals": 3
+          }
+        },
+        "STATS": {},
+        "title": " Charge State",
+        "panelType": "STATS",
+        "timeRange": "1h",
+        "statConfig": {
+          "suffix": "",
+          "statView": "grid",
+          "baseColor": "#4CBB17",
+          "multiplyBy": "",
+          "calculation": "last",
+          "value_mappings": [
+            {
+              "id": "kdyr307ebth",
+              "type": "value",
+              "color": "#4CBB17",
+              "condition": "1",
+              "replace_with": "Charging"
+            },
+            {
+              "id": "0ly3e6gqx9ce",
+              "type": "value",
+              "color": "#d0021b",
+              "condition": "0",
+              "replace_with": "Discharging"
+            }
+          ]
+        },
+        "timeseries": {
+          "legend": {
+            "view": "list",
+            "values": []
+          }
+        },
+        "node_configs": [
+          {
+            "page": 1,
+            "stat": "",
+            "type": "query",
+            "hidden": false,
+            "metric": "",
+            "nodeId": "A",
+            "region": "",
+            "source": "kloudmate",
+            "dataset": "metrics",
+            "filters": [
+              {
+                "type": "string",
+                "field": "server_address",
+                "value": "$device",
+                "operator": "="
+              }
+            ],
+            "groupBy": [],
+            "orderBy": [],
+            "interval": "",
+            "namespace": "",
+            "dimensions": [],
+            "metricType": "",
+            "time_range": {
+              "to": 0,
+              "from": 600
+            },
+            "aggregation": {
+              "stat": "LAST",
+              "type": "",
+              "unit": "",
+              "field": "",
+              "value": "chgstate",
+              "metric": "chgstate",
+              "metricType": "Gauge",
+              "temporality": "Cumulative"
+            },
+            "datasourceId": "kloudmate",
+            "responseType": "series"
+          }
+        ],
+        "time_options": {
+          "override": false,
+          "time_shift": ""
+        }
+      },
+      {
+        "id": "0fc5j4j15fn",
+        "tz": "local",
+        "axis": {
+          "x": {
+            "date_style": "auto"
+          },
+          "y": {
+            "format": "unformatted",
+            "suffix": "A",
+            "decimals": 2,
+            "multiplyBy": 0.001
+          }
+        },
+        "STATS": {},
+        "title": "Rectifier Current",
+        "panelType": "STATS",
+        "timeRange": "1d",
+        "TimeSeries": {},
+        "statConfig": {
+          "suffix": "A",
+          "statView": "grid",
+          "baseColor": "#4CBB17",
+          "multiplyBy": 0.001,
+          "calculation": "last"
+        },
+        "timeseries": {
+          "legend": {
+            "view": "table",
+            "values": [
+              {
+                "label": "Last",
+                "value": "last"
+              }
+            ]
+          }
+        },
+        "node_configs": [
+          {
+            "page": 1,
+            "stat": "",
+            "type": "query",
+            "hidden": false,
+            "metric": "",
+            "nodeId": "A",
+            "region": "",
+            "source": "kloudmate",
+            "dataset": "metrics",
+            "filters": [
+              {
+                "type": "string",
+                "field": "server_address",
+                "value": "$device",
+                "operator": "="
+              }
+            ],
+            "groupBy": [
+              {
+                "type": "string",
+                "field": "server_address"
+              }
+            ],
+            "orderBy": [],
+            "interval": "",
+            "namespace": "",
+            "dimensions": [],
+            "metricType": "",
+            "time_range": {
+              "to": 0,
+              "from": 600
+            },
+            "aggregation": {
+              "stat": "LAST",
+              "type": "",
+              "field": "",
+              "value": "rectcurrent",
+              "metric": "rectcurrent"
+            },
+            "datasourceId": "kloudmate",
+            "legendFormat": "{{server_address}}",
+            "responseType": "series"
+          }
+        ],
+        "time_options": {
+          "override": false,
+          "time_shift": ""
+        }
+      },
+      {
+        "id": "16r9t1vk9nc",
+        "tz": "local",
+        "axis": {
+          "x": {
+            "date_style": "auto"
+          },
+          "y": {
+            "format": "unformatted",
+            "decimals": 3
+          }
+        },
+        "STATS": {},
+        "title": "Battery Current",
+        "panelType": "STATS",
+        "timeRange": "1h",
+        "statConfig": {
+          "format": "unformatted",
+          "suffix": "A",
+          "decimals": 2,
+          "statView": "grid",
+          "baseColor": "#4CBB17",
+          "multiplyBy": 0.001,
+          "calculation": "last"
+        },
+        "timeseries": {
+          "legend": {
+            "view": "list",
+            "values": []
+          }
+        },
+        "node_configs": [
+          {
+            "page": 1,
+            "stat": "",
+            "type": "query",
+            "hidden": false,
+            "metric": "",
+            "nodeId": "A",
+            "region": "",
+            "source": "kloudmate",
+            "dataset": "metrics",
+            "filters": [
+              {
+                "type": "string",
+                "field": "server_address",
+                "value": "$device",
+                "operator": "="
+              }
+            ],
+            "groupBy": [],
+            "orderBy": [],
+            "interval": "",
+            "namespace": "",
+            "dimensions": [],
+            "metricType": "",
+            "time_range": {
+              "to": 0,
+              "from": 600
+            },
+            "aggregation": {
+              "stat": "LAST",
+              "type": "",
+              "unit": "",
+              "field": "",
+              "value": "battcurrent",
+              "metric": "battcurrent",
+              "metricType": "Gauge",
+              "temporality": "Cumulative"
+            },
+            "datasourceId": "kloudmate",
+            "responseType": "series"
+          }
+        ],
+        "time_options": {
+          "override": false,
+          "time_shift": ""
+        }
+      },
+      {
+        "id": "preuju3i26r",
+        "tz": "local",
+        "axis": {
+          "x": {
+            "date_style": "auto"
+          },
+          "y": {
+            "format": "unformatted",
+            "suffix": "Ah",
+            "decimals": 3,
+            "multiplyBy": 0.1
+          }
+        },
+        "STATS": {},
+        "title": " Battery Remaining",
+        "panelType": "STATS",
+        "timeRange": "2h",
+        "TimeSeries": {},
+        "statConfig": {
+          "format": "percentage",
+          "suffix": "",
+          "decimals": 2,
+          "statView": "grid",
+          "baseColor": "#4CBB17",
+          "multiplyBy": "",
+          "calculation": "last"
+        },
+        "timeseries": {
+          "legend": {
+            "view": "list",
+            "values": []
+          }
+        },
+        "description": " Battery Remaining Percentage",
+        "node_configs": [
+          {
+            "page": 1,
+            "stat": "",
+            "type": "query",
+            "hidden": true,
+            "metric": "",
+            "nodeId": "A",
+            "region": "",
+            "source": "kloudmate",
+            "dataset": "metrics",
+            "filters": [
+              {
+                "type": "string",
+                "field": "server_address",
+                "value": "$device",
+                "operator": "="
+              }
+            ],
+            "groupBy": [
+              {
+                "type": "string",
+                "field": "server_address"
+              }
+            ],
+            "orderBy": [],
+            "interval": "",
+            "namespace": "",
+            "dimensions": [],
+            "metricType": "",
+            "time_range": {
+              "to": 0,
+              "from": 600
+            },
+            "aggregation": {
+              "stat": "LAST",
+              "type": "",
+              "unit": "",
+              "field": "",
+              "value": "battcapacity",
+              "metric": "battcapacity",
+              "metricType": "Gauge",
+              "temporality": "Cumulative"
+            },
+            "datasourceId": "kloudmate",
+            "legendFormat": "{{server_address}}",
+            "responseType": "series"
+          },
+          {
+            "page": 1,
+            "stat": "",
+            "type": "query",
+            "hidden": true,
+            "metric": "",
+            "nodeId": "B",
+            "region": "",
+            "source": "kloudmate",
+            "dataset": "metrics",
+            "filters": [
+              {
+                "type": "string",
+                "field": "server_address",
+                "value": "$device",
+                "operator": "="
+              }
+            ],
+            "groupBy": [
+              {
+                "type": "string",
+                "field": "server_address"
+              }
+            ],
+            "orderBy": [],
+            "interval": "",
+            "namespace": "",
+            "dimensions": [],
+            "metricType": "",
+            "time_range": {
+              "to": 0,
+              "from": 600
+            },
+            "aggregation": {
+              "stat": "LAST",
+              "type": "",
+              "unit": "",
+              "field": "",
+              "value": "c10capacity",
+              "metric": "c10capacity",
+              "metricType": "Gauge",
+              "temporality": "Cumulative"
+            },
+            "datasourceId": "kloudmate"
+          },
+          {
+            "type": "expression",
+            "hidden": false,
+            "nodeId": "C",
+            "expression": "$A/$B",
+            "expressionType": "math"
+          }
+        ],
+        "time_options": {
+          "override": false,
+          "time_shift": ""
+        }
+      },
+      {
+        "id": "d84fk5851uj",
+        "tz": "local",
+        "axis": {
+          "x": {
+            "date_style": "auto"
+          },
+          "y": {
+            "format": "unformatted",
+            "decimals": 3
+          }
+        },
+        "STATS": {},
+        "title": "Battery Remaining",
+        "panelType": "STATS",
+        "timeRange": "1h",
+        "statConfig": {
+          "format": "unformatted",
+          "suffix": "hours",
+          "decimals": 2,
+          "statView": "grid",
+          "baseColor": "#4CBB17",
+          "multiplyBy": "",
+          "calculation": "last"
+        },
+        "timeseries": {
+          "legend": {
+            "view": "list",
+            "values": []
+          }
+        },
+        "description": "Estimated duration",
+        "node_configs": [
+          {
+            "page": 1,
+            "stat": "",
+            "type": "query",
+            "hidden": true,
+            "metric": "",
+            "nodeId": "B",
+            "region": "",
+            "source": "kloudmate",
+            "dataset": "metrics",
+            "filters": [
+              {
+                "type": "string",
+                "field": "server_address",
+                "value": "$device",
+                "operator": "="
+              }
+            ],
+            "groupBy": [],
+            "orderBy": [],
+            "interval": "",
+            "namespace": "",
+            "dimensions": [],
+            "metricType": "",
+            "time_range": {
+              "to": 0,
+              "from": 600
+            },
+            "aggregation": {
+              "stat": "LAST",
+              "type": "",
+              "unit": "",
+              "field": "",
+              "value": "battcapacity",
+              "metric": "battcapacity",
+              "metricType": "Gauge",
+              "temporality": "Cumulative"
+            },
+            "datasourceId": "kloudmate",
+            "responseType": "series"
+          },
+          {
+            "page": 1,
+            "stat": "",
+            "type": "query",
+            "hidden": true,
+            "metric": "",
+            "nodeId": "D",
+            "region": "",
+            "source": "kloudmate",
+            "dataset": "metrics",
+            "filters": [
+              {
+                "type": "string",
+                "field": "server_address",
+                "value": "$device",
+                "operator": "="
+              }
+            ],
+            "groupBy": [],
+            "orderBy": [],
+            "interval": "",
+            "namespace": "",
+            "dimensions": [],
+            "metricType": "",
+            "time_range": {
+              "to": 0,
+              "from": 600
+            },
+            "aggregation": {
+              "stat": "LAST",
+              "type": "",
+              "unit": "",
+              "field": "",
+              "value": "battcurrent",
+              "metric": "battcurrent",
+              "metricType": "Gauge",
+              "temporality": "Cumulative"
+            },
+            "datasourceId": "kloudmate",
+            "responseType": "series"
+          },
+          {
+            "type": "expression",
+            "hidden": false,
+            "nodeId": "E",
+            "expression": "($B * 0.1) / (abs($D) * 0.001)",
+            "expressionType": "math"
+          }
+        ],
+        "time_options": {
+          "override": false,
+          "time_shift": ""
+        }
+      }
+    ],
+    "timeRange": "1h",
+    "variables": [
+      {
+        "name": "device",
+        "type": "query",
+        "label": "Device",
+        "config": {
+          "otel": {
+            "key": {
+              "type": "string",
+              "field": "server_address"
+            },
+            "dataset": "metrics"
+          },
+          "source": "cloudwatch",
+          "queryType": "otel.values"
+        },
+        "is_multi": false,
+        "description": "Select device",
+        "show_all_option": false
+      }
+    ],
+    "panel_layouts": [
+      {
+        "h": 7,
+        "i": "bb1nhm724bm",
+        "w": 8,
+        "x": 8,
+        "y": 0,
+        "minH": 1,
+        "minW": 1,
+        "moved": false,
+        "static": false
+      },
+      {
+        "h": 7,
+        "i": "8b56crd0hvx",
+        "w": 8,
+        "x": 0,
+        "y": 0,
+        "minH": 1,
+        "minW": 1,
+        "moved": false,
+        "static": false
+      },
+      {
+        "h": 7,
+        "i": "4wqbfrttm6j",
+        "w": 8,
+        "x": 16,
+        "y": 0,
+        "minH": 1,
+        "minW": 1,
+        "moved": false,
+        "static": false
+      },
+      {
+        "h": 3,
+        "i": "2m92g8etng6",
+        "w": 4,
+        "x": 0,
+        "y": 10,
+        "minH": 1,
+        "minW": 1,
+        "moved": false,
+        "static": false
+      },
+      {
+        "h": 3,
+        "i": "h3w6oncjtuo",
+        "w": 4,
+        "x": 12,
+        "y": 10,
+        "minH": 1,
+        "minW": 1,
+        "moved": false,
+        "static": false
+      },
+      {
+        "h": 3,
+        "i": "1ph44mi1l5z",
+        "w": 4,
+        "x": 8,
+        "y": 10,
+        "minH": 1,
+        "minW": 1,
+        "moved": false,
+        "static": false
+      },
+      {
+        "h": 3,
+        "i": "btbg8gnikiu",
+        "w": 4,
+        "x": 16,
+        "y": 7,
+        "minH": 1,
+        "minW": 1,
+        "moved": false,
+        "static": false
+      },
+      {
+        "h": 3,
+        "i": "9xg9vlqigot",
+        "w": 4,
+        "x": 20,
+        "y": 7,
+        "minH": 1,
+        "minW": 1,
+        "moved": false,
+        "static": false
+      },
+      {
+        "h": 3,
+        "i": "raioia50wr9",
+        "w": 4,
+        "x": 12,
+        "y": 7,
+        "minH": 1,
+        "minW": 1,
+        "moved": false,
+        "static": false
+      },
+      {
+        "h": 3,
+        "i": "0jr1r01ztrr",
+        "w": 4,
+        "x": 4,
+        "y": 7,
+        "minH": 1,
+        "minW": 1,
+        "moved": false,
+        "static": false
+      },
+      {
+        "h": 3,
+        "i": "0fc5j4j15fn",
+        "w": 4,
+        "x": 4,
+        "y": 10,
+        "minH": 1,
+        "minW": 1,
+        "moved": false,
+        "static": false
+      },
+      {
+        "h": 3,
+        "i": "16r9t1vk9nc",
+        "w": 4,
+        "x": 8,
+        "y": 7,
+        "minH": 1,
+        "minW": 1,
+        "moved": false,
+        "static": false
+      },
+      {
+        "h": 3,
+        "i": "preuju3i26r",
+        "w": 4,
+        "x": 0,
+        "y": 7,
+        "minH": 1,
+        "minW": 1,
+        "moved": false,
+        "static": false
+      },
+      {
+        "h": 3,
+        "i": "d84fk5851uj",
+        "w": 4,
+        "x": 16,
+        "y": 10,
+        "minH": 1,
+        "minW": 1,
+        "moved": false,
+        "static": false
+      }
+    ],
+    "default_region": "us-east-1"
+  },
+  "tags": []
+}

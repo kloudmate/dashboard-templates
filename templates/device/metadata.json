@@ -1,0 +1,7 @@
+{
+  "title": "Remote Device (SNMP)-battery",
+  "description": "Remote device monitoring through SNMP (Simple Network Management Protocol) provides a standardized way to observe and manage the health, performance, and availability of network-connected devices such as batteries, routers, switches, firewalls, servers, and IoT endpoints.",
+  "tags": ["metrics", "Device"],
+  "author": "KloudMate",
+  "verified": true
+}
