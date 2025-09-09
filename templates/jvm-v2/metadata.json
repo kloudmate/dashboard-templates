@@ -1,7 +1,7 @@
 {
   "title": "JVM V2",
-  "description": "Gather various system-level performance indicators directly from a host's operating system. These metrics provide insights into the resource utilization and health of the physical or virtual server where the Collector is deployed as an agent.",
-  "tags": ["metrics", "K8s"],
+  "description": "Monitoring JVM runtime metrics for java applicatoin running in kubernetes and integrated using KM Agent. You can collect runtime metrics such as memory utilization and limit, garbage collection activity, thread counts, class loading, and CPU consumption.",
+  "tags": ["metrics", "app"],
   "author": "KloudMate",
   "verified": true
 }
