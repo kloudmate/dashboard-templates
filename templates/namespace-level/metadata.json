@@ -1,5 +1,5 @@
 {
-  "title": "K8s Namespace Level",
+  "title": "Kubernetes Namespace Level",
   "description": "Kubernetes namespaces monitoring using KM Agent, provides visibility into key metrics including CPU and memory utilization, pod counts, network traffic aggregated per namespace.",
   "tags": ["metrics", "K8s"],
   "author": "KloudMate",
