@@ -1,7 +1,7 @@
 {
-  "title": "PostgreSQL",
-  "description": "The PostgreSQL dashboard provides deep visibility into database health, performance, and resource usage by integrating with OpenTelemetry (Otel).",
-  "tags": ["metrics", "db"],
+  "title": "Kubernetes Node Level",
+  "description": " Monitoring Kubernetes nodes with KM Agents provides critical insights into the health and performance of the underlying infrastructure that powers your cluster, including key node-level metrics such as CPU utilization, memory consumption, disk I/O, filesystem usage, and network throughput..",
+  "tags": ["metrics", "K8s"],
   "author": "KloudMate",
   "verified": true
 }
