@@ -1,0 +1,7 @@
+{
+  "title": "Kubernetes Cluster Level",
+  "description": "Kubernetes cluster monitoring using KM Agent, provides visibility into key metrics including CPU and memory utilization by nodes, resources inside the cluster like no.of nodes, pods, namespace, deployments, containers.",
+  "tags": ["metrics", "K8s"],
+  "author": "KloudMate",
+  "verified": true
+}
