@@ -10,23 +10,26 @@
         "axis": {
           "x": {
             "date_style": "auto"
-          },
-          "y": {
-            "decimals": 1
           }
         },
         "STATS": {},
         "table": {},
-        "title": "CPU Request & Limit ",
+        "title": "CPU Request ",
         "tooltip": {
           "mode": "all"
         },
-        "panelType": "TimeSeries",
+        "panelType": "STATS",
         "timeRange": "1h",
         "TimeSeries": {},
         "statConfig": {
+          "color": {
+            "scheme": "fixed",
+            "fixedColor": "#3e77bb"
+          },
+          "suffix": "cores",
           "statView": "grid",
           "baseColor": "#4CBB17",
+          "colorMode": "background",
           "calculation": "last"
         },
         "timeseries": {
@@ -35,40 +38,8 @@
             "values": []
           }
         },
+        "description": "The amount of guaranteed CPU (in cores) assigned for Namespace selected",
         "node_configs": [
-          {
-            "exp": "sum by (k8s_namespace_name) (avg by (k8s_container_name, k8s_namespace_name, k8s_pod_name) (k8s_container_cpu_limit{k8s_namespace_name=\"$namespace\", k8s_cluster_name=\"$cluster\"}))",
-            "page": 1,
-            "stat": "",
-            "type": "query",
-            "limit": null,
-            "hidden": false,
-            "metric": "",
-            "nodeId": "A",
-            "region": "",
-            "source": "kloudmate",
-            "dataset": "metrics",
-            "filters": [],
-            "groupBy": [],
-            "orderBy": [],
-            "interval": "",
-            "namespace": "",
-            "dimensions": [],
-            "metricType": "",
-            "query_type": "promql",
-            "time_range": {
-              "to": 0,
-              "from": 600
-            },
-            "aggregation": {
-              "stat": "AVG",
-              "type": "",
-              "field": ""
-            },
-            "datasourceId": "kloudmate",
-            "legendFormat": "limit",
-            "responseType": "series"
-          },
           {
             "exp": "sum by (k8s_namespace_name) (avg by (k8s_container_name, k8s_namespace_name, k8s_pod_name) (k8s_container_cpu_request{k8s_namespace_name=\"$namespace\", k8s_cluster_name=\"$cluster\"}))",
             "page": 1,
@@ -116,19 +87,27 @@
             "date_style": "auto"
           },
           "y": {
-            "format": "bytes",
-            "decimals": 1
+            "format": "bytes"
           }
         },
-        "title": "Memory Limit & Request",
+        "STATS": {},
+        "title": "Memory Request",
         "tooltip": {
           "mode": "all"
         },
-        "panelType": "TimeSeries",
+        "panelType": "STATS",
         "timeRange": "1h",
         "statConfig": {
+          "color": {
+            "scheme": "fixed",
+            "fixedColor": "#8b572a"
+          },
+          "format": "bytes_iec",
+          "suffix": "",
+          "decimals": 1,
           "statView": "grid",
           "baseColor": "#4CBB17",
+          "colorMode": "background",
           "calculation": "last"
         },
         "timeseries": {
@@ -137,40 +116,8 @@
             "values": []
           }
         },
+        "description": "The amount of guaranteed Memory assigned for Namespace selected",
         "node_configs": [
-          {
-            "exp": "sum by (k8s_namespace_name) (avg by (k8s_container_name, k8s_namespace_name, k8s_pod_name) (k8s_container_memory_limit{k8s_namespace_name=\"$namespace\", k8s_cluster_name=\"$cluster\"}))",
-            "page": 1,
-            "stat": "",
-            "type": "query",
-            "limit": null,
-            "hidden": false,
-            "metric": "",
-            "nodeId": "A",
-            "region": "",
-            "source": "kloudmate",
-            "dataset": "metrics",
-            "filters": [],
-            "groupBy": [],
-            "orderBy": [],
-            "interval": "",
-            "namespace": "",
-            "dimensions": [],
-            "metricType": "",
-            "query_type": "promql",
-            "time_range": {
-              "to": 0,
-              "from": 600
-            },
-            "aggregation": {
-              "stat": "AVG",
-              "type": "",
-              "field": ""
-            },
-            "datasourceId": "kloudmate",
-            "legendFormat": "limit",
-            "responseType": "series"
-          },
           {
             "exp": "sum by (k8s_namespace_name) (avg by (k8s_container_name, k8s_namespace_name, k8s_pod_name) (k8s_container_memory_request{k8s_namespace_name=\"$namespace\", k8s_cluster_name=\"$cluster\"}))",
             "page": 1,
@@ -219,7 +166,7 @@
           },
           "y": {
             "format": "number",
-            "decimals": 1
+            "decimals": 3
           }
         },
         "title": "Network Error",
@@ -239,6 +186,7 @@
             "values": []
           }
         },
+        "description": "Number of network Input/output errors by Namespace",
         "node_configs": [
           {
             "exp": "sum by (k8s_namespace_name, direction) (avg by (k8s_namespace_name, k8s_pod_name, direction) (k8s_pod_network_errors{k8s_namespace_name=\"$namespace\", cluster=\"$cluster\"}))",
@@ -336,10 +284,20 @@
         },
         "timeseries": {
           "legend": {
-            "view": "list",
-            "values": []
+            "view": "table",
+            "values": [
+              {
+                "label": "Mean",
+                "value": "mean"
+              },
+              {
+                "label": "Last",
+                "value": "last"
+              }
+            ]
           }
         },
+        "description": "Rate of network input/output in bytes per second by Namespace",
         "node_configs": [
           {
             "exp": "sum by (k8s_namespace_name, direction)(rate(k8s_pod_network_io{k8s_namespace_name=\"$namespace\", cluster=\"$cluster\"}[5m]))",
@@ -444,6 +402,7 @@
             "values": []
           }
         },
+        "description": "Pod state in Statefulsets",
         "node_configs": [
           {
             "exp": "",
@@ -705,6 +664,7 @@
             "values": []
           }
         },
+        "description": "Node state in Daemonsets",
         "node_configs": [
           {
             "exp": "",
@@ -941,7 +901,7 @@
         "table": {
           "columns": [
             {
-              "key": "A:AVG()",
+              "key": "A:LAST()",
               "rename": "Available"
             },
             {
@@ -949,7 +909,7 @@
               "rename": "Replicaset"
             },
             {
-              "key": "B:AVG()",
+              "key": "B:LAST()",
               "rename": "Desired"
             }
           ]
@@ -969,6 +929,7 @@
             "values": []
           }
         },
+        "description": "Pod Available vs Desired in Replicaset",
         "node_configs": [
           {
             "page": 1,
@@ -1017,7 +978,7 @@
               "from": 600
             },
             "aggregation": {
-              "stat": "AVG",
+              "stat": "LAST",
               "type": "",
               "unit": "{pod}",
               "field": "",
@@ -1069,7 +1030,7 @@
               "from": 600
             },
             "aggregation": {
-              "stat": "AVG",
+              "stat": "LAST",
               "type": "",
               "unit": "{pod}",
               "field": "",
@@ -1103,7 +1064,7 @@
         "table": {
           "columns": [
             {
-              "key": "A:AVG()",
+              "key": "A:LAST()",
               "rename": "Available"
             },
             {
@@ -1111,7 +1072,7 @@
               "rename": "Deployment"
             },
             {
-              "key": "B:AVG()",
+              "key": "B:LAST()",
               "rename": "Desired"
             }
           ]
@@ -1131,6 +1092,7 @@
             "values": []
           }
         },
+        "description": "Number of Pods Available vs Desired",
         "node_configs": [
           {
             "page": 1,
@@ -1174,7 +1136,7 @@
               "from": 600
             },
             "aggregation": {
-              "stat": "AVG",
+              "stat": "LAST",
               "type": "",
               "unit": "{pod}",
               "field": "",
@@ -1226,7 +1188,7 @@
               "from": 600
             },
             "aggregation": {
-              "stat": "AVG",
+              "stat": "LAST",
               "type": "",
               "unit": "{pod}",
               "field": "",
@@ -1261,8 +1223,7 @@
             {
               "key": "A:AVG()",
               "format": {
-                "format": "percentage",
-                "decimals": 1
+                "format": "percentage"
               },
               "rename": "CPU Req Utilization"
             },
@@ -1290,6 +1251,7 @@
             "values": []
           }
         },
+        "description": "Represents how much CPU a pod is using compared to its requested CPU",
         "node_configs": [
           {
             "page": 1,
@@ -1401,6 +1363,7 @@
             "values": []
           }
         },
+        "description": "Represents how much Memory a pod is using compared to its requested Memory",
         "node_configs": [
           {
             "page": 1,
@@ -1467,231 +1430,6 @@
         }
       },
       {
-        "id": "4t9cvxut4ml",
-        "tz": "local",
-        "axis": {
-          "x": {
-            "date_style": "auto"
-          },
-          "y": {
-            "format": "bytes",
-            "decimals": 3
-          }
-        },
-        "table": {
-          "columns": [
-            {
-              "key": "A:LAST()",
-              "format": {
-                "format": "bytes",
-                "decimals": 1
-              },
-              "rename": "usage"
-            },
-            {
-              "key": "k8s_namespace_name",
-              "rename": "Namespace"
-            },
-            {
-              "key": "k8s_pod_name",
-              "rename": "Pod name"
-            }
-          ]
-        },
-        "title": "Pod Memory Usage",
-        "panelType": "table",
-        "timeRange": "5m",
-        "statConfig": {
-          "statView": "grid",
-          "baseColor": "#4CBB17",
-          "calculation": "last"
-        },
-        "timeseries": {
-          "legend": {
-            "view": "list",
-            "values": []
-          }
-        },
-        "node_configs": [
-          {
-            "page": 1,
-            "stat": "",
-            "type": "query",
-            "limit": null,
-            "hidden": false,
-            "metric": "",
-            "nodeId": "A",
-            "region": "",
-            "source": "kloudmate",
-            "dataset": "metrics",
-            "filters": [
-              {
-                "type": "string",
-                "field": "k8s_namespace_name",
-                "value": "$Namespace",
-                "operator": "="
-              }
-            ],
-            "groupBy": [
-              {
-                "type": "string",
-                "field": "k8s_namespace_name"
-              },
-              {
-                "type": "string",
-                "field": "k8s_pod_name"
-              }
-            ],
-            "orderBy": [
-              {
-                "field": "LAST",
-                "order": "desc"
-              }
-            ],
-            "interval": "",
-            "namespace": "",
-            "dimensions": [],
-            "metricType": "",
-            "time_range": {
-              "to": 0,
-              "from": 600
-            },
-            "aggregation": {
-              "stat": "LAST",
-              "type": "",
-              "unit": "By",
-              "field": "",
-              "value": "container_memory_working_set",
-              "metric": "container_memory_working_set",
-              "metricType": "Gauge",
-              "temporality": "Cumulative"
-            },
-            "datasourceId": "kloudmate",
-            "responseType": "number"
-          }
-        ],
-        "time_options": {
-          "override": false,
-          "time_shift": ""
-        }
-      },
-      {
-        "id": "hucsexz1f1d",
-        "tz": "local",
-        "axis": {
-          "x": {
-            "date_style": "auto"
-          }
-        },
-        "table": {
-          "columns": [
-            {
-              "key": "A:LAST()",
-              "format": {
-                "format": "number",
-                "suffix": "m",
-                "decimals": 0,
-                "multiplyBy": 1000
-              },
-              "rename": "Usage by cpu"
-            },
-            {
-              "key": "k8s_namespace_name",
-              "rename": "Namespace"
-            },
-            {
-              "key": "k8s_pod_name",
-              "rename": "pod"
-            }
-          ]
-        },
-        "title": "Pod CPU Usage (millicore)",
-        "panelType": "table",
-        "timeRange": "5m",
-        "TimeSeries": {},
-        "statConfig": {
-          "statView": "grid",
-          "baseColor": "#4CBB17",
-          "calculation": "last"
-        },
-        "timeseries": {
-          "legend": {
-            "view": "list",
-            "values": []
-          }
-        },
-        "node_configs": [
-          {
-            "exp": "avg by (k8s_namespace_name, k8s_pod_name)(k8s_pod_cpu_usage{k8s_namespace_name=\"$namespace\", cluster=\"$cluster\"})",
-            "page": 1,
-            "stat": "",
-            "type": "query",
-            "limit": null,
-            "hidden": false,
-            "metric": "",
-            "nodeId": "A",
-            "region": "",
-            "source": "kloudmate",
-            "dataset": "metrics",
-            "filters": [
-              {
-                "type": "string",
-                "field": "k8s_namespace_name",
-                "value": "$namespace",
-                "operator": "="
-              },
-              {
-                "type": "string",
-                "field": "k8s_cluster_name",
-                "value": "$cluster",
-                "operator": "="
-              }
-            ],
-            "groupBy": [
-              {
-                "type": "string",
-                "field": "k8s_namespace_name"
-              },
-              {
-                "type": "string",
-                "field": "k8s_pod_name"
-              }
-            ],
-            "orderBy": [
-              {
-                "field": "LAST",
-                "order": "desc"
-              }
-            ],
-            "interval": "",
-            "namespace": "",
-            "dimensions": [],
-            "metricType": "",
-            "query_type": "qb",
-            "time_range": {
-              "to": 0,
-              "from": 600
-            },
-            "aggregation": {
-              "stat": "LAST",
-              "type": "",
-              "unit": "{cpu}",
-              "field": "",
-              "value": "container_cpu_usage",
-              "metric": "container_cpu_usage",
-              "metricType": "Gauge",
-              "temporality": "Cumulative"
-            },
-            "datasourceId": "kloudmate",
-            "responseType": "number"
-          }
-        ],
-        "time_options": {
-          "override": false,
-          "time_shift": ""
-        }
-      },
-      {
         "id": "7vi2fjw80s2",
         "tz": "local",
         "axis": {
@@ -1704,12 +1442,19 @@
           }
         },
         "STATS": {},
-        "title": "Number of Pods",
+        "table": {},
+        "title": "Running Pods",
         "panelType": "STATS",
         "timeRange": "5m",
+        "TimeSeries": {},
         "statConfig": {
+          "color": {
+            "scheme": "fixed",
+            "fixedColor": "#76c029"
+          },
           "statView": "grid",
           "baseColor": "#4CBB17",
+          "colorMode": "background",
           "calculation": "last"
         },
         "timeseries": {
@@ -1718,11 +1463,14 @@
             "values": []
           }
         },
+        "description": "Number of Pods running in the Namespace",
         "node_configs": [
           {
+            "exp": "count(k8s_pod_phase{k8s_namespace_name=\"$namespace\",k8s_cluster_name=\"$cluster\"}==2)",
             "page": 1,
             "stat": "",
             "type": "query",
+            "limit": null,
             "hidden": false,
             "metric": "",
             "nodeId": "A",
@@ -1743,18 +1491,24 @@
                 "operator": "="
               }
             ],
-            "groupBy": [],
+            "groupBy": [
+              {
+                "type": "string",
+                "field": "k8s_pod_name"
+              }
+            ],
             "orderBy": [],
             "interval": "",
             "namespace": "",
             "dimensions": [],
             "metricType": "",
+            "query_type": "promql",
             "time_range": {
               "to": 0,
               "from": 600
             },
             "aggregation": {
-              "stat": "COUNT",
+              "stat": "LAST",
               "type": "",
               "unit": "",
               "field": "",
@@ -1773,44 +1527,297 @@
         }
       },
       {
-        "id": "hvmranotoq6",
+        "id": "11d3h0v8j2wf",
+        "tz": "local",
+        "axis": {
+          "x": {
+            "date_style": "auto"
+          }
+        },
+        "STATS": {},
+        "table": {},
+        "title": "CPU Limit ",
+        "tooltip": {
+          "mode": "all"
+        },
+        "panelType": "STATS",
+        "timeRange": "1h",
+        "TimeSeries": {},
+        "statConfig": {
+          "color": {
+            "scheme": "fixed",
+            "fixedColor": "#f0a427"
+          },
+          "suffix": "cores",
+          "statView": "grid",
+          "baseColor": "#4CBB17",
+          "colorMode": "background",
+          "calculation": "last"
+        },
+        "timeseries": {
+          "legend": {
+            "view": "list",
+            "values": []
+          }
+        },
+        "description": "The amount of CPU (in cores) that is allowed to be used by Namespace selected",
+        "node_configs": [
+          {
+            "exp": "sum by (k8s_namespace_name) (avg by (k8s_container_name, k8s_namespace_name, k8s_pod_name) (k8s_container_cpu_limit{k8s_namespace_name=\"$namespace\", k8s_cluster_name=\"$cluster\"}))",
+            "page": 1,
+            "stat": "",
+            "type": "query",
+            "limit": null,
+            "hidden": false,
+            "metric": "",
+            "nodeId": "A",
+            "region": "",
+            "source": "kloudmate",
+            "dataset": "metrics",
+            "filters": [],
+            "groupBy": [],
+            "orderBy": [],
+            "interval": "",
+            "namespace": "",
+            "dimensions": [],
+            "metricType": "",
+            "query_type": "promql",
+            "time_range": {
+              "to": 0,
+              "from": 600
+            },
+            "aggregation": {
+              "stat": "AVG",
+              "type": "",
+              "field": ""
+            },
+            "datasourceId": "kloudmate",
+            "legendFormat": "limit",
+            "responseType": "series"
+          }
+        ],
+        "time_options": {
+          "override": false,
+          "time_shift": ""
+        }
+      },
+      {
+        "id": "9q6x493ye4h",
         "tz": "local",
         "axis": {
           "x": {
             "date_style": "auto"
           },
           "y": {
-            "format": "number",
-            "suffix": "{cpu}",
+            "format": "bytes"
+          }
+        },
+        "STATS": {},
+        "title": "Memory Limit ",
+        "tooltip": {
+          "mode": "all"
+        },
+        "panelType": "STATS",
+        "timeRange": "1h",
+        "statConfig": {
+          "color": {
+            "scheme": "fixed",
+            "fixedColor": "#d1d1d1"
+          },
+          "format": "bytes_iec",
+          "decimals": 1,
+          "statView": "grid",
+          "baseColor": "#4CBB17",
+          "colorMode": "background",
+          "calculation": "last"
+        },
+        "timeseries": {
+          "legend": {
+            "view": "list",
+            "values": []
+          }
+        },
+        "description": "The amount of Memory that is allowed to be used by Namespace selected",
+        "node_configs": [
+          {
+            "exp": "sum by (k8s_namespace_name) (avg by (k8s_container_name, k8s_namespace_name, k8s_pod_name) (k8s_container_memory_limit{k8s_namespace_name=\"$namespace\", k8s_cluster_name=\"$cluster\"}))",
+            "page": 1,
+            "stat": "",
+            "type": "query",
+            "limit": null,
+            "hidden": false,
+            "metric": "",
+            "nodeId": "A",
+            "region": "",
+            "source": "kloudmate",
+            "dataset": "metrics",
+            "filters": [],
+            "groupBy": [],
+            "orderBy": [],
+            "interval": "",
+            "namespace": "",
+            "dimensions": [],
+            "metricType": "",
+            "query_type": "promql",
+            "time_range": {
+              "to": 0,
+              "from": 600
+            },
+            "aggregation": {
+              "stat": "AVG",
+              "type": "",
+              "field": ""
+            },
+            "datasourceId": "kloudmate",
+            "legendFormat": "limit",
+            "responseType": "series"
+          }
+        ],
+        "time_options": {
+          "override": false,
+          "time_shift": ""
+        }
+      },
+      {
+        "id": "41hb4ynjc46",
+        "tz": "local",
+        "axis": {
+          "x": {
+            "date_style": "auto"
+          },
+          "y": {
+            "format": "unformatted",
             "decimals": 3
           }
         },
+        "STATS": {},
         "table": {
           "columns": [
             {
               "key": "A:LAST()",
-              "rename": "Limit"
+              "rename": "Status"
             },
             {
               "key": "k8s_pod_name",
-              "rename": "pod name"
+              "rename": "Pod Name"
+            }
+          ],
+          "cellOptions": {
+            "type": "colored_background",
+            "applyToRow": false
+          },
+          "value_mappings": [
+            {
+              "id": "ceuctqw4b5",
+              "type": "value",
+              "color": "#4CBB17",
+              "condition": "2",
+              "replace_with": "Running"
             },
             {
-              "key": "B:LAST()",
-              "format": {
-                "suffix": "m"
-              },
-              "rename": "Request"
+              "id": "04kzgzapcvg4",
+              "type": "value",
+              "color": "#22ffd9",
+              "condition": "3",
+              "replace_with": "Succeeded"
+            },
+            {
+              "id": "5mqzxb06ux",
+              "type": "value",
+              "color": "#eae60e",
+              "condition": "1",
+              "replace_with": "Pending"
+            },
+            {
+              "id": "4q39ay7b3h",
+              "type": "value",
+              "color": "#e3180d",
+              "condition": "4",
+              "replace_with": "Failed"
+            },
+            {
+              "id": "b1gy41h22cv",
+              "type": "value",
+              "color": "#2017bb",
+              "condition": "5",
+              "replace_with": "Unknown"
             }
           ]
         },
-        "title": "Pod CPU Limit & Request",
+        "title": "Pod Phase by Namespace",
         "panelType": "table",
+        "pie_chart": {
+          "legend": {
+            "mode": "list",
+            "show": true,
+            "values": [
+              "formattedPercent"
+            ],
+            "placement": "right"
+          },
+          "display": {
+            "type": "pie",
+            "labels": [
+              "name"
+            ]
+          },
+          "formatter": {},
+          "value_options": {
+            "type": "reduce",
+            "limit": 20,
+            "reduce": "last",
+            "columns": [
+              "numeric"
+            ]
+          }
+        },
         "timeRange": "1h",
+        "TimeSeries": {},
         "statConfig": {
-          "statView": "grid",
+          "color": {
+            "scheme": "thresholds"
+          },
+          "statView": "table",
           "baseColor": "#4CBB17",
-          "calculation": "last"
+          "colorMode": "background",
+          "calculation": "last",
+          "value_mappings": [
+            {
+              "id": "0qmav1aweu1h",
+              "type": "value",
+              "color": "#4CBB17",
+              "condition": "2",
+              "replace_with": "Running"
+            },
+            {
+              "id": "1w5oblx5zhq",
+              "type": "value",
+              "color": "#f5a623",
+              "condition": "1",
+              "replace_with": "Pending"
+            },
+            {
+              "id": "lll2jrlwvsj",
+              "type": "value",
+              "color": "#4CBB17",
+              "condition": "3",
+              "replace_with": "Succeeded"
+            },
+            {
+              "id": "4ova0ordmi6",
+              "type": "value",
+              "color": "#d0021b",
+              "condition": "4",
+              "replace_with": "Failed"
+            },
+            {
+              "id": "9hvh45zeqt",
+              "type": "value",
+              "color": "#4CBB17",
+              "condition": "5",
+              "replace_with": "Unknown"
+            }
+          ]
         },
         "timeseries": {
           "legend": {
@@ -1832,58 +1839,6 @@
             "filters": [
               {
                 "type": "string",
-                "field": "k8s_namespace_name",
-                "value": "$namespace",
-                "operator": "="
-              },
-              {
-                "type": "string",
-                "field": "k8s_cluster_name",
-                "value": "$cluster",
-                "operator": "="
-              }
-            ],
-            "groupBy": [
-              {
-                "type": "string",
-                "field": "k8s_pod_name"
-              }
-            ],
-            "orderBy": [],
-            "interval": "",
-            "namespace": "",
-            "dimensions": [],
-            "metricType": "",
-            "time_range": {
-              "to": 0,
-              "from": 600
-            },
-            "aggregation": {
-              "stat": "LAST",
-              "type": "",
-              "unit": "{cpu}",
-              "field": "",
-              "value": "k8s_container_cpu_limit",
-              "metric": "k8s_container_cpu_limit",
-              "metricType": "Gauge",
-              "temporality": "Cumulative"
-            },
-            "datasourceId": "kloudmate",
-            "responseType": "number"
-          },
-          {
-            "page": 1,
-            "stat": "",
-            "type": "query",
-            "hidden": false,
-            "metric": "",
-            "nodeId": "B",
-            "region": "",
-            "source": "kloudmate",
-            "dataset": "metrics",
-            "filters": [
-              {
-                "type": "string",
                 "field": "k8s_cluster_name",
                 "value": "$cluster",
                 "operator": "="
@@ -1913,10 +1868,10 @@
             "aggregation": {
               "stat": "LAST",
               "type": "",
-              "unit": "{cpu}",
+              "unit": "",
               "field": "",
-              "value": "k8s_container_cpu_request",
-              "metric": "k8s_container_cpu_request",
+              "value": "k8s_pod_phase",
+              "metric": "k8s_pod_phase",
               "metricType": "Gauge",
               "temporality": "Cumulative"
             },
@@ -1930,49 +1885,78 @@
         }
       },
       {
-        "id": "2va2jm9xfif",
+        "id": "11vm2eweqhri",
         "tz": "local",
         "axis": {
           "x": {
             "date_style": "auto"
           },
           "y": {
-            "format": "number",
-            "suffix": "{cpu}",
+            "format": "unformatted",
             "decimals": 3
           }
         },
+        "STATS": {},
         "table": {
+          "color": {
+            "scheme": "thresholds",
+            "fixedColor": "#4A90E2"
+          },
           "columns": [
             {
-              "key": "A:LAST()",
-              "format": {
-                "format": "bytes_iec",
-                "decimals": 3
-              },
-              "rename": "Limit"
+              "key": "A",
+              "rename": ""
             },
             {
               "key": "k8s_pod_name",
-              "rename": "pod name"
-            },
+              "rename": "Pod Name"
+            }
+          ],
+          "cellOptions": {
+            "type": "colored_background",
+            "applyToRow": false
+          },
+          "value_mappings": [
             {
-              "key": "B:LAST()",
-              "format": {
-                "format": "bytes_iec",
-                "decimals": 3
-              },
-              "rename": "Request"
+              "id": "08umgamha1ua",
+              "type": "value",
+              "color": "#ee1b0a",
+              "condition": "1",
+              "replace_with": "DOWN"
             }
           ]
         },
-        "title": "Pod Memory Limit & Request",
+        "title": "Error State",
         "panelType": "table",
-        "timeRange": "1h",
+        "timeRange": "10m",
+        "TimeSeries": {},
         "statConfig": {
-          "statView": "grid",
+          "color": {
+            "scheme": "thresholds"
+          },
+          "statView": "table",
           "baseColor": "#4CBB17",
-          "calculation": "last"
+          "colorMode": "value",
+          "calculation": "last",
+          "value_mappings": [
+            {
+              "id": "irq9jygp2x",
+              "type": "value",
+              "color": "#fb0605",
+              "condition": "0",
+              "replace_with": "DOWN"
+            },
+            {
+              "id": "1iaxsdqgk7m",
+              "type": "range",
+              "color": "#7ed321",
+              "condition": {
+                "to": 4,
+                "from": 1
+              },
+              "replace_with": "UP"
+            }
+          ]
         },
         "timeseries": {
           "legend": {
@@ -1980,11 +1964,14 @@
             "values": []
           }
         },
+        "description": "This panel shows pod's which are in error state",
         "node_configs": [
           {
+            "exp": "group(\r\n  last_over_time(\r\n    k8s_container_ready{\r\n      k8s_namespace_name=\"$namespace\",\r\n      k8s_cluster_name=\"$cluster\"\r\n    }[2m]\r\n  ) == 0\r\n) by (k8s_pod_name)\r\nand on(k8s_pod_name) (\r\n  k8s_pod_phase{\r\n    k8s_namespace_name=\"$namespace\",\r\n    k8s_cluster_name=\"$cluster\"\r\n  } != 3\r\n)",
             "page": 1,
             "stat": "",
             "type": "query",
+            "limit": null,
             "hidden": false,
             "metric": "",
             "nodeId": "A",
@@ -1994,14 +1981,14 @@
             "filters": [
               {
                 "type": "string",
-                "field": "k8s_namespace_name",
-                "value": "$namespace",
+                "field": "k8s_cluster_name",
+                "value": "$cluster",
                 "operator": "="
               },
               {
                 "type": "string",
-                "field": "k8s_cluster_name",
-                "value": "$cluster",
+                "field": "k8s_namespace_name",
+                "value": "$namespace",
                 "operator": "="
               }
             ],
@@ -2016,6 +2003,485 @@
             "namespace": "",
             "dimensions": [],
             "metricType": "",
+            "query_type": "promql",
+            "time_range": {
+              "to": 0,
+              "from": 600
+            },
+            "aggregation": {
+              "stat": "AVG",
+              "type": "",
+              "unit": "",
+              "field": "",
+              "value": "k8s_container_ready",
+              "metric": "k8s_container_ready",
+              "metricType": "Gauge",
+              "temporality": "Cumulative"
+            },
+            "datasourceId": "kloudmate",
+            "responseType": "number",
+            "promql_query_type": "instant"
+          }
+        ],
+        "time_options": {
+          "override": false,
+          "time_shift": ""
+        }
+      },
+      {
+        "id": "iimoo2fjgx",
+        "tz": "local",
+        "axis": {
+          "x": {
+            "date_style": "auto"
+          },
+          "y": {
+            "format": "number",
+            "suffix": "{cpu}",
+            "decimals": 3
+          }
+        },
+        "STATS": {},
+        "title": "CPU Usage",
+        "panelType": "STATS",
+        "timeRange": "1h",
+        "TimeSeries": {},
+        "statConfig": {
+          "color": {
+            "scheme": "fixed",
+            "fixedColor": "#4f8c08"
+          },
+          "format": "number",
+          "suffix": "cores",
+          "decimals": 3,
+          "statView": "grid",
+          "baseColor": "#4CBB17",
+          "colorMode": "background",
+          "calculation": "last"
+        },
+        "timeseries": {
+          "legend": {
+            "view": "list",
+            "values": []
+          }
+        },
+        "description": "Total CPU Usage in Cores by Namespace",
+        "node_configs": [
+          {
+            "exp": "sum by (k8s_namespace_name) (avg by (k8s_container_name,k8s_node_name,k8s_pod_name) (container_cpu_usage{k8s_namespace_name=\"$namespace\", k8s_cluster_name=\"$cluster\"}))",
+            "page": 1,
+            "stat": "",
+            "type": "query",
+            "limit": null,
+            "hidden": false,
+            "metric": "",
+            "nodeId": "A",
+            "region": "",
+            "source": "kloudmate",
+            "columns": [],
+            "dataset": "metrics",
+            "filters": [],
+            "groupBy": [],
+            "orderBy": [],
+            "namespace": "",
+            "dimensions": [],
+            "metricType": "",
+            "query_type": "promql",
+            "time_range": {
+              "to": 0,
+              "from": 600
+            },
+            "aggregation": {
+              "stat": "AVG",
+              "type": "",
+              "field": ""
+            },
+            "datasourceId": "kloudmate",
+            "responseType": "series"
+          }
+        ],
+        "time_options": {
+          "override": false,
+          "time_shift": ""
+        }
+      },
+      {
+        "id": "55r95pl3llf",
+        "tz": "local",
+        "axis": {
+          "x": {
+            "date_style": "auto"
+          },
+          "y": {
+            "format": "number",
+            "suffix": "{cpu}",
+            "decimals": 3
+          }
+        },
+        "STATS": {},
+        "title": "Memory Usage - Total Cluster",
+        "panelType": "STATS",
+        "timeRange": "1h",
+        "TimeSeries": {},
+        "statConfig": {
+          "color": {
+            "scheme": "fixed",
+            "fixedColor": "#6c1daf"
+          },
+          "format": "bytes",
+          "suffix": "",
+          "decimals": 1,
+          "statView": "grid",
+          "baseColor": "#4CBB17",
+          "colorMode": "background",
+          "calculation": "last"
+        },
+        "timeseries": {
+          "legend": {
+            "view": "list",
+            "values": []
+          }
+        },
+        "description": "Total Memory Usage by Cluster",
+        "node_configs": [
+          {
+            "exp": "sum by (k8s_cluster_name) (avg by (k8s_container_name,k8s_node_name,k8s_pod_name) (container_memory_working_set{ k8s_cluster_name=\"$cluster\"}))",
+            "page": 1,
+            "stat": "",
+            "type": "query",
+            "limit": null,
+            "hidden": false,
+            "metric": "",
+            "nodeId": "A",
+            "region": "",
+            "source": "kloudmate",
+            "columns": [],
+            "dataset": "metrics",
+            "filters": [],
+            "groupBy": [],
+            "orderBy": [],
+            "namespace": "",
+            "dimensions": [],
+            "metricType": "",
+            "query_type": "promql",
+            "time_range": {
+              "to": 0,
+              "from": 600
+            },
+            "aggregation": {
+              "stat": "AVG",
+              "type": "",
+              "field": ""
+            },
+            "datasourceId": "kloudmate",
+            "responseType": "series"
+          }
+        ],
+        "time_options": {
+          "override": false,
+          "time_shift": ""
+        }
+      },
+      {
+        "id": "de6btn46ds",
+        "tz": "local",
+        "axis": {
+          "x": {
+            "date_style": "auto"
+          },
+          "y": {
+            "format": "number",
+            "suffix": "{cpu}",
+            "decimals": 3
+          }
+        },
+        "STATS": {},
+        "title": "CPU Usage - Total Cluster",
+        "panelType": "STATS",
+        "timeRange": "1h",
+        "TimeSeries": {},
+        "statConfig": {
+          "color": {
+            "scheme": "fixed",
+            "fixedColor": "#ebdb27"
+          },
+          "format": "number",
+          "suffix": "cores",
+          "decimals": 3,
+          "statView": "grid",
+          "baseColor": "#4CBB17",
+          "colorMode": "background",
+          "calculation": "last"
+        },
+        "timeseries": {
+          "legend": {
+            "view": "list",
+            "values": []
+          }
+        },
+        "description": "Total CPU Usage in Cores by Cluster",
+        "node_configs": [
+          {
+            "exp": "sum by (k8s_cluster_name) (avg by (k8s_container_name,k8s_node_name,k8s_pod_name) (container_cpu_usage{k8s_cluster_name=\"$cluster\"}))",
+            "page": 1,
+            "stat": "",
+            "type": "query",
+            "limit": null,
+            "hidden": false,
+            "metric": "",
+            "nodeId": "A",
+            "region": "",
+            "source": "kloudmate",
+            "columns": [],
+            "dataset": "metrics",
+            "filters": [],
+            "groupBy": [],
+            "orderBy": [],
+            "namespace": "",
+            "dimensions": [],
+            "metricType": "",
+            "query_type": "promql",
+            "time_range": {
+              "to": 0,
+              "from": 600
+            },
+            "aggregation": {
+              "stat": "AVG",
+              "type": "",
+              "field": ""
+            },
+            "datasourceId": "kloudmate",
+            "responseType": "series"
+          }
+        ],
+        "time_options": {
+          "override": false,
+          "time_shift": ""
+        }
+      },
+      {
+        "id": "shg45x7n0c",
+        "tz": "local",
+        "axis": {
+          "x": {
+            "date_style": "auto"
+          },
+          "y": {
+            "format": "number",
+            "suffix": "{cpu}",
+            "decimals": 3
+          }
+        },
+        "STATS": {},
+        "title": "Memory Usage ",
+        "panelType": "STATS",
+        "timeRange": "1h",
+        "TimeSeries": {},
+        "statConfig": {
+          "color": {
+            "scheme": "fixed",
+            "fixedColor": "#3824a5"
+          },
+          "format": "bytes_iec",
+          "suffix": "",
+          "decimals": 1,
+          "statView": "grid",
+          "baseColor": "#4CBB17",
+          "colorMode": "background",
+          "calculation": "last"
+        },
+        "timeseries": {
+          "legend": {
+            "view": "list",
+            "values": []
+          }
+        },
+        "description": "Total Memory Usage by Namespace",
+        "node_configs": [
+          {
+            "exp": "sum by (k8s_namespace_name) (avg by (k8s_container_name, k8s_node_name, k8s_pod_name) (container_memory_working_set{k8s_namespace_name=\"$namespace\", k8s_cluster_name=\"$cluster\"}))",
+            "page": 1,
+            "stat": "",
+            "type": "query",
+            "limit": null,
+            "hidden": false,
+            "metric": "",
+            "nodeId": "A",
+            "region": "",
+            "source": "kloudmate",
+            "columns": [],
+            "dataset": "metrics",
+            "filters": [],
+            "groupBy": [],
+            "orderBy": [],
+            "namespace": "",
+            "dimensions": [],
+            "metricType": "",
+            "query_type": "promql",
+            "time_range": {
+              "to": 0,
+              "from": 600
+            },
+            "aggregation": {
+              "stat": "AVG",
+              "type": "",
+              "field": ""
+            },
+            "datasourceId": "kloudmate",
+            "responseType": "series"
+          }
+        ],
+        "time_options": {
+          "override": false,
+          "time_shift": ""
+        }
+      },
+      {
+        "id": "5q8g32do3bd",
+        "tz": "local",
+        "axis": {
+          "x": {
+            "date_style": "auto"
+          },
+          "y": {
+            "format": "percentage",
+            "suffix": "",
+            "decimals": 3
+          }
+        },
+        "STATS": {},
+        "table": {
+          "columns": [
+            {
+              "key": "A:LAST()",
+              "format": {
+                "format": "number",
+                "decimals": 3
+              },
+              "rename": "CPU Used"
+            },
+            {
+              "key": "k8s_namespace_name",
+              "rename": ""
+            },
+            {
+              "key": "k8s_node_name",
+              "rename": ""
+            },
+            {
+              "key": "k8s_pod_name",
+              "rename": ""
+            },
+            {
+              "key": "B:LAST()",
+              "format": {
+                "format": "number",
+                "suffix": "{cpu}",
+                "decimals": 3
+              },
+              "rename": "CPU Lmit"
+            },
+            {
+              "key": "C:LAST()",
+              "format": {
+                "format": "number",
+                "suffix": "{cpu}",
+                "decimals": 3
+              },
+              "rename": "CPU Request"
+            },
+            {
+              "key": "D:LAST()",
+              "format": {
+                "format": "bytes",
+                "decimals": 2
+              },
+              "rename": "memory used"
+            },
+            {
+              "key": "E:LAST()",
+              "format": {
+                "format": "bytes",
+                "decimals": 2
+              },
+              "rename": "memory limit"
+            },
+            {
+              "key": "F:LAST()",
+              "format": {
+                "format": "bytes",
+                "decimals": 2
+              },
+              "rename": "memory request"
+            }
+          ]
+        },
+        "title": "Pod Usage",
+        "tooltip": {
+          "mode": "all"
+        },
+        "panelType": "table",
+        "timeRange": "1h",
+        "statConfig": {
+          "format": "percentage",
+          "decimals": 1,
+          "statView": "grid",
+          "baseColor": "#4CBB17",
+          "calculation": "last"
+        },
+        "timeseries": {
+          "legend": {
+            "view": "list",
+            "values": []
+          }
+        },
+        "description": "Pod details based on Namespace selected",
+        "node_configs": [
+          {
+            "page": 1,
+            "stat": "",
+            "type": "query",
+            "limit": null,
+            "hidden": false,
+            "metric": "",
+            "nodeId": "A",
+            "region": "",
+            "source": "kloudmate",
+            "dataset": "metrics",
+            "filters": [
+              {
+                "type": "string",
+                "field": "k8s_cluster_name",
+                "value": "$cluster",
+                "operator": "="
+              },
+              {
+                "type": "string",
+                "field": "k8s_namespace_name",
+                "value": "$namespace",
+                "operator": "="
+              }
+            ],
+            "groupBy": [
+              {
+                "type": "string",
+                "field": "k8s_namespace_name"
+              },
+              {
+                "type": "string",
+                "field": "k8s_node_name"
+              },
+              {
+                "type": "string",
+                "field": "k8s_pod_name"
+              }
+            ],
+            "orderBy": [],
+            "interval": "",
+            "namespace": "",
+            "dimensions": [],
+            "metricType": "",
+            "query_type": "qb",
             "time_range": {
               "to": 0,
               "from": 600
@@ -2023,20 +2489,23 @@
             "aggregation": {
               "stat": "LAST",
               "type": "",
-              "unit": "By",
+              "unit": "{cpu}",
               "field": "",
-              "value": "k8s_container_memory_limit",
-              "metric": "k8s_container_memory_limit",
+              "range": "5m",
+              "value": "k8s_pod_cpu_usage",
+              "metric": "k8s_pod_cpu_usage",
               "metricType": "Gauge",
               "temporality": "Cumulative"
             },
             "datasourceId": "kloudmate",
+            "legendFormat": "avg",
             "responseType": "number"
           },
           {
             "page": 1,
             "stat": "",
             "type": "query",
+            "limit": null,
             "hidden": false,
             "metric": "",
             "nodeId": "B",
@@ -2060,6 +2529,14 @@
             "groupBy": [
               {
                 "type": "string",
+                "field": "k8s_namespace_name"
+              },
+              {
+                "type": "string",
+                "field": "k8s_node_name"
+              },
+              {
+                "type": "string",
                 "field": "k8s_pod_name"
               }
             ],
@@ -2068,6 +2545,135 @@
             "namespace": "",
             "dimensions": [],
             "metricType": "",
+            "query_type": "qb",
+            "time_range": {
+              "to": 0,
+              "from": 600
+            },
+            "aggregation": {
+              "stat": "LAST",
+              "type": "",
+              "unit": "{cpu}",
+              "field": "",
+              "range": "5m",
+              "value": "k8s_container_cpu_limit",
+              "metric": "k8s_container_cpu_limit",
+              "metricType": "Gauge",
+              "temporality": "Cumulative"
+            },
+            "datasourceId": "kloudmate",
+            "legendFormat": "avg",
+            "responseType": "number"
+          },
+          {
+            "page": 1,
+            "stat": "",
+            "type": "query",
+            "limit": null,
+            "hidden": false,
+            "metric": "",
+            "nodeId": "C",
+            "region": "",
+            "source": "kloudmate",
+            "dataset": "metrics",
+            "filters": [
+              {
+                "type": "string",
+                "field": "k8s_cluster_name",
+                "value": "$cluster",
+                "operator": "="
+              },
+              {
+                "type": "string",
+                "field": "k8s_namespace_name",
+                "value": "$namespace",
+                "operator": "="
+              }
+            ],
+            "groupBy": [
+              {
+                "type": "string",
+                "field": "k8s_namespace_name"
+              },
+              {
+                "type": "string",
+                "field": "k8s_node_name"
+              },
+              {
+                "type": "string",
+                "field": "k8s_pod_name"
+              }
+            ],
+            "orderBy": [],
+            "interval": "",
+            "namespace": "",
+            "dimensions": [],
+            "metricType": "",
+            "query_type": "qb",
+            "time_range": {
+              "to": 0,
+              "from": 600
+            },
+            "aggregation": {
+              "stat": "LAST",
+              "type": "",
+              "unit": "{cpu}",
+              "field": "",
+              "range": "5m",
+              "value": "k8s_container_cpu_request",
+              "metric": "k8s_container_cpu_request",
+              "metricType": "Gauge",
+              "temporality": "Cumulative"
+            },
+            "datasourceId": "kloudmate",
+            "legendFormat": "avg",
+            "responseType": "number"
+          },
+          {
+            "page": 1,
+            "stat": "",
+            "type": "query",
+            "limit": null,
+            "hidden": false,
+            "metric": "",
+            "nodeId": "D",
+            "region": "",
+            "source": "kloudmate",
+            "dataset": "metrics",
+            "filters": [
+              {
+                "type": "string",
+                "field": "k8s_cluster_name",
+                "value": "$cluster",
+                "operator": "="
+              },
+              {
+                "type": "string",
+                "field": "k8s_namespace_name",
+                "value": "$namespace",
+                "operator": "="
+              }
+            ],
+            "groupBy": [
+              {
+                "type": "string",
+                "field": "k8s_namespace_name"
+              },
+              {
+                "type": "string",
+                "field": "k8s_node_name"
+              },
+              {
+                "type": "string",
+                "field": "k8s_pod_name"
+              }
+            ],
+            "orderBy": [],
+            "interval": "",
+            "namespace": "",
+            "dimensions": [],
+            "metricType": "",
+            "query_type": "qb",
             "time_range": {
               "to": 0,
               "from": 600
@@ -2077,12 +2683,142 @@
               "type": "",
               "unit": "By",
               "field": "",
+              "range": "5m",
+              "value": "k8s_pod_memory_usage",
+              "metric": "k8s_pod_memory_usage",
+              "metricType": "Gauge",
+              "temporality": "Cumulative"
+            },
+            "datasourceId": "kloudmate",
+            "legendFormat": "avg",
+            "responseType": "number"
+          },
+          {
+            "page": 1,
+            "stat": "",
+            "type": "query",
+            "limit": null,
+            "hidden": false,
+            "metric": "",
+            "nodeId": "E",
+            "region": "",
+            "source": "kloudmate",
+            "dataset": "metrics",
+            "filters": [
+              {
+                "type": "string",
+                "field": "k8s_cluster_name",
+                "value": "$cluster",
+                "operator": "="
+              },
+              {
+                "type": "string",
+                "field": "k8s_namespace_name",
+                "value": "$namespace",
+                "operator": "="
+              }
+            ],
+            "groupBy": [
+              {
+                "type": "string",
+                "field": "k8s_namespace_name"
+              },
+              {
+                "type": "string",
+                "field": "k8s_node_name"
+              },
+              {
+                "type": "string",
+                "field": "k8s_pod_name"
+              }
+            ],
+            "orderBy": [],
+            "interval": "",
+            "namespace": "",
+            "dimensions": [],
+            "metricType": "",
+            "query_type": "qb",
+            "time_range": {
+              "to": 0,
+              "from": 600
+            },
+            "aggregation": {
+              "stat": "LAST",
+              "type": "",
+              "unit": "By",
+              "field": "",
+              "range": "5m",
+              "value": "k8s_container_memory_limit",
+              "metric": "k8s_container_memory_limit",
+              "metricType": "Gauge",
+              "temporality": "Cumulative"
+            },
+            "datasourceId": "kloudmate",
+            "legendFormat": "avg",
+            "responseType": "number"
+          },
+          {
+            "page": 1,
+            "stat": "",
+            "type": "query",
+            "limit": null,
+            "hidden": false,
+            "metric": "",
+            "nodeId": "F",
+            "region": "",
+            "source": "kloudmate",
+            "dataset": "metrics",
+            "filters": [
+              {
+                "type": "string",
+                "field": "k8s_cluster_name",
+                "value": "$cluster",
+                "operator": "="
+              },
+              {
+                "type": "string",
+                "field": "k8s_namespace_name",
+                "value": "$namespace",
+                "operator": "="
+              }
+            ],
+            "groupBy": [
+              {
+                "type": "string",
+                "field": "k8s_namespace_name"
+              },
+              {
+                "type": "string",
+                "field": "k8s_node_name"
+              },
+              {
+                "type": "string",
+                "field": "k8s_pod_name"
+              }
+            ],
+            "orderBy": [],
+            "interval": "",
+            "namespace": "",
+            "dimensions": [],
+            "metricType": "",
+            "query_type": "qb",
+            "time_range": {
+              "to": 0,
+              "from": 600
+            },
+            "aggregation": {
+              "stat": "LAST",
+              "type": "",
+              "unit": "By",
+              "field": "",
+              "range": "5m",
               "value": "k8s_container_memory_request",
               "metric": "k8s_container_memory_request",
               "metricType": "Gauge",
               "temporality": "Cumulative"
             },
             "datasourceId": "kloudmate",
+            "legendFormat": "avg",
             "responseType": "number"
           }
         ],
@@ -2095,6 +2831,94 @@
     "timeRange": "1h",
     "variables": [
       {
+        "name": "cluster",
+        "type": "query",
+        "label": "Cluster",
+        "config": {
+          "otel": {
+            "key": "k8s_cluster_name",
+            "dataset": "metrics"
+          },
+          "source": "cloudwatch",
+          "queryType": "otel.values"
+        },
+        "is_multi": false,
+        "description": "",
+        "usedInPanels": [
+          {
+            "id": "rgwuox0l1c",
+            "name": "CPU Request "
+          },
+          {
+            "id": "202aluq7qem",
+            "name": "Memory Request"
+          },
+          {
+            "id": "euvlglt7jnw",
+            "name": "Network Error"
+          },
+          {
+            "id": "80o3tevrmhn",
+            "name": "Network IO Rate"
+          },
+          {
+            "id": "0cjxj3gghu05",
+            "name": "Daemonset"
+          },
+          {
+            "id": "le4ucy8wvh",
+            "name": "Replicaset"
+          },
+          {
+            "id": "2tw3u70o9ng",
+            "name": "Deployment"
+          },
+          {
+            "id": "0vvhh1j8mcd",
+            "name": "Pods by CPU Request Utilization"
+          },
+          {
+            "id": "allj973aib",
+            "name": "Pods by Memory Request Utilization"
+          },
+          {
+            "id": "hucsexz1f1d",
+            "name": "Pod CPU Usage"
+          },
+          {
+            "id": "7vi2fjw80s2",
+            "name": "Number of Running Pods"
+          },
+          {
+            "id": "hvmranotoq6",
+            "name": "Pod CPU Limit & Request (CPU cores)"
+          },
+          {
+            "id": "2va2jm9xfif",
+            "name": "Pod Memory Limit & Request"
+          },
+          {
+            "id": "11d3h0v8j2wf",
+            "name": "CPU Limit "
+          },
+          {
+            "id": "9q6x493ye4h",
+            "name": "Memory Limit "
+          },
+          {
+            "id": "41hb4ynjc46",
+            "name": "Pod Phase by Namespace"
+          },
+          {
+            "id": "11vm2eweqhri",
+            "name": "Error State"
+          }
+        ],
+        "usesVariables": [],
+        "show_all_option": false,
+        "usedInVariables": []
+      },
+      {
         "name": "namespace",
         "type": "query",
         "label": "Namespace",
@@ -2104,26 +2928,8 @@
               "type": "string",
               "field": "k8s_namespace_name"
             },
-            "dataset": "metrics"
-          },
-          "source": "cloudwatch",
-          "queryType": "otel.values"
-        },
-        "is_multi": false,
-        "description": "",
-        "show_all_option": false
-      },
-      {
-        "name": "cluster",
-        "type": "query",
-        "label": "Cluster",
-        "config": {
-          "otel": {
-            "key": {
-              "type": "string",
-              "field": "cluster"
-            },
-            "dataset": "metrics"
+            "dataset": "metrics",
+            "filters": []
           },
           "source": "cloudwatch",
           "queryType": "otel.values"
@@ -2135,10 +2941,10 @@
     ],
     "panel_layouts": [
       {
-        "h": 8,
+        "h": 5,
         "i": "rgwuox0l1c",
-        "w": 10,
-        "x": 4,
+        "w": 5,
+        "x": 14,
         "y": 0,
         "minH": 1,
         "minW": 1,
@@ -2146,11 +2952,11 @@
         "static": false
       },
       {
-        "h": 8,
+        "h": 5,
         "i": "202aluq7qem",
-        "w": 10,
-        "x": 14,
-        "y": 0,
+        "w": 6,
+        "x": 12,
+        "y": 5,
         "minH": 1,
         "minW": 1,
         "moved": false,
@@ -2161,7 +2967,7 @@
         "i": "euvlglt7jnw",
         "w": 12,
         "x": 12,
-        "y": 44,
+        "y": 47,
         "minH": 1,
         "minW": 1,
         "moved": false,
@@ -2172,7 +2978,7 @@
         "i": "80o3tevrmhn",
         "w": 12,
         "x": 0,
-        "y": 44,
+        "y": 47,
         "minH": 1,
         "minW": 1,
         "moved": false,
@@ -2183,7 +2989,7 @@
         "i": "2gqmyayotml",
         "w": 12,
         "x": 0,
-        "y": 27,
+        "y": 30,
         "minH": 1,
         "minW": 1,
         "moved": false,
@@ -2194,7 +3000,7 @@
         "i": "0cjxj3gghu05",
         "w": 12,
         "x": 12,
-        "y": 27,
+        "y": 30,
         "minH": 1,
         "minW": 1,
         "moved": false,
@@ -2205,7 +3011,7 @@
         "i": "le4ucy8wvh",
         "w": 12,
         "x": 12,
-        "y": 35,
+        "y": 38,
         "minH": 1,
         "minW": 1,
         "moved": false,
@@ -2216,7 +3022,7 @@
         "i": "2tw3u70o9ng",
         "w": 12,
         "x": 0,
-        "y": 35,
+        "y": 38,
         "minH": 1,
         "minW": 1,
         "moved": false,
@@ -2227,7 +3033,7 @@
         "i": "0vvhh1j8mcd",
         "w": 12,
         "x": 0,
-        "y": 17,
+        "y": 20,
         "minH": 1,
         "minW": 1,
         "moved": false,
@@ -2238,36 +3044,14 @@
         "i": "allj973aib",
         "w": 12,
         "x": 12,
-        "y": 17,
+        "y": 20,
         "minH": 1,
         "minW": 1,
         "moved": false,
         "static": false
       },
       {
-        "h": 9,
-        "i": "4t9cvxut4ml",
-        "w": 12,
-        "x": 12,
-        "y": 8,
-        "minH": 1,
-        "minW": 1,
-        "moved": false,
-        "static": false
-      },
-      {
-        "h": 9,
-        "i": "hucsexz1f1d",
-        "w": 12,
-        "x": 0,
-        "y": 8,
-        "minH": 1,
-        "minW": 1,
-        "moved": false,
-        "static": false
-      },
-      {
-        "h": 8,
+        "h": 5,
         "i": "7vi2fjw80s2",
         "w": 4,
         "x": 0,
@@ -2278,22 +3062,99 @@
         "static": false
       },
       {
-        "h": 9,
-        "i": "hvmranotoq6",
-        "w": 12,
-        "x": 0,
-        "y": 52,
+        "h": 5,
+        "i": "11d3h0v8j2wf",
+        "w": 5,
+        "x": 19,
+        "y": 0,
         "minH": 1,
         "minW": 1,
         "moved": false,
         "static": false
       },
       {
-        "h": 9,
-        "i": "2va2jm9xfif",
+        "h": 5,
+        "i": "9q6x493ye4h",
+        "w": 6,
+        "x": 18,
+        "y": 5,
+        "minH": 1,
+        "minW": 1,
+        "moved": false,
+        "static": false
+      },
+      {
+        "h": 12,
+        "i": "41hb4ynjc46",
+        "w": 12,
+        "x": 0,
+        "y": 55,
+        "minH": 1,
+        "minW": 1,
+        "moved": false,
+        "static": false
+      },
+      {
+        "h": 12,
+        "i": "11vm2eweqhri",
         "w": 12,
         "x": 12,
-        "y": 52,
+        "y": 55,
+        "minH": 1,
+        "minW": 1,
+        "moved": false,
+        "static": false
+      },
+      {
+        "h": 5,
+        "i": "iimoo2fjgx",
+        "w": 5,
+        "x": 9,
+        "y": 0,
+        "minH": 1,
+        "minW": 1,
+        "moved": false,
+        "static": false
+      },
+      {
+        "h": 5,
+        "i": "55r95pl3llf",
+        "w": 6,
+        "x": 0,
+        "y": 5,
+        "minH": 1,
+        "minW": 1,
+        "moved": false,
+        "static": false
+      },
+      {
+        "h": 5,
+        "i": "de6btn46ds",
+        "w": 5,
+        "x": 4,
+        "y": 0,
+        "minH": 1,
+        "minW": 1,
+        "moved": false,
+        "static": false
+      },
+      {
+        "h": 5,
+        "i": "shg45x7n0c",
+        "w": 6,
+        "x": 6,
+        "y": 5,
+        "minH": 1,
+        "minW": 1,
+        "moved": false,
+        "static": false
+      },
+      {
+        "h": 10,
+        "i": "5q8g32do3bd",
+        "w": 24,
+        "x": 0,
+        "y": 10,
         "minH": 1,
         "minW": 1,
         "moved": false,
