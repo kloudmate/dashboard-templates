@@ -51,7 +51,7 @@
             "groupBy": [],
             "orderBy": [],
             "aggregation": {
-              "stat": "LAST",
+              "stat": "COUNT_DISTINCT",
               "field": "k8s_node_name",
               "value": "k8s_node_name",
               "metric": "k8s_node_name",
