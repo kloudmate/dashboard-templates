@@ -56,10 +56,13 @@
           },
           "y": {
             "format": "bytes",
-            "decimals": 3
+            "decimals": 1
           }
         },
-        "title": "JVM Memory Used",
+        "title": "JVM Heap Memory Used",
+        "tooltip": {
+          "mode": "all"
+        },
         "panelType": "TimeSeries",
         "timeRange": "1h",
         "statConfig": {
@@ -69,10 +72,20 @@
         },
         "timeseries": {
           "legend": {
-            "view": "list",
-            "values": []
+            "view": "table",
+            "values": [
+              {
+                "label": "Max",
+                "value": "max"
+              },
+              {
+                "label": "Last",
+                "value": "last"
+              }
+            ]
           }
         },
+        "description": "Heap Memory in bytes the JVM process is actively using",
         "node_configs": [
           {
             "page": 1,
@@ -84,7 +97,20 @@
             "region": "",
             "source": "kloudmate",
             "dataset": "metrics",
-            "filters": [],
+            "filters": [
+              {
+                "type": "string",
+                "field": "jvm_memory_type",
+                "value": "heap",
+                "operator": "="
+              },
+              {
+                "type": "string",
+                "field": "service_name",
+                "value": "$ServiceName",
+                "operator": "="
+              }
+            ],
             "groupBy": [
               {
                 "type": "string",
@@ -101,7 +127,7 @@
               "from": 600
             },
             "aggregation": {
-              "stat": "AVG",
+              "stat": "SUM",
               "type": "",
               "unit": "bytes",
               "field": "",
@@ -110,7 +136,8 @@
               "metricType": "Gauge",
               "temporality": "Cumulative"
             },
-            "datasourceId": "kloudmate"
+            "datasourceId": "kloudmate",
+            "legendFormat": "{{service_name}}"
           }
         ],
         "time_options": {
@@ -130,12 +157,84 @@
             "decimals": 3
           }
         },
-        "title": "JVM Memory Limit",
-        "panelType": "TimeSeries",
+        "STATS": {},
+        "table": {
+          "columns": [
+            {
+              "key": "A:AVG()",
+              "format": {
+                "format": "bytes",
+                "decimals": 1
+              },
+              "rename": "Heap"
+            },
+            {
+              "key": "service_name",
+              "rename": "Service"
+            }
+          ]
+        },
+        "title": "Heap Memory Limit",
+        "bar_chart": {
+          "axis": {
+            "x": {
+              "date_style": "auto"
+            },
+            "y": {
+              "format": "unformatted",
+              "prefix": "",
+              "suffix": "",
+              "decimals": 3,
+              "multiplyBy": 1
+            }
+          },
+          "legend": {
+            "view": "list",
+            "values": []
+          },
+          "display": {
+            "stacking": "stacked",
+            "orientation": "vertical"
+          }
+        },
+        "panelType": "STATS",
+        "pie_chart": {
+          "legend": {
+            "mode": "list",
+            "show": true,
+            "values": [
+              "formattedPercent"
+            ],
+            "placement": "right"
+          },
+          "display": {
+            "type": "pie",
+            "labels": [
+              "name"
+            ]
+          },
+          "formatter": {},
+          "value_options": {
+            "type": "reduce",
+            "limit": 20,
+            "reduce": "last",
+            "columns": [
+              "numeric"
+            ]
+          }
+        },
         "timeRange": "12h",
+        "TimeSeries": {},
         "statConfig": {
+          "color": {
+            "scheme": "fixed",
+            "fixedColor": "#dd223a"
+          },
+          "format": "bytes",
+          "decimals": 1,
           "statView": "grid",
           "baseColor": "#4CBB17",
+          "colorMode": "background",
           "calculation": "last"
         },
         "timeseries": {
@@ -144,6 +243,7 @@
             "values": []
           }
         },
+        "description": "Maximum Heap-memory (bytes) that the JVM is allowed to use",
         "node_configs": [
           {
             "page": 1,
@@ -155,7 +255,20 @@
             "region": "",
             "source": "kloudmate",
             "dataset": "metrics",
-            "filters": [],
+            "filters": [
+              {
+                "type": "string",
+                "field": "jvm_memory_type",
+                "value": "heap",
+                "operator": "="
+              },
+              {
+                "type": "string",
+                "field": "service_name",
+                "value": "$ServiceName",
+                "operator": "="
+              }
+            ],
             "groupBy": [
               {
                 "type": "string",
@@ -172,7 +285,7 @@
               "from": 600
             },
             "aggregation": {
-              "stat": "AVG",
+              "stat": "SUM",
               "type": "",
               "unit": "By",
               "field": "",
@@ -181,7 +294,8 @@
               "metricType": "Sum",
               "temporality": "Cumulative"
             },
-            "datasourceId": "kloudmate"
+            "datasourceId": "kloudmate",
+            "responseType": "series"
           }
         ],
         "time_options": {
@@ -198,7 +312,7 @@
           },
           "y": {
             "format": "duration",
-            "decimals": 3,
+            "decimals": 1,
             "multiplyBy": 1000
           }
         },
@@ -216,6 +330,7 @@
             "values": []
           }
         },
+        "description": "the total time spent performing garbage collection in the JVM.",
         "node_configs": [
           {
             "page": 1,
@@ -227,7 +342,14 @@
             "region": "",
             "source": "kloudmate",
             "dataset": "metrics",
-            "filters": [],
+            "filters": [
+              {
+                "type": "string",
+                "field": "service_name",
+                "value": "$ServiceName",
+                "operator": "="
+              }
+            ],
             "groupBy": [
               {
                 "type": "string",
@@ -253,145 +375,8 @@
               "metricType": "Histogram",
               "temporality": "Cumulative"
             },
-            "datasourceId": "kloudmate"
-          }
-        ],
-        "time_options": {
-          "override": false,
-          "time_shift": ""
-        }
-      },
-      {
-        "id": "465c36rjhb5",
-        "tz": "local",
-        "axis": {
-          "x": {
-            "date_style": "auto"
-          },
-          "y": {
-            "format": "number",
-            "suffix": "{thread}",
-            "decimals": 3
-          }
-        },
-        "title": "Threads Count",
-        "panelType": "TimeSeries",
-        "timeRange": "1h",
-        "statConfig": {
-          "statView": "grid",
-          "baseColor": "#4CBB17",
-          "calculation": "last"
-        },
-        "timeseries": {
-          "legend": {
-            "view": "list",
-            "values": []
-          }
-        },
-        "node_configs": [
-          {
-            "page": 1,
-            "stat": "",
-            "type": "query",
-            "hidden": false,
-            "metric": "",
-            "nodeId": "A",
-            "region": "",
-            "source": "kloudmate",
-            "dataset": "metrics",
-            "filters": [],
-            "groupBy": [
-              {
-                "type": "string",
-                "field": "service_name"
-              }
-            ],
-            "orderBy": [],
-            "interval": "",
-            "namespace": "",
-            "dimensions": [],
-            "metricType": "",
-            "time_range": {
-              "to": 0,
-              "from": 600
-            },
-            "aggregation": {
-              "stat": "AVG",
-              "type": "",
-              "unit": "{thread}",
-              "field": "",
-              "value": "jvm_thread_count",
-              "metric": "jvm_thread_count",
-              "metricType": "Sum",
-              "temporality": "Cumulative"
-            },
-            "datasourceId": "kloudmate"
-          }
-        ],
-        "time_options": {
-          "override": false,
-          "time_shift": ""
-        }
-      },
-      {
-        "id": "5cvz0k0cxjw",
-        "tz": "local",
-        "axis": {
-          "x": {
-            "date_style": "auto"
-          },
-          "y": {
-            "format": "percentage",
-            "decimals": 3
-          }
-        },
-        "title": "Process Runtime CPU Utilization",
-        "panelType": "TimeSeries",
-        "timeRange": "1h",
-        "statConfig": {
-          "statView": "grid",
-          "baseColor": "#4CBB17",
-          "calculation": "last"
-        },
-        "timeseries": {
-          "legend": {
-            "view": "list",
-            "values": []
-          }
-        },
-        "node_configs": [
-          {
-            "page": 1,
-            "stat": "",
-            "type": "query",
-            "hidden": false,
-            "metric": "",
-            "nodeId": "A",
-            "region": "",
-            "source": "kloudmate",
-            "dataset": "metrics",
-            "filters": [],
-            "groupBy": [],
-            "orderBy": [],
-            "interval": "",
-            "namespace": "",
-            "dimensions": [],
-            "metricType": "",
-            "time_range": {
-              "to": 0,
-              "from": 600
-            },
-            "aggregation": {
-              "stat": "AVG",
-              "type": "",
-              "unit": "1",
-              "field": "",
-              "value": "process_runtime_jvm_cpu_utilization",
-              "metric": "process_runtime_jvm_cpu_utilization",
-              "metricType": "Gauge",
-              "temporality": "Cumulative"
-            },
-            "datasourceId": "kloudmate"
+            "datasourceId": "kloudmate",
+            "legendFormat": "{{service_name}}"
           }
         ],
         "time_options": {
@@ -426,6 +411,7 @@
             "values": []
           }
         },
+        "description": "Number of classes currently loaded in the JVM",
         "node_configs": [
           {
             "page": 1,
@@ -437,7 +423,14 @@
             "region": "",
             "source": "kloudmate",
             "dataset": "metrics",
-            "filters": [],
+            "filters": [
+              {
+                "type": "string",
+                "field": "service_name",
+                "value": "$ServiceName",
+                "operator": "="
+              }
+            ],
             "groupBy": [
               {
                 "type": "string",
@@ -454,7 +447,7 @@
               "from": 600
             },
             "aggregation": {
-              "stat": "AVG",
+              "stat": "SUM",
               "type": "",
               "unit": "{class}",
               "field": "",
@@ -463,7 +456,8 @@
               "metricType": "Sum",
               "temporality": "Cumulative"
             },
-            "datasourceId": "kloudmate"
+            "datasourceId": "kloudmate",
+            "legendFormat": "{{service_name}}"
           }
         ],
         "time_options": {
@@ -480,7 +474,7 @@
           },
           "y": {
             "format": "duration",
-            "decimals": 3,
+            "decimals": 0,
             "multiplyBy": 1000
           }
         },
@@ -498,6 +492,7 @@
             "values": []
           }
         },
+        "description": "the total duration of HTTP requests handled by the application",
         "node_configs": [
           {
             "page": 1,
@@ -509,7 +504,14 @@
             "region": "",
             "source": "kloudmate",
             "dataset": "metrics",
-            "filters": [],
+            "filters": [
+              {
+                "type": "string",
+                "field": "service_name",
+                "value": "$ServiceName",
+                "operator": "="
+              }
+            ],
             "groupBy": [
               {
                 "type": "string",
@@ -535,7 +537,930 @@
               "metricType": "Histogram",
               "temporality": "Cumulative"
             },
+            "datasourceId": "kloudmate",
+            "legendFormat": "{{service_name}}"
+          }
+        ],
+        "time_options": {
+          "override": false,
+          "time_shift": ""
+        }
+      },
+      {
+        "id": "3jftuzrz3pa",
+        "tz": "local",
+        "axis": {
+          "x": {
+            "date_style": "auto"
+          },
+          "y": {
+            "format": "bytes",
+            "decimals": 1
+          }
+        },
+        "title": "JVM Non-Heap Memory Used",
+        "tooltip": {
+          "mode": "all"
+        },
+        "panelType": "TimeSeries",
+        "timeRange": "1h",
+        "statConfig": {
+          "statView": "grid",
+          "baseColor": "#4CBB17",
+          "calculation": "last"
+        },
+        "timeseries": {
+          "legend": {
+            "view": "table",
+            "values": [
+              {
+                "label": "Max",
+                "value": "max"
+              },
+              {
+                "label": "Last",
+                "value": "last"
+              }
+            ]
+          }
+        },
+        "description": "Non-heap memory in bytes the JVM process is actively using",
+        "node_configs": [
+          {
+            "page": 1,
+            "stat": "",
+            "type": "query",
+            "hidden": false,
+            "metric": "",
+            "nodeId": "A",
+            "region": "",
+            "source": "kloudmate",
+            "dataset": "metrics",
+            "filters": [
+              {
+                "type": "string",
+                "field": "jvm_memory_type",
+                "value": "non_heap",
+                "operator": "="
+              },
+              {
+                "type": "string",
+                "field": "service_name",
+                "value": "$ServiceName",
+                "operator": "="
+              }
+            ],
+            "groupBy": [
+              {
+                "type": "string",
+                "field": "service_name"
+              }
+            ],
+            "orderBy": [],
+            "interval": "",
+            "namespace": "",
+            "dimensions": [],
+            "metricType": "",
+            "time_range": {
+              "to": 0,
+              "from": 600
+            },
+            "aggregation": {
+              "stat": "SUM",
+              "type": "",
+              "unit": "By",
+              "field": "",
+              "value": "jvm_memory_used",
+              "metric": "jvm_memory_used",
+              "metricType": "Sum",
+              "temporality": "Cumulative"
+            },
             "datasourceId": "kloudmate"
+          }
+        ],
+        "time_options": {
+          "override": false,
+          "time_shift": ""
+        }
+      },
+      {
+        "id": "5la5pnz1tem",
+        "tz": "local",
+        "axis": {
+          "x": {
+            "date_style": "auto"
+          },
+          "y": {
+            "format": "percentage",
+            "prefix": "",
+            "decimals": 1
+          }
+        },
+        "STATS": {},
+        "title": "JVM CPU Utilization",
+        "panelType": "STATS",
+        "timeRange": "1h",
+        "statConfig": {
+          "color": {
+            "scheme": "fixed",
+            "fixedColor": "#3e77bb"
+          },
+          "format": "percentage",
+          "decimals": 2,
+          "statView": "grid",
+          "baseColor": "#4CBB17",
+          "colorMode": "background",
+          "calculation": "last"
+        },
+        "timeseries": {
+          "legend": {
+            "view": "list",
+            "values": [
+              {
+                "label": "Last",
+                "value": "last"
+              }
+            ]
+          }
+        },
+        "description": "JVM process’s recent CPU utilization",
+        "node_configs": [
+          {
+            "page": 1,
+            "stat": "",
+            "type": "query",
+            "hidden": false,
+            "metric": "",
+            "nodeId": "A",
+            "region": "",
+            "source": "kloudmate",
+            "dataset": "metrics",
+            "filters": [
+              {
+                "type": "string",
+                "field": "service_name",
+                "value": "$ServiceName",
+                "operator": "="
+              }
+            ],
+            "groupBy": [
+              {
+                "type": "string",
+                "field": "service_name"
+              }
+            ],
+            "orderBy": [],
+            "interval": "",
+            "namespace": "",
+            "dimensions": [],
+            "metricType": "",
+            "time_range": {
+              "to": 0,
+              "from": 600
+            },
+            "aggregation": {
+              "stat": "LAST",
+              "type": "",
+              "unit": "1",
+              "field": "",
+              "value": "jvm_cpu_recent_utilization",
+              "metric": "jvm_cpu_recent_utilization",
+              "metricType": "Gauge",
+              "temporality": "Cumulative"
+            },
+            "datasourceId": "kloudmate",
+            "legendFormat": "{{service_name}}",
+            "responseType": "series"
+          }
+        ],
+        "time_options": {
+          "override": false,
+          "time_shift": ""
+        }
+      },
+      {
+        "id": "9m5gu0pq2tv",
+        "tz": "local",
+        "axis": {
+          "x": {
+            "date_style": "auto"
+          },
+          "y": {
+            "format": "bytes",
+            "decimals": 1
+          }
+        },
+        "STATS": {},
+        "title": "Heap Memory Usage",
+        "panelType": "STATS",
+        "timeRange": "1h",
+        "statConfig": {
+          "color": {
+            "scheme": "fixed",
+            "fixedColor": "#76c029"
+          },
+          "suffix": "%",
+          "decimals": 1,
+          "statView": "grid",
+          "baseColor": "#4CBB17",
+          "colorMode": "background",
+          "calculation": "last"
+        },
+        "timeseries": {
+          "legend": {
+            "view": "list",
+            "values": []
+          }
+        },
+        "description": "JVM heap Memory Used against the Memory Limit",
+        "node_configs": [
+          {
+            "page": 1,
+            "stat": "",
+            "type": "query",
+            "hidden": true,
+            "metric": "",
+            "nodeId": "A",
+            "region": "",
+            "source": "kloudmate",
+            "dataset": "metrics",
+            "filters": [
+              {
+                "type": "string",
+                "field": "jvm_memory_type",
+                "value": "heap",
+                "operator": "="
+              },
+              {
+                "type": "string",
+                "field": "service_name",
+                "value": "$ServiceName",
+                "operator": "="
+              }
+            ],
+            "groupBy": [
+              {
+                "type": "string",
+                "field": "service_name"
+              }
+            ],
+            "orderBy": [],
+            "interval": "",
+            "namespace": "",
+            "dimensions": [],
+            "metricType": "",
+            "time_range": {
+              "to": 0,
+              "from": 600
+            },
+            "aggregation": {
+              "stat": "SUM",
+              "type": "",
+              "unit": "bytes",
+              "field": "",
+              "value": "jvm_memory_used",
+              "metric": "jvm_memory_used",
+              "metricType": "Gauge",
+              "temporality": "Cumulative"
+            },
+            "datasourceId": "kloudmate",
+            "legendFormat": "{{service_name}}",
+            "responseType": "series"
+          },
+          {
+            "page": 1,
+            "stat": "",
+            "type": "query",
+            "hidden": true,
+            "metric": "",
+            "nodeId": "B",
+            "region": "",
+            "source": "kloudmate",
+            "dataset": "metrics",
+            "filters": [
+              {
+                "type": "string",
+                "field": "service_name",
+                "value": "$ServiceName",
+                "operator": "="
+              },
+              {
+                "type": "string",
+                "field": "jvm_memory_type",
+                "value": "heap",
+                "operator": "="
+              }
+            ],
+            "groupBy": [
+              {
+                "type": "string",
+                "field": "service_name"
+              }
+            ],
+            "orderBy": [],
+            "interval": "",
+            "namespace": "",
+            "dimensions": [],
+            "metricType": "",
+            "time_range": {
+              "to": 0,
+              "from": 600
+            },
+            "aggregation": {
+              "stat": "SUM",
+              "type": "",
+              "unit": "By",
+              "field": "",
+              "value": "jvm_memory_limit",
+              "metric": "jvm_memory_limit",
+              "metricType": "Sum",
+              "temporality": "Cumulative"
+            },
+            "datasourceId": "kloudmate",
+            "legendFormat": "{{service_name}}",
+            "responseType": "series"
+          },
+          {
+            "type": "expression",
+            "hidden": false,
+            "nodeId": "C",
+            "expression": "($A / $B) *100",
+            "responseType": "series",
+            "expressionType": "math"
+          }
+        ],
+        "time_options": {
+          "override": false,
+          "time_shift": ""
+        }
+      },
+      {
+        "id": "08i4lqtn68ea",
+        "tz": "local",
+        "axis": {
+          "x": {
+            "date_style": "auto"
+          },
+          "y": {
+            "format": "bytes",
+            "decimals": 1
+          }
+        },
+        "STATS": {},
+        "title": "Non-Heap Memory Usage",
+        "panelType": "STATS",
+        "timeRange": "1h",
+        "statConfig": {
+          "color": {
+            "scheme": "fixed",
+            "fixedColor": "#ddce21"
+          },
+          "suffix": "%",
+          "decimals": 1,
+          "statView": "grid",
+          "baseColor": "#4CBB17",
+          "colorMode": "background",
+          "calculation": "last"
+        },
+        "timeseries": {
+          "legend": {
+            "view": "list",
+            "values": []
+          }
+        },
+        "description": "JVM Non-heap Memory Used against the Memory Limit",
+        "node_configs": [
+          {
+            "page": 1,
+            "stat": "",
+            "type": "query",
+            "hidden": true,
+            "metric": "",
+            "nodeId": "A",
+            "region": "",
+            "source": "kloudmate",
+            "dataset": "metrics",
+            "filters": [
+              {
+                "type": "string",
+                "field": "jvm_memory_type",
+                "value": "non_heap",
+                "operator": "="
+              },
+              {
+                "type": "string",
+                "field": "service_name",
+                "value": "$ServiceName",
+                "operator": "="
+              }
+            ],
+            "groupBy": [
+              {
+                "type": "string",
+                "field": "service_name"
+              }
+            ],
+            "orderBy": [],
+            "interval": "",
+            "namespace": "",
+            "dimensions": [],
+            "metricType": "",
+            "time_range": {
+              "to": 0,
+              "from": 600
+            },
+            "aggregation": {
+              "stat": "AVG",
+              "type": "",
+              "unit": "By",
+              "field": "",
+              "value": "jvm_memory_used",
+              "metric": "jvm_memory_used",
+              "metricType": "Sum",
+              "temporality": "Cumulative"
+            },
+            "datasourceId": "kloudmate",
+            "responseType": "series"
+          },
+          {
+            "page": 1,
+            "stat": "",
+            "type": "query",
+            "hidden": true,
+            "metric": "",
+            "nodeId": "B",
+            "region": "",
+            "source": "kloudmate",
+            "dataset": "metrics",
+            "filters": [
+              {
+                "type": "string",
+                "field": "service_name",
+                "value": "$ServiceName",
+                "operator": "="
+              },
+              {
+                "type": "string",
+                "field": "jvm_memory_type",
+                "value": "non_heap",
+                "operator": "="
+              }
+            ],
+            "groupBy": [
+              {
+                "type": "string",
+                "field": "service_name"
+              }
+            ],
+            "orderBy": [],
+            "interval": "",
+            "namespace": "",
+            "dimensions": [],
+            "metricType": "",
+            "time_range": {
+              "to": 0,
+              "from": 600
+            },
+            "aggregation": {
+              "stat": "AVG",
+              "type": "",
+              "unit": "By",
+              "field": "",
+              "value": "jvm_memory_limit",
+              "metric": "jvm_memory_limit",
+              "metricType": "Sum",
+              "temporality": "Cumulative"
+            },
+            "datasourceId": "kloudmate",
+            "responseType": "series"
+          },
+          {
+            "type": "expression",
+            "hidden": false,
+            "nodeId": "C",
+            "expression": "($A / $B) *100",
+            "responseType": "series",
+            "expressionType": "math"
+          }
+        ],
+        "time_options": {
+          "override": false,
+          "time_shift": ""
+        }
+      },
+      {
+        "id": "fgz9myzj7oc",
+        "tz": "local",
+        "axis": {
+          "x": {
+            "date_style": "auto"
+          },
+          "y": {
+            "format": "percentage",
+            "prefix": "",
+            "decimals": 1
+          }
+        },
+        "STATS": {},
+        "title": "CPU Usage",
+        "tooltip": {
+          "mode": "all"
+        },
+        "panelType": "TimeSeries",
+        "timeRange": "1h",
+        "TimeSeries": {},
+        "statConfig": {
+          "format": "percentage",
+          "decimals": 2,
+          "statView": "grid",
+          "baseColor": "#4CBB17",
+          "calculation": "last"
+        },
+        "timeseries": {
+          "legend": {
+            "view": "table",
+            "values": [
+              {
+                "label": "Max",
+                "value": "max"
+              },
+              {
+                "label": "Last",
+                "value": "last"
+              }
+            ]
+          }
+        },
+        "description": "JVM CPU Utilization",
+        "node_configs": [
+          {
+            "page": 1,
+            "stat": "",
+            "type": "query",
+            "hidden": false,
+            "metric": "",
+            "nodeId": "A",
+            "region": "",
+            "source": "kloudmate",
+            "dataset": "metrics",
+            "filters": [
+              {
+                "type": "string",
+                "field": "service_name",
+                "value": "$ServiceName",
+                "operator": "="
+              }
+            ],
+            "groupBy": [
+              {
+                "type": "string",
+                "field": "service_name"
+              }
+            ],
+            "orderBy": [],
+            "interval": "",
+            "namespace": "",
+            "dimensions": [],
+            "metricType": "",
+            "time_range": {
+              "to": 0,
+              "from": 600
+            },
+            "aggregation": {
+              "stat": "LAST",
+              "type": "",
+              "unit": "1",
+              "field": "",
+              "value": "jvm_cpu_recent_utilization",
+              "metric": "jvm_cpu_recent_utilization",
+              "metricType": "Gauge",
+              "temporality": "Cumulative"
+            },
+            "datasourceId": "kloudmate",
+            "legendFormat": "{{service_name}}",
+            "responseType": "series"
+          }
+        ],
+        "time_options": {
+          "override": false,
+          "time_shift": ""
+        }
+      },
+      {
+        "id": "hw3cw0baro",
+        "tz": "local",
+        "axis": {
+          "x": {
+            "date_style": "auto"
+          },
+          "y": {
+            "format": "percentage",
+            "decimals": 1
+          }
+        },
+        "STATS": {},
+        "title": "Heap Memory Usage ",
+        "tooltip": {
+          "mode": "all"
+        },
+        "panelType": "TimeSeries",
+        "timeRange": "1h",
+        "TimeSeries": {},
+        "statConfig": {
+          "suffix": "%",
+          "decimals": 1,
+          "statView": "grid",
+          "baseColor": "#4CBB17",
+          "calculation": "last"
+        },
+        "timeseries": {
+          "legend": {
+            "view": "table",
+            "values": [
+              {
+                "label": "Max",
+                "value": "max"
+              },
+              {
+                "label": "Last",
+                "value": "last"
+              }
+            ]
+          }
+        },
+        "description": "JVM heap Memory Used against the Memory Limit",
+        "node_configs": [
+          {
+            "page": 1,
+            "stat": "",
+            "type": "query",
+            "hidden": true,
+            "metric": "",
+            "nodeId": "A",
+            "region": "",
+            "source": "kloudmate",
+            "dataset": "metrics",
+            "filters": [
+              {
+                "type": "string",
+                "field": "jvm_memory_type",
+                "value": "heap",
+                "operator": "="
+              },
+              {
+                "type": "string",
+                "field": "service_name",
+                "value": "$ServiceName",
+                "operator": "="
+              }
+            ],
+            "groupBy": [
+              {
+                "type": "string",
+                "field": "service_name"
+              }
+            ],
+            "orderBy": [],
+            "interval": "",
+            "namespace": "",
+            "dimensions": [],
+            "metricType": "",
+            "time_range": {
+              "to": 0,
+              "from": 600
+            },
+            "aggregation": {
+              "stat": "SUM",
+              "type": "",
+              "unit": "bytes",
+              "field": "",
+              "value": "jvm_memory_used",
+              "metric": "jvm_memory_used",
+              "metricType": "Gauge",
+              "temporality": "Cumulative"
+            },
+            "datasourceId": "kloudmate",
+            "legendFormat": "{{service_name}}",
+            "responseType": "series"
+          },
+          {
+            "page": 1,
+            "stat": "",
+            "type": "query",
+            "hidden": true,
+            "metric": "",
+            "nodeId": "B",
+            "region": "",
+            "source": "kloudmate",
+            "dataset": "metrics",
+            "filters": [
+              {
+                "type": "string",
+                "field": "service_name",
+                "value": "$ServiceName",
+                "operator": "="
+              },
+              {
+                "type": "string",
+                "field": "jvm_memory_type",
+                "value": "heap",
+                "operator": "="
+              }
+            ],
+            "groupBy": [
+              {
+                "type": "string",
+                "field": "service_name"
+              }
+            ],
+            "orderBy": [],
+            "interval": "",
+            "namespace": "",
+            "dimensions": [],
+            "metricType": "",
+            "time_range": {
+              "to": 0,
+              "from": 600
+            },
+            "aggregation": {
+              "stat": "SUM",
+              "type": "",
+              "unit": "By",
+              "field": "",
+              "value": "jvm_memory_limit",
+              "metric": "jvm_memory_limit",
+              "metricType": "Sum",
+              "temporality": "Cumulative"
+            },
+            "datasourceId": "kloudmate",
+            "legendFormat": "{{service_name}}",
+            "responseType": "series"
+          },
+          {
+            "type": "expression",
+            "hidden": false,
+            "nodeId": "C",
+            "expression": "($A / $B) ",
+            "responseType": "series",
+            "expressionType": "math"
+          }
+        ],
+        "time_options": {
+          "override": false,
+          "time_shift": ""
+        }
+      },
+      {
+        "id": "02r6sh4khbuq",
+        "tz": "local",
+        "axis": {
+          "x": {
+            "date_style": "auto"
+          },
+          "y": {
+            "format": "bytes",
+            "decimals": 3
+          }
+        },
+        "STATS": {},
+        "table": {
+          "columns": [
+            {
+              "key": "A:AVG()",
+              "format": {
+                "format": "bytes",
+                "decimals": 1
+              },
+              "rename": "Heap"
+            },
+            {
+              "key": "service_name",
+              "rename": "Service"
+            }
+          ]
+        },
+        "title": "Non-Heap Memory Limit ",
+        "bar_chart": {
+          "axis": {
+            "x": {
+              "date_style": "auto"
+            },
+            "y": {
+              "format": "unformatted",
+              "prefix": "",
+              "suffix": "",
+              "decimals": 3,
+              "multiplyBy": 1
+            }
+          },
+          "legend": {
+            "view": "list",
+            "values": []
+          },
+          "display": {
+            "stacking": "stacked",
+            "orientation": "vertical"
+          }
+        },
+        "panelType": "STATS",
+        "pie_chart": {
+          "legend": {
+            "mode": "list",
+            "show": true,
+            "values": [
+              "formattedPercent"
+            ],
+            "placement": "right"
+          },
+          "display": {
+            "type": "pie",
+            "labels": [
+              "name"
+            ]
+          },
+          "formatter": {},
+          "value_options": {
+            "type": "reduce",
+            "limit": 20,
+            "reduce": "last",
+            "columns": [
+              "numeric"
+            ]
+          }
+        },
+        "timeRange": "12h",
+        "TimeSeries": {},
+        "statConfig": {
+          "color": {
+            "scheme": "fixed",
+            "fixedColor": "#4a4a4a"
+          },
+          "format": "bytes",
+          "decimals": 1,
+          "statView": "grid",
+          "baseColor": "#4CBB17",
+          "colorMode": "background",
+          "calculation": "last"
+        },
+        "timeseries": {
+          "legend": {
+            "view": "list",
+            "values": []
+          }
+        },
+        "description": "Maximum Non-Heap memory (bytes) that the JVM is allowed to use",
+        "node_configs": [
+          {
+            "page": 1,
+            "stat": "",
+            "type": "query",
+            "hidden": false,
+            "metric": "",
+            "nodeId": "A",
+            "region": "",
+            "source": "kloudmate",
+            "dataset": "metrics",
+            "filters": [
+              {
+                "type": "string",
+                "field": "jvm_memory_type",
+                "value": "non_heap",
+                "operator": "="
+              },
+              {
+                "type": "string",
+                "field": "service_name",
+                "value": "$ServiceName",
+                "operator": "="
+              }
+            ],
+            "groupBy": [
+              {
+                "type": "string",
+                "field": "service_name"
+              }
+            ],
+            "orderBy": [],
+            "interval": "",
+            "namespace": "",
+            "dimensions": [],
+            "metricType": "",
+            "time_range": {
+              "to": 0,
+              "from": 600
+            },
+            "aggregation": {
+              "stat": "SUM",
+              "type": "",
+              "unit": "By",
+              "field": "",
+              "value": "jvm_memory_limit",
+              "metric": "jvm_memory_limit",
+              "metricType": "Sum",
+              "temporality": "Cumulative"
+            },
+            "datasourceId": "kloudmate",
+            "responseType": "series"
           }
         ],
         "time_options": {
@@ -544,24 +1469,86 @@
         }
       }
     ],
-    "timeRange": "1d",
+    "timeRange": "10m",
+    "variables": [
+      {
+        "name": "ServiceName",
+        "type": "query",
+        "label": "ServiceName",
+        "config": {
+          "otel": {
+            "key": "service_name",
+            "dataset": "metrics",
+            "filters": [
+              {
+                "type": "string",
+                "field": "jvm_memory_type",
+                "value": null,
+                "operator": "EXISTS"
+              }
+            ]
+          },
+          "source": "cloudwatch",
+          "queryType": "otel.values"
+        },
+        "is_multi": false,
+        "description": "",
+        "usedInPanels": [
+          {
+            "id": "lv92wddbvvl",
+            "name": "JVM Heap Memory Used"
+          },
+          {
+            "id": "8xw5uq9syng",
+            "name": "JVM Memory Limit"
+          },
+          {
+            "id": "ik7qok4opu",
+            "name": "JVM GC Duration"
+          },
+          {
+            "id": "465c36rjhb5",
+            "name": "Threads Count"
+          },
+          {
+            "id": "oked0o609mq",
+            "name": "JVM Classes Loaded"
+          },
+          {
+            "id": "172phe1chqe",
+            "name": "HTTP Server Requests"
+          },
+          {
+            "id": "3jftuzrz3pa",
+            "name": "JVM Non-Heap Memory Used"
+          },
+          {
+            "id": "5la5pnz1tem",
+            "name": "JVM CPU Utlization"
+          }
+        ],
+        "usesVariables": [],
+        "show_all_option": false,
+        "usedInVariables": []
+      }
+    ],
     "panel_layouts": [
       {
         "h": 10,
         "i": "lv92wddbvvl",
-        "w": 8,
-        "x": 0,
-        "y": 0,
+        "w": 12,
+        "x": 12,
+        "y": 16,
         "minH": 1,
         "minW": 1,
         "moved": false,
         "static": false
       },
       {
-        "h": 10,
+        "h": 6,
         "i": "8xw5uq9syng",
-        "w": 8,
-        "x": 8,
+        "w": 5,
+        "x": 14,
         "y": 0,
         "minH": 1,
         "minW": 1,
@@ -572,30 +1559,8 @@
         "h": 10,
         "i": "ik7qok4opu",
         "w": 8,
-        "x": 0,
-        "y": 10,
-        "minH": 1,
-        "minW": 1,
-        "moved": false,
-        "static": false
-      },
-      {
-        "h": 10,
-        "i": "465c36rjhb5",
-        "w": 8,
-        "x": 8,
-        "y": 10,
-        "minH": 1,
-        "minW": 1,
-        "moved": false,
-        "static": false
-      },
-      {
-        "h": 10,
-        "i": "5cvz0k0cxjw",
-        "w": 8,
         "x": 16,
-        "y": 0,
+        "y": 26,
         "minH": 1,
         "minW": 1,
         "moved": false,
@@ -605,8 +1570,8 @@
         "h": 10,
         "i": "oked0o609mq",
         "w": 8,
-        "x": 16,
-        "y": 10,
+        "x": 8,
+        "y": 26,
         "minH": 1,
         "minW": 1,
         "moved": false,
@@ -617,7 +1582,84 @@
         "i": "172phe1chqe",
         "w": 8,
         "x": 0,
-        "y": 20,
+        "y": 26,
+        "minH": 1,
+        "minW": 1,
+        "moved": false,
+        "static": false
+      },
+      {
+        "h": 10,
+        "i": "3jftuzrz3pa",
+        "w": 12,
+        "x": 0,
+        "y": 16,
+        "minH": 1,
+        "minW": 1,
+        "moved": false,
+        "static": false
+      },
+      {
+        "h": 6,
+        "i": "5la5pnz1tem",
+        "w": 4,
+        "x": 0,
+        "y": 0,
+        "minH": 1,
+        "minW": 1,
+        "moved": false,
+        "static": false
+      },
+      {
+        "h": 6,
+        "i": "9m5gu0pq2tv",
+        "w": 5,
+        "x": 4,
+        "y": 0,
+        "minH": 1,
+        "minW": 1,
+        "moved": false,
+        "static": false
+      },
+      {
+        "h": 6,
+        "i": "08i4lqtn68ea",
+        "w": 5,
+        "x": 9,
+        "y": 0,
+        "minH": 1,
+        "minW": 1,
+        "moved": false,
+        "static": false
+      },
+      {
+        "h": 10,
+        "i": "fgz9myzj7oc",
+        "w": 12,
+        "x": 0,
+        "y": 6,
+        "minH": 1,
+        "minW": 1,
+        "moved": false,
+        "static": false
+      },
+      {
+        "h": 10,
+        "i": "hw3cw0baro",
+        "w": 12,
+        "x": 12,
+        "y": 6,
+        "minH": 1,
+        "minW": 1,
+        "moved": false,
+        "static": false
+      },
+      {
+        "h": 6,
+        "i": "02r6sh4khbuq",
+        "w": 5,
+        "x": 19,
+        "y": 0,
         "minH": 1,
         "minW": 1,
         "moved": false,
@@ -626,9 +1668,7 @@
     ],
     "default_region": "us-east-1"
   },
-  "tags": [
-    "km-agent"
-  ]
+  "tags": []
 }</code></pre>
               <button class="absolute top-2 right-2 bg-gray-700 hover:bg-gray-600 text-white font-bold py-1 px-3 rounded-md" onclick="copyToClipboard()">Copy</button>
           </div>
@@ -666,7 +1706,7 @@
         // Page-specific script...
         hljs.highlightAll();
         function copyToClipboard() {
-          navigator.clipboard.writeText("{\n  \"name\": \"JVM Metrics-V2\",\n  \"description\": \"\",\n  \"data\": {\n    \"tz\": \"local\",\n    \"panels\": [\n      {\n        \"id\": \"lv92wddbvvl\",\n        \"tz\": \"local\",\n        \"axis\": {\n          \"x\": {\n            \"date_style\": \"auto\"\n          },\n          \"y\": {\n            \"format\": \"bytes\",\n            \"decimals\": 3\n          }\n        },\n        \"title\": \"JVM Memory Used\",\n        \"panelType\": \"TimeSeries\",\n        \"timeRange\": \"1h\",\n        \"statConfig\": {\n          \"statView\": \"grid\",\n          \"baseColor\": \"#4CBB17\",\n          \"calculation\": \"last\"\n        },\n        \"timeseries\": {\n          \"legend\": {\n            \"view\": \"list\",\n            \"values\": []\n          }\n        },\n        \"node_configs\": [\n          {\n            \"page\": 1,\n            \"stat\": \"\",\n            \"type\": \"query\",\n            \"hidden\": false,\n            \"metric\": \"\",\n            \"nodeId\": \"A\",\n            \"region\": \"\",\n            \"source\": \"kloudmate\",\n            \"dataset\": \"metrics\",\n            \"filters\": [],\n            \"groupBy\": [\n              {\n                \"type\": \"string\",\n                \"field\": \"service_name\"\n              }\n            ],\n            \"orderBy\": [],\n            \"interval\": \"\",\n            \"namespace\": \"\",\n            \"dimensions\": [],\n            \"metricType\": \"\",\n            \"time_range\": {\n              \"to\": 0,\n              \"from\": 600\n            },\n            \"aggregation\": {\n              \"stat\": \"AVG\",\n              \"type\": \"\",\n              \"unit\": \"bytes\",\n              \"field\": \"\",\n              \"value\": \"jvm_memory_used\",\n              \"metric\": \"jvm_memory_used\",\n              \"metricType\": \"Gauge\",\n              \"temporality\": \"Cumulative\"\n            },\n            \"datasourceId\": \"kloudmate\"\n          }\n        ],\n        \"time_options\": {\n          \"override\": false,\n          \"time_shift\": \"\"\n        }\n      },\n      {\n        \"id\": \"8xw5uq9syng\",\n        \"tz\": \"local\",\n        \"axis\": {\n          \"x\": {\n            \"date_style\": \"auto\"\n          },\n          \"y\": {\n            \"format\": \"bytes\",\n            \"decimals\": 3\n          }\n        },\n        \"title\": \"JVM Memory Limit\",\n        \"panelType\": \"TimeSeries\",\n        \"timeRange\": \"12h\",\n        \"statConfig\": {\n          \"statView\": \"grid\",\n          \"baseColor\": \"#4CBB17\",\n          \"calculation\": \"last\"\n        },\n        \"timeseries\": {\n          \"legend\": {\n            \"view\": \"list\",\n            \"values\": []\n          }\n        },\n        \"node_configs\": [\n          {\n            \"page\": 1,\n            \"stat\": \"\",\n            \"type\": \"query\",\n            \"hidden\": false,\n            \"metric\": \"\",\n            \"nodeId\": \"A\",\n            \"region\": \"\",\n            \"source\": \"kloudmate\",\n            \"dataset\": \"metrics\",\n            \"filters\": [],\n            \"groupBy\": [\n              {\n                \"type\": \"string\",\n                \"field\": \"service_name\"\n              }\n            ],\n            \"orderBy\": [],\n            \"interval\": \"\",\n            \"namespace\": \"\",\n            \"dimensions\": [],\n            \"metricType\": \"\",\n            \"time_range\": {\n              \"to\": 0,\n              \"from\": 600\n            },\n            \"aggregation\": {\n              \"stat\": \"AVG\",\n              \"type\": \"\",\n              \"unit\": \"By\",\n              \"field\": \"\",\n              \"value\": \"jvm_memory_limit\",\n              \"metric\": \"jvm_memory_limit\",\n              \"metricType\": \"Sum\",\n              \"temporality\": \"Cumulative\"\n            },\n            \"datasourceId\": \"kloudmate\"\n          }\n        ],\n        \"time_options\": {\n          \"override\": false,\n          \"time_shift\": \"\"\n        }\n      },\n      {\n        \"id\": \"ik7qok4opu\",\n        \"tz\": \"local\",\n        \"axis\": {\n          \"x\": {\n            \"date_style\": \"auto\"\n          },\n          \"y\": {\n            \"format\": \"duration\",\n            \"decimals\": 3,\n            \"multiplyBy\": 1000\n          }\n        },\n        \"title\": \"JVM GC Duration\",\n        \"panelType\": \"TimeSeries\",\n        \"timeRange\": \"1h\",\n        \"statConfig\": {\n          \"statView\": \"grid\",\n          \"baseColor\": \"#4CBB17\",\n          \"calculation\": \"last\"\n        },\n        \"timeseries\": {\n          \"legend\": {\n            \"view\": \"list\",\n            \"values\": []\n          }\n        },\n        \"node_configs\": [\n          {\n            \"page\": 1,\n            \"stat\": \"\",\n            \"type\": \"query\",\n            \"hidden\": false,\n            \"metric\": \"\",\n            \"nodeId\": \"A\",\n            \"region\": \"\",\n            \"source\": \"kloudmate\",\n            \"dataset\": \"metrics\",\n            \"filters\": [],\n            \"groupBy\": [\n              {\n                \"type\": \"string\",\n                \"field\": \"service_name\"\n              }\n            ],\n            \"orderBy\": [],\n            \"interval\": \"\",\n            \"namespace\": \"\",\n            \"dimensions\": [],\n            \"metricType\": \"\",\n            \"time_range\": {\n              \"to\": 0,\n              \"from\": 600\n            },\n            \"aggregation\": {\n              \"stat\": \"AVG\",\n              \"type\": \"\",\n              \"unit\": \"s\",\n              \"field\": \"\",\n              \"value\": \"jvm_gc_duration_sum\",\n              \"metric\": \"jvm_gc_duration_sum\",\n              \"metricType\": \"Histogram\",\n              \"temporality\": \"Cumulative\"\n            },\n            \"datasourceId\": \"kloudmate\"\n          }\n        ],\n        \"time_options\": {\n          \"override\": false,\n          \"time_shift\": \"\"\n        }\n      },\n      {\n        \"id\": \"465c36rjhb5\",\n        \"tz\": \"local\",\n        \"axis\": {\n          \"x\": {\n            \"date_style\": \"auto\"\n          },\n          \"y\": {\n            \"format\": \"number\",\n            \"suffix\": \"{thread}\",\n            \"decimals\": 3\n          }\n        },\n        \"title\": \"Threads Count\",\n        \"panelType\": \"TimeSeries\",\n        \"timeRange\": \"1h\",\n        \"statConfig\": {\n          \"statView\": \"grid\",\n          \"baseColor\": \"#4CBB17\",\n          \"calculation\": \"last\"\n        },\n        \"timeseries\": {\n          \"legend\": {\n            \"view\": \"list\",\n            \"values\": []\n          }\n        },\n        \"node_configs\": [\n          {\n            \"page\": 1,\n            \"stat\": \"\",\n            \"type\": \"query\",\n            \"hidden\": false,\n            \"metric\": \"\",\n            \"nodeId\": \"A\",\n            \"region\": \"\",\n            \"source\": \"kloudmate\",\n            \"dataset\": \"metrics\",\n            \"filters\": [],\n            \"groupBy\": [\n              {\n                \"type\": \"string\",\n                \"field\": \"service_name\"\n              }\n            ],\n            \"orderBy\": [],\n            \"interval\": \"\",\n            \"namespace\": \"\",\n            \"dimensions\": [],\n            \"metricType\": \"\",\n            \"time_range\": {\n              \"to\": 0,\n              \"from\": 600\n            },\n            \"aggregation\": {\n              \"stat\": \"AVG\",\n              \"type\": \"\",\n              \"unit\": \"{thread}\",\n              \"field\": \"\",\n              \"value\": \"jvm_thread_count\",\n              \"metric\": \"jvm_thread_count\",\n              \"metricType\": \"Sum\",\n              \"temporality\": \"Cumulative\"\n            },\n            \"datasourceId\": \"kloudmate\"\n          }\n        ],\n        \"time_options\": {\n          \"override\": false,\n          \"time_shift\": \"\"\n        }\n      },\n      {\n        \"id\": \"5cvz0k0cxjw\",\n        \"tz\": \"local\",\n        \"axis\": {\n          \"x\": {\n            \"date_style\": \"auto\"\n          },\n          \"y\": {\n            \"format\": \"percentage\",\n            \"decimals\": 3\n          }\n        },\n        \"title\": \"Process Runtime CPU Utilization\",\n        \"panelType\": \"TimeSeries\",\n        \"timeRange\": \"1h\",\n        \"statConfig\": {\n          \"statView\": \"grid\",\n          \"baseColor\": \"#4CBB17\",\n          \"calculation\": \"last\"\n        },\n        \"timeseries\": {\n          \"legend\": {\n            \"view\": \"list\",\n            \"values\": []\n          }\n        },\n        \"node_configs\": [\n          {\n            \"page\": 1,\n            \"stat\": \"\",\n            \"type\": \"query\",\n            \"hidden\": false,\n            \"metric\": \"\",\n            \"nodeId\": \"A\",\n            \"region\": \"\",\n            \"source\": \"kloudmate\",\n            \"dataset\": \"metrics\",\n            \"filters\": [],\n            \"groupBy\": [],\n            \"orderBy\": [],\n            \"interval\": \"\",\n            \"namespace\": \"\",\n            \"dimensions\": [],\n            \"metricType\": \"\",\n            \"time_range\": {\n              \"to\": 0,\n              \"from\": 600\n            },\n            \"aggregation\": {\n              \"stat\": \"AVG\",\n              \"type\": \"\",\n              \"unit\": \"1\",\n              \"field\": \"\",\n              \"value\": \"process_runtime_jvm_cpu_utilization\",\n              \"metric\": \"process_runtime_jvm_cpu_utilization\",\n              \"metricType\": \"Gauge\",\n              \"temporality\": \"Cumulative\"\n            },\n            \"datasourceId\": \"kloudmate\"\n          }\n        ],\n        \"time_options\": {\n          \"override\": false,\n          \"time_shift\": \"\"\n        }\n      },\n      {\n        \"id\": \"oked0o609mq\",\n        \"tz\": \"local\",\n        \"axis\": {\n          \"x\": {\n            \"date_style\": \"auto\"\n          },\n          \"y\": {\n            \"format\": \"number\",\n            \"suffix\": \"{class}\",\n            \"decimals\": 3\n          }\n        },\n        \"title\": \"JVM Classes Loaded\",\n        \"panelType\": \"TimeSeries\",\n        \"timeRange\": \"1h\",\n        \"statConfig\": {\n          \"statView\": \"grid\",\n          \"baseColor\": \"#4CBB17\",\n          \"calculation\": \"last\"\n        },\n        \"timeseries\": {\n          \"legend\": {\n            \"view\": \"list\",\n            \"values\": []\n          }\n        },\n        \"node_configs\": [\n          {\n            \"page\": 1,\n            \"stat\": \"\",\n            \"type\": \"query\",\n            \"hidden\": false,\n            \"metric\": \"\",\n            \"nodeId\": \"A\",\n            \"region\": \"\",\n            \"source\": \"kloudmate\",\n            \"dataset\": \"metrics\",\n            \"filters\": [],\n            \"groupBy\": [\n              {\n                \"type\": \"string\",\n                \"field\": \"service_name\"\n              }\n            ],\n            \"orderBy\": [],\n            \"interval\": \"\",\n            \"namespace\": \"\",\n            \"dimensions\": [],\n            \"metricType\": \"\",\n            \"time_range\": {\n              \"to\": 0,\n              \"from\": 600\n            },\n            \"aggregation\": {\n              \"stat\": \"AVG\",\n              \"type\": \"\",\n              \"unit\": \"{class}\",\n              \"field\": \"\",\n              \"value\": \"jvm_class_loaded\",\n              \"metric\": \"jvm_class_loaded\",\n              \"metricType\": \"Sum\",\n              \"temporality\": \"Cumulative\"\n            },\n            \"datasourceId\": \"kloudmate\"\n          }\n        ],\n        \"time_options\": {\n          \"override\": false,\n          \"time_shift\": \"\"\n        }\n      },\n      {\n        \"id\": \"172phe1chqe\",\n        \"tz\": \"local\",\n        \"axis\": {\n          \"x\": {\n            \"date_style\": \"auto\"\n          },\n          \"y\": {\n            \"format\": \"duration\",\n            \"decimals\": 3,\n            \"multiplyBy\": 1000\n          }\n        },\n        \"title\": \"HTTP Server Requests\",\n        \"panelType\": \"TimeSeries\",\n        \"timeRange\": \"1h\",\n        \"statConfig\": {\n          \"statView\": \"grid\",\n          \"baseColor\": \"#4CBB17\",\n          \"calculation\": \"last\"\n        },\n        \"timeseries\": {\n          \"legend\": {\n            \"view\": \"list\",\n            \"values\": []\n          }\n        },\n        \"node_configs\": [\n          {\n            \"page\": 1,\n            \"stat\": \"\",\n            \"type\": \"query\",\n            \"hidden\": false,\n            \"metric\": \"\",\n            \"nodeId\": \"A\",\n            \"region\": \"\",\n            \"source\": \"kloudmate\",\n            \"dataset\": \"metrics\",\n            \"filters\": [],\n            \"groupBy\": [\n              {\n                \"type\": \"string\",\n                \"field\": \"service_name\"\n              }\n            ],\n            \"orderBy\": [],\n            \"interval\": \"\",\n            \"namespace\": \"\",\n            \"dimensions\": [],\n            \"metricType\": \"\",\n            \"time_range\": {\n              \"to\": 0,\n              \"from\": 600\n            },\n            \"aggregation\": {\n              \"stat\": \"AVG\",\n              \"type\": \"\",\n              \"unit\": \"s\",\n              \"field\": \"\",\n              \"value\": \"http_server_request_duration_sum\",\n              \"metric\": \"http_server_request_duration_sum\",\n              \"metricType\": \"Histogram\",\n              \"temporality\": \"Cumulative\"\n            },\n            \"datasourceId\": \"kloudmate\"\n          }\n        ],\n        \"time_options\": {\n          \"override\": false,\n          \"time_shift\": \"\"\n        }\n      }\n    ],\n    \"timeRange\": \"1d\",\n    \"panel_layouts\": [\n      {\n        \"h\": 10,\n        \"i\": \"lv92wddbvvl\",\n        \"w\": 8,\n        \"x\": 0,\n        \"y\": 0,\n        \"minH\": 1,\n        \"minW\": 1,\n        \"moved\": false,\n        \"static\": false\n      },\n      {\n        \"h\": 10,\n        \"i\": \"8xw5uq9syng\",\n        \"w\": 8,\n        \"x\": 8,\n        \"y\": 0,\n        \"minH\": 1,\n        \"minW\": 1,\n        \"moved\": false,\n        \"static\": false\n      },\n      {\n        \"h\": 10,\n        \"i\": \"ik7qok4opu\",\n        \"w\": 8,\n        \"x\": 0,\n        \"y\": 10,\n        \"minH\": 1,\n        \"minW\": 1,\n        \"moved\": false,\n        \"static\": false\n      },\n      {\n        \"h\": 10,\n        \"i\": \"465c36rjhb5\",\n        \"w\": 8,\n        \"x\": 8,\n        \"y\": 10,\n        \"minH\": 1,\n        \"minW\": 1,\n        \"moved\": false,\n        \"static\": false\n      },\n      {\n        \"h\": 10,\n        \"i\": \"5cvz0k0cxjw\",\n        \"w\": 8,\n        \"x\": 16,\n        \"y\": 0,\n        \"minH\": 1,\n        \"minW\": 1,\n        \"moved\": false,\n        \"static\": false\n      },\n      {\n        \"h\": 10,\n        \"i\": \"oked0o609mq\",\n        \"w\": 8,\n        \"x\": 16,\n        \"y\": 10,\n        \"minH\": 1,\n        \"minW\": 1,\n        \"moved\": false,\n        \"static\": false\n      },\n      {\n        \"h\": 10,\n        \"i\": \"172phe1chqe\",\n        \"w\": 8,\n        \"x\": 0,\n        \"y\": 20,\n        \"minH\": 1,\n        \"minW\": 1,\n        \"moved\": false,\n        \"static\": false\n      }\n    ],\n    \"default_region\": \"us-east-1\"\n  },\n  \"tags\": [\n    \"km-agent\"\n  ]\n}").then(() => alert('Copied to clipboard!'), () => alert('Failed to copy.'));
+          navigator.clipboard.writeText("{\n  \"name\": \"JVM Metrics-V2\",\n  \"description\": \"\",\n  \"data\": {\n    \"tz\": \"local\",\n    \"panels\": [\n      {\n        \"id\": \"lv92wddbvvl\",\n        \"tz\": \"local\",\n        \"axis\": {\n          \"x\": {\n            \"date_style\": \"auto\"\n          },\n          \"y\": {\n            \"format\": \"bytes\",\n            \"decimals\": 1\n          }\n        },\n        \"title\": \"JVM Heap Memory Used\",\n        \"tooltip\": {\n          \"mode\": \"all\"\n        },\n        \"panelType\": \"TimeSeries\",\n        \"timeRange\": \"1h\",\n        \"statConfig\": {\n          \"statView\": \"grid\",\n          \"baseColor\": \"#4CBB17\",\n          \"calculation\": \"last\"\n        },\n        \"timeseries\": {\n          \"legend\": {\n            \"view\": \"table\",\n            \"values\": [\n              {\n                \"label\": \"Max\",\n                \"value\": \"max\"\n              },\n              {\n                \"label\": \"Last\",\n                \"value\": \"last\"\n              }\n            ]\n          }\n        },\n        \"description\": \"Heap Memory in bytes the JVM process is actively using\",\n        \"node_configs\": [\n          {\n            \"page\": 1,\n            \"stat\": \"\",\n            \"type\": \"query\",\n            \"hidden\": false,\n            \"metric\": \"\",\n            \"nodeId\": \"A\",\n            \"region\": \"\",\n            \"source\": \"kloudmate\",\n            \"dataset\": \"metrics\",\n            \"filters\": [\n              {\n                \"type\": \"string\",\n                \"field\": \"jvm_memory_type\",\n                \"value\": \"heap\",\n                \"operator\": \"=\"\n              },\n              {\n                \"type\": \"string\",\n                \"field\": \"service_name\",\n                \"value\": \"$ServiceName\",\n                \"operator\": \"=\"\n              }\n            ],\n            \"groupBy\": [\n              {\n                \"type\": \"string\",\n                \"field\": \"service_name\"\n              }\n            ],\n            \"orderBy\": [],\n            \"interval\": \"\",\n            \"namespace\": \"\",\n            \"dimensions\": [],\n            \"metricType\": \"\",\n            \"time_range\": {\n              \"to\": 0,\n              \"from\": 600\n            },\n            \"aggregation\": {\n              \"stat\": \"SUM\",\n              \"type\": \"\",\n              \"unit\": \"bytes\",\n              \"field\": \"\",\n              \"value\": \"jvm_memory_used\",\n              \"metric\": \"jvm_memory_used\",\n              \"metricType\": \"Gauge\",\n              \"temporality\": \"Cumulative\"\n            },\n            \"datasourceId\": \"kloudmate\",\n            \"legendFormat\": \"{{service_name}}\"\n          }\n        ],\n        \"time_options\": {\n          \"override\": false,\n          \"time_shift\": \"\"\n        }\n      },\n      {\n        \"id\": \"8xw5uq9syng\",\n        \"tz\": \"local\",\n        \"axis\": {\n          \"x\": {\n            \"date_style\": \"auto\"\n          },\n          \"y\": {\n            \"format\": \"bytes\",\n            \"decimals\": 3\n          }\n        },\n        \"STATS\": {},\n        \"table\": {\n          \"columns\": [\n            {\n              \"key\": \"A:AVG()\",\n              \"format\": {\n                \"format\": \"bytes\",\n                \"decimals\": 1\n              },\n              \"rename\": \"Heap\"\n            },\n            {\n              \"key\": \"service_name\",\n              \"rename\": \"Service\"\n            }\n          ]\n        },\n        \"title\": \"Heap Memory Limit\",\n        \"bar_chart\": {\n          \"axis\": {\n            \"x\": {\n              \"date_style\": \"auto\"\n            },\n            \"y\": {\n              \"format\": \"unformatted\",\n              \"prefix\": \"\",\n              \"suffix\": \"\",\n              \"decimals\": 3,\n              \"multiplyBy\": 1\n            }\n          },\n          \"legend\": {\n            \"view\": \"list\",\n            \"values\": []\n          },\n          \"display\": {\n            \"stacking\": \"stacked\",\n            \"orientation\": \"vertical\"\n          }\n        },\n        \"panelType\": \"STATS\",\n        \"pie_chart\": {\n          \"legend\": {\n            \"mode\": \"list\",\n            \"show\": true,\n            \"values\": [\n              \"formattedPercent\"\n            ],\n            \"placement\": \"right\"\n          },\n          \"display\": {\n            \"type\": \"pie\",\n            \"labels\": [\n              \"name\"\n            ]\n          },\n          \"formatter\": {},\n          \"value_options\": {\n            \"type\": \"reduce\",\n            \"limit\": 20,\n            \"reduce\": \"last\",\n            \"columns\": [\n              \"numeric\"\n            ]\n          }\n        },\n        \"timeRange\": \"12h\",\n        \"TimeSeries\": {},\n        \"statConfig\": {\n          \"color\": {\n            \"scheme\": \"fixed\",\n            \"fixedColor\": \"#dd223a\"\n          },\n          \"format\": \"bytes\",\n          \"decimals\": 1,\n          \"statView\": \"grid\",\n          \"baseColor\": \"#4CBB17\",\n          \"colorMode\": \"background\",\n          \"calculation\": \"last\"\n        },\n        \"timeseries\": {\n          \"legend\": {\n            \"view\": \"list\",\n            \"values\": []\n          }\n        },\n        \"description\": \"Maximum Heap-memory (bytes) that the JVM is allowed to use\",\n        \"node_configs\": [\n          {\n            \"page\": 1,\n            \"stat\": \"\",\n            \"type\": \"query\",\n            \"hidden\": false,\n            \"metric\": \"\",\n            \"nodeId\": \"A\",\n            \"region\": \"\",\n            \"source\": \"kloudmate\",\n            \"dataset\": \"metrics\",\n            \"filters\": [\n              {\n                \"type\": \"string\",\n                \"field\": \"jvm_memory_type\",\n                \"value\": \"heap\",\n                \"operator\": \"=\"\n              },\n              {\n                \"type\": \"string\",\n                \"field\": \"service_name\",\n                \"value\": \"$ServiceName\",\n                \"operator\": \"=\"\n              }\n            ],\n            \"groupBy\": [\n              {\n                \"type\": \"string\",\n                \"field\": \"service_name\"\n              }\n            ],\n            \"orderBy\": [],\n            \"interval\": \"\",\n            \"namespace\": \"\",\n            \"dimensions\": [],\n            \"metricType\": \"\",\n            \"time_range\": {\n              \"to\": 0,\n              \"from\": 600\n            },\n            \"aggregation\": {\n              \"stat\": \"SUM\",\n              \"type\": \"\",\n              \"unit\": \"By\",\n              \"field\": \"\",\n              \"value\": \"jvm_memory_limit\",\n              \"metric\": \"jvm_memory_limit\",\n              \"metricType\": \"Sum\",\n              \"temporality\": \"Cumulative\"\n            },\n            \"datasourceId\": \"kloudmate\",\n            \"responseType\": \"series\"\n          }\n        ],\n        \"time_options\": {\n          \"override\": false,\n          \"time_shift\": \"\"\n        }\n      },\n      {\n        \"id\": \"ik7qok4opu\",\n        \"tz\": \"local\",\n        \"axis\": {\n          \"x\": {\n            \"date_style\": \"auto\"\n          },\n          \"y\": {\n            \"format\": \"duration\",\n            \"decimals\": 1,\n            \"multiplyBy\": 1000\n          }\n        },\n        \"title\": \"JVM GC Duration\",\n        \"panelType\": \"TimeSeries\",\n        \"timeRange\": \"1h\",\n        \"statConfig\": {\n          \"statView\": \"grid\",\n          \"baseColor\": \"#4CBB17\",\n          \"calculation\": \"last\"\n        },\n        \"timeseries\": {\n          \"legend\": {\n            \"view\": \"list\",\n            \"values\": []\n          }\n        },\n        \"description\": \"the total time spent performing garbage collection in the JVM.\",\n        \"node_configs\": [\n          {\n            \"page\": 1,\n            \"stat\": \"\",\n            \"type\": \"query\",\n            \"hidden\": false,\n            \"metric\": \"\",\n            \"nodeId\": \"A\",\n            \"region\": \"\",\n            \"source\": \"kloudmate\",\n            \"dataset\": \"metrics\",\n            \"filters\": [\n              {\n                \"type\": \"string\",\n                \"field\": \"service_name\",\n                \"value\": \"$ServiceName\",\n                \"operator\": \"=\"\n              }\n            ],\n            \"groupBy\": [\n              {\n                \"type\": \"string\",\n                \"field\": \"service_name\"\n              }\n            ],\n            \"orderBy\": [],\n            \"interval\": \"\",\n            \"namespace\": \"\",\n            \"dimensions\": [],\n            \"metricType\": \"\",\n            \"time_range\": {\n              \"to\": 0,\n              \"from\": 600\n            },\n            \"aggregation\": {\n              \"stat\": \"AVG\",\n              \"type\": \"\",\n              \"unit\": \"s\",\n              \"field\": \"\",\n              \"value\": \"jvm_gc_duration_sum\",\n              \"metric\": \"jvm_gc_duration_sum\",\n              \"metricType\": \"Histogram\",\n              \"temporality\": \"Cumulative\"\n            },\n            \"datasourceId\": \"kloudmate\",\n            \"legendFormat\": \"{{service_name}}\"\n          }\n        ],\n        \"time_options\": {\n          \"override\": false,\n          \"time_shift\": \"\"\n        }\n      },\n      {\n        \"id\": \"oked0o609mq\",\n        \"tz\": \"local\",\n        \"axis\": {\n          \"x\": {\n            \"date_style\": \"auto\"\n          },\n          \"y\": {\n            \"format\": \"number\",\n            \"suffix\": \"{class}\",\n            \"decimals\": 3\n          }\n        },\n        \"title\": \"JVM Classes Loaded\",\n        \"panelType\": \"TimeSeries\",\n        \"timeRange\": \"1h\",\n        \"statConfig\": {\n          \"statView\": \"grid\",\n          \"baseColor\": \"#4CBB17\",\n          \"calculation\": \"last\"\n        },\n        \"timeseries\": {\n          \"legend\": {\n            \"view\": \"list\",\n            \"values\": []\n          }\n        },\n        \"description\": \"Number of classes currently loaded in the JVM\",\n        \"node_configs\": [\n          {\n            \"page\": 1,\n            \"stat\": \"\",\n            \"type\": \"query\",\n            \"hidden\": false,\n            \"metric\": \"\",\n            \"nodeId\": \"A\",\n            \"region\": \"\",\n            \"source\": \"kloudmate\",\n            \"dataset\": \"metrics\",\n            \"filters\": [\n              {\n                \"type\": \"string\",\n                \"field\": \"service_name\",\n                \"value\": \"$ServiceName\",\n                \"operator\": \"=\"\n              }\n            ],\n            \"groupBy\": [\n              {\n                \"type\": \"string\",\n                \"field\": \"service_name\"\n              }\n            ],\n            \"orderBy\": [],\n            \"interval\": \"\",\n            \"namespace\": \"\",\n            \"dimensions\": [],\n            \"metricType\": \"\",\n            \"time_range\": {\n              \"to\": 0,\n              \"from\": 600\n            },\n            \"aggregation\": {\n              \"stat\": \"SUM\",\n              \"type\": \"\",\n              \"unit\": \"{class}\",\n              \"field\": \"\",\n              \"value\": \"jvm_class_loaded\",\n              \"metric\": \"jvm_class_loaded\",\n              \"metricType\": \"Sum\",\n              \"temporality\": \"Cumulative\"\n            },\n            \"datasourceId\": \"kloudmate\",\n            \"legendFormat\": \"{{service_name}}\"\n          }\n        ],\n        \"time_options\": {\n          \"override\": false,\n          \"time_shift\": \"\"\n        }\n      },\n      {\n        \"id\": \"172phe1chqe\",\n        \"tz\": \"local\",\n        \"axis\": {\n          \"x\": {\n            \"date_style\": \"auto\"\n          },\n          \"y\": {\n            \"format\": \"duration\",\n            \"decimals\": 0,\n            \"multiplyBy\": 1000\n          }\n        },\n        \"title\": \"HTTP Server Requests\",\n        \"panelType\": \"TimeSeries\",\n        \"timeRange\": \"1h\",\n        \"statConfig\": {\n          \"statView\": \"grid\",\n          \"baseColor\": \"#4CBB17\",\n          \"calculation\": \"last\"\n        },\n        \"timeseries\": {\n          \"legend\": {\n            \"view\": \"list\",\n            \"values\": []\n          }\n        },\n        \"description\": \"the total duration of HTTP requests handled by the application\",\n        \"node_configs\": [\n          {\n            \"page\": 1,\n            \"stat\": \"\",\n            \"type\": \"query\",\n            \"hidden\": false,\n            \"metric\": \"\",\n            \"nodeId\": \"A\",\n            \"region\": \"\",\n            \"source\": \"kloudmate\",\n            \"dataset\": \"metrics\",\n            \"filters\": [\n              {\n                \"type\": \"string\",\n                \"field\": \"service_name\",\n                \"value\": \"$ServiceName\",\n                \"operator\": \"=\"\n              }\n            ],\n            \"groupBy\": [\n              {\n                \"type\": \"string\",\n                \"field\": \"service_name\"\n              }\n            ],\n            \"orderBy\": [],\n            \"interval\": \"\",\n            \"namespace\": \"\",\n            \"dimensions\": [],\n            \"metricType\": \"\",\n            \"time_range\": {\n              \"to\": 0,\n              \"from\": 600\n            },\n            \"aggregation\": {\n              \"stat\": \"AVG\",\n              \"type\": \"\",\n              \"unit\": \"s\",\n              \"field\": \"\",\n              \"value\": \"http_server_request_duration_sum\",\n              \"metric\": \"http_server_request_duration_sum\",\n              \"metricType\": \"Histogram\",\n              \"temporality\": \"Cumulative\"\n            },\n            \"datasourceId\": \"kloudmate\",\n            \"legendFormat\": \"{{service_name}}\"\n          }\n        ],\n        \"time_options\": {\n          \"override\": false,\n          \"time_shift\": \"\"\n        }\n      },\n      {\n        \"id\": \"3jftuzrz3pa\",\n        \"tz\": \"local\",\n        \"axis\": {\n          \"x\": {\n            \"date_style\": \"auto\"\n          },\n          \"y\": {\n            \"format\": \"bytes\",\n            \"decimals\": 1\n          }\n        },\n        \"title\": \"JVM Non-Heap Memory Used\",\n        \"tooltip\": {\n          \"mode\": \"all\"\n        },\n        \"panelType\": \"TimeSeries\",\n        \"timeRange\": \"1h\",\n        \"statConfig\": {\n          \"statView\": \"grid\",\n          \"baseColor\": \"#4CBB17\",\n          \"calculation\": \"last\"\n        },\n        \"timeseries\": {\n          \"legend\": {\n            \"view\": \"table\",\n            \"values\": [\n              {\n                \"label\": \"Max\",\n                \"value\": \"max\"\n              },\n              {\n                \"label\": \"Last\",\n                \"value\": \"last\"\n              }\n            ]\n          }\n        },\n        \"description\": \"Non-heap memory in bytes the JVM process is actively using\",\n        \"node_configs\": [\n          {\n            \"page\": 1,\n            \"stat\": \"\",\n            \"type\": \"query\",\n            \"hidden\": false,\n            \"metric\": \"\",\n            \"nodeId\": \"A\",\n            \"region\": \"\",\n            \"source\": \"kloudmate\",\n            \"dataset\": \"metrics\",\n            \"filters\": [\n              {\n                \"type\": \"string\",\n                \"field\": \"jvm_memory_type\",\n                \"value\": \"non_heap\",\n                \"operator\": \"=\"\n              },\n              {\n                \"type\": \"string\",\n                \"field\": \"service_name\",\n                \"value\": \"$ServiceName\",\n                \"operator\": \"=\"\n              }\n            ],\n            \"groupBy\": [\n              {\n                \"type\": \"string\",\n                \"field\": \"service_name\"\n              }\n            ],\n            \"orderBy\": [],\n            \"interval\": \"\",\n            \"namespace\": \"\",\n            \"dimensions\": [],\n            \"metricType\": \"\",\n            \"time_range\": {\n              \"to\": 0,\n              \"from\": 600\n            },\n            \"aggregation\": {\n              \"stat\": \"SUM\",\n              \"type\": \"\",\n              \"unit\": \"By\",\n              \"field\": \"\",\n              \"value\": \"jvm_memory_used\",\n              \"metric\": \"jvm_memory_used\",\n              \"metricType\": \"Sum\",\n              \"temporality\": \"Cumulative\"\n            },\n            \"datasourceId\": \"kloudmate\"\n          }\n        ],\n        \"time_options\": {\n          \"override\": false,\n          \"time_shift\": \"\"\n        }\n      },\n      {\n        \"id\": \"5la5pnz1tem\",\n        \"tz\": \"local\",\n        \"axis\": {\n          \"x\": {\n            \"date_style\": \"auto\"\n          },\n          \"y\": {\n            \"format\": \"percentage\",\n            \"prefix\": \"\",\n            \"decimals\": 1\n          }\n        },\n        \"STATS\": {},\n        \"title\": \"JVM CPU Utilization\",\n        \"panelType\": \"STATS\",\n        \"timeRange\": \"1h\",\n        \"statConfig\": {\n          \"color\": {\n            \"scheme\": \"fixed\",\n            \"fixedColor\": \"#3e77bb\"\n          },\n          \"format\": \"percentage\",\n          \"decimals\": 2,\n          \"statView\": \"grid\",\n          \"baseColor\": \"#4CBB17\",\n          \"colorMode\": \"background\",\n          \"calculation\": \"last\"\n        },\n        \"timeseries\": {\n          \"legend\": {\n            \"view\": \"list\",\n            \"values\": [\n              {\n                \"label\": \"Last\",\n                \"value\": \"last\"\n              }\n            ]\n          }\n        },\n        \"description\": \"JVM process’s recent CPU utilization\",\n        \"node_configs\": [\n          {\n            \"page\": 1,\n            \"stat\": \"\",\n            \"type\": \"query\",\n            \"hidden\": false,\n            \"metric\": \"\",\n            \"nodeId\": \"A\",\n            \"region\": \"\",\n            \"source\": \"kloudmate\",\n            \"dataset\": \"metrics\",\n            \"filters\": [\n              {\n                \"type\": \"string\",\n                \"field\": \"service_name\",\n                \"value\": \"$ServiceName\",\n                \"operator\": \"=\"\n              }\n            ],\n            \"groupBy\": [\n              {\n                \"type\": \"string\",\n                \"field\": \"service_name\"\n              }\n            ],\n            \"orderBy\": [],\n            \"interval\": \"\",\n            \"namespace\": \"\",\n            \"dimensions\": [],\n            \"metricType\": \"\",\n            \"time_range\": {\n              \"to\": 0,\n              \"from\": 600\n            },\n            \"aggregation\": {\n              \"stat\": \"LAST\",\n              \"type\": \"\",\n              \"unit\": \"1\",\n              \"field\": \"\",\n              \"value\": \"jvm_cpu_recent_utilization\",\n              \"metric\": \"jvm_cpu_recent_utilization\",\n              \"metricType\": \"Gauge\",\n              \"temporality\": \"Cumulative\"\n            },\n            \"datasourceId\": \"kloudmate\",\n            \"legendFormat\": \"{{service_name}}\",\n            \"responseType\": \"series\"\n          }\n        ],\n        \"time_options\": {\n          \"override\": false,\n          \"time_shift\": \"\"\n        }\n      },\n      {\n        \"id\": \"9m5gu0pq2tv\",\n        \"tz\": \"local\",\n        \"axis\": {\n          \"x\": {\n            \"date_style\": \"auto\"\n          },\n          \"y\": {\n            \"format\": \"bytes\",\n            \"decimals\": 1\n          }\n        },\n        \"STATS\": {},\n        \"title\": \"Heap Memory Usage\",\n        \"panelType\": \"STATS\",\n        \"timeRange\": \"1h\",\n        \"statConfig\": {\n          \"color\": {\n            \"scheme\": \"fixed\",\n            \"fixedColor\": \"#76c029\"\n          },\n          \"suffix\": \"%\",\n          \"decimals\": 1,\n          \"statView\": \"grid\",\n          \"baseColor\": \"#4CBB17\",\n          \"colorMode\": \"background\",\n          \"calculation\": \"last\"\n        },\n        \"timeseries\": {\n          \"legend\": {\n            \"view\": \"list\",\n            \"values\": []\n          }\n        },\n        \"description\": \"JVM heap Memory Used against the Memory Limit\",\n        \"node_configs\": [\n          {\n            \"page\": 1,\n            \"stat\": \"\",\n            \"type\": \"query\",\n            \"hidden\": true,\n            \"metric\": \"\",\n            \"nodeId\": \"A\",\n            \"region\": \"\",\n            \"source\": \"kloudmate\",\n            \"dataset\": \"metrics\",\n            \"filters\": [\n              {\n                \"type\": \"string\",\n                \"field\": \"jvm_memory_type\",\n                \"value\": \"heap\",\n                \"operator\": \"=\"\n              },\n              {\n                \"type\": \"string\",\n                \"field\": \"service_name\",\n                \"value\": \"$ServiceName\",\n                \"operator\": \"=\"\n              }\n            ],\n            \"groupBy\": [\n              {\n                \"type\": \"string\",\n                \"field\": \"service_name\"\n              }\n            ],\n            \"orderBy\": [],\n            \"interval\": \"\",\n            \"namespace\": \"\",\n            \"dimensions\": [],\n            \"metricType\": \"\",\n            \"time_range\": {\n              \"to\": 0,\n              \"from\": 600\n            },\n            \"aggregation\": {\n              \"stat\": \"SUM\",\n              \"type\": \"\",\n              \"unit\": \"bytes\",\n              \"field\": \"\",\n              \"value\": \"jvm_memory_used\",\n              \"metric\": \"jvm_memory_used\",\n              \"metricType\": \"Gauge\",\n              \"temporality\": \"Cumulative\"\n            },\n            \"datasourceId\": \"kloudmate\",\n            \"legendFormat\": \"{{service_name}}\",\n            \"responseType\": \"series\"\n          },\n          {\n            \"page\": 1,\n            \"stat\": \"\",\n            \"type\": \"query\",\n            \"hidden\": true,\n            \"metric\": \"\",\n            \"nodeId\": \"B\",\n            \"region\": \"\",\n            \"source\": \"kloudmate\",\n            \"dataset\": \"metrics\",\n            \"filters\": [\n              {\n                \"type\": \"string\",\n                \"field\": \"service_name\",\n                \"value\": \"$ServiceName\",\n                \"operator\": \"=\"\n              },\n              {\n                \"type\": \"string\",\n                \"field\": \"jvm_memory_type\",\n                \"value\": \"heap\",\n                \"operator\": \"=\"\n              }\n            ],\n            \"groupBy\": [\n              {\n                \"type\": \"string\",\n                \"field\": \"service_name\"\n              }\n            ],\n            \"orderBy\": [],\n            \"interval\": \"\",\n            \"namespace\": \"\",\n            \"dimensions\": [],\n            \"metricType\": \"\",\n            \"time_range\": {\n              \"to\": 0,\n              \"from\": 600\n            },\n            \"aggregation\": {\n              \"stat\": \"SUM\",\n              \"type\": \"\",\n              \"unit\": \"By\",\n              \"field\": \"\",\n              \"value\": \"jvm_memory_limit\",\n              \"metric\": \"jvm_memory_limit\",\n              \"metricType\": \"Sum\",\n              \"temporality\": \"Cumulative\"\n            },\n            \"datasourceId\": \"kloudmate\",\n            \"legendFormat\": \"{{service_name}}\",\n            \"responseType\": \"series\"\n          },\n          {\n            \"type\": \"expression\",\n            \"hidden\": false,\n            \"nodeId\": \"C\",\n            \"expression\": \"($A / $B) *100\",\n            \"responseType\": \"series\",\n            \"expressionType\": \"math\"\n          }\n        ],\n        \"time_options\": {\n          \"override\": false,\n          \"time_shift\": \"\"\n        }\n      },\n      {\n        \"id\": \"08i4lqtn68ea\",\n        \"tz\": \"local\",\n        \"axis\": {\n          \"x\": {\n            \"date_style\": \"auto\"\n          },\n          \"y\": {\n            \"format\": \"bytes\",\n            \"decimals\": 1\n          }\n        },\n        \"STATS\": {},\n        \"title\": \"Non-Heap Memory Usage\",\n        \"panelType\": \"STATS\",\n        \"timeRange\": \"1h\",\n        \"statConfig\": {\n          \"color\": {\n            \"scheme\": \"fixed\",\n            \"fixedColor\": \"#ddce21\"\n          },\n          \"suffix\": \"%\",\n          \"decimals\": 1,\n          \"statView\": \"grid\",\n          \"baseColor\": \"#4CBB17\",\n          \"colorMode\": \"background\",\n          \"calculation\": \"last\"\n        },\n        \"timeseries\": {\n          \"legend\": {\n            \"view\": \"list\",\n            \"values\": []\n          }\n        },\n        \"description\": \"JVM Non-heap Memory Used against the Memory Limit\",\n        \"node_configs\": [\n          {\n            \"page\": 1,\n            \"stat\": \"\",\n            \"type\": \"query\",\n            \"hidden\": true,\n            \"metric\": \"\",\n            \"nodeId\": \"A\",\n            \"region\": \"\",\n            \"source\": \"kloudmate\",\n            \"dataset\": \"metrics\",\n            \"filters\": [\n              {\n                \"type\": \"string\",\n                \"field\": \"jvm_memory_type\",\n                \"value\": \"non_heap\",\n                \"operator\": \"=\"\n              },\n              {\n                \"type\": \"string\",\n                \"field\": \"service_name\",\n                \"value\": \"$ServiceName\",\n                \"operator\": \"=\"\n              }\n            ],\n            \"groupBy\": [\n              {\n                \"type\": \"string\",\n                \"field\": \"service_name\"\n              }\n            ],\n            \"orderBy\": [],\n            \"interval\": \"\",\n            \"namespace\": \"\",\n            \"dimensions\": [],\n            \"metricType\": \"\",\n            \"time_range\": {\n              \"to\": 0,\n              \"from\": 600\n            },\n            \"aggregation\": {\n              \"stat\": \"AVG\",\n              \"type\": \"\",\n              \"unit\": \"By\",\n              \"field\": \"\",\n              \"value\": \"jvm_memory_used\",\n              \"metric\": \"jvm_memory_used\",\n              \"metricType\": \"Sum\",\n              \"temporality\": \"Cumulative\"\n            },\n            \"datasourceId\": \"kloudmate\",\n            \"responseType\": \"series\"\n          },\n          {\n            \"page\": 1,\n            \"stat\": \"\",\n            \"type\": \"query\",\n            \"hidden\": true,\n            \"metric\": \"\",\n            \"nodeId\": \"B\",\n            \"region\": \"\",\n            \"source\": \"kloudmate\",\n            \"dataset\": \"metrics\",\n            \"filters\": [\n              {\n                \"type\": \"string\",\n                \"field\": \"service_name\",\n                \"value\": \"$ServiceName\",\n                \"operator\": \"=\"\n              },\n              {\n                \"type\": \"string\",\n                \"field\": \"jvm_memory_type\",\n                \"value\": \"non_heap\",\n                \"operator\": \"=\"\n              }\n            ],\n            \"groupBy\": [\n              {\n                \"type\": \"string\",\n                \"field\": \"service_name\"\n              }\n            ],\n            \"orderBy\": [],\n            \"interval\": \"\",\n            \"namespace\": \"\",\n            \"dimensions\": [],\n            \"metricType\": \"\",\n            \"time_range\": {\n              \"to\": 0,\n              \"from\": 600\n            },\n            \"aggregation\": {\n              \"stat\": \"AVG\",\n              \"type\": \"\",\n              \"unit\": \"By\",\n              \"field\": \"\",\n              \"value\": \"jvm_memory_limit\",\n              \"metric\": \"jvm_memory_limit\",\n              \"metricType\": \"Sum\",\n              \"temporality\": \"Cumulative\"\n            },\n            \"datasourceId\": \"kloudmate\",\n            \"responseType\": \"series\"\n          },\n          {\n            \"type\": \"expression\",\n            \"hidden\": false,\n            \"nodeId\": \"C\",\n            \"expression\": \"($A / $B) *100\",\n            \"responseType\": \"series\",\n            \"expressionType\": \"math\"\n          }\n        ],\n        \"time_options\": {\n          \"override\": false,\n          \"time_shift\": \"\"\n        }\n      },\n      {\n        \"id\": \"fgz9myzj7oc\",\n        \"tz\": \"local\",\n        \"axis\": {\n          \"x\": {\n            \"date_style\": \"auto\"\n          },\n          \"y\": {\n            \"format\": \"percentage\",\n            \"prefix\": \"\",\n            \"decimals\": 1\n          }\n        },\n        \"STATS\": {},\n        \"title\": \"CPU Usage\",\n        \"tooltip\": {\n          \"mode\": \"all\"\n        },\n        \"panelType\": \"TimeSeries\",\n        \"timeRange\": \"1h\",\n        \"TimeSeries\": {},\n        \"statConfig\": {\n          \"format\": \"percentage\",\n          \"decimals\": 2,\n          \"statView\": \"grid\",\n          \"baseColor\": \"#4CBB17\",\n          \"calculation\": \"last\"\n        },\n        \"timeseries\": {\n          \"legend\": {\n            \"view\": \"table\",\n            \"values\": [\n              {\n                \"label\": \"Max\",\n                \"value\": \"max\"\n              },\n              {\n                \"label\": \"Last\",\n                \"value\": \"last\"\n              }\n            ]\n          }\n        },\n        \"description\": \"JVM CPU Utilization\",\n        \"node_configs\": [\n          {\n            \"page\": 1,\n            \"stat\": \"\",\n            \"type\": \"query\",\n            \"hidden\": false,\n            \"metric\": \"\",\n            \"nodeId\": \"A\",\n            \"region\": \"\",\n            \"source\": \"kloudmate\",\n            \"dataset\": \"metrics\",\n            \"filters\": [\n              {\n                \"type\": \"string\",\n                \"field\": \"service_name\",\n                \"value\": \"$ServiceName\",\n                \"operator\": \"=\"\n              }\n            ],\n            \"groupBy\": [\n              {\n                \"type\": \"string\",\n                \"field\": \"service_name\"\n              }\n            ],\n            \"orderBy\": [],\n            \"interval\": \"\",\n            \"namespace\": \"\",\n            \"dimensions\": [],\n            \"metricType\": \"\",\n            \"time_range\": {\n              \"to\": 0,\n              \"from\": 600\n            },\n            \"aggregation\": {\n              \"stat\": \"LAST\",\n              \"type\": \"\",\n              \"unit\": \"1\",\n              \"field\": \"\",\n              \"value\": \"jvm_cpu_recent_utilization\",\n              \"metric\": \"jvm_cpu_recent_utilization\",\n              \"metricType\": \"Gauge\",\n              \"temporality\": \"Cumulative\"\n            },\n            \"datasourceId\": \"kloudmate\",\n            \"legendFormat\": \"{{service_name}}\",\n            \"responseType\": \"series\"\n          }\n        ],\n        \"time_options\": {\n          \"override\": false,\n          \"time_shift\": \"\"\n        }\n      },\n      {\n        \"id\": \"hw3cw0baro\",\n        \"tz\": \"local\",\n        \"axis\": {\n          \"x\": {\n            \"date_style\": \"auto\"\n          },\n          \"y\": {\n            \"format\": \"percentage\",\n            \"decimals\": 1\n          }\n        },\n        \"STATS\": {},\n        \"title\": \"Heap Memory Usage \",\n        \"tooltip\": {\n          \"mode\": \"all\"\n        },\n        \"panelType\": \"TimeSeries\",\n        \"timeRange\": \"1h\",\n        \"TimeSeries\": {},\n        \"statConfig\": {\n          \"suffix\": \"%\",\n          \"decimals\": 1,\n          \"statView\": \"grid\",\n          \"baseColor\": \"#4CBB17\",\n          \"calculation\": \"last\"\n        },\n        \"timeseries\": {\n          \"legend\": {\n            \"view\": \"table\",\n            \"values\": [\n              {\n                \"label\": \"Max\",\n                \"value\": \"max\"\n              },\n              {\n                \"label\": \"Last\",\n                \"value\": \"last\"\n              }\n            ]\n          }\n        },\n        \"description\": \"JVM heap Memory Used against the Memory Limit\",\n        \"node_configs\": [\n          {\n            \"page\": 1,\n            \"stat\": \"\",\n            \"type\": \"query\",\n            \"hidden\": true,\n            \"metric\": \"\",\n            \"nodeId\": \"A\",\n            \"region\": \"\",\n            \"source\": \"kloudmate\",\n            \"dataset\": \"metrics\",\n            \"filters\": [\n              {\n                \"type\": \"string\",\n                \"field\": \"jvm_memory_type\",\n                \"value\": \"heap\",\n                \"operator\": \"=\"\n              },\n              {\n                \"type\": \"string\",\n                \"field\": \"service_name\",\n                \"value\": \"$ServiceName\",\n                \"operator\": \"=\"\n              }\n            ],\n            \"groupBy\": [\n              {\n                \"type\": \"string\",\n                \"field\": \"service_name\"\n              }\n            ],\n            \"orderBy\": [],\n            \"interval\": \"\",\n            \"namespace\": \"\",\n            \"dimensions\": [],\n            \"metricType\": \"\",\n            \"time_range\": {\n              \"to\": 0,\n              \"from\": 600\n            },\n            \"aggregation\": {\n              \"stat\": \"SUM\",\n              \"type\": \"\",\n              \"unit\": \"bytes\",\n              \"field\": \"\",\n              \"value\": \"jvm_memory_used\",\n              \"metric\": \"jvm_memory_used\",\n              \"metricType\": \"Gauge\",\n              \"temporality\": \"Cumulative\"\n            },\n            \"datasourceId\": \"kloudmate\",\n            \"legendFormat\": \"{{service_name}}\",\n            \"responseType\": \"series\"\n          },\n          {\n            \"page\": 1,\n            \"stat\": \"\",\n            \"type\": \"query\",\n            \"hidden\": true,\n            \"metric\": \"\",\n            \"nodeId\": \"B\",\n            \"region\": \"\",\n            \"source\": \"kloudmate\",\n            \"dataset\": \"metrics\",\n            \"filters\": [\n              {\n                \"type\": \"string\",\n                \"field\": \"service_name\",\n                \"value\": \"$ServiceName\",\n                \"operator\": \"=\"\n              },\n              {\n                \"type\": \"string\",\n                \"field\": \"jvm_memory_type\",\n                \"value\": \"heap\",\n                \"operator\": \"=\"\n              }\n            ],\n            \"groupBy\": [\n              {\n                \"type\": \"string\",\n                \"field\": \"service_name\"\n              }\n            ],\n            \"orderBy\": [],\n            \"interval\": \"\",\n            \"namespace\": \"\",\n            \"dimensions\": [],\n            \"metricType\": \"\",\n            \"time_range\": {\n              \"to\": 0,\n              \"from\": 600\n            },\n            \"aggregation\": {\n              \"stat\": \"SUM\",\n              \"type\": \"\",\n              \"unit\": \"By\",\n              \"field\": \"\",\n              \"value\": \"jvm_memory_limit\",\n              \"metric\": \"jvm_memory_limit\",\n              \"metricType\": \"Sum\",\n              \"temporality\": \"Cumulative\"\n            },\n            \"datasourceId\": \"kloudmate\",\n            \"legendFormat\": \"{{service_name}}\",\n            \"responseType\": \"series\"\n          },\n          {\n            \"type\": \"expression\",\n            \"hidden\": false,\n            \"nodeId\": \"C\",\n            \"expression\": \"($A / $B) \",\n            \"responseType\": \"series\",\n            \"expressionType\": \"math\"\n          }\n        ],\n        \"time_options\": {\n          \"override\": false,\n          \"time_shift\": \"\"\n        }\n      },\n      {\n        \"id\": \"02r6sh4khbuq\",\n        \"tz\": \"local\",\n        \"axis\": {\n          \"x\": {\n            \"date_style\": \"auto\"\n          },\n          \"y\": {\n            \"format\": \"bytes\",\n            \"decimals\": 3\n          }\n        },\n        \"STATS\": {},\n        \"table\": {\n          \"columns\": [\n            {\n              \"key\": \"A:AVG()\",\n              \"format\": {\n                \"format\": \"bytes\",\n                \"decimals\": 1\n              },\n              \"rename\": \"Heap\"\n            },\n            {\n              \"key\": \"service_name\",\n              \"rename\": \"Service\"\n            }\n          ]\n        },\n        \"title\": \"Non-Heap Memory Limit \",\n        \"bar_chart\": {\n          \"axis\": {\n            \"x\": {\n              \"date_style\": \"auto\"\n            },\n            \"y\": {\n              \"format\": \"unformatted\",\n              \"prefix\": \"\",\n              \"suffix\": \"\",\n              \"decimals\": 3,\n              \"multiplyBy\": 1\n            }\n          },\n          \"legend\": {\n            \"view\": \"list\",\n            \"values\": []\n          },\n          \"display\": {\n            \"stacking\": \"stacked\",\n            \"orientation\": \"vertical\"\n          }\n        },\n        \"panelType\": \"STATS\",\n        \"pie_chart\": {\n          \"legend\": {\n            \"mode\": \"list\",\n            \"show\": true,\n            \"values\": [\n              \"formattedPercent\"\n            ],\n            \"placement\": \"right\"\n          },\n          \"display\": {\n            \"type\": \"pie\",\n            \"labels\": [\n              \"name\"\n            ]\n          },\n          \"formatter\": {},\n          \"value_options\": {\n            \"type\": \"reduce\",\n            \"limit\": 20,\n            \"reduce\": \"last\",\n            \"columns\": [\n              \"numeric\"\n            ]\n          }\n        },\n        \"timeRange\": \"12h\",\n        \"TimeSeries\": {},\n        \"statConfig\": {\n          \"color\": {\n            \"scheme\": \"fixed\",\n            \"fixedColor\": \"#4a4a4a\"\n          },\n          \"format\": \"bytes\",\n          \"decimals\": 1,\n          \"statView\": \"grid\",\n          \"baseColor\": \"#4CBB17\",\n          \"colorMode\": \"background\",\n          \"calculation\": \"last\"\n        },\n        \"timeseries\": {\n          \"legend\": {\n            \"view\": \"list\",\n            \"values\": []\n          }\n        },\n        \"description\": \"Maximum Non-Heap memory (bytes) that the JVM is allowed to use\",\n        \"node_configs\": [\n          {\n            \"page\": 1,\n            \"stat\": \"\",\n            \"type\": \"query\",\n            \"hidden\": false,\n            \"metric\": \"\",\n            \"nodeId\": \"A\",\n            \"region\": \"\",\n            \"source\": \"kloudmate\",\n            \"dataset\": \"metrics\",\n            \"filters\": [\n              {\n                \"type\": \"string\",\n                \"field\": \"jvm_memory_type\",\n                \"value\": \"non_heap\",\n                \"operator\": \"=\"\n              },\n              {\n                \"type\": \"string\",\n                \"field\": \"service_name\",\n                \"value\": \"$ServiceName\",\n                \"operator\": \"=\"\n              }\n            ],\n            \"groupBy\": [\n              {\n                \"type\": \"string\",\n                \"field\": \"service_name\"\n              }\n            ],\n            \"orderBy\": [],\n            \"interval\": \"\",\n            \"namespace\": \"\",\n            \"dimensions\": [],\n            \"metricType\": \"\",\n            \"time_range\": {\n              \"to\": 0,\n              \"from\": 600\n            },\n            \"aggregation\": {\n              \"stat\": \"SUM\",\n              \"type\": \"\",\n              \"unit\": \"By\",\n              \"field\": \"\",\n              \"value\": \"jvm_memory_limit\",\n              \"metric\": \"jvm_memory_limit\",\n              \"metricType\": \"Sum\",\n              \"temporality\": \"Cumulative\"\n            },\n            \"datasourceId\": \"kloudmate\",\n            \"responseType\": \"series\"\n          }\n        ],\n        \"time_options\": {\n          \"override\": false,\n          \"time_shift\": \"\"\n        }\n      }\n    ],\n    \"timeRange\": \"10m\",\n    \"variables\": [\n      {\n        \"name\": \"ServiceName\",\n        \"type\": \"query\",\n        \"label\": \"ServiceName\",\n        \"config\": {\n          \"otel\": {\n            \"key\": \"service_name\",\n            \"dataset\": \"metrics\",\n            \"filters\": [\n              {\n                \"type\": \"string\",\n                \"field\": \"jvm_memory_type\",\n                \"value\": null,\n                \"operator\": \"EXISTS\"\n              }\n            ]\n          },\n          \"source\": \"cloudwatch\",\n          \"queryType\": \"otel.values\"\n        },\n        \"is_multi\": false,\n        \"description\": \"\",\n        \"usedInPanels\": [\n          {\n            \"id\": \"lv92wddbvvl\",\n            \"name\": \"JVM Heap Memory Used\"\n          },\n          {\n            \"id\": \"8xw5uq9syng\",\n            \"name\": \"JVM Memory Limit\"\n          },\n          {\n            \"id\": \"ik7qok4opu\",\n            \"name\": \"JVM GC Duration\"\n          },\n          {\n            \"id\": \"465c36rjhb5\",\n            \"name\": \"Threads Count\"\n          },\n          {\n            \"id\": \"oked0o609mq\",\n            \"name\": \"JVM Classes Loaded\"\n          },\n          {\n            \"id\": \"172phe1chqe\",\n            \"name\": \"HTTP Server Requests\"\n          },\n          {\n            \"id\": \"3jftuzrz3pa\",\n            \"name\": \"JVM Non-Heap Memory Used\"\n          },\n          {\n            \"id\": \"5la5pnz1tem\",\n            \"name\": \"JVM CPU Utlization\"\n          }\n        ],\n        \"usesVariables\": [],\n        \"show_all_option\": false,\n        \"usedInVariables\": []\n      }\n    ],\n    \"panel_layouts\": [\n      {\n        \"h\": 10,\n        \"i\": \"lv92wddbvvl\",\n        \"w\": 12,\n        \"x\": 12,\n        \"y\": 16,\n        \"minH\": 1,\n        \"minW\": 1,\n        \"moved\": false,\n        \"static\": false\n      },\n      {\n        \"h\": 6,\n        \"i\": \"8xw5uq9syng\",\n        \"w\": 5,\n        \"x\": 14,\n        \"y\": 0,\n        \"minH\": 1,\n        \"minW\": 1,\n        \"moved\": false,\n        \"static\": false\n      },\n      {\n        \"h\": 10,\n        \"i\": \"ik7qok4opu\",\n        \"w\": 8,\n        \"x\": 16,\n        \"y\": 26,\n        \"minH\": 1,\n        \"minW\": 1,\n        \"moved\": false,\n        \"static\": false\n      },\n      {\n        \"h\": 10,\n        \"i\": \"oked0o609mq\",\n        \"w\": 8,\n        \"x\": 8,\n        \"y\": 26,\n        \"minH\": 1,\n        \"minW\": 1,\n        \"moved\": false,\n        \"static\": false\n      },\n      {\n        \"h\": 10,\n        \"i\": \"172phe1chqe\",\n        \"w\": 8,\n        \"x\": 0,\n        \"y\": 26,\n        \"minH\": 1,\n        \"minW\": 1,\n        \"moved\": false,\n        \"static\": false\n      },\n      {\n        \"h\": 10,\n        \"i\": \"3jftuzrz3pa\",\n        \"w\": 12,\n        \"x\": 0,\n        \"y\": 16,\n        \"minH\": 1,\n        \"minW\": 1,\n        \"moved\": false,\n        \"static\": false\n      },\n      {\n        \"h\": 6,\n        \"i\": \"5la5pnz1tem\",\n        \"w\": 4,\n        \"x\": 0,\n        \"y\": 0,\n        \"minH\": 1,\n        \"minW\": 1,\n        \"moved\": false,\n        \"static\": false\n      },\n      {\n        \"h\": 6,\n        \"i\": \"9m5gu0pq2tv\",\n        \"w\": 5,\n        \"x\": 4,\n        \"y\": 0,\n        \"minH\": 1,\n        \"minW\": 1,\n        \"moved\": false,\n        \"static\": false\n      },\n      {\n        \"h\": 6,\n        \"i\": \"08i4lqtn68ea\",\n        \"w\": 5,\n        \"x\": 9,\n        \"y\": 0,\n        \"minH\": 1,\n        \"minW\": 1,\n        \"moved\": false,\n        \"static\": false\n      },\n      {\n        \"h\": 10,\n        \"i\": \"fgz9myzj7oc\",\n        \"w\": 12,\n        \"x\": 0,\n        \"y\": 6,\n        \"minH\": 1,\n        \"minW\": 1,\n        \"moved\": false,\n        \"static\": false\n      },\n      {\n        \"h\": 10,\n        \"i\": \"hw3cw0baro\",\n        \"w\": 12,\n        \"x\": 12,\n        \"y\": 6,\n        \"minH\": 1,\n        \"minW\": 1,\n        \"moved\": false,\n        \"static\": false\n      },\n      {\n        \"h\": 6,\n        \"i\": \"02r6sh4khbuq\",\n        \"w\": 5,\n        \"x\": 19,\n        \"y\": 0,\n        \"minH\": 1,\n        \"minW\": 1,\n        \"moved\": false,\n        \"static\": false\n      }\n    ],\n    \"default_region\": \"us-east-1\"\n  },\n  \"tags\": []\n}").then(() => alert('Copied to clipboard!'), () => alert('Failed to copy.'));
         }
         const jsonViewer = document.getElementById('json-viewer');
         const expandBtn = document.getElementById('expand-btn');
