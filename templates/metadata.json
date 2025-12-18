@@ -1,7 +1,0 @@
-{
-  "title": "Kubernetes Node Level",
-  "description": " Monitoring Kubernetes nodes with KM Agents provides critical insights into the health and performance of the underlying infrastructure that powers your cluster, including key node-level metrics such as CPU utilization, memory consumption, disk I/O, filesystem usage, and network throughput..",
-  "tags": ["metrics", "K8s"],
-  "author": "KloudMate",
-  "verified": true
-}

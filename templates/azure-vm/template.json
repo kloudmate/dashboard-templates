@@ -31,6 +31,7 @@
             "values": []
           }
         },
+        "description": "Average CPU usage of an Azure resource over a given time interval",
         "node_configs": [
           {
             "page": 1,
@@ -535,6 +536,7 @@
             "values": []
           }
         },
+        "description": "The total number of OS disk read operations per second",
         "node_configs": [
           {
             "page": 1,
@@ -602,6 +604,7 @@
             "values": []
           }
         },
+        "description": "The total number of OS disk write operations per second",
         "node_configs": [
           {
             "page": 1,

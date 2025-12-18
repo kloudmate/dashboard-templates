@@ -1,0 +1,7 @@
+{
+  "title": "Kafka",
+  "description": "Kafka Monitoring using OpenTelemetry (OTel) provides unified observability into Kafka producers, consumers, brokers, and the data pipelines that depend on them",
+  "tags": ["metrics", "event streaming"],
+  "author": "KloudMate",
+  "verified": true
+}

@@ -1,11 +1,94 @@
 {
-  "name": "K8s Node Level",
+  "name": "MongoDB",
   "description": "",
   "data": {
     "tz": "local",
     "panels": [
       {
-        "id": "77os8h5pgig",
+        "id": "07qc22vyvmoo",
+        "tz": "local",
+        "axis": {
+          "x": {
+            "date_style": "auto"
+          },
+          "y": {
+            "format": "duration",
+            "decimals": 3
+          },
+          "y1": {
+            "format": "unformatted"
+          }
+        },
+        "STATS": {},
+        "title": "MongoDB Uptime",
+        "panelType": "STATS",
+        "timeRange": "1h",
+        "TimeSeries": {},
+        "statConfig": {
+          "format": "duration",
+          "suffix": "",
+          "decimals": 0,
+          "statView": "grid",
+          "baseColor": "#4CBB17",
+          "multiplyBy": "",
+          "calculation": "last"
+        },
+        "timeseries": {
+          "legend": {
+            "view": "list",
+            "values": []
+          }
+        },
+        "description": "The amount of time that the server has been running.",
+        "node_configs": [
+          {
+            "page": 1,
+            "stat": "",
+            "type": "query",
+            "hidden": false,
+            "metric": "",
+            "nodeId": "A",
+            "region": "",
+            "source": "kloudmate",
+            "dataset": "metrics",
+            "filters": [],
+            "groupBy": [
+              {
+                "type": "string",
+                "field": "server_address"
+              }
+            ],
+            "orderBy": [],
+            "interval": "",
+            "namespace": "",
+            "dimensions": [],
+            "metricType": "",
+            "time_range": {
+              "to": 0,
+              "from": 600
+            },
+            "aggregation": {
+              "stat": "LAST",
+              "type": "",
+              "unit": "ms",
+              "field": "",
+              "value": "mongodb_uptime",
+              "metric": "mongodb_uptime",
+              "metricType": "Sum",
+              "temporality": "Cumulative"
+            },
+            "datasourceId": "kloudmate",
+            "legendFormat": "",
+            "responseType": "series"
+          }
+        ],
+        "time_options": {
+          "override": false,
+          "time_shift": ""
+        }
+      },
+      {
+        "id": "2ol0io3pkbw",
         "tz": "local",
         "axis": {
           "x": {
@@ -13,15 +96,939 @@
           },
           "y": {
             "format": "number",
-            "suffix": "{cpu}",
-            "decimals": 3
+            "suffix": "{connections}",
+            "decimals": ""
           }
         },
-        "title": "CPU Allocatable and Usage",
+        "STATS": {},
+        "table": {},
+        "title": "Active Connections",
+        "panelType": "STATS",
+        "timeRange": "1h",
+        "TimeSeries": {},
+        "statConfig": {
+          "statView": "grid",
+          "baseColor": "#4CBB17",
+          "calculation": "last"
+        },
+        "timeseries": {
+          "legend": {
+            "view": "list",
+            "values": []
+          }
+        },
+        "description": "Established active client connections on MongoDB server",
+        "node_configs": [
+          {
+            "exp": "mongodb_connection_count",
+            "page": 1,
+            "stat": "",
+            "type": "query",
+            "limit": null,
+            "hidden": false,
+            "metric": "",
+            "nodeId": "A",
+            "region": "",
+            "source": "kloudmate",
+            "dataset": "metrics",
+            "filters": [
+              {
+                "type": "string",
+                "field": "type",
+                "value": "active",
+                "operator": "="
+              },
+              {
+                "type": "string",
+                "field": "database",
+                "value": "$database",
+                "operator": "="
+              }
+            ],
+            "groupBy": [
+              {
+                "type": "string",
+                "field": "database"
+              }
+            ],
+            "orderBy": [],
+            "interval": "",
+            "namespace": "",
+            "dimensions": [],
+            "metricType": "",
+            "query_type": "qb",
+            "time_range": {
+              "to": 0,
+              "from": 600
+            },
+            "aggregation": {
+              "stat": "LAST",
+              "type": "",
+              "unit": "{connections}",
+              "field": "",
+              "value": "mongodb_connection_count",
+              "metric": "mongodb_connection_count",
+              "metricType": "Sum",
+              "temporality": "Cumulative"
+            },
+            "datasourceId": "kloudmate",
+            "responseType": "series"
+          }
+        ],
+        "time_options": {
+          "override": false,
+          "time_shift": ""
+        }
+      },
+      {
+        "id": "l30v4d90p1d",
+        "tz": "local",
+        "axis": {
+          "x": {
+            "date_style": "auto"
+          },
+          "y": {
+            "format": "bytes",
+            "decimals": "1"
+          }
+        },
+        "title": "Memory Usage",
         "tooltip": {
           "mode": "all"
         },
         "panelType": "TimeSeries",
+        "timeRange": "1h",
+        "statConfig": {
+          "statView": "grid",
+          "baseColor": "#4CBB17",
+          "calculation": "last"
+        },
+        "timeseries": {
+          "legend": {
+            "view": "list",
+            "values": []
+          }
+        },
+        "description": "The amount of memory used.\n\n",
+        "node_configs": [
+          {
+            "page": 1,
+            "stat": "",
+            "type": "query",
+            "hidden": false,
+            "metric": "",
+            "nodeId": "A",
+            "region": "",
+            "source": "kloudmate",
+            "dataset": "metrics",
+            "filters": [
+              {
+                "type": "string",
+                "field": "type",
+                "value": "resident",
+                "operator": "="
+              },
+              {
+                "type": "string",
+                "field": "database",
+                "value": "$database",
+                "operator": "="
+              }
+            ],
+            "groupBy": [
+              {
+                "type": "string",
+                "field": "type"
+              }
+            ],
+            "orderBy": [],
+            "interval": "",
+            "namespace": "",
+            "dimensions": [],
+            "metricType": "",
+            "time_range": {
+              "to": 0,
+              "from": 600
+            },
+            "aggregation": {
+              "stat": "SUM",
+              "type": "",
+              "unit": "By",
+              "field": "",
+              "value": "mongodb_memory_usage",
+              "metric": "mongodb_memory_usage",
+              "metricType": "Sum",
+              "temporality": "Cumulative"
+            },
+            "datasourceId": "kloudmate",
+            "legendFormat": "{{type}}"
+          },
+          {
+            "page": 1,
+            "stat": "",
+            "type": "query",
+            "hidden": false,
+            "metric": "",
+            "nodeId": "B",
+            "region": "",
+            "source": "kloudmate",
+            "dataset": "metrics",
+            "filters": [
+              {
+                "type": "string",
+                "field": "type",
+                "value": "virtual",
+                "operator": "="
+              },
+              {
+                "type": "string",
+                "field": "database",
+                "value": "$database",
+                "operator": "="
+              }
+            ],
+            "groupBy": [
+              {
+                "type": "string",
+                "field": "type"
+              }
+            ],
+            "orderBy": [],
+            "interval": "",
+            "namespace": "",
+            "dimensions": [],
+            "metricType": "",
+            "time_range": {
+              "to": 0,
+              "from": 600
+            },
+            "aggregation": {
+              "stat": "SUM",
+              "type": "",
+              "unit": "By",
+              "field": "",
+              "value": "mongodb_memory_usage",
+              "metric": "mongodb_memory_usage",
+              "metricType": "Sum",
+              "temporality": "Cumulative"
+            },
+            "datasourceId": "kloudmate",
+            "legendFormat": "{{type}}",
+            "responseType": "series"
+          }
+        ],
+        "time_options": {
+          "override": false,
+          "time_shift": ""
+        }
+      },
+      {
+        "id": "57gbcd5udwa",
+        "tz": "local",
+        "axis": {
+          "x": {
+            "date_style": "auto"
+          },
+          "y": {
+            "format": "number",
+            "suffix": "{documents}",
+            "decimals": 3
+          }
+        },
+        "table": {
+          "columns": [
+            {
+              "key": "A:LAST()",
+              "rename": "Count"
+            },
+            {
+              "key": "database",
+              "rename": ""
+            },
+            {
+              "key": "operation",
+              "rename": ""
+            }
+          ]
+        },
+        "title": "Document Operation Count",
+        "panelType": "table",
+        "timeRange": "1h",
+        "TimeSeries": {},
+        "statConfig": {
+          "statView": "grid",
+          "baseColor": "#4CBB17",
+          "calculation": "last"
+        },
+        "timeseries": {
+          "legend": {
+            "view": "list",
+            "values": []
+          }
+        },
+        "description": "Total number of document-level operations performed on a collection.",
+        "node_configs": [
+          {
+            "exp": "avg by (database,operation) (mongodb_document_operation_count{database=\"admin\"})",
+            "page": 1,
+            "stat": "",
+            "type": "query",
+            "limit": null,
+            "hidden": false,
+            "metric": "",
+            "nodeId": "A",
+            "region": "",
+            "source": "kloudmate",
+            "dataset": "metrics",
+            "filters": [
+              {
+                "type": "string",
+                "field": "database",
+                "value": "$database",
+                "operator": "="
+              }
+            ],
+            "groupBy": [
+              {
+                "type": "string",
+                "field": "database"
+              },
+              {
+                "type": "string",
+                "field": "operation"
+              }
+            ],
+            "orderBy": [
+              {
+                "field": "LAST",
+                "order": "desc"
+              }
+            ],
+            "interval": "",
+            "namespace": "",
+            "dimensions": [],
+            "metricType": "",
+            "query_type": "qb",
+            "time_range": {
+              "to": 0,
+              "from": 600
+            },
+            "aggregation": {
+              "stat": "LAST",
+              "type": "",
+              "unit": "{documents}",
+              "field": "",
+              "value": "mongodb_document_operation_count",
+              "metric": "mongodb_document_operation_count",
+              "metricType": "Sum",
+              "temporality": "Cumulative"
+            },
+            "datasourceId": "kloudmate",
+            "responseType": "number"
+          }
+        ],
+        "time_options": {
+          "override": false,
+          "time_shift": ""
+        }
+      },
+      {
+        "id": "7ihn0n9bn6n",
+        "tz": "local",
+        "axis": {
+          "x": {
+            "date_style": "auto"
+          },
+          "y": {
+            "format": "number",
+            "suffix": "{cursors}",
+            "decimals": 1
+          },
+          "y1": {
+            "format": "number",
+            "decimals": 1
+          }
+        },
+        "STATS": {},
+        "title": "Open Cursor Count",
+        "panelType": "STATS",
+        "timeRange": "10m",
+        "statConfig": {
+          "statView": "grid",
+          "baseColor": "#4CBB17",
+          "calculation": "last"
+        },
+        "timeseries": {
+          "legend": {
+            "view": "list",
+            "values": []
+          }
+        },
+        "description": "The number of open cursors maintained for clients.",
+        "node_configs": [
+          {
+            "page": 1,
+            "stat": "",
+            "type": "query",
+            "hidden": false,
+            "metric": "",
+            "nodeId": "A",
+            "region": "",
+            "source": "kloudmate",
+            "dataset": "metrics",
+            "filters": [],
+            "groupBy": [],
+            "orderBy": [],
+            "interval": "",
+            "namespace": "",
+            "dimensions": [],
+            "metricType": "",
+            "time_range": {
+              "to": 0,
+              "from": 600
+            },
+            "aggregation": {
+              "stat": "LAST",
+              "type": "",
+              "unit": "{cursors}",
+              "field": "",
+              "value": "mongodb_cursor_count",
+              "metric": "mongodb_cursor_count",
+              "metricType": "Sum",
+              "temporality": "Cumulative"
+            },
+            "datasourceId": "kloudmate",
+            "responseType": "series"
+          }
+        ],
+        "time_options": {
+          "override": false,
+          "time_shift": ""
+        }
+      },
+      {
+        "id": "douzzuq9u6q",
+        "tz": "local",
+        "axis": {
+          "x": {
+            "date_style": "auto"
+          },
+          "y": {
+            "format": "number",
+            "suffix": "{databases}",
+            "decimals": 3
+          }
+        },
+        "STATS": {},
+        "table": {},
+        "title": "Database Count",
+        "panelType": "STATS",
+        "timeRange": "1h",
+        "statConfig": {
+          "statView": "grid",
+          "baseColor": "#4CBB17",
+          "calculation": "last"
+        },
+        "timeseries": {
+          "legend": {
+            "view": "list",
+            "values": []
+          }
+        },
+        "description": "Total number of Database count",
+        "node_configs": [
+          {
+            "exp": "mongodb_database_count",
+            "page": 1,
+            "stat": "",
+            "type": "query",
+            "limit": null,
+            "hidden": false,
+            "metric": "",
+            "nodeId": "A",
+            "region": "",
+            "source": "kloudmate",
+            "dataset": "metrics",
+            "filters": [],
+            "groupBy": [
+              {
+                "type": "string",
+                "field": "server_address"
+              }
+            ],
+            "orderBy": [],
+            "interval": "",
+            "namespace": "",
+            "dimensions": [],
+            "metricType": "",
+            "query_type": "qb",
+            "time_range": {
+              "to": 0,
+              "from": 600
+            },
+            "aggregation": {
+              "stat": "LAST",
+              "type": "",
+              "unit": "{databases}",
+              "field": "",
+              "value": "mongodb_database_count",
+              "metric": "mongodb_database_count",
+              "metricType": "Sum",
+              "temporality": "Cumulative"
+            },
+            "datasourceId": "kloudmate",
+            "responseType": "series"
+          }
+        ],
+        "time_options": {
+          "override": false,
+          "time_shift": ""
+        }
+      },
+      {
+        "id": "26suw9jgyfs",
+        "tz": "local",
+        "axis": {
+          "x": {
+            "date_style": "auto"
+          },
+          "y": {
+            "format": "number",
+            "suffix": "{connections}",
+            "decimals": ""
+          }
+        },
+        "STATS": {},
+        "title": "Current Connections ",
+        "panelType": "STATS",
+        "timeRange": "1h",
+        "statConfig": {
+          "statView": "grid",
+          "baseColor": "#4CBB17",
+          "calculation": "last"
+        },
+        "timeseries": {
+          "legend": {
+            "view": "list",
+            "values": []
+          }
+        },
+        "description": "Current Open active client connections on MongoDB server.",
+        "node_configs": [
+          {
+            "page": 1,
+            "stat": "",
+            "type": "query",
+            "hidden": false,
+            "metric": "",
+            "nodeId": "A",
+            "region": "",
+            "source": "kloudmate",
+            "dataset": "metrics",
+            "filters": [
+              {
+                "type": "string",
+                "field": "type",
+                "value": "current",
+                "operator": "="
+              },
+              {
+                "type": "string",
+                "field": "database",
+                "value": "$database",
+                "operator": "="
+              }
+            ],
+            "groupBy": [
+              {
+                "type": "string",
+                "field": "database"
+              }
+            ],
+            "orderBy": [],
+            "interval": "",
+            "namespace": "",
+            "dimensions": [],
+            "metricType": "",
+            "time_range": {
+              "to": 0,
+              "from": 600
+            },
+            "aggregation": {
+              "stat": "LAST",
+              "type": "",
+              "unit": "{connections}",
+              "field": "",
+              "value": "mongodb_connection_count",
+              "metric": "mongodb_connection_count",
+              "metricType": "Sum",
+              "temporality": "Cumulative"
+            },
+            "datasourceId": "kloudmate",
+            "responseType": "series"
+          }
+        ],
+        "time_options": {
+          "override": false,
+          "time_shift": ""
+        }
+      },
+      {
+        "id": "7qi3g625xov",
+        "tz": "local",
+        "axis": {
+          "x": {
+            "date_style": "auto"
+          },
+          "y": {
+            "format": "number",
+            "suffix": "{connections}",
+            "decimals": ""
+          }
+        },
+        "STATS": {},
+        "title": "Available Connections",
+        "panelType": "STATS",
+        "timeRange": "1h",
+        "statConfig": {
+          "format": "number",
+          "decimals": 1,
+          "statView": "grid",
+          "baseColor": "#4CBB17",
+          "calculation": "last"
+        },
+        "timeseries": {
+          "legend": {
+            "view": "list",
+            "values": []
+          }
+        },
+        "description": "Available active client connections on MongoDB server",
+        "node_configs": [
+          {
+            "page": 1,
+            "stat": "",
+            "type": "query",
+            "hidden": false,
+            "metric": "",
+            "nodeId": "A",
+            "region": "",
+            "source": "kloudmate",
+            "dataset": "metrics",
+            "filters": [
+              {
+                "type": "string",
+                "field": "type",
+                "value": "available",
+                "operator": "="
+              },
+              {
+                "type": "string",
+                "field": "database",
+                "value": "$database",
+                "operator": "="
+              }
+            ],
+            "groupBy": [
+              {
+                "type": "string",
+                "field": "database"
+              }
+            ],
+            "orderBy": [],
+            "interval": "",
+            "namespace": "",
+            "dimensions": [],
+            "metricType": "",
+            "time_range": {
+              "to": 0,
+              "from": 600
+            },
+            "aggregation": {
+              "stat": "LAST",
+              "type": "",
+              "unit": "{connections}",
+              "field": "",
+              "value": "mongodb_connection_count",
+              "metric": "mongodb_connection_count",
+              "metricType": "Sum",
+              "temporality": "Cumulative"
+            },
+            "datasourceId": "kloudmate",
+            "responseType": "series"
+          }
+        ],
+        "time_options": {
+          "override": false,
+          "time_shift": ""
+        }
+      },
+      {
+        "id": "4s9n99vadgo",
+        "tz": "local",
+        "axis": {
+          "x": {
+            "date_style": "auto"
+          },
+          "y": {
+            "format": "number",
+            "suffix": "{objects}",
+            "decimals": 3
+          }
+        },
+        "STATS": {},
+        "title": "Object Count",
+        "panelType": "STATS",
+        "timeRange": "1h",
+        "statConfig": {
+          "format": "number",
+          "decimals": 1,
+          "statView": "grid",
+          "baseColor": "#4CBB17",
+          "calculation": "last"
+        },
+        "timeseries": {
+          "legend": {
+            "view": "list",
+            "values": []
+          }
+        },
+        "description": "Total number of documents (objects) stored in a collection",
+        "node_configs": [
+          {
+            "page": 1,
+            "stat": "",
+            "type": "query",
+            "hidden": false,
+            "metric": "",
+            "nodeId": "A",
+            "region": "",
+            "source": "kloudmate",
+            "dataset": "metrics",
+            "filters": [
+              {
+                "type": "string",
+                "field": "database",
+                "value": "$database",
+                "operator": "="
+              }
+            ],
+            "groupBy": [],
+            "orderBy": [],
+            "interval": "",
+            "namespace": "",
+            "dimensions": [],
+            "metricType": "",
+            "time_range": {
+              "to": 0,
+              "from": 600
+            },
+            "aggregation": {
+              "stat": "SUM",
+              "type": "",
+              "unit": "{objects}",
+              "field": "",
+              "value": "mongodb_object_count",
+              "metric": "mongodb_object_count",
+              "metricType": "Sum",
+              "temporality": "Cumulative"
+            },
+            "datasourceId": "kloudmate",
+            "responseType": "series"
+          }
+        ],
+        "time_options": {
+          "override": false,
+          "time_shift": ""
+        }
+      },
+      {
+        "id": "059b6ei3ny4c",
+        "tz": "local",
+        "axis": {
+          "x": {
+            "date_style": "auto"
+          },
+          "y": {
+            "format": "bytes",
+            "decimals": 3
+          }
+        },
+        "table": {
+          "columns": [
+            {
+              "key": "A:SUM()",
+              "format": {
+                "format": "bytes",
+                "decimals": 1
+              },
+              "rename": "storage"
+            },
+            {
+              "key": "database",
+              "rename": ""
+            }
+          ]
+        },
+        "title": "Storage Size",
+        "panelType": "table",
+        "timeRange": "1h",
+        "statConfig": {
+          "statView": "grid",
+          "baseColor": "#4CBB17",
+          "calculation": "last"
+        },
+        "timeseries": {
+          "legend": {
+            "view": "list",
+            "values": []
+          }
+        },
+        "description": "The total amount of storage allocated to this collection.",
+        "node_configs": [
+          {
+            "page": 1,
+            "stat": "",
+            "type": "query",
+            "hidden": false,
+            "metric": "",
+            "nodeId": "A",
+            "region": "",
+            "source": "kloudmate",
+            "dataset": "metrics",
+            "filters": [],
+            "groupBy": [
+              {
+                "type": "string",
+                "field": "database"
+              }
+            ],
+            "orderBy": [],
+            "interval": "",
+            "namespace": "",
+            "dimensions": [],
+            "metricType": "",
+            "time_range": {
+              "to": 0,
+              "from": 600
+            },
+            "aggregation": {
+              "stat": "SUM",
+              "type": "",
+              "unit": "By",
+              "field": "",
+              "value": "mongodb_storage_size",
+              "metric": "mongodb_storage_size",
+              "metricType": "Sum",
+              "temporality": "Cumulative"
+            },
+            "datasourceId": "kloudmate",
+            "responseType": "number"
+          }
+        ],
+        "time_options": {
+          "override": false,
+          "time_shift": ""
+        }
+      },
+      {
+        "id": "565n8d7bec8",
+        "tz": "local",
+        "axis": {
+          "x": {
+            "date_style": "auto"
+          },
+          "y": {
+            "format": "number",
+            "suffix": "{operations}",
+            "decimals": 1
+          }
+        },
+        "STATS": {},
+        "title": "Cache Operations",
+        "tooltip": {
+          "mode": "all"
+        },
+        "panelType": "TimeSeries",
+        "timeRange": "1h",
+        "TimeSeries": {},
+        "statConfig": {
+          "format": "number",
+          "decimals": 1,
+          "statView": "grid",
+          "baseColor": "#4CBB17",
+          "calculation": "last"
+        },
+        "timeseries": {
+          "legend": {
+            "view": "list",
+            "values": []
+          }
+        },
+        "description": "The total number of cache operations performed on a MongoDB instance or collection.",
+        "node_configs": [
+          {
+            "page": 1,
+            "stat": "",
+            "type": "query",
+            "hidden": false,
+            "metric": "",
+            "nodeId": "A",
+            "region": "",
+            "source": "kloudmate",
+            "dataset": "metrics",
+            "filters": [],
+            "groupBy": [
+              {
+                "type": "string",
+                "field": "type"
+              }
+            ],
+            "orderBy": [],
+            "interval": "",
+            "namespace": "",
+            "dimensions": [],
+            "metricType": "",
+            "time_range": {
+              "to": 0,
+              "from": 600
+            },
+            "aggregation": {
+              "stat": "SUM",
+              "type": "",
+              "unit": "{operations}",
+              "field": "",
+              "value": "mongodb_cache_operations",
+              "metric": "mongodb_cache_operations",
+              "metricType": "Sum",
+              "temporality": "Cumulative"
+            },
+            "datasourceId": "kloudmate",
+            "responseType": "series"
+          }
+        ],
+        "time_options": {
+          "override": false,
+          "time_shift": ""
+        }
+      },
+      {
+        "id": "05bto6xew16e",
+        "tz": "local",
+        "axis": {
+          "x": {
+            "date_style": "auto"
+          },
+          "y": {
+            "format": "number",
+            "suffix": "{collections}",
+            "decimals": 3
+          }
+        },
+        "STATS": {},
+        "table": {},
+        "title": "Collection Count",
+        "panelType": "STATS",
         "timeRange": "5m",
         "statConfig": {
           "statView": "grid",
@@ -34,494 +1041,10 @@
             "values": []
           }
         },
+        "description": "Total number of collections in a database.",
         "node_configs": [
           {
-            "page": 1,
-            "stat": "",
-            "type": "query",
-            "hidden": false,
-            "metric": "",
-            "nodeId": "A",
-            "region": "",
-            "source": "kloudmate",
-            "dataset": "metrics",
-            "filters": [
-              {
-                "type": "string",
-                "field": "k8s_node_name",
-                "value": "$node",
-                "operator": "="
-              },
-              {
-                "type": "string",
-                "field": "k8s_cluster_name",
-                "value": "$cluster",
-                "operator": "="
-              }
-            ],
-            "groupBy": [],
-            "orderBy": [],
-            "interval": "",
-            "namespace": "",
-            "dimensions": [],
-            "metricType": "",
-            "time_range": {
-              "to": 0,
-              "from": 600
-            },
-            "aggregation": {
-              "stat": "LAST",
-              "type": "",
-              "unit": "{cpu}",
-              "field": "",
-              "value": "k8s_node_allocatable_cpu",
-              "metric": "k8s_node_allocatable_cpu",
-              "metricType": "Gauge",
-              "temporality": "Cumulative"
-            },
-            "datasourceId": "kloudmate",
-            "legendFormat": "allocatable"
-          },
-          {
-            "page": 1,
-            "stat": "",
-            "type": "query",
-            "hidden": false,
-            "metric": "",
-            "nodeId": "B",
-            "region": "",
-            "source": "kloudmate",
-            "dataset": "metrics",
-            "filters": [
-              {
-                "type": "string",
-                "field": "k8s_node_name",
-                "value": "$node",
-                "operator": "="
-              },
-              {
-                "type": "string",
-                "field": "k8s_cluster_name",
-                "value": "$cluster",
-                "operator": "="
-              }
-            ],
-            "groupBy": [],
-            "orderBy": [],
-            "interval": "",
-            "namespace": "",
-            "dimensions": [],
-            "metricType": "",
-            "time_range": {
-              "to": 0,
-              "from": 600
-            },
-            "aggregation": {
-              "stat": "LAST",
-              "type": "",
-              "unit": "{cpu}",
-              "field": "",
-              "value": "k8s_node_cpu_usage",
-              "metric": "k8s_node_cpu_usage",
-              "metricType": "Gauge",
-              "temporality": "Cumulative"
-            },
-            "datasourceId": "kloudmate",
-            "legendFormat": "usage",
-            "responseType": "series"
-          }
-        ],
-        "time_options": {
-          "override": false,
-          "time_shift": ""
-        }
-      },
-      {
-        "id": "07l6w9ahzzzx",
-        "tz": "local",
-        "axis": {
-          "x": {
-            "date_style": "auto"
-          },
-          "y": {
-            "format": "number",
-            "suffix": "{cpu}",
-            "decimals": 3
-          }
-        },
-        "STATS": {},
-        "title": "CPU Limit & Request",
-        "tooltip": {
-          "mode": "all"
-        },
-        "overrides": [],
-        "panelType": "TimeSeries",
-        "timeRange": "1h",
-        "TimeSeries": {},
-        "statConfig": {
-          "statView": "grid",
-          "baseColor": "#4CBB17",
-          "calculation": "last"
-        },
-        "timeseries": {
-          "legend": {
-            "view": "list",
-            "values": []
-          }
-        },
-        "node_configs": [
-          {
-            "exp": "sum by (k8s_node_name) (avg by (k8s_container_name, k8s_node_name, k8s_pod_name) (k8s_container_cpu_limit{k8s_node_name=\"$node\", k8s_cluster_name=\"$cluster\"}))",
-            "page": 1,
-            "stat": "",
-            "type": "query",
-            "limit": null,
-            "hidden": false,
-            "metric": "",
-            "nodeId": "A",
-            "region": "",
-            "source": "kloudmate",
-            "dataset": "metrics",
-            "filters": [],
-            "groupBy": [],
-            "orderBy": [],
-            "interval": "",
-            "namespace": "",
-            "dimensions": [],
-            "metricType": "",
-            "query_type": "promql",
-            "time_range": {
-              "to": 0,
-              "from": 600
-            },
-            "aggregation": {
-              "stat": "AVG",
-              "type": "",
-              "unit": "{cpu}",
-              "field": "",
-              "value": "k8s_container_cpu_limit",
-              "metric": "k8s_container_cpu_limit",
-              "metricType": "Gauge",
-              "temporality": "Cumulative"
-            },
-            "datasourceId": "kloudmate",
-            "legendFormat": "limit",
-            "responseType": "series"
-          },
-          {
-            "exp": "sum by (k8s_node_name) (avg by (k8s_container_name, k8s_node_name, k8s_pod_name) (k8s_container_cpu_request{k8s_node_name=\"$node\", k8s_cluster_name=\"$cluster\"}))",
-            "page": 1,
-            "stat": "",
-            "type": "query",
-            "limit": null,
-            "hidden": false,
-            "metric": "",
-            "nodeId": "B",
-            "region": "",
-            "source": "kloudmate",
-            "dataset": "metrics",
-            "filters": [],
-            "groupBy": [],
-            "orderBy": [],
-            "interval": "",
-            "namespace": "",
-            "dimensions": [],
-            "metricType": "",
-            "query_type": "promql",
-            "time_range": {
-              "to": 0,
-              "from": 600
-            },
-            "aggregation": {
-              "stat": "AVG",
-              "type": "",
-              "field": ""
-            },
-            "datasourceId": "kloudmate",
-            "legendFormat": "request",
-            "responseType": "series"
-          }
-        ],
-        "time_options": {
-          "override": false,
-          "time_shift": ""
-        }
-      },
-      {
-        "id": "5kfcefn4stv",
-        "tz": "local",
-        "axis": {
-          "x": {
-            "date_style": "auto"
-          },
-          "y": {
-            "format": "bytes",
-            "decimals": 1
-          }
-        },
-        "STATS": {},
-        "table": {},
-        "title": "Memory Allocatable and Working Set",
-        "tooltip": {
-          "mode": "all"
-        },
-        "panelType": "TimeSeries",
-        "timeRange": "10m",
-        "TimeSeries": {},
-        "statConfig": {
-          "format": "bytes",
-          "statView": "grid",
-          "baseColor": "#4CBB17",
-          "calculation": "last"
-        },
-        "timeseries": {
-          "legend": {
-            "view": "list",
-            "values": []
-          }
-        },
-        "node_configs": [
-          {
-            "page": 1,
-            "stat": "",
-            "type": "query",
-            "hidden": false,
-            "metric": "",
-            "nodeId": "B",
-            "region": "",
-            "source": "kloudmate",
-            "dataset": "metrics",
-            "filters": [
-              {
-                "type": "string",
-                "field": "k8s_node_name",
-                "value": "$node",
-                "operator": "="
-              }
-            ],
-            "groupBy": [],
-            "orderBy": [],
-            "interval": "",
-            "namespace": "",
-            "dimensions": [],
-            "metricType": "",
-            "time_range": {
-              "to": 0,
-              "from": 600
-            },
-            "aggregation": {
-              "stat": "LAST",
-              "type": "",
-              "unit": "By",
-              "field": "",
-              "value": "k8s_node_allocatable_memory",
-              "metric": "k8s_node_allocatable_memory",
-              "metricType": "Gauge",
-              "temporality": "Cumulative"
-            },
-            "datasourceId": "kloudmate",
-            "legendFormat": "allocatable",
-            "responseType": "series"
-          },
-          {
-            "page": 1,
-            "stat": "",
-            "type": "query",
-            "hidden": false,
-            "metric": "",
-            "nodeId": "D",
-            "region": "",
-            "source": "kloudmate",
-            "dataset": "metrics",
-            "filters": [
-              {
-                "type": "string",
-                "field": "cluster",
-                "value": "$cluster",
-                "operator": "="
-              },
-              {
-                "type": "string",
-                "field": "k8s_node_name",
-                "value": "$node",
-                "operator": "="
-              }
-            ],
-            "groupBy": [],
-            "orderBy": [],
-            "interval": "",
-            "namespace": "",
-            "dimensions": [],
-            "metricType": "",
-            "time_range": {
-              "to": 0,
-              "from": 600
-            },
-            "aggregation": {
-              "stat": "LAST",
-              "type": "",
-              "unit": "By",
-              "field": "",
-              "value": "k8s_node_memory_working_set",
-              "metric": "k8s_node_memory_working_set",
-              "metricType": "Gauge",
-              "temporality": "Cumulative"
-            },
-            "datasourceId": "kloudmate",
-            "legendFormat": "working set",
-            "responseType": "series"
-          }
-        ],
-        "time_options": {
-          "override": false,
-          "time_shift": ""
-        }
-      },
-      {
-        "id": "0c5hlaf7jgee",
-        "tz": "local",
-        "axis": {
-          "x": {
-            "date_style": "auto"
-          },
-          "y": {
-            "format": "bytes_iec",
-            "decimals": 1
-          },
-          "y1": {
-            "format": "bytes_iec"
-          }
-        },
-        "title": "Memory Request and Limit",
-        "tooltip": {
-          "mode": "all"
-        },
-        "panelType": "TimeSeries",
-        "timeRange": "1h",
-        "statConfig": {
-          "statView": "grid",
-          "baseColor": "#4CBB17",
-          "calculation": "last"
-        },
-        "timeseries": {
-          "legend": {
-            "view": "list",
-            "values": []
-          }
-        },
-        "node_configs": [
-          {
-            "exp": "sum by (k8s_node_name) (avg by (k8s_container_name, k8s_node_name, k8s_pod_name) (k8s_container_memory_request{k8s_node_name=\"$node\", k8s_cluster_name=\"$cluster\"}))",
-            "page": 1,
-            "stat": "",
-            "type": "query",
-            "limit": null,
-            "hidden": false,
-            "metric": "",
-            "nodeId": "A",
-            "region": "",
-            "source": "kloudmate",
-            "dataset": "metrics",
-            "filters": [],
-            "groupBy": [],
-            "orderBy": [],
-            "interval": "",
-            "namespace": "",
-            "dimensions": [],
-            "metricType": "",
-            "query_type": "promql",
-            "time_range": {
-              "to": 0,
-              "from": 600
-            },
-            "aggregation": {
-              "stat": "AVG",
-              "type": "",
-              "field": ""
-            },
-            "datasourceId": "kloudmate",
-            "legendFormat": "request",
-            "responseType": "series"
-          },
-          {
-            "exp": "sum by (k8s_node_name) (avg by (k8s_container_name, k8s_node_name, k8s_pod_name) (k8s_container_memory_limit{k8s_node_name=\"$node\", k8s_cluster_name=\"$cluster\"}))",
-            "page": 1,
-            "stat": "",
-            "type": "query",
-            "limit": null,
-            "hidden": false,
-            "metric": "",
-            "nodeId": "B",
-            "region": "",
-            "source": "kloudmate",
-            "dataset": "metrics",
-            "filters": [],
-            "groupBy": [],
-            "orderBy": [],
-            "interval": "",
-            "namespace": "",
-            "dimensions": [],
-            "metricType": "",
-            "query_type": "promql",
-            "time_range": {
-              "to": 0,
-              "from": 600
-            },
-            "aggregation": {
-              "stat": "AVG",
-              "type": "",
-              "field": ""
-            },
-            "datasourceId": "kloudmate",
-            "legendFormat": "limit",
-            "responseType": "series"
-          }
-        ],
-        "time_options": {
-          "override": false,
-          "time_shift": ""
-        }
-      },
-      {
-        "id": "00m0use8aaj9c",
-        "tz": "local",
-        "axis": {
-          "x": {
-            "date_style": "auto"
-          },
-          "y": {
-            "format": "unformatted",
-            "decimals": 1
-          }
-        },
-        "STATS": {},
-        "table": {},
-        "title": "Network Error",
-        "tooltip": {
-          "mode": "all"
-        },
-        "panelType": "TimeSeries",
-        "timeRange": "1h",
-        "TimeSeries": {},
-        "statConfig": {
-          "color": {
-            "scheme": "thresholds"
-          },
-          "statView": "grid",
-          "textMode": "both",
-          "baseColor": "#4CBB17",
-          "colorMode": "background",
-          "calculation": "last"
-        },
-        "timeseries": {
-          "legend": {
-            "view": "list",
-            "values": []
-          }
-        },
-        "node_configs": [
-          {
-            "exp": "",
+            "exp": "mongodb_collection_count",
             "page": 1,
             "stat": "",
             "type": "query",
@@ -535,21 +1058,15 @@
             "filters": [
               {
                 "type": "string",
-                "field": "k8s_node_name",
-                "value": "$node",
-                "operator": "="
-              },
-              {
-                "type": "string",
-                "field": "cluster",
-                "value": "$cluster",
+                "field": "database",
+                "value": "$database",
                 "operator": "="
               }
             ],
             "groupBy": [
               {
                 "type": "string",
-                "field": "direction"
+                "field": "database"
               }
             ],
             "orderBy": [],
@@ -563,17 +1080,16 @@
               "from": 600
             },
             "aggregation": {
-              "stat": "AVG",
+              "stat": "LAST",
               "type": "",
-              "unit": "1",
+              "unit": "{collections}",
               "field": "",
-              "value": "k8s_node_network_errors",
-              "metric": "k8s_node_network_errors",
+              "value": "mongodb_collection_count",
+              "metric": "mongodb_collection_count",
               "metricType": "Sum",
               "temporality": "Cumulative"
             },
             "datasourceId": "kloudmate",
-            "legendFormat": "{{direction}}",
             "responseType": "series"
           }
         ],
@@ -583,7 +1099,77 @@
         }
       },
       {
-        "id": "g6b1caxgyjg",
+        "id": "1sa418lc70f",
+        "tz": "local",
+        "axis": {
+          "x": {
+            "date_style": "auto"
+          },
+          "y": {
+            "format": "number",
+            "suffix": "{sessions}",
+            "decimals": 3
+          }
+        },
+        "STATS": {},
+        "title": "Active Sessions Count",
+        "panelType": "STATS",
+        "timeRange": "1h",
+        "statConfig": {
+          "statView": "grid",
+          "baseColor": "#4CBB17",
+          "calculation": "last"
+        },
+        "timeseries": {
+          "legend": {
+            "view": "list",
+            "values": []
+          }
+        },
+        "description": "The total number of active sessions.",
+        "node_configs": [
+          {
+            "page": 1,
+            "stat": "",
+            "type": "query",
+            "hidden": false,
+            "metric": "",
+            "nodeId": "A",
+            "region": "",
+            "source": "kloudmate",
+            "dataset": "metrics",
+            "filters": [],
+            "groupBy": [],
+            "orderBy": [],
+            "interval": "",
+            "namespace": "",
+            "dimensions": [],
+            "metricType": "",
+            "time_range": {
+              "to": 0,
+              "from": 600
+            },
+            "aggregation": {
+              "stat": "SUM",
+              "type": "",
+              "unit": "{sessions}",
+              "field": "",
+              "value": "mongodb_session_count",
+              "metric": "mongodb_session_count",
+              "metricType": "Sum",
+              "temporality": "Cumulative"
+            },
+            "datasourceId": "kloudmate",
+            "responseType": "series"
+          }
+        ],
+        "time_options": {
+          "override": false,
+          "time_shift": ""
+        }
+      },
+      {
+        "id": "3mp18rt3up7",
         "tz": "local",
         "axis": {
           "x": {
@@ -592,13 +1178,10 @@
           "y": {
             "format": "bytes",
             "suffix": "/s",
-            "decimals": 1
+            "decimals": "1"
           }
         },
-        "title": "Network IO Rate",
-        "tooltip": {
-          "mode": "all"
-        },
+        "title": "Network Receive Bytes/s",
         "panelType": "TimeSeries",
         "timeRange": "1h",
         "statConfig": {
@@ -612,6 +1195,7 @@
             "values": []
           }
         },
+        "description": "The number of bytes received per seconds over 5 minutes range",
         "node_configs": [
           {
             "page": 1,
@@ -623,26 +1207,8 @@
             "region": "",
             "source": "kloudmate",
             "dataset": "metrics",
-            "filters": [
-              {
-                "type": "string",
-                "field": "k8s_node_name",
-                "value": "$node",
-                "operator": "="
-              },
-              {
-                "type": "string",
-                "field": "cluster",
-                "value": "$cluster",
-                "operator": "="
-              }
-            ],
-            "groupBy": [
-              {
-                "type": "string",
-                "field": "direction"
-              }
-            ],
+            "filters": [],
+            "groupBy": [],
             "orderBy": [],
             "interval": "",
             "namespace": "",
@@ -658,13 +1224,13 @@
               "unit": "By",
               "field": "",
               "range": "5m",
-              "value": "k8s_node_network_io",
-              "metric": "k8s_node_network_io",
+              "value": "mongodb_network_io_receive",
+              "metric": "mongodb_network_io_receive",
               "metricType": "Sum",
               "temporality": "Cumulative"
             },
             "datasourceId": "kloudmate",
-            "legendFormat": "{{direction}}"
+            "legendFormat": "Recieve"
           }
         ],
         "time_options": {
@@ -673,7 +1239,7 @@
         }
       },
       {
-        "id": "0nlsiihxb2z",
+        "id": "b2zvjqo1e9l",
         "tz": "local",
         "axis": {
           "x": {
@@ -681,17 +1247,10 @@
           },
           "y": {
             "format": "bytes",
-            "decimals": 1
-          },
-          "y1": {
-            "decimals": ""
+            "decimals": 3
           }
         },
-        "title": "Filesystem Usage (Bytes)",
-        "tooltip": {
-          "mode": "all"
-        },
-        "overrides": [],
+        "title": "Network Transmit Bytes/s ",
         "panelType": "TimeSeries",
         "timeRange": "1h",
         "statConfig": {
@@ -705,330 +1264,7 @@
             "values": []
           }
         },
-        "node_configs": [
-          {
-            "page": 1,
-            "stat": "",
-            "type": "query",
-            "limit": null,
-            "hidden": false,
-            "metric": "",
-            "nodeId": "A",
-            "region": "",
-            "source": "kloudmate",
-            "dataset": "metrics",
-            "filters": [
-              {
-                "type": "string",
-                "field": "k8s_node_name",
-                "value": "$node",
-                "operator": "="
-              },
-              {
-                "type": "string",
-                "field": "cluster",
-                "value": "$cluster",
-                "operator": "="
-              }
-            ],
-            "groupBy": [],
-            "orderBy": [],
-            "interval": "",
-            "namespace": "",
-            "dimensions": [],
-            "metricType": "",
-            "query_type": "qb",
-            "time_range": {
-              "to": 0,
-              "from": 600
-            },
-            "aggregation": {
-              "stat": "AVG",
-              "type": "",
-              "unit": "By",
-              "field": "",
-              "value": "k8s_node_filesystem_usage",
-              "metric": "k8s_node_filesystem_usage",
-              "metricType": "Gauge",
-              "temporality": "Cumulative"
-            },
-            "datasourceId": "kloudmate",
-            "legendFormat": "usage",
-            "responseType": "series"
-          },
-          {
-            "page": 1,
-            "stat": "",
-            "type": "query",
-            "hidden": false,
-            "metric": "",
-            "nodeId": "B",
-            "region": "",
-            "source": "kloudmate",
-            "dataset": "metrics",
-            "filters": [
-              {
-                "type": "string",
-                "field": "k8s_node_name",
-                "value": "$node",
-                "operator": "="
-              },
-              {
-                "type": "string",
-                "field": "cluster",
-                "value": "$cluster",
-                "operator": "="
-              }
-            ],
-            "groupBy": [],
-            "orderBy": [],
-            "interval": "",
-            "namespace": "",
-            "dimensions": [],
-            "metricType": "",
-            "time_range": {
-              "to": 0,
-              "from": 600
-            },
-            "aggregation": {
-              "stat": "AVG",
-              "type": "",
-              "unit": "By",
-              "field": "",
-              "value": "k8s_node_filesystem_capacity",
-              "metric": "k8s_node_filesystem_capacity",
-              "metricType": "Gauge",
-              "temporality": "Cumulative"
-            },
-            "datasourceId": "kloudmate",
-            "legendFormat": "capacity",
-            "responseType": "series"
-          },
-          {
-            "page": 1,
-            "stat": "",
-            "type": "query",
-            "hidden": false,
-            "metric": "",
-            "nodeId": "C",
-            "region": "",
-            "source": "kloudmate",
-            "dataset": "metrics",
-            "filters": [
-              {
-                "type": "string",
-                "field": "k8s_node_name",
-                "value": "$node",
-                "operator": "="
-              },
-              {
-                "type": "string",
-                "field": "k8s_cluster_name",
-                "value": "$cluster",
-                "operator": "="
-              }
-            ],
-            "groupBy": [],
-            "orderBy": [],
-            "interval": "",
-            "namespace": "",
-            "dimensions": [],
-            "metricType": "",
-            "time_range": {
-              "to": 0,
-              "from": 600
-            },
-            "aggregation": {
-              "stat": "AVG",
-              "type": "",
-              "unit": "By",
-              "field": "",
-              "value": "k8s_node_allocatable_ephemeral_storage",
-              "metric": "k8s_node_allocatable_ephemeral_storage",
-              "metricType": "Gauge",
-              "temporality": "Cumulative"
-            },
-            "datasourceId": "kloudmate",
-            "legendFormat": "allocatable",
-            "responseType": "series"
-          }
-        ],
-        "time_options": {
-          "override": false,
-          "time_shift": ""
-        }
-      },
-      {
-        "id": "8ydiq60ggzs",
-        "tz": "local",
-        "axis": {
-          "x": {
-            "date_style": "auto"
-          },
-          "y": {
-            "format": "percentage",
-            "decimals": 3
-          }
-        },
-        "STATS": {},
-        "title": "Filesystem Usage (%)",
-        "tooltip": {
-          "mode": "all"
-        },
-        "panelType": "STATS",
-        "timeRange": "1h",
-        "statConfig": {
-          "format": "percentage",
-          "decimals": 1,
-          "statView": "grid",
-          "baseColor": "#4CBB17",
-          "calculation": "last"
-        },
-        "timeseries": {
-          "legend": {
-            "view": "list",
-            "values": []
-          }
-        },
-        "node_configs": [
-          {
-            "page": 1,
-            "stat": "",
-            "type": "query",
-            "hidden": true,
-            "metric": "",
-            "nodeId": "A",
-            "region": "",
-            "source": "kloudmate",
-            "dataset": "metrics",
-            "filters": [
-              {
-                "type": "string",
-                "field": "k8s_node_name",
-                "value": "$node",
-                "operator": "="
-              },
-              {
-                "type": "string",
-                "field": "cluster",
-                "value": "$cluster",
-                "operator": "="
-              }
-            ],
-            "groupBy": [],
-            "orderBy": [],
-            "interval": "",
-            "namespace": "",
-            "dimensions": [],
-            "metricType": "",
-            "time_range": {
-              "to": 0,
-              "from": 600
-            },
-            "aggregation": {
-              "stat": "AVG",
-              "type": "",
-              "unit": "By",
-              "field": "",
-              "value": "k8s_node_filesystem_usage",
-              "metric": "k8s_node_filesystem_usage",
-              "metricType": "Gauge",
-              "temporality": "Cumulative"
-            },
-            "datasourceId": "kloudmate",
-            "responseType": "series"
-          },
-          {
-            "page": 1,
-            "stat": "",
-            "type": "query",
-            "hidden": true,
-            "metric": "",
-            "nodeId": "B",
-            "region": "",
-            "source": "kloudmate",
-            "dataset": "metrics",
-            "filters": [
-              {
-                "type": "string",
-                "field": "k8s_node_name",
-                "value": "$node",
-                "operator": "="
-              },
-              {
-                "type": "string",
-                "field": "cluster",
-                "value": "$cluster",
-                "operator": "="
-              }
-            ],
-            "groupBy": [],
-            "orderBy": [],
-            "interval": "",
-            "namespace": "",
-            "dimensions": [],
-            "metricType": "",
-            "time_range": {
-              "to": 0,
-              "from": 600
-            },
-            "aggregation": {
-              "stat": "AVG",
-              "type": "",
-              "unit": "By",
-              "field": "",
-              "value": "k8s_node_filesystem_capacity",
-              "metric": "k8s_node_filesystem_capacity",
-              "metricType": "Gauge",
-              "temporality": "Cumulative"
-            },
-            "datasourceId": "kloudmate",
-            "responseType": "series"
-          },
-          {
-            "type": "expression",
-            "hidden": false,
-            "nodeId": "C",
-            "expression": "($A / $B)",
-            "responseType": "series",
-            "expressionType": "math"
-          }
-        ],
-        "time_options": {
-          "override": false,
-          "time_shift": ""
-        }
-      },
-      {
-        "id": "8b0a2fc2tq3",
-        "tz": "local",
-        "axis": {
-          "x": {
-            "date_style": "auto"
-          },
-          "y": {
-            "format": "percentage",
-            "decimals": 1,
-            "multiplyBy": ""
-          }
-        },
-        "STATS": {},
-        "title": "CPU Utilization",
-        "panelType": "STATS",
-        "timeRange": "1h",
-        "statConfig": {
-          "format": "percentage",
-          "decimals": 1,
-          "statView": "grid",
-          "baseColor": "#4CBB17",
-          "calculation": "last"
-        },
-        "timeseries": {
-          "legend": {
-            "view": "list",
-            "values": []
-          }
-        },
+        "description": "The number of bytes transmitted per seconds over 5 minutes range",
         "node_configs": [
           {
             "page": 1,
@@ -1040,14 +1276,7 @@
             "region": "",
             "source": "kloudmate",
             "dataset": "metrics",
-            "filters": [
-              {
-                "type": "string",
-                "field": "k8s_node_name",
-                "value": "$node",
-                "operator": "="
-              }
-            ],
+            "filters": [],
             "groupBy": [],
             "orderBy": [],
             "interval": "",
@@ -1061,291 +1290,16 @@
             "aggregation": {
               "stat": "RATE",
               "type": "",
-              "unit": "s",
+              "unit": "By",
               "field": "",
               "range": "5m",
-              "value": "k8s_node_cpu_time",
-              "metric": "k8s_node_cpu_time",
+              "value": "mongodb_network_io_transmit",
+              "metric": "mongodb_network_io_transmit",
               "metricType": "Sum",
               "temporality": "Cumulative"
             },
             "datasourceId": "kloudmate",
-            "responseType": "series"
-          }
-        ],
-        "time_options": {
-          "override": false,
-          "time_shift": ""
-        }
-      },
-      {
-        "id": "6sy312mrp89",
-        "tz": "local",
-        "axis": {
-          "x": {
-            "date_style": "auto"
-          },
-          "y": {
-            "format": "unformatted",
-            "decimals": 3
-          }
-        },
-        "STATS": {},
-        "table": {
-          "columns": [
-            {
-              "key": "A:COUNT()",
-              "rename": ""
-            }
-          ]
-        },
-        "title": "Pod Count",
-        "panelType": "STATS",
-        "pie_chart": {
-          "legend": {
-            "mode": "list",
-            "show": true,
-            "values": [
-              "formattedPercent"
-            ],
-            "placement": "right"
-          },
-          "display": {
-            "type": "pie",
-            "labels": [
-              "name"
-            ]
-          },
-          "formatter": {},
-          "value_options": {
-            "type": "reduce",
-            "limit": 20,
-            "reduce": "last",
-            "columns": [
-              "numeric"
-            ]
-          }
-        },
-        "timeRange": "1h",
-        "TimeSeries": {},
-        "statConfig": {
-          "statView": "grid",
-          "baseColor": "#4CBB17",
-          "calculation": "last"
-        },
-        "timeseries": {
-          "legend": {
-            "view": "list",
-            "values": []
-          }
-        },
-        "node_configs": [
-          {
-            "page": 1,
-            "stat": "",
-            "type": "query",
-            "hidden": false,
-            "metric": "",
-            "nodeId": "A",
-            "region": "",
-            "source": "kloudmate",
-            "dataset": "metrics",
-            "filters": [
-              {
-                "type": "string",
-                "field": "k8s_cluster_name",
-                "value": "$cluster",
-                "operator": "="
-              },
-              {
-                "type": "string",
-                "field": "k8s_node_name",
-                "value": "$node",
-                "operator": "="
-              }
-            ],
-            "groupBy": [],
-            "orderBy": [],
-            "interval": "",
-            "namespace": "",
-            "dimensions": [],
-            "metricType": "",
-            "time_range": {
-              "to": 0,
-              "from": 600
-            },
-            "aggregation": {
-              "stat": "COUNT",
-              "type": "",
-              "unit": "",
-              "field": "",
-              "value": "k8s_pod_phase",
-              "metric": "k8s_pod_phase",
-              "metricType": "Gauge",
-              "temporality": "Cumulative"
-            },
-            "datasourceId": "kloudmate",
-            "responseType": "series"
-          }
-        ],
-        "time_options": {
-          "override": false,
-          "time_shift": ""
-        }
-      },
-      {
-        "id": "gsgj695l9ze",
-        "tz": "local",
-        "axis": {
-          "x": {
-            "date_style": "auto"
-          },
-          "y": {
-            "format": "bytes",
-            "decimals": 3
-          }
-        },
-        "STATS": {},
-        "table": {},
-        "title": "Memory Utilization",
-        "tooltip": {
-          "mode": "all"
-        },
-        "overrides": [
-          {
-            "by": "query",
-            "id": "b0461d6b-aa85-4bb9-82f9-fc4d521cd7ea",
-            "value": "E",
-            "properties": [
-              {
-                "id": "c8732406-4b3c-4a45-8238-620ceb8235ee",
-                "type": "units",
-                "format": "percentage",
-                "decimals": 1,
-                "baseColor": "#4CBB17"
-              }
-            ]
-          }
-        ],
-        "panelType": "STATS",
-        "timeRange": "10m",
-        "TimeSeries": {},
-        "statConfig": {
-          "format": "bytes",
-          "statView": "grid",
-          "baseColor": "#4CBB17",
-          "calculation": "last"
-        },
-        "timeseries": {
-          "legend": {
-            "view": "list",
-            "values": []
-          }
-        },
-        "node_configs": [
-          {
-            "page": 1,
-            "stat": "",
-            "type": "query",
-            "hidden": true,
-            "metric": "",
-            "nodeId": "B",
-            "region": "",
-            "source": "kloudmate",
-            "dataset": "metrics",
-            "filters": [
-              {
-                "type": "string",
-                "field": "k8s_node_name",
-                "value": "$node",
-                "operator": "="
-              },
-              {
-                "type": "string",
-                "field": "k8s_cluster_name",
-                "value": "$Cluster",
-                "operator": "="
-              }
-            ],
-            "groupBy": [],
-            "orderBy": [],
-            "interval": "",
-            "namespace": "",
-            "dimensions": [],
-            "metricType": "",
-            "time_range": {
-              "to": 0,
-              "from": 600
-            },
-            "aggregation": {
-              "stat": "AVG",
-              "type": "",
-              "unit": "By",
-              "field": "",
-              "value": "k8s_node_allocatable_memory",
-              "metric": "k8s_node_allocatable_memory",
-              "metricType": "Gauge",
-              "temporality": "Cumulative"
-            },
-            "datasourceId": "kloudmate",
-            "legendFormat": "allocatable",
-            "responseType": "series"
-          },
-          {
-            "page": 1,
-            "stat": "",
-            "type": "query",
-            "hidden": true,
-            "metric": "",
-            "nodeId": "D",
-            "region": "",
-            "source": "kloudmate",
-            "dataset": "metrics",
-            "filters": [
-              {
-                "type": "string",
-                "field": "k8s_node_name",
-                "value": "$node",
-                "operator": "="
-              },
-              {
-                "type": "string",
-                "field": "k8s_cluster_name",
-                "value": "$Cluster",
-                "operator": "="
-              }
-            ],
-            "groupBy": [],
-            "orderBy": [],
-            "interval": "",
-            "namespace": "",
-            "dimensions": [],
-            "metricType": "",
-            "time_range": {
-              "to": 0,
-              "from": 600
-            },
-            "aggregation": {
-              "stat": "AVG",
-              "type": "",
-              "unit": "By",
-              "field": "",
-              "value": "k8s_node_memory_working_set",
-              "metric": "k8s_node_memory_working_set",
-              "metricType": "Gauge",
-              "temporality": "Cumulative"
-            },
-            "datasourceId": "kloudmate",
-            "legendFormat": "working set",
-            "responseType": "series"
-          },
-          {
-            "type": "expression",
-            "hidden": false,
-            "nodeId": "E",
-            "expression": "($D / $B) ",
-            "responseType": "series",
-            "expressionType": "math"
+            "legendFormat": "Transmit"
           }
         ],
         "time_options": {
@@ -1357,77 +1311,14 @@
     "timeRange": "1h",
     "variables": [
       {
-        "name": "node",
+        "name": "database",
         "type": "query",
-        "label": "Node",
+        "label": "database",
         "config": {
           "otel": {
             "key": {
               "type": "string",
-              "field": "k8s_node_name"
-            },
-            "dataset": "metrics"
-          },
-          "source": "cloudwatch",
-          "queryType": "otel.values"
-        },
-        "is_multi": false,
-        "description": "",
-        "usedInPanels": [
-          {
-            "id": "77os8h5pgig",
-            "name": "CPU Allocatable and Usage"
-          },
-          {
-            "id": "07l6w9ahzzzx",
-            "name": "CPU Limit & Request"
-          },
-          {
-            "id": "5kfcefn4stv",
-            "name": "Memory Usage, Allocatable, Available"
-          },
-          {
-            "id": "0c5hlaf7jgee",
-            "name": "Memory Request and Limit"
-          },
-          {
-            "id": "mg7byri7ttn",
-            "name": "Empherical Storage Capacity, Allocatable"
-          },
-          {
-            "id": "w5imbzgygp",
-            "name": "Running Pods"
-          },
-          {
-            "id": "00m0use8aaj9c",
-            "name": "Network Error"
-          },
-          {
-            "id": "g6b1caxgyjg",
-            "name": "Network IO Rate"
-          },
-          {
-            "id": "0nlsiihxb2z",
-            "name": "Filesystem Usage (Bytes)"
-          },
-          {
-            "id": "8ydiq60ggzs",
-            "name": "Filesystem Usage (%)"
-          }
-        ],
-        "usesVariables": [],
-        "show_all_option": false,
-        "usedInVariables": []
-      },
-      {
-        "name": "cluster",
-        "type": "query",
-        "label": "Cluster",
-        "config": {
-          "otel": {
-            "key": {
-              "type": "string",
-              "field": "cluster"
+              "field": "database"
             },
             "dataset": "metrics"
           },
@@ -1441,87 +1332,10 @@
     ],
     "panel_layouts": [
       {
-        "h": 8,
-        "i": "77os8h5pgig",
-        "w": 8,
+        "h": 5,
+        "i": "07qc22vyvmoo",
+        "w": 4,
         "x": 0,
-        "y": 6,
-        "minH": 1,
-        "minW": 1,
-        "moved": false,
-        "static": false
-      },
-      {
-        "h": 8,
-        "i": "07l6w9ahzzzx",
-        "w": 12,
-        "x": 0,
-        "y": 14,
-        "minH": 1,
-        "minW": 1,
-        "moved": false,
-        "static": false
-      },
-      {
-        "h": 8,
-        "i": "5kfcefn4stv",
-        "w": 8,
-        "x": 8,
-        "y": 6,
-        "minH": 1,
-        "minW": 1,
-        "moved": false,
-        "static": false
-      },
-      {
-        "h": 8,
-        "i": "0c5hlaf7jgee",
-        "w": 12,
-        "x": 12,
-        "y": 14,
-        "minH": 1,
-        "minW": 1,
-        "moved": false,
-        "static": false
-      },
-      {
-        "h": 8,
-        "i": "00m0use8aaj9c",
-        "w": 12,
-        "x": 12,
-        "y": 22,
-        "minH": 1,
-        "minW": 1,
-        "moved": false,
-        "static": false
-      },
-      {
-        "h": 8,
-        "i": "g6b1caxgyjg",
-        "w": 12,
-        "x": 0,
-        "y": 22,
-        "minH": 1,
-        "minW": 1,
-        "moved": false,
-        "static": false
-      },
-      {
-        "h": 8,
-        "i": "0nlsiihxb2z",
-        "w": 8,
-        "x": 16,
-        "y": 6,
-        "minH": 1,
-        "minW": 1,
-        "moved": false,
-        "static": false
-      },
-      {
-        "h": 6,
-        "i": "8ydiq60ggzs",
-        "w": 6,
-        "x": 18,
         "y": 0,
         "minH": 1,
         "minW": 1,
@@ -1529,21 +1343,65 @@
         "static": false
       },
       {
-        "h": 6,
-        "i": "8b0a2fc2tq3",
+        "h": 5,
+        "i": "2ol0io3pkbw",
+        "w": 5,
+        "x": 4,
+        "y": 0,
+        "minH": 1,
+        "minW": 1,
+        "moved": false,
+        "static": false
+      },
+      {
+        "h": 10,
+        "i": "l30v4d90p1d",
+        "w": 12,
+        "x": 12,
+        "y": 18,
+        "minH": 1,
+        "minW": 1,
+        "moved": false,
+        "static": false
+      },
+      {
+        "h": 8,
+        "i": "57gbcd5udwa",
+        "w": 12,
+        "x": 0,
+        "y": 10,
+        "minH": 1,
+        "minW": 1,
+        "moved": false,
+        "static": false
+      },
+      {
+        "h": 5,
+        "i": "7ihn0n9bn6n",
         "w": 6,
         "x": 6,
-        "y": 0,
+        "y": 5,
         "minH": 1,
         "minW": 1,
         "moved": false,
         "static": false
       },
       {
-        "h": 6,
-        "i": "6sy312mrp89",
+        "h": 5,
+        "i": "douzzuq9u6q",
         "w": 6,
         "x": 0,
+        "y": 5,
+        "minH": 1,
+        "minW": 1,
+        "moved": false,
+        "static": false
+      },
+      {
+        "h": 5,
+        "i": "26suw9jgyfs",
+        "w": 5,
+        "x": 9,
         "y": 0,
         "minH": 1,
         "minW": 1,
@@ -1551,11 +1409,88 @@
         "static": false
       },
       {
-        "h": 6,
-        "i": "gsgj695l9ze",
+        "h": 5,
+        "i": "7qi3g625xov",
+        "w": 5,
+        "x": 14,
+        "y": 0,
+        "minH": 1,
+        "minW": 1,
+        "moved": false,
+        "static": false
+      },
+      {
+        "h": 5,
+        "i": "4s9n99vadgo",
         "w": 6,
         "x": 12,
+        "y": 5,
+        "minH": 1,
+        "minW": 1,
+        "moved": false,
+        "static": false
+      },
+      {
+        "h": 8,
+        "i": "059b6ei3ny4c",
+        "w": 12,
+        "x": 12,
+        "y": 10,
+        "minH": 1,
+        "minW": 1,
+        "moved": false,
+        "static": false
+      },
+      {
+        "h": 10,
+        "i": "565n8d7bec8",
+        "w": 12,
+        "x": 0,
+        "y": 18,
+        "minH": 1,
+        "minW": 1,
+        "moved": false,
+        "static": false
+      },
+      {
+        "h": 5,
+        "i": "05bto6xew16e",
+        "w": 6,
+        "x": 18,
+        "y": 5,
+        "minH": 1,
+        "minW": 1,
+        "moved": false,
+        "static": false
+      },
+      {
+        "h": 5,
+        "i": "1sa418lc70f",
+        "w": 5,
+        "x": 19,
         "y": 0,
+        "minH": 1,
+        "minW": 1,
+        "moved": false,
+        "static": false
+      },
+      {
+        "h": 10,
+        "i": "3mp18rt3up7",
+        "w": 12,
+        "x": 0,
+        "y": 28,
+        "minH": 1,
+        "minW": 1,
+        "moved": false,
+        "static": false
+      },
+      {
+        "h": 10,
+        "i": "b2zvjqo1e9l",
+        "w": 12,
+        "x": 12,
+        "y": 28,
         "minH": 1,
         "minW": 1,
         "moved": false,

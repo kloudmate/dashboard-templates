@@ -1,197 +1,35 @@
 {
-  "name": "JVM Metrics-V2",
+  "name": "Kafka",
   "description": "",
   "data": {
     "tz": "local",
+    "links": [],
     "panels": [
       {
-        "id": "lv92wddbvvl",
+        "id": "dg0lflmca4",
         "tz": "local",
         "axis": {
           "x": {
             "date_style": "auto"
           },
           "y": {
-            "format": "bytes",
-            "decimals": 1
-          }
-        },
-        "title": "JVM Heap Memory Used",
-        "tooltip": {
-          "mode": "all"
-        },
-        "panelType": "TimeSeries",
-        "timeRange": "1h",
-        "statConfig": {
-          "statView": "grid",
-          "baseColor": "#4CBB17",
-          "calculation": "last"
-        },
-        "timeseries": {
-          "legend": {
-            "view": "table",
-            "values": [
-              {
-                "label": "Max",
-                "value": "max"
-              },
-              {
-                "label": "Last",
-                "value": "last"
-              }
-            ]
-          }
-        },
-        "description": "Heap Memory in bytes the JVM process is actively using",
-        "node_configs": [
-          {
-            "page": 1,
-            "stat": "",
-            "type": "query",
-            "hidden": false,
-            "metric": "",
-            "nodeId": "A",
-            "region": "",
-            "source": "kloudmate",
-            "dataset": "metrics",
-            "filters": [
-              {
-                "type": "string",
-                "field": "jvm_memory_type",
-                "value": "heap",
-                "operator": "="
-              },
-              {
-                "type": "string",
-                "field": "service_name",
-                "value": "$ServiceName",
-                "operator": "="
-              }
-            ],
-            "groupBy": [
-              {
-                "type": "string",
-                "field": "service_name"
-              }
-            ],
-            "orderBy": [],
-            "interval": "",
-            "namespace": "",
-            "dimensions": [],
-            "metricType": "",
-            "time_range": {
-              "to": 0,
-              "from": 600
-            },
-            "aggregation": {
-              "stat": "SUM",
-              "type": "",
-              "unit": "bytes",
-              "field": "",
-              "value": "jvm_memory_used",
-              "metric": "jvm_memory_used",
-              "metricType": "Gauge",
-              "temporality": "Cumulative"
-            },
-            "datasourceId": "kloudmate",
-            "legendFormat": "{{service_name}}"
-          }
-        ],
-        "time_options": {
-          "override": false,
-          "time_shift": ""
-        }
-      },
-      {
-        "id": "8xw5uq9syng",
-        "tz": "local",
-        "axis": {
-          "x": {
-            "date_style": "auto"
-          },
-          "y": {
-            "format": "bytes",
+            "format": "number",
+            "suffix": "{brokers}",
             "decimals": 3
           }
         },
         "STATS": {},
-        "table": {
-          "columns": [
-            {
-              "key": "A:AVG()",
-              "format": {
-                "format": "bytes",
-                "decimals": 1
-              },
-              "rename": "Heap"
-            },
-            {
-              "key": "service_name",
-              "rename": "Service"
-            }
-          ]
-        },
-        "title": "Heap Memory Limit",
-        "bar_chart": {
-          "axis": {
-            "x": {
-              "date_style": "auto"
-            },
-            "y": {
-              "format": "unformatted",
-              "prefix": "",
-              "suffix": "",
-              "decimals": 3,
-              "multiplyBy": 1
-            }
-          },
-          "legend": {
-            "view": "list",
-            "values": []
-          },
-          "display": {
-            "stacking": "stacked",
-            "orientation": "vertical"
-          }
-        },
+        "title": "Kafka Brokers",
         "panelType": "STATS",
-        "pie_chart": {
-          "legend": {
-            "mode": "list",
-            "show": true,
-            "values": [
-              "formattedPercent"
-            ],
-            "placement": "right"
-          },
-          "display": {
-            "type": "pie",
-            "labels": [
-              "name"
-            ]
-          },
-          "formatter": {},
-          "value_options": {
-            "type": "reduce",
-            "limit": 20,
-            "reduce": "last",
-            "columns": [
-              "numeric"
-            ]
-          }
-        },
-        "timeRange": "12h",
-        "TimeSeries": {},
+        "timeRange": "1h",
         "statConfig": {
           "color": {
             "scheme": "fixed",
-            "fixedColor": "#dd223a"
+            "fixedColor": "#4a4a4a"
           },
-          "format": "bytes",
-          "decimals": 1,
           "statView": "grid",
           "baseColor": "#4CBB17",
-          "colorMode": "background",
+          "colorMode": "",
           "calculation": "last"
         },
         "timeseries": {
@@ -200,7 +38,7 @@
             "values": []
           }
         },
-        "description": "Maximum Heap-memory (bytes) that the JVM is allowed to use",
+        "description": "Number of Kafka Brokers",
         "node_configs": [
           {
             "page": 1,
@@ -212,26 +50,8 @@
             "region": "",
             "source": "kloudmate",
             "dataset": "metrics",
-            "filters": [
-              {
-                "type": "string",
-                "field": "jvm_memory_type",
-                "value": "heap",
-                "operator": "="
-              },
-              {
-                "type": "string",
-                "field": "service_name",
-                "value": "$ServiceName",
-                "operator": "="
-              }
-            ],
-            "groupBy": [
-              {
-                "type": "string",
-                "field": "service_name"
-              }
-            ],
+            "filters": [],
+            "groupBy": [],
             "orderBy": [],
             "interval": "",
             "namespace": "",
@@ -242,12 +62,12 @@
               "from": 600
             },
             "aggregation": {
-              "stat": "SUM",
+              "stat": "AVG",
               "type": "",
-              "unit": "By",
+              "unit": "{brokers}",
               "field": "",
-              "value": "jvm_memory_limit",
-              "metric": "jvm_memory_limit",
+              "value": "kafka_brokers",
+              "metric": "kafka_brokers",
               "metricType": "Sum",
               "temporality": "Cumulative"
             },
@@ -261,7 +81,7 @@
         }
       },
       {
-        "id": "ik7qok4opu",
+        "id": "b6fl0lyvdrg",
         "tz": "local",
         "axis": {
           "x": {
@@ -269,25 +89,53 @@
           },
           "y": {
             "format": "duration",
-            "decimals": 1,
+            "decimals": 3,
             "multiplyBy": 1000
           }
         },
-        "title": "JVM GC Duration",
-        "panelType": "TimeSeries",
-        "timeRange": "1h",
+        "STATS": {},
+        "table": {
+          "columns": [
+            {
+              "key": "A:AVG()",
+              "format": {
+                "format": "duration",
+                "decimals": 1,
+                "multiplyBy": 1000
+              },
+              "rename": "Period"
+            },
+            {
+              "key": "broker",
+              "rename": ""
+            }
+          ]
+        },
+        "title": "Broker Logs Retention Period",
+        "tooltip": {
+          "mode": "all"
+        },
+        "panelType": "table",
+        "timeRange": "8h",
+        "TimeSeries": {},
         "statConfig": {
+          "format": "duration_nano",
           "statView": "grid",
           "baseColor": "#4CBB17",
           "calculation": "last"
         },
         "timeseries": {
           "legend": {
-            "view": "list",
-            "values": []
+            "view": "table",
+            "values": [
+              {
+                "label": "Max",
+                "value": "max"
+              }
+            ]
           }
         },
-        "description": "the total time spent performing garbage collection in the JVM.",
+        "description": "Log retention period of Broker",
         "node_configs": [
           {
             "page": 1,
@@ -299,18 +147,11 @@
             "region": "",
             "source": "kloudmate",
             "dataset": "metrics",
-            "filters": [
-              {
-                "type": "string",
-                "field": "service_name",
-                "value": "$ServiceName",
-                "operator": "="
-              }
-            ],
+            "filters": [],
             "groupBy": [
               {
                 "type": "string",
-                "field": "service_name"
+                "field": "broker"
               }
             ],
             "orderBy": [],
@@ -327,13 +168,13 @@
               "type": "",
               "unit": "s",
               "field": "",
-              "value": "jvm_gc_duration_sum",
-              "metric": "jvm_gc_duration_sum",
-              "metricType": "Histogram",
+              "value": "kafka_broker_log_retention_period",
+              "metric": "kafka_broker_log_retention_period",
+              "metricType": "Gauge",
               "temporality": "Cumulative"
             },
             "datasourceId": "kloudmate",
-            "legendFormat": "{{service_name}}"
+            "responseType": "number"
           }
         ],
         "time_options": {
@@ -342,7 +183,7 @@
         }
       },
       {
-        "id": "oked0o609mq",
+        "id": "djze5kgybyr",
         "tz": "local",
         "axis": {
           "x": {
@@ -350,177 +191,33 @@
           },
           "y": {
             "format": "number",
-            "suffix": "{class}",
-            "decimals": 3
-          }
-        },
-        "title": "JVM Classes Loaded",
-        "panelType": "TimeSeries",
-        "timeRange": "1h",
-        "statConfig": {
-          "statView": "grid",
-          "baseColor": "#4CBB17",
-          "calculation": "last"
-        },
-        "timeseries": {
-          "legend": {
-            "view": "list",
-            "values": []
-          }
-        },
-        "description": "Number of classes currently loaded in the JVM",
-        "node_configs": [
-          {
-            "page": 1,
-            "stat": "",
-            "type": "query",
-            "hidden": false,
-            "metric": "",
-            "nodeId": "A",
-            "region": "",
-            "source": "kloudmate",
-            "dataset": "metrics",
-            "filters": [
-              {
-                "type": "string",
-                "field": "service_name",
-                "value": "$ServiceName",
-                "operator": "="
-              }
-            ],
-            "groupBy": [
-              {
-                "type": "string",
-                "field": "service_name"
-              }
-            ],
-            "orderBy": [],
-            "interval": "",
-            "namespace": "",
-            "dimensions": [],
-            "metricType": "",
-            "time_range": {
-              "to": 0,
-              "from": 600
-            },
-            "aggregation": {
-              "stat": "SUM",
-              "type": "",
-              "unit": "{class}",
-              "field": "",
-              "value": "jvm_class_loaded",
-              "metric": "jvm_class_loaded",
-              "metricType": "Sum",
-              "temporality": "Cumulative"
-            },
-            "datasourceId": "kloudmate",
-            "legendFormat": "{{service_name}}"
-          }
-        ],
-        "time_options": {
-          "override": false,
-          "time_shift": ""
-        }
-      },
-      {
-        "id": "172phe1chqe",
-        "tz": "local",
-        "axis": {
-          "x": {
-            "date_style": "auto"
-          },
-          "y": {
-            "format": "duration",
-            "decimals": 0,
-            "multiplyBy": 1000
-          }
-        },
-        "title": "HTTP Server Requests",
-        "panelType": "TimeSeries",
-        "timeRange": "1h",
-        "statConfig": {
-          "statView": "grid",
-          "baseColor": "#4CBB17",
-          "calculation": "last"
-        },
-        "timeseries": {
-          "legend": {
-            "view": "list",
-            "values": []
-          }
-        },
-        "description": "the total duration of HTTP requests handled by the application",
-        "node_configs": [
-          {
-            "page": 1,
-            "stat": "",
-            "type": "query",
-            "hidden": false,
-            "metric": "",
-            "nodeId": "A",
-            "region": "",
-            "source": "kloudmate",
-            "dataset": "metrics",
-            "filters": [
-              {
-                "type": "string",
-                "field": "service_name",
-                "value": "$ServiceName",
-                "operator": "="
-              }
-            ],
-            "groupBy": [
-              {
-                "type": "string",
-                "field": "service_name"
-              }
-            ],
-            "orderBy": [],
-            "interval": "",
-            "namespace": "",
-            "dimensions": [],
-            "metricType": "",
-            "time_range": {
-              "to": 0,
-              "from": 600
-            },
-            "aggregation": {
-              "stat": "AVG",
-              "type": "",
-              "unit": "s",
-              "field": "",
-              "value": "http_server_request_duration_sum",
-              "metric": "http_server_request_duration_sum",
-              "metricType": "Histogram",
-              "temporality": "Cumulative"
-            },
-            "datasourceId": "kloudmate",
-            "legendFormat": "{{service_name}}"
-          }
-        ],
-        "time_options": {
-          "override": false,
-          "time_shift": ""
-        }
-      },
-      {
-        "id": "3jftuzrz3pa",
-        "tz": "local",
-        "axis": {
-          "x": {
-            "date_style": "auto"
-          },
-          "y": {
-            "format": "bytes",
             "decimals": 1
           }
         },
-        "title": "JVM Non-Heap Memory Used",
-        "tooltip": {
-          "mode": "all"
+        "table": {
+          "columns": [
+            {
+              "key": "A:LAST()",
+              "format": {
+                "format": "number",
+                "decimals": 2
+              },
+              "rename": "Value"
+            },
+            {
+              "key": "topic",
+              "rename": ""
+            },
+            {
+              "key": "group",
+              "rename": ""
+            }
+          ]
         },
+        "title": "Consumer Group Offset",
         "panelType": "TimeSeries",
         "timeRange": "1h",
+        "TimeSeries": {},
         "statConfig": {
           "statView": "grid",
           "baseColor": "#4CBB17",
@@ -541,7 +238,7 @@
             ]
           }
         },
-        "description": "Non-heap memory in bytes the JVM process is actively using",
+        "description": "The sum of latest committed offsets for consumer group by Topic",
         "node_configs": [
           {
             "page": 1,
@@ -556,21 +253,132 @@
             "filters": [
               {
                 "type": "string",
-                "field": "jvm_memory_type",
-                "value": "non_heap",
-                "operator": "="
-              },
-              {
-                "type": "string",
-                "field": "service_name",
-                "value": "$ServiceName",
+                "field": "topic",
+                "value": "$Topic",
                 "operator": "="
               }
             ],
             "groupBy": [
               {
                 "type": "string",
-                "field": "service_name"
+                "field": "topic"
+              },
+              {
+                "type": "string",
+                "field": "group"
+              }
+            ],
+            "orderBy": [],
+            "interval": "",
+            "namespace": "",
+            "dimensions": [],
+            "metricType": "",
+            "time_range": {
+              "to": 0,
+              "from": 600
+            },
+            "aggregation": {
+              "stat": "LAST",
+              "type": "",
+              "unit": "1",
+              "field": "",
+              "value": "kafka_consumer_group_offset_sum",
+              "metric": "kafka_consumer_group_offset_sum",
+              "metricType": "Gauge",
+              "temporality": "Cumulative"
+            },
+            "datasourceId": "kloudmate",
+            "responseType": "series"
+          }
+        ],
+        "time_options": {
+          "override": false,
+          "time_shift": ""
+        }
+      },
+      {
+        "id": "fo9r7tw7mgo",
+        "tz": "local",
+        "axis": {
+          "x": {
+            "date_style": "auto"
+          },
+          "y": {
+            "format": "number",
+            "decimals": 2
+          }
+        },
+        "table": {
+          "columns": [
+            {
+              "key": "A:AVG()",
+              "format": {
+                "decimals": 2
+              },
+              "rename": "count"
+            },
+            {
+              "key": "topic",
+              "rename": ""
+            },
+            {
+              "key": "group",
+              "rename": ""
+            }
+          ]
+        },
+        "title": "Consumer Group Lag",
+        "panelType": "TimeSeries",
+        "timeRange": "1d",
+        "TimeSeries": {},
+        "statConfig": {
+          "statView": "grid",
+          "baseColor": "#4CBB17",
+          "calculation": "last"
+        },
+        "timeseries": {
+          "legend": {
+            "view": "table",
+            "values": [
+              {
+                "label": "Max",
+                "value": "max"
+              },
+              {
+                "label": "Last",
+                "value": "last"
+              }
+            ]
+          }
+        },
+        "description": "Represents how many messages a consumer group is behind the latest data in the topic",
+        "node_configs": [
+          {
+            "page": 1,
+            "stat": "",
+            "type": "query",
+            "hidden": false,
+            "metric": "",
+            "nodeId": "A",
+            "region": "",
+            "source": "kloudmate",
+            "dataset": "metrics",
+            "filters": [
+              {
+                "type": "string",
+                "field": "topic",
+                "value": "$Topic",
+                "operator": "="
+              }
+            ],
+            "groupBy": [
+              {
+                "type": "string",
+                "field": "topic"
+              },
+              {
+                "type": "string",
+                "field": "group"
               }
             ],
             "orderBy": [],
@@ -585,11 +393,353 @@
             "aggregation": {
               "stat": "SUM",
               "type": "",
+              "unit": "1",
+              "field": "",
+              "value": "kafka_consumer_group_lag",
+              "metric": "kafka_consumer_group_lag",
+              "metricType": "Gauge",
+              "temporality": "Cumulative"
+            },
+            "datasourceId": "kloudmate",
+            "responseType": "series"
+          }
+        ],
+        "time_options": {
+          "override": false,
+          "time_shift": ""
+        }
+      },
+      {
+        "id": "67b09a20mxm",
+        "tz": "local",
+        "axis": {
+          "x": {
+            "date_style": "auto"
+          },
+          "y": {
+            "format": "number",
+            "suffix": "{partitions}",
+            "decimals": 3
+          }
+        },
+        "STATS": {},
+        "title": "Topic Partitions",
+        "panelType": "STATS",
+        "timeRange": "1h",
+        "TimeSeries": {},
+        "statConfig": {
+          "color": {
+            "scheme": "fixed",
+            "fixedColor": "#dd223a"
+          },
+          "decimals": 0,
+          "statView": "grid",
+          "baseColor": "#4CBB17",
+          "colorMode": "",
+          "calculation": {
+            "label": "Last",
+            "value": "last"
+          }
+        },
+        "timeseries": {
+          "legend": {
+            "view": "list",
+            "values": []
+          }
+        },
+        "description": "Number of partitions in a in the Topic",
+        "node_configs": [
+          {
+            "page": 1,
+            "stat": "",
+            "type": "query",
+            "hidden": false,
+            "metric": "",
+            "nodeId": "A",
+            "region": "",
+            "source": "kloudmate",
+            "dataset": "metrics",
+            "filters": [
+              {
+                "type": "string",
+                "field": "topic",
+                "value": "$Topic",
+                "operator": "="
+              }
+            ],
+            "groupBy": [
+              {
+                "type": "string",
+                "field": "topic"
+              }
+            ],
+            "orderBy": [],
+            "interval": "",
+            "namespace": "",
+            "dimensions": [],
+            "metricType": "",
+            "time_range": {
+              "to": 0,
+              "from": 600
+            },
+            "aggregation": {
+              "stat": "SUM",
+              "type": "",
+              "unit": "{partitions}",
+              "field": "",
+              "value": "kafka_topic_partitions",
+              "metric": "kafka_topic_partitions",
+              "metricType": "Sum",
+              "temporality": "Cumulative"
+            },
+            "datasourceId": "kloudmate",
+            "responseType": "series"
+          }
+        ],
+        "time_options": {
+          "override": false,
+          "time_shift": ""
+        }
+      },
+      {
+        "id": "2iv8u1d4w09",
+        "tz": "local",
+        "axis": {
+          "x": {
+            "date_style": "auto"
+          },
+          "y": {
+            "format": "number",
+            "decimals": 3
+          }
+        },
+        "STATS": {},
+        "title": "Topic Replication Factor",
+        "panelType": "TimeSeries",
+        "timeRange": "6h",
+        "TimeSeries": {},
+        "statConfig": {
+          "statView": "grid",
+          "baseColor": "#4CBB17",
+          "calculation": "last"
+        },
+        "timeseries": {
+          "legend": {
+            "view": "list",
+            "values": []
+          }
+        },
+        "description": "Indicates how many copies of each partition Kafka keeps",
+        "node_configs": [
+          {
+            "page": 1,
+            "stat": "",
+            "type": "query",
+            "hidden": false,
+            "metric": "",
+            "nodeId": "A",
+            "region": "",
+            "source": "kloudmate",
+            "dataset": "metrics",
+            "filters": [
+              {
+                "type": "string",
+                "field": "topic",
+                "value": "$Topic",
+                "operator": "="
+              }
+            ],
+            "groupBy": [
+              {
+                "type": "string",
+                "field": "topic"
+              }
+            ],
+            "orderBy": [],
+            "interval": "",
+            "namespace": "",
+            "dimensions": [],
+            "metricType": "",
+            "time_range": {
+              "to": 0,
+              "from": 600
+            },
+            "aggregation": {
+              "stat": "AVG",
+              "type": "",
+              "unit": "1",
+              "field": "",
+              "value": "kafka_topic_replication_factor",
+              "metric": "kafka_topic_replication_factor",
+              "metricType": "Gauge",
+              "temporality": "Cumulative"
+            },
+            "datasourceId": "kloudmate",
+            "responseType": "series"
+          }
+        ],
+        "time_options": {
+          "override": false,
+          "time_shift": ""
+        }
+      },
+      {
+        "id": "l7fi2p70wms",
+        "tz": "local",
+        "axis": {
+          "x": {
+            "date_style": "auto"
+          },
+          "y": {
+            "format": "bytes",
+            "decimals": 3
+          }
+        },
+        "STATS": {},
+        "title": "Topic Log Retention Size",
+        "panelType": "STATS",
+        "timeRange": "6h",
+        "TimeSeries": {},
+        "statConfig": {
+          "color": {
+            "scheme": "fixed",
+            "fixedColor": "#4688d6"
+          },
+          "format": "bytes",
+          "decimals": 2,
+          "statView": "grid",
+          "baseColor": "#4CBB17",
+          "colorMode": "",
+          "calculation": "last"
+        },
+        "timeseries": {
+          "legend": {
+            "view": "list",
+            "values": []
+          }
+        },
+        "description": "Log retention size of the Topic",
+        "node_configs": [
+          {
+            "page": 1,
+            "stat": "",
+            "type": "query",
+            "hidden": false,
+            "metric": "",
+            "nodeId": "A",
+            "region": "",
+            "source": "kloudmate",
+            "dataset": "metrics",
+            "filters": [
+              {
+                "type": "string",
+                "field": "topic",
+                "value": "$Topic",
+                "operator": "="
+              }
+            ],
+            "groupBy": [],
+            "orderBy": [],
+            "interval": "",
+            "namespace": "",
+            "dimensions": [],
+            "metricType": "",
+            "time_range": {
+              "to": 0,
+              "from": 600
+            },
+            "aggregation": {
+              "stat": "MAX",
+              "type": "",
               "unit": "By",
               "field": "",
-              "value": "jvm_memory_used",
-              "metric": "jvm_memory_used",
-              "metricType": "Sum",
+              "value": "kafka_topic_log_retention_size",
+              "metric": "kafka_topic_log_retention_size",
+              "metricType": "Gauge",
+              "temporality": "Cumulative"
+            },
+            "datasourceId": "kloudmate",
+            "responseType": "series"
+          }
+        ],
+        "time_options": {
+          "override": false,
+          "time_shift": ""
+        }
+      },
+      {
+        "id": "9n8mdfkac2n",
+        "tz": "local",
+        "axis": {
+          "x": {
+            "date_style": "auto"
+          },
+          "y": {
+            "format": "number",
+            "suffix": "{replicas}",
+            "decimals": 3
+          }
+        },
+        "title": "Topic Min In-Sync Replicas",
+        "tooltip": {
+          "mode": "all"
+        },
+        "panelType": "TimeSeries",
+        "timeRange": "1h",
+        "statConfig": {
+          "statView": "grid",
+          "baseColor": "#4CBB17",
+          "calculation": "last"
+        },
+        "timeseries": {
+          "legend": {
+            "view": "list",
+            "values": []
+          }
+        },
+        "description": "the minimum number of in-sync replicas (ISR) that must acknowledge a write for it to be considered successful.",
+        "node_configs": [
+          {
+            "page": 1,
+            "stat": "",
+            "type": "query",
+            "hidden": false,
+            "metric": "",
+            "nodeId": "A",
+            "region": "",
+            "source": "kloudmate",
+            "dataset": "metrics",
+            "filters": [
+              {
+                "type": "string",
+                "field": "topic",
+                "value": "$Topic",
+                "operator": "="
+              }
+            ],
+            "groupBy": [
+              {
+                "type": "string",
+                "field": "topic"
+              }
+            ],
+            "orderBy": [],
+            "interval": "",
+            "namespace": "",
+            "dimensions": [],
+            "metricType": "",
+            "time_range": {
+              "to": 0,
+              "from": 600
+            },
+            "aggregation": {
+              "stat": "SUM",
+              "type": "",
+              "unit": "{replicas}",
+              "field": "",
+              "value": "kafka_topic_min_insync_replicas",
+              "metric": "kafka_topic_min_insync_replicas",
+              "metricType": "Gauge",
               "temporality": "Cumulative"
             },
             "datasourceId": "kloudmate"
@@ -601,38 +751,53 @@
         }
       },
       {
-        "id": "5la5pnz1tem",
+        "id": "aawt6s7nkwd",
         "tz": "local",
         "axis": {
           "x": {
             "date_style": "auto"
           },
           "y": {
-            "format": "percentage",
-            "prefix": "",
-            "decimals": 1
+            "format": "number",
+            "suffix": "{replicas}",
+            "decimals": 3
           }
         },
-        "STATS": {},
-        "title": "JVM CPU Utilization",
-        "panelType": "STATS",
-        "timeRange": "1h",
+        "table": {
+          "columns": [
+            {
+              "key": "A:AVG()",
+              "rename": "replicas"
+            },
+            {
+              "key": "topic",
+              "rename": ""
+            },
+            {
+              "key": "partition",
+              "rename": ""
+            }
+          ]
+        },
+        "title": "Partitions Replicas",
+        "tooltip": {
+          "mode": "all"
+        },
+        "panelType": "table",
+        "timeRange": "2h",
         "statConfig": {
-          "color": {
-            "scheme": "fixed",
-            "fixedColor": "#3e77bb"
-          },
-          "format": "percentage",
-          "decimals": 2,
           "statView": "grid",
           "baseColor": "#4CBB17",
-          "colorMode": "background",
           "calculation": "last"
         },
         "timeseries": {
           "legend": {
-            "view": "list",
+            "view": "table",
             "values": [
+              {
+                "label": "Mean",
+                "value": "mean"
+              },
               {
                 "label": "Last",
                 "value": "last"
@@ -640,7 +805,7 @@
             ]
           }
         },
-        "description": "JVM process’s recent CPU utilization",
+        "description": "Number of replicas for partition of topic",
         "node_configs": [
           {
             "page": 1,
@@ -655,15 +820,19 @@
             "filters": [
               {
                 "type": "string",
-                "field": "service_name",
-                "value": "$ServiceName",
+                "field": "topic",
+                "value": "$Topic",
                 "operator": "="
               }
             ],
             "groupBy": [
               {
                 "type": "string",
-                "field": "service_name"
+                "field": "topic"
+              },
+              {
+                "type": "string",
+                "field": "partition"
               }
             ],
             "orderBy": [],
@@ -676,18 +845,17 @@
               "from": 600
             },
             "aggregation": {
-              "stat": "LAST",
+              "stat": "AVG",
               "type": "",
-              "unit": "1",
+              "unit": "{replicas}",
               "field": "",
-              "value": "jvm_cpu_recent_utilization",
-              "metric": "jvm_cpu_recent_utilization",
-              "metricType": "Gauge",
+              "value": "kafka_partition_replicas",
+              "metric": "kafka_partition_replicas",
+              "metricType": "Sum",
               "temporality": "Cumulative"
             },
             "datasourceId": "kloudmate",
-            "legendFormat": "{{service_name}}",
-            "responseType": "series"
+            "responseType": "number"
           }
         ],
         "time_options": {
@@ -696,31 +864,30 @@
         }
       },
       {
-        "id": "9m5gu0pq2tv",
+        "id": "2hy2n01d3yg",
         "tz": "local",
         "axis": {
           "x": {
             "date_style": "auto"
           },
           "y": {
-            "format": "bytes",
-            "decimals": 1
+            "format": "number",
+            "suffix": "{replicas}",
+            "decimals": 3
           }
         },
         "STATS": {},
-        "title": "Heap Memory Usage",
+        "title": "Partition Replica IN Sync",
         "panelType": "STATS",
-        "timeRange": "1h",
+        "timeRange": "2h",
         "statConfig": {
           "color": {
             "scheme": "fixed",
             "fixedColor": "#76c029"
           },
-          "suffix": "%",
-          "decimals": 1,
           "statView": "grid",
           "baseColor": "#4CBB17",
-          "colorMode": "background",
+          "colorMode": "",
           "calculation": "last"
         },
         "timeseries": {
@@ -729,13 +896,13 @@
             "values": []
           }
         },
-        "description": "JVM heap Memory Used against the Memory Limit",
+        "description": "Partition Replica IN Sync by Topic",
         "node_configs": [
           {
             "page": 1,
             "stat": "",
             "type": "query",
-            "hidden": true,
+            "hidden": false,
             "metric": "",
             "nodeId": "A",
             "region": "",
@@ -744,21 +911,15 @@
             "filters": [
               {
                 "type": "string",
-                "field": "jvm_memory_type",
-                "value": "heap",
-                "operator": "="
-              },
-              {
-                "type": "string",
-                "field": "service_name",
-                "value": "$ServiceName",
+                "field": "topic",
+                "value": "$Topic",
                 "operator": "="
               }
             ],
             "groupBy": [
               {
                 "type": "string",
-                "field": "service_name"
+                "field": "topic"
               }
             ],
             "orderBy": [],
@@ -773,77 +934,15 @@
             "aggregation": {
               "stat": "SUM",
               "type": "",
-              "unit": "bytes",
+              "unit": "{replicas}",
               "field": "",
-              "value": "jvm_memory_used",
-              "metric": "jvm_memory_used",
-              "metricType": "Gauge",
-              "temporality": "Cumulative"
-            },
-            "datasourceId": "kloudmate",
-            "legendFormat": "{{service_name}}",
-            "responseType": "series"
-          },
-          {
-            "page": 1,
-            "stat": "",
-            "type": "query",
-            "hidden": true,
-            "metric": "",
-            "nodeId": "B",
-            "region": "",
-            "source": "kloudmate",
-            "dataset": "metrics",
-            "filters": [
-              {
-                "type": "string",
-                "field": "service_name",
-                "value": "$ServiceName",
-                "operator": "="
-              },
-              {
-                "type": "string",
-                "field": "jvm_memory_type",
-                "value": "heap",
-                "operator": "="
-              }
-            ],
-            "groupBy": [
-              {
-                "type": "string",
-                "field": "service_name"
-              }
-            ],
-            "orderBy": [],
-            "interval": "",
-            "namespace": "",
-            "dimensions": [],
-            "metricType": "",
-            "time_range": {
-              "to": 0,
-              "from": 600
-            },
-            "aggregation": {
-              "stat": "SUM",
-              "type": "",
-              "unit": "By",
-              "field": "",
-              "value": "jvm_memory_limit",
-              "metric": "jvm_memory_limit",
+              "value": "kafka_partition_replicas_in_sync",
+              "metric": "kafka_partition_replicas_in_sync",
               "metricType": "Sum",
               "temporality": "Cumulative"
             },
             "datasourceId": "kloudmate",
-            "legendFormat": "{{service_name}}",
             "responseType": "series"
-          },
-          {
-            "type": "expression",
-            "hidden": false,
-            "nodeId": "C",
-            "expression": "($A / $B) *100",
-            "responseType": "series",
-            "expressionType": "math"
           }
         ],
         "time_options": {
@@ -852,183 +951,29 @@
         }
       },
       {
-        "id": "08i4lqtn68ea",
+        "id": "26x5the7n9e",
         "tz": "local",
         "axis": {
           "x": {
             "date_style": "auto"
           },
           "y": {
-            "format": "bytes",
+            "format": "number",
+            "suffix": "{members}",
             "decimals": 1
           }
         },
         "STATS": {},
-        "title": "Non-Heap Memory Usage",
-        "panelType": "STATS",
-        "timeRange": "1h",
-        "statConfig": {
-          "color": {
-            "scheme": "fixed",
-            "fixedColor": "#ddce21"
-          },
-          "suffix": "%",
-          "decimals": 1,
-          "statView": "grid",
-          "baseColor": "#4CBB17",
-          "colorMode": "background",
-          "calculation": "last"
-        },
-        "timeseries": {
-          "legend": {
-            "view": "list",
-            "values": []
-          }
-        },
-        "description": "JVM Non-heap Memory Used against the Memory Limit",
-        "node_configs": [
-          {
-            "page": 1,
-            "stat": "",
-            "type": "query",
-            "hidden": true,
-            "metric": "",
-            "nodeId": "A",
-            "region": "",
-            "source": "kloudmate",
-            "dataset": "metrics",
-            "filters": [
-              {
-                "type": "string",
-                "field": "jvm_memory_type",
-                "value": "non_heap",
-                "operator": "="
-              },
-              {
-                "type": "string",
-                "field": "service_name",
-                "value": "$ServiceName",
-                "operator": "="
-              }
-            ],
-            "groupBy": [
-              {
-                "type": "string",
-                "field": "service_name"
-              }
-            ],
-            "orderBy": [],
-            "interval": "",
-            "namespace": "",
-            "dimensions": [],
-            "metricType": "",
-            "time_range": {
-              "to": 0,
-              "from": 600
-            },
-            "aggregation": {
-              "stat": "AVG",
-              "type": "",
-              "unit": "By",
-              "field": "",
-              "value": "jvm_memory_used",
-              "metric": "jvm_memory_used",
-              "metricType": "Sum",
-              "temporality": "Cumulative"
-            },
-            "datasourceId": "kloudmate",
-            "responseType": "series"
-          },
-          {
-            "page": 1,
-            "stat": "",
-            "type": "query",
-            "hidden": true,
-            "metric": "",
-            "nodeId": "B",
-            "region": "",
-            "source": "kloudmate",
-            "dataset": "metrics",
-            "filters": [
-              {
-                "type": "string",
-                "field": "service_name",
-                "value": "$ServiceName",
-                "operator": "="
-              },
-              {
-                "type": "string",
-                "field": "jvm_memory_type",
-                "value": "non_heap",
-                "operator": "="
-              }
-            ],
-            "groupBy": [
-              {
-                "type": "string",
-                "field": "service_name"
-              }
-            ],
-            "orderBy": [],
-            "interval": "",
-            "namespace": "",
-            "dimensions": [],
-            "metricType": "",
-            "time_range": {
-              "to": 0,
-              "from": 600
-            },
-            "aggregation": {
-              "stat": "AVG",
-              "type": "",
-              "unit": "By",
-              "field": "",
-              "value": "jvm_memory_limit",
-              "metric": "jvm_memory_limit",
-              "metricType": "Sum",
-              "temporality": "Cumulative"
-            },
-            "datasourceId": "kloudmate",
-            "responseType": "series"
-          },
-          {
-            "type": "expression",
-            "hidden": false,
-            "nodeId": "C",
-            "expression": "($A / $B) *100",
-            "responseType": "series",
-            "expressionType": "math"
-          }
-        ],
-        "time_options": {
-          "override": false,
-          "time_shift": ""
-        }
-      },
-      {
-        "id": "fgz9myzj7oc",
-        "tz": "local",
-        "axis": {
-          "x": {
-            "date_style": "auto"
-          },
-          "y": {
-            "format": "percentage",
-            "prefix": "",
-            "decimals": 1
-          }
-        },
-        "STATS": {},
-        "title": "CPU Usage",
+        "title": "Partition Current Offset",
         "tooltip": {
           "mode": "all"
         },
         "panelType": "TimeSeries",
-        "timeRange": "1h",
+        "timeRange": "6h",
         "TimeSeries": {},
         "statConfig": {
-          "format": "percentage",
-          "decimals": 2,
+          "format": "number",
+          "decimals": 3,
           "statView": "grid",
           "baseColor": "#4CBB17",
           "calculation": "last"
@@ -1038,8 +983,8 @@
             "view": "table",
             "values": [
               {
-                "label": "Max",
-                "value": "max"
+                "label": "Mean",
+                "value": "mean"
               },
               {
                 "label": "Last",
@@ -1048,7 +993,7 @@
             ]
           }
         },
-        "description": "JVM CPU Utilization",
+        "description": "latest (newest) offset in a partition",
         "node_configs": [
           {
             "page": 1,
@@ -1063,15 +1008,19 @@
             "filters": [
               {
                 "type": "string",
-                "field": "service_name",
-                "value": "$ServiceName",
+                "field": "topic",
+                "value": "$Topic",
                 "operator": "="
               }
             ],
             "groupBy": [
               {
                 "type": "string",
-                "field": "service_name"
+                "field": "partition"
+              },
+              {
+                "type": "string",
+                "field": "topic"
               }
             ],
             "orderBy": [],
@@ -1084,17 +1033,16 @@
               "from": 600
             },
             "aggregation": {
-              "stat": "LAST",
+              "stat": "AVG",
               "type": "",
               "unit": "1",
               "field": "",
-              "value": "jvm_cpu_recent_utilization",
-              "metric": "jvm_cpu_recent_utilization",
+              "value": "kafka_partition_current_offset",
+              "metric": "kafka_partition_current_offset",
               "metricType": "Gauge",
               "temporality": "Cumulative"
             },
             "datasourceId": "kloudmate",
-            "legendFormat": "{{service_name}}",
             "responseType": "series"
           }
         ],
@@ -1104,28 +1052,21 @@
         }
       },
       {
-        "id": "hw3cw0baro",
+        "id": "768zl6z2t6",
         "tz": "local",
         "axis": {
           "x": {
             "date_style": "auto"
           },
           "y": {
-            "format": "percentage",
+            "format": "number",
             "decimals": 1
           }
         },
-        "STATS": {},
-        "title": "Heap Memory Usage ",
-        "tooltip": {
-          "mode": "all"
-        },
+        "title": "Partition Oldest Offset",
         "panelType": "TimeSeries",
-        "timeRange": "1h",
-        "TimeSeries": {},
+        "timeRange": "1d",
         "statConfig": {
-          "suffix": "%",
-          "decimals": 1,
           "statView": "grid",
           "baseColor": "#4CBB17",
           "calculation": "last"
@@ -1135,8 +1076,8 @@
             "view": "table",
             "values": [
               {
-                "label": "Max",
-                "value": "max"
+                "label": "Mean",
+                "value": "mean"
               },
               {
                 "label": "Last",
@@ -1145,13 +1086,13 @@
             ]
           }
         },
-        "description": "JVM heap Memory Used against the Memory Limit",
+        "description": "The earliest offset still retained in the Kafka partition.",
         "node_configs": [
           {
             "page": 1,
             "stat": "",
             "type": "query",
-            "hidden": true,
+            "hidden": false,
             "metric": "",
             "nodeId": "A",
             "region": "",
@@ -1160,21 +1101,19 @@
             "filters": [
               {
                 "type": "string",
-                "field": "jvm_memory_type",
-                "value": "heap",
-                "operator": "="
-              },
-              {
-                "type": "string",
-                "field": "service_name",
-                "value": "$ServiceName",
+                "field": "topic",
+                "value": "$Topic",
                 "operator": "="
               }
             ],
             "groupBy": [
               {
                 "type": "string",
-                "field": "service_name"
+                "field": "partition"
+              },
+              {
+                "type": "string",
+                "field": "topic"
               }
             ],
             "orderBy": [],
@@ -1187,79 +1126,16 @@
               "from": 600
             },
             "aggregation": {
-              "stat": "SUM",
+              "stat": "AVG",
               "type": "",
-              "unit": "bytes",
+              "unit": "1",
               "field": "",
-              "value": "jvm_memory_used",
-              "metric": "jvm_memory_used",
+              "value": "kafka_partition_oldest_offset",
+              "metric": "kafka_partition_oldest_offset",
               "metricType": "Gauge",
               "temporality": "Cumulative"
             },
-            "datasourceId": "kloudmate",
-            "legendFormat": "{{service_name}}",
-            "responseType": "series"
-          },
-          {
-            "page": 1,
-            "stat": "",
-            "type": "query",
-            "hidden": true,
-            "metric": "",
-            "nodeId": "B",
-            "region": "",
-            "source": "kloudmate",
-            "dataset": "metrics",
-            "filters": [
-              {
-                "type": "string",
-                "field": "service_name",
-                "value": "$ServiceName",
-                "operator": "="
-              },
-              {
-                "type": "string",
-                "field": "jvm_memory_type",
-                "value": "heap",
-                "operator": "="
-              }
-            ],
-            "groupBy": [
-              {
-                "type": "string",
-                "field": "service_name"
-              }
-            ],
-            "orderBy": [],
-            "interval": "",
-            "namespace": "",
-            "dimensions": [],
-            "metricType": "",
-            "time_range": {
-              "to": 0,
-              "from": 600
-            },
-            "aggregation": {
-              "stat": "SUM",
-              "type": "",
-              "unit": "By",
-              "field": "",
-              "value": "jvm_memory_limit",
-              "metric": "jvm_memory_limit",
-              "metricType": "Sum",
-              "temporality": "Cumulative"
-            },
-            "datasourceId": "kloudmate",
-            "legendFormat": "{{service_name}}",
-            "responseType": "series"
-          },
-          {
-            "type": "expression",
-            "hidden": false,
-            "nodeId": "C",
-            "expression": "($A / $B) ",
-            "responseType": "series",
-            "expressionType": "math"
+            "datasourceId": "kloudmate"
           }
         ],
         "time_options": {
@@ -1268,95 +1144,41 @@
         }
       },
       {
-        "id": "02r6sh4khbuq",
+        "id": "1beothrhdn5",
         "tz": "local",
         "axis": {
           "x": {
             "date_style": "auto"
           },
           "y": {
-            "format": "bytes",
-            "decimals": 3
+            "format": "number",
+            "decimals": 1
           }
         },
         "STATS": {},
         "table": {
           "columns": [
             {
-              "key": "A:AVG()",
-              "format": {
-                "format": "bytes",
-                "decimals": 1
-              },
-              "rename": "Heap"
+              "key": "A:COUNT()",
+              "rename": ""
             },
             {
-              "key": "service_name",
-              "rename": "Service"
+              "key": "group",
+              "rename": ""
             }
           ]
         },
-        "title": "Non-Heap Memory Limit ",
-        "bar_chart": {
-          "axis": {
-            "x": {
-              "date_style": "auto"
-            },
-            "y": {
-              "format": "unformatted",
-              "prefix": "",
-              "suffix": "",
-              "decimals": 3,
-              "multiplyBy": 1
-            }
-          },
-          "legend": {
-            "view": "list",
-            "values": []
-          },
-          "display": {
-            "stacking": "stacked",
-            "orientation": "vertical"
-          }
-        },
+        "title": "Consumer Groups",
         "panelType": "STATS",
-        "pie_chart": {
-          "legend": {
-            "mode": "list",
-            "show": true,
-            "values": [
-              "formattedPercent"
-            ],
-            "placement": "right"
-          },
-          "display": {
-            "type": "pie",
-            "labels": [
-              "name"
-            ]
-          },
-          "formatter": {},
-          "value_options": {
-            "type": "reduce",
-            "limit": 20,
-            "reduce": "last",
-            "columns": [
-              "numeric"
-            ]
-          }
-        },
-        "timeRange": "12h",
-        "TimeSeries": {},
+        "timeRange": "1h",
         "statConfig": {
           "color": {
             "scheme": "fixed",
-            "fixedColor": "#4a4a4a"
+            "fixedColor": "#f0a834"
           },
-          "format": "bytes",
-          "decimals": 1,
           "statView": "grid",
           "baseColor": "#4CBB17",
-          "colorMode": "background",
+          "colorMode": "",
           "calculation": "last"
         },
         "timeseries": {
@@ -1365,7 +1187,7 @@
             "values": []
           }
         },
-        "description": "Maximum Non-Heap memory (bytes) that the JVM is allowed to use",
+        "description": "Number of consumer Groups in the Topic",
         "node_configs": [
           {
             "page": 1,
@@ -1380,23 +1202,12 @@
             "filters": [
               {
                 "type": "string",
-                "field": "jvm_memory_type",
-                "value": "non_heap",
-                "operator": "="
-              },
-              {
-                "type": "string",
-                "field": "service_name",
-                "value": "$ServiceName",
+                "field": "topic",
+                "value": "$Topic",
                 "operator": "="
               }
             ],
-            "groupBy": [
-              {
-                "type": "string",
-                "field": "service_name"
-              }
-            ],
+            "groupBy": [],
             "orderBy": [],
             "interval": "",
             "namespace": "",
@@ -1407,13 +1218,13 @@
               "from": 600
             },
             "aggregation": {
-              "stat": "SUM",
+              "stat": "COUNT",
               "type": "",
-              "unit": "By",
+              "unit": "1",
               "field": "",
-              "value": "jvm_memory_limit",
-              "metric": "jvm_memory_limit",
-              "metricType": "Sum",
+              "value": "kafka_consumer_group_offset_sum",
+              "metric": "kafka_consumer_group_offset_sum",
+              "metricType": "Gauge",
               "temporality": "Cumulative"
             },
             "datasourceId": "kloudmate",
@@ -1426,24 +1237,19 @@
         }
       }
     ],
-    "timeRange": "10m",
+    "timeRange": "1h",
     "variables": [
       {
-        "name": "ServiceName",
+        "name": "Topic",
         "type": "query",
-        "label": "ServiceName",
+        "label": "Topic",
         "config": {
           "otel": {
-            "key": "service_name",
-            "dataset": "metrics",
-            "filters": [
-              {
-                "type": "string",
-                "field": "jvm_memory_type",
-                "value": null,
-                "operator": "EXISTS"
-              }
-            ]
+            "key": {
+              "type": "string",
+              "field": "topic"
+            },
+            "dataset": "metrics"
           },
           "source": "cloudwatch",
           "queryType": "otel.values"
@@ -1452,36 +1258,8 @@
         "description": "",
         "usedInPanels": [
           {
-            "id": "lv92wddbvvl",
-            "name": "JVM Heap Memory Used"
-          },
-          {
-            "id": "8xw5uq9syng",
-            "name": "JVM Memory Limit"
-          },
-          {
-            "id": "ik7qok4opu",
-            "name": "JVM GC Duration"
-          },
-          {
-            "id": "465c36rjhb5",
-            "name": "Threads Count"
-          },
-          {
-            "id": "oked0o609mq",
-            "name": "JVM Classes Loaded"
-          },
-          {
-            "id": "172phe1chqe",
-            "name": "HTTP Server Requests"
-          },
-          {
-            "id": "3jftuzrz3pa",
-            "name": "JVM Non-Heap Memory Used"
-          },
-          {
-            "id": "5la5pnz1tem",
-            "name": "JVM CPU Utlization"
+            "id": "9n8mdfkac2n",
+            "name": "Topic Min In-Sync Replicas"
           }
         ],
         "usesVariables": [],
@@ -1491,21 +1269,10 @@
     ],
     "panel_layouts": [
       {
-        "h": 10,
-        "i": "lv92wddbvvl",
-        "w": 12,
-        "x": 12,
-        "y": 16,
-        "minH": 1,
-        "minW": 1,
-        "moved": false,
-        "static": false
-      },
-      {
         "h": 6,
-        "i": "8xw5uq9syng",
-        "w": 5,
-        "x": 14,
+        "i": "dg0lflmca4",
+        "w": 4,
+        "x": 20,
         "y": 0,
         "minH": 1,
         "minW": 1,
@@ -1514,10 +1281,10 @@
       },
       {
         "h": 10,
-        "i": "ik7qok4opu",
+        "i": "b6fl0lyvdrg",
         "w": 8,
-        "x": 16,
-        "y": 26,
+        "x": 0,
+        "y": 16,
         "minH": 1,
         "minW": 1,
         "moved": false,
@@ -1525,10 +1292,10 @@
       },
       {
         "h": 10,
-        "i": "oked0o609mq",
+        "i": "djze5kgybyr",
         "w": 8,
         "x": 8,
-        "y": 26,
+        "y": 6,
         "minH": 1,
         "minW": 1,
         "moved": false,
@@ -1536,10 +1303,21 @@
       },
       {
         "h": 10,
-        "i": "172phe1chqe",
+        "i": "fo9r7tw7mgo",
         "w": 8,
-        "x": 0,
-        "y": 26,
+        "x": 16,
+        "y": 6,
+        "minH": 1,
+        "minW": 1,
+        "moved": false,
+        "static": false
+      },
+      {
+        "h": 6,
+        "i": "67b09a20mxm",
+        "w": 5,
+        "x": 5,
+        "y": 0,
         "minH": 1,
         "minW": 1,
         "moved": false,
@@ -1547,9 +1325,9 @@
       },
       {
         "h": 10,
-        "i": "3jftuzrz3pa",
-        "w": 12,
-        "x": 0,
+        "i": "2iv8u1d4w09",
+        "w": 8,
+        "x": 8,
         "y": 16,
         "minH": 1,
         "minW": 1,
@@ -1558,31 +1336,9 @@
       },
       {
         "h": 6,
-        "i": "5la5pnz1tem",
-        "w": 4,
-        "x": 0,
-        "y": 0,
-        "minH": 1,
-        "minW": 1,
-        "moved": false,
-        "static": false
-      },
-      {
-        "h": 6,
-        "i": "9m5gu0pq2tv",
+        "i": "l7fi2p70wms",
         "w": 5,
-        "x": 4,
-        "y": 0,
-        "minH": 1,
-        "minW": 1,
-        "moved": false,
-        "static": false
-      },
-      {
-        "h": 6,
-        "i": "08i4lqtn68ea",
-        "w": 5,
-        "x": 9,
+        "x": 15,
         "y": 0,
         "minH": 1,
         "minW": 1,
@@ -1591,8 +1347,19 @@
       },
       {
         "h": 10,
-        "i": "fgz9myzj7oc",
-        "w": 12,
+        "i": "9n8mdfkac2n",
+        "w": 8,
+        "x": 16,
+        "y": 16,
+        "minH": 1,
+        "minW": 1,
+        "moved": false,
+        "static": false
+      },
+      {
+        "h": 10,
+        "i": "aawt6s7nkwd",
+        "w": 8,
         "x": 0,
         "y": 6,
         "minH": 1,
@@ -1601,11 +1368,33 @@
         "static": false
       },
       {
+        "h": 6,
+        "i": "2hy2n01d3yg",
+        "w": 5,
+        "x": 10,
+        "y": 0,
+        "minH": 1,
+        "minW": 1,
+        "moved": false,
+        "static": false
+      },
+      {
         "h": 10,
-        "i": "hw3cw0baro",
+        "i": "26x5the7n9e",
         "w": 12,
         "x": 12,
-        "y": 6,
+        "y": 26,
+        "minH": 1,
+        "minW": 1,
+        "moved": false,
+        "static": false
+      },
+      {
+        "h": 10,
+        "i": "768zl6z2t6",
+        "w": 12,
+        "x": 0,
+        "y": 26,
         "minH": 1,
         "minW": 1,
         "moved": false,
@@ -1613,9 +1402,9 @@
       },
       {
         "h": 6,
-        "i": "02r6sh4khbuq",
+        "i": "1beothrhdn5",
         "w": 5,
-        "x": 19,
+        "x": 0,
         "y": 0,
         "minH": 1,
         "minW": 1,

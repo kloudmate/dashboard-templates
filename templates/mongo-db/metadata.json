@@ -1,0 +1,7 @@
+{
+  "title": "MongoDB",
+  "description": "MongoDB dashboard helps in tracking the health, performance, and availability of MongoDB databases to ensure reliability, optimize performance",
+  "tags": ["metrics", "db"],
+  "author": "KloudMate",
+  "verified": true
+}
