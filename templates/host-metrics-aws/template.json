@@ -3,6 +3,7 @@
   "description": "",
   "data": {
     "tz": "local",
+    "links": [],
     "panels": [
       {
         "id": "0lnihagpoyp",
@@ -30,7 +31,7 @@
         },
         "node_configs": [
           {
-            "exp": "sum by(job) (system_memory_usage{job=\"$hostname\",state=\"used\"}) / sum by(job) (system_memory_usage{job=\"$hostname\"})",
+            "exp": "sum by(vm_name) (system_memory_usage{vm_name=\"$hostname\",state=\"used\"}) / sum by(vm_name) (system_memory_usage{vm_name=\"$hostname\"})",
             "stat": "",
             "type": "query",
             "limit": "",
@@ -60,7 +61,11 @@
             "datasourceId": "kloudmate",
             "responseType": "series"
           }
-        ]
+        ],
+        "time_options": {
+          "override": false,
+          "time_shift": ""
+        }
       },
       {
         "id": "5o36bl0u15",
@@ -88,7 +93,7 @@
         },
         "node_configs": [
           {
-            "exp": "1 - (avg by(job) (irate(system_cpu_time{job=\"$hostname\",state=\"idle\"}[5m])))",
+            "exp": "1 - (avg by(vm_name) (irate(system_cpu_time{vm_name=\"$hostname\",state=\"idle\"}[5m])))",
             "stat": "",
             "type": "query",
             "limit": "",
@@ -118,7 +123,11 @@
             "datasourceId": "kloudmate",
             "responseType": "series"
           }
-        ]
+        ],
+        "time_options": {
+          "override": false,
+          "time_shift": ""
+        }
       },
       {
         "id": "bj3271tqzx5",
@@ -146,7 +155,7 @@
         },
         "node_configs": [
           {
-            "exp": "sum by(job) (system_filesystem_usage{job=\"$hostname\",state=\"used\",device!~\"/dev/loop.*\", device!~\"tmpfs|nsfs\"}) / sum by(job) (system_filesystem_usage{job=\"$hostname\",device!~\"/dev/loop.*\", device!~\"tmpfs|nsfs\"})",
+            "exp": "sum by(vm_name) (system_filesystem_usage{vm_name=\"$hostname\",state=\"used\",device!~\"/dev/loop.*\", device!~\"tmpfs|nsfs\"}) / sum by(vm_name) (system_filesystem_usage{vm_name=\"$hostname\",device!~\"/dev/loop.*\", device!~\"tmpfs|nsfs\"})",
             "stat": "",
             "type": "query",
             "limit": "",
@@ -176,7 +185,11 @@
             "datasourceId": "kloudmate",
             "responseType": "series"
           }
-        ]
+        ],
+        "time_options": {
+          "override": false,
+          "time_shift": ""
+        }
       },
       {
         "id": "9ud8nh2e0xh",
@@ -204,7 +217,7 @@
         },
         "node_configs": [
           {
-            "exp": "sum by(job) (system_filesystem_inodes_usage{job=\"$hostname\",state=\"used\",device!~\"/dev/loop.*\",device!~\"tmpfs|nsfs\"}) / sum by(job) (system_filesystem_inodes_usage{job=\"$hostname\",device!~\"/dev/loop.*\",device!~\"tmpfs|nsfs\"})",
+            "exp": "sum by(vm_name) (system_filesystem_inodes_usage{vm_name=\"$hostname\",state=\"used\",device!~\"/dev/loop.*\",device!~\"tmpfs|nsfs\"}) / sum by(vm_name) (system_filesystem_inodes_usage{vm_name=\"$hostname\",device!~\"/dev/loop.*\",device!~\"tmpfs|nsfs\"})",
             "stat": "",
             "type": "query",
             "limit": "",
@@ -234,7 +247,11 @@
             "datasourceId": "kloudmate",
             "responseType": "series"
           }
-        ]
+        ],
+        "time_options": {
+          "override": false,
+          "time_shift": ""
+        }
       },
       {
         "id": "n4ftzz92bj",
@@ -263,7 +280,7 @@
         },
         "node_configs": [
           {
-            "exp": "avg by(job) (irate(system_disk_io{job=\"$hostname\",direction=\"read\",device!~\"loop.*\", device!~\"tmpfs|nsfs\"}[5m]))",
+            "exp": "avg by(vm_name) (irate(system_disk_io{vm_name=\"$hostname\",direction=\"read\",device!~\"loop.*\", device!~\"tmpfs|nsfs\"}[5m]))",
             "stat": "",
             "type": "query",
             "limit": "",
@@ -293,7 +310,11 @@
             "datasourceId": "kloudmate",
             "responseType": "series"
           }
-        ]
+        ],
+        "time_options": {
+          "override": false,
+          "time_shift": ""
+        }
       },
       {
         "id": "6m1le2t992k",
@@ -322,7 +343,7 @@
         },
         "node_configs": [
           {
-            "exp": "avg by(job) (irate(system_disk_io{job=\"$hostname\",direction=\"write\",device!~\"loop.*\", device!~\"tmpfs|nsfs\"}[5m]))",
+            "exp": "avg by(vm_name) (irate(system_disk_io{vm_name=\"$hostname\",direction=\"write\",device!~\"loop.*\", device!~\"tmpfs|nsfs\"}[5m]))",
             "stat": "",
             "type": "query",
             "limit": "",
@@ -352,7 +373,11 @@
             "datasourceId": "kloudmate",
             "responseType": "series"
           }
-        ]
+        ],
+        "time_options": {
+          "override": false,
+          "time_shift": ""
+        }
       },
       {
         "id": "ngq5aed288",
@@ -382,7 +407,7 @@
         },
         "node_configs": [
           {
-            "exp": "system_memory_usage{job=\"$hostname\",state=~\"buffered|cached|free|used\"}",
+            "exp": "system_memory_usage{vm_name=\"$hostname\",state=~\"buffered|cached|free|used\"}",
             "stat": "",
             "type": "query",
             "limit": "",
@@ -413,7 +438,11 @@
             "legendFormat": "{{state}}",
             "responseType": "series"
           }
-        ]
+        ],
+        "time_options": {
+          "override": false,
+          "time_shift": ""
+        }
       },
       {
         "id": "e7qt7djxq5d",
@@ -443,7 +472,7 @@
         },
         "node_configs": [
           {
-            "exp": "avg by(state) (irate(system_cpu_time{job=\"$hostname\",state!=\"idle\"}[5m]))",
+            "exp": "avg by(state) (irate(system_cpu_time{vm_name=\"$hostname\",state!=\"idle\"}[5m]))",
             "stat": "",
             "type": "query",
             "limit": "",
@@ -474,7 +503,11 @@
             "legendFormat": "{{state}}",
             "responseType": "series"
           }
-        ]
+        ],
+        "time_options": {
+          "override": false,
+          "time_shift": ""
+        }
       },
       {
         "id": "o66mqp4s6jb",
@@ -504,7 +537,7 @@
         },
         "node_configs": [
           {
-            "exp": "avg by(state) (irate(system_cpu_time{job=\"$hostname\",state=\"idle\"}[5m]))",
+            "exp": "avg by(state) (irate(system_cpu_time{vm_name=\"$hostname\",state=\"idle\"}[5m]))",
             "stat": "",
             "type": "query",
             "limit": "",
@@ -535,7 +568,11 @@
             "legendFormat": "{{state}}",
             "responseType": "series"
           }
-        ]
+        ],
+        "time_options": {
+          "override": false,
+          "time_shift": ""
+        }
       },
       {
         "id": "1t5ak90uf4o",
@@ -565,7 +602,7 @@
         },
         "node_configs": [
           {
-            "exp": "system_filesystem_usage{job=\"$hostname\",state=\"free\",device!~\"/dev/loop.*\", device!~\"tmpfs | nsfs\"}",
+            "exp": "system_filesystem_usage{vm_name=\"$hostname\",state=\"free\",device!~\"/dev/loop.*\", device!~\"tmpfs | nsfs\"}",
             "stat": "",
             "type": "query",
             "limit": "",
@@ -596,7 +633,11 @@
             "legendFormat": "{{__name__}}",
             "responseType": "series"
           }
-        ]
+        ],
+        "time_options": {
+          "override": false,
+          "time_shift": ""
+        }
       },
       {
         "id": "1hnt5y731r3",
@@ -626,7 +667,7 @@
         },
         "node_configs": [
           {
-            "exp": "system_filesystem_usage{job=\"$hostname\",state=\"used\",device!~\"/dev/loop.*\", device!~\"tmpfs | nsfs\"}",
+            "exp": "system_filesystem_usage{vm_name=\"$hostname\",state=\"used\",device!~\"/dev/loop.*\", device!~\"tmpfs | nsfs\"}",
             "stat": "",
             "type": "query",
             "limit": "",
@@ -657,7 +698,11 @@
             "legendFormat": "{{__name__}}",
             "responseType": "series"
           }
-        ]
+        ],
+        "time_options": {
+          "override": false,
+          "time_shift": ""
+        }
       },
       {
         "id": "lmw6b9asqef",
@@ -687,7 +732,7 @@
         },
         "node_configs": [
           {
-            "exp": "system_cpu_load_average_1m{job=\"$hostname\"}",
+            "exp": "system_cpu_load_average_1m{vm_name=\"$hostname\"}",
             "stat": "",
             "type": "query",
             "limit": "",
@@ -719,7 +764,7 @@
             "responseType": "series"
           },
           {
-            "exp": "system_cpu_load_average_5m{job=\"$hostname\"}",
+            "exp": "system_cpu_load_average_5m{vm_name=\"$hostname\"}",
             "stat": "",
             "type": "query",
             "limit": "",
@@ -751,7 +796,7 @@
             "responseType": "series"
           },
           {
-            "exp": "system_cpu_load_average_15m{job=\"$hostname\"}",
+            "exp": "system_cpu_load_average_15m{vm_name=\"$hostname\"}",
             "stat": "",
             "type": "query",
             "limit": "",
@@ -782,7 +827,11 @@
             "legendFormat": "15m-average",
             "responseType": "series"
           }
-        ]
+        ],
+        "time_options": {
+          "override": false,
+          "time_shift": ""
+        }
       },
       {
         "id": "cgvuwpatfm",
@@ -792,7 +841,7 @@
             "date_style": "auto"
           },
           "y": {
-            "format": "unformatted"
+            "format": "number"
           }
         },
         "title": "Total Inode Usage",
@@ -811,7 +860,7 @@
         },
         "node_configs": [
           {
-            "exp": "sum by(job, state) (system_filesystem_inodes_usage{job=\"$hostname\",device!~\"/dev/loop.*\",device!~\"tmpfs|nsfs\"})",
+            "exp": "sum by(vm_name, state) (system_filesystem_inodes_usage{vm_name=\"$hostname\",device!~\"/dev/loop.*\",device!~\"tmpfs|nsfs\"})",
             "stat": "",
             "type": "query",
             "limit": "",
@@ -842,7 +891,11 @@
             "legendFormat": "{{state}}",
             "responseType": "series"
           }
-        ]
+        ],
+        "time_options": {
+          "override": false,
+          "time_shift": ""
+        }
       },
       {
         "id": "3pp5ei0vcrg",
@@ -872,7 +925,7 @@
         },
         "node_configs": [
           {
-            "exp": "avg by(direction) (irate(system_network_io{job=\"$hostname\"}[5m]))",
+            "exp": "avg by(direction) (irate(system_network_io{vm_name=\"$hostname\"}[5m]))",
             "stat": "",
             "type": "query",
             "limit": "",
@@ -903,7 +956,11 @@
             "legendFormat": "{{direction}}",
             "responseType": "series"
           }
-        ]
+        ],
+        "time_options": {
+          "override": false,
+          "time_shift": ""
+        }
       },
       {
         "id": "31x8lmqjw4k",
@@ -933,7 +990,7 @@
         },
         "node_configs": [
           {
-            "exp": "avg by(direction) (irate(system_disk_io{job=\"$hostname\",device!~\"loop.*\", device!~\"tmpfs|nsfs\"}[5m]))",
+            "exp": "avg by(direction) (irate(system_disk_io{vm_name=\"$hostname\",device!~\"loop.*\", device!~\"tmpfs|nsfs\"}[5m]))",
             "stat": "",
             "type": "query",
             "limit": "",
@@ -964,7 +1021,11 @@
             "legendFormat": "{{direction}}",
             "responseType": "series"
           }
-        ]
+        ],
+        "time_options": {
+          "override": false,
+          "time_shift": ""
+        }
       },
       {
         "id": "91jwq1wn0n5",
@@ -993,7 +1054,7 @@
         },
         "node_configs": [
           {
-            "exp": "sum by(state) (system_filesystem_usage{job=\"$hostname\",device!~\"/dev/loop.*\", device!~\"tmpfs | nsfs\"})",
+            "exp": "sum by(state) (system_filesystem_usage{vm_name=\"$hostname\",device!~\"/dev/loop.*\", device!~\"tmpfs | nsfs\"})",
             "stat": "",
             "type": "query",
             "limit": "",
@@ -1024,7 +1085,11 @@
             "legendFormat": "{{state}}",
             "responseType": "series"
           }
-        ]
+        ],
+        "time_options": {
+          "override": false,
+          "time_shift": ""
+        }
       },
       {
         "id": "9auxkevmznk",
@@ -1054,7 +1119,7 @@
         },
         "node_configs": [
           {
-            "exp": "avg by(direction) (irate(system_disk_operations{job=\"$hostname\",device!~\"loop.*\",device!~\"tmpfs|nsfs\"}[5m]))",
+            "exp": "avg by(direction) (irate(system_disk_operations{vm_name=\"$hostname\",device!~\"loop.*\",device!~\"tmpfs|nsfs\"}[5m]))",
             "stat": "",
             "type": "query",
             "limit": "",
@@ -1085,7 +1150,11 @@
             "legendFormat": "{{direction}}",
             "responseType": "series"
           }
-        ]
+        ],
+        "time_options": {
+          "override": false,
+          "time_shift": ""
+        }
       }
     ],
     "timeRange": "1h",
@@ -1099,7 +1168,7 @@
           "otel": {
             "key": {
               "type": "string",
-              "field": "job"
+              "field": "vm_name"
             },
             "dataset": "metrics",
             "filters": []
@@ -1109,79 +1178,8 @@
         },
         "is_multi": false,
         "description": "",
-        "usedInPanels": [
-          {
-            "id": "0lnihagpoyp",
-            "name": "Memory Usage"
-          },
-          {
-            "id": "5o36bl0u15",
-            "name": "CPU Usage"
-          },
-          {
-            "id": "bj3271tqzx5",
-            "name": "File System Usage"
-          },
-          {
-            "id": "9ud8nh2e0xh",
-            "name": "Inode Usage"
-          },
-          {
-            "id": "n4ftzz92bj",
-            "name": "Disk IO (read)"
-          },
-          {
-            "id": "6m1le2t992k",
-            "name": "Disk IO (write)"
-          },
-          {
-            "id": "ngq5aed288",
-            "name": "Memory Usage"
-          },
-          {
-            "id": "e7qt7djxq5d",
-            "name": "CPU Utilisation"
-          },
-          {
-            "id": "o66mqp4s6jb",
-            "name": "CPU Idle"
-          },
-          {
-            "id": "1t5ak90uf4o",
-            "name": "Available storage"
-          },
-          {
-            "id": "1hnt5y731r3",
-            "name": "Disk Utilization"
-          },
-          {
-            "id": "lmw6b9asqef",
-            "name": "Average CPU load"
-          },
-          {
-            "id": "cgvuwpatfm",
-            "name": "Total Inode Usage"
-          },
-          {
-            "id": "3pp5ei0vcrg",
-            "name": "Total Network IO"
-          },
-          {
-            "id": "31x8lmqjw4k",
-            "name": "Total Disk IO "
-          },
-          {
-            "id": "91jwq1wn0n5",
-            "name": "Total File System Usage"
-          },
-          {
-            "id": "9auxkevmznk",
-            "name": "Total Disk Operations"
-          }
-        ],
         "usesVariables": [],
-        "show_all_option": true,
-        "usedInVariables": []
+        "show_all_option": false
       }
     ],
     "panel_layouts": [

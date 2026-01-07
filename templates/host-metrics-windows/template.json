@@ -179,64 +179,6 @@
         ]
       },
       {
-        "id": "9ud8nh2e0xh",
-        "tz": "local",
-        "axis": {
-          "x": {
-            "date_style": "auto"
-          }
-        },
-        "title": "Inode Usage",
-        "panelType": "STATS",
-        "timeRange": "1h",
-        "statConfig": {
-          "format": "percentage",
-          "decimals": 1,
-          "statView": "grid",
-          "baseColor": "#4CBB17",
-          "calculation": "last"
-        },
-        "timeseries": {
-          "legend": {
-            "view": "list",
-            "values": []
-          }
-        },
-        "node_configs": [
-          {
-            "exp": "sum by(job) (system_filesystem_inodes_usage{job=\"$hostname\",state=\"used\",device!~\"/dev/loop.*\",device!~\"tmpfs|nsfs\"}) / sum by(job) (system_filesystem_inodes_usage{job=\"$hostname\",device!~\"/dev/loop.*\",device!~\"tmpfs|nsfs\"})",
-            "stat": "",
-            "type": "query",
-            "limit": "",
-            "hidden": false,
-            "metric": "",
-            "nodeId": "A",
-            "region": "",
-            "source": "kloudmate",
-            "dataset": "metrics",
-            "filters": [],
-            "groupBy": [],
-            "orderBy": [],
-            "interval": "",
-            "namespace": "",
-            "dimensions": [],
-            "metricType": "",
-            "query_type": "promql",
-            "time_range": {
-              "to": 0,
-              "from": 600
-            },
-            "aggregation": {
-              "stat": "AVG",
-              "type": "",
-              "field": ""
-            },
-            "datasourceId": "kloudmate",
-            "responseType": "series"
-          }
-        ]
-      },
-      {
         "id": "n4ftzz92bj",
         "tz": "local",
         "axis": {
@@ -785,66 +727,6 @@
         ]
       },
       {
-        "id": "cgvuwpatfm",
-        "tz": "local",
-        "axis": {
-          "x": {
-            "date_style": "auto"
-          },
-          "y": {
-            "format": "unformatted"
-          }
-        },
-        "title": "Total Inode Usage",
-        "panelType": "TimeSeries",
-        "timeRange": "1h",
-        "statConfig": {
-          "statView": "grid",
-          "baseColor": "#4CBB17",
-          "calculation": "last"
-        },
-        "timeseries": {
-          "legend": {
-            "view": "list",
-            "values": []
-          }
-        },
-        "node_configs": [
-          {
-            "exp": "sum by(job, state) (system_filesystem_inodes_usage{job=\"$hostname\",device!~\"/dev/loop.*\",device!~\"tmpfs|nsfs\"})",
-            "stat": "",
-            "type": "query",
-            "limit": "",
-            "hidden": false,
-            "metric": "",
-            "nodeId": "A",
-            "region": "",
-            "source": "kloudmate",
-            "dataset": "metrics",
-            "filters": [],
-            "groupBy": [],
-            "orderBy": [],
-            "interval": "",
-            "namespace": "",
-            "dimensions": [],
-            "metricType": "",
-            "query_type": "promql",
-            "time_range": {
-              "to": 0,
-              "from": 600
-            },
-            "aggregation": {
-              "stat": "AVG",
-              "type": "",
-              "field": ""
-            },
-            "datasourceId": "kloudmate",
-            "legendFormat": "{{state}}",
-            "responseType": "series"
-          }
-        ]
-      },
-      {
         "id": "3pp5ei0vcrg",
         "tz": "local",
         "axis": {
@@ -1188,8 +1070,8 @@
       {
         "h": 5,
         "i": "0lnihagpoyp",
-        "w": 4,
-        "x": 4,
+        "w": 5,
+        "x": 5,
         "y": 0,
         "minH": 1,
         "minW": 1,
@@ -1199,7 +1081,7 @@
       {
         "h": 5,
         "i": "5o36bl0u15",
-        "w": 4,
+        "w": 5,
         "x": 0,
         "y": 0,
         "minH": 1,
@@ -1210,19 +1092,8 @@
       {
         "h": 5,
         "i": "bj3271tqzx5",
-        "w": 4,
-        "x": 8,
-        "y": 0,
-        "minH": 1,
-        "minW": 1,
-        "moved": false,
-        "static": false
-      },
-      {
-        "h": 5,
-        "i": "9ud8nh2e0xh",
-        "w": 4,
-        "x": 12,
+        "w": 5,
+        "x": 10,
         "y": 0,
         "minH": 1,
         "minW": 1,
@@ -1232,8 +1103,8 @@
       {
         "h": 5,
         "i": "n4ftzz92bj",
-        "w": 4,
-        "x": 16,
+        "w": 5,
+        "x": 15,
         "y": 0,
         "minH": 1,
         "minW": 1,
@@ -1319,17 +1190,6 @@
       },
       {
         "h": 10,
-        "i": "cgvuwpatfm",
-        "w": 12,
-        "x": 0,
-        "y": 35,
-        "minH": 1,
-        "minW": 1,
-        "moved": false,
-        "static": false
-      },
-      {
-        "h": 10,
         "i": "3pp5ei0vcrg",
         "w": 12,
         "x": 0,
@@ -1342,8 +1202,8 @@
       {
         "h": 10,
         "i": "31x8lmqjw4k",
-        "w": 6,
-        "x": 12,
+        "w": 12,
+        "x": 0,
         "y": 35,
         "minH": 1,
         "minW": 1,
@@ -1364,8 +1224,8 @@
       {
         "h": 10,
         "i": "9auxkevmznk",
-        "w": 6,
-        "x": 18,
+        "w": 12,
+        "x": 12,
         "y": 35,
         "minH": 1,
         "minW": 1,
