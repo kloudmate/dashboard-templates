@@ -1,0 +1,1332 @@
+{
+  "name": "Redis",
+  "description": "",
+  "data": {
+    "tz": "local",
+    "links": [],
+    "panels": [
+      {
+        "id": "lmprnm9d6lq",
+        "tz": "local",
+        "axis": {
+          "x": {
+            "date_style": "auto"
+          },
+          "y": {
+            "format": "duration",
+            "decimals": 3,
+            "multiplyBy": 1000
+          }
+        },
+        "logs": {},
+        "text": {},
+        "STATS": {},
+        "spans": {},
+        "table": {},
+        "title": "CPU Load",
+        "bar_chart": {
+          "axis": {
+            "x": {
+              "date_style": "auto"
+            },
+            "y": {
+              "format": "unformatted",
+              "prefix": "",
+              "suffix": "",
+              "decimals": 3,
+              "multiplyBy": 1
+            }
+          },
+          "legend": {
+            "view": "list",
+            "values": []
+          },
+          "display": {
+            "stacking": "stacked",
+            "orientation": "vertical"
+          }
+        },
+        "panelType": "TimeSeries",
+        "pie_chart": {
+          "legend": {
+            "mode": "list",
+            "show": true,
+            "values": [
+              "formattedPercent"
+            ],
+            "placement": "right"
+          },
+          "display": {
+            "type": "pie",
+            "labels": [
+              "name"
+            ]
+          },
+          "formatter": {},
+          "value_options": {
+            "type": "reduce",
+            "limit": 20,
+            "reduce": "last",
+            "columns": [
+              "numeric"
+            ]
+          }
+        },
+        "timeRange": "15m",
+        "TimeSeries": {},
+        "statConfig": {
+          "statView": "grid",
+          "baseColor": "#4CBB17",
+          "calculation": "last"
+        },
+        "timeseries": {
+          "legend": {
+            "view": "list",
+            "values": []
+          }
+        },
+        "node_configs": [
+          {
+            "page": null,
+            "stat": "",
+            "type": "query",
+            "limit": null,
+            "hidden": false,
+            "metric": "",
+            "nodeId": "A",
+            "region": "",
+            "source": "kloudmate",
+            "columns": [],
+            "dataset": "metrics",
+            "filters": [],
+            "groupBy": [
+              {
+                "type": "string",
+                "field": "state"
+              }
+            ],
+            "orderBy": [],
+            "interval": "",
+            "namespace": "",
+            "dimensions": [],
+            "metricType": "",
+            "query_type": "qb",
+            "time_range": {
+              "to": 0,
+              "from": 600
+            },
+            "aggregation": {
+              "stat": "SUM",
+              "type": "",
+              "unit": "s",
+              "field": "",
+              "value": "redis_cpu_time",
+              "metric": "redis_cpu_time",
+              "metricType": "Sum",
+              "temporality": "Delta"
+            },
+            "datasourceId": "kloudmate",
+            "legendFormat": "{{state}}",
+            "responseType": "series"
+          }
+        ],
+        "time_options": {
+          "override": false,
+          "time_shift": ""
+        }
+      },
+      {
+        "id": "rf5qc8994bc",
+        "tz": "local",
+        "axis": {
+          "x": {
+            "date_style": "auto"
+          },
+          "y": {
+            "format": "number",
+            "suffix": "{client}",
+            "decimals": 3
+          }
+        },
+        "STATS": {},
+        "title": "Client Connected",
+        "panelType": "STATS",
+        "timeRange": "1w",
+        "statConfig": {
+          "statView": "grid",
+          "baseColor": "#4CBB17",
+          "calculation": "last"
+        },
+        "timeseries": {
+          "legend": {
+            "view": "list",
+            "values": []
+          }
+        },
+        "description": "Number of client connections (excluding connections from replicas)",
+        "node_configs": [
+          {
+            "page": 1,
+            "stat": "",
+            "type": "query",
+            "hidden": false,
+            "metric": "",
+            "nodeId": "A",
+            "region": "",
+            "source": "kloudmate",
+            "dataset": "metrics",
+            "filters": [],
+            "groupBy": [],
+            "orderBy": [],
+            "interval": "",
+            "namespace": "",
+            "dimensions": [],
+            "metricType": "",
+            "time_range": {
+              "to": 0,
+              "from": 600
+            },
+            "aggregation": {
+              "stat": "LAST",
+              "type": "",
+              "unit": "{client}",
+              "field": "",
+              "value": "redis_clients_connected",
+              "metric": "redis_clients_connected",
+              "metricType": "Sum",
+              "temporality": "Cumulative"
+            },
+            "datasourceId": "kloudmate",
+            "responseType": "series"
+          }
+        ],
+        "time_options": {
+          "override": false,
+          "time_shift": ""
+        }
+      },
+      {
+        "id": "cgjpa7rne9q",
+        "tz": "local",
+        "axis": {
+          "x": {
+            "date_style": "auto"
+          },
+          "y": {
+            "format": "number",
+            "suffix": "{client}",
+            "decimals": 3
+          }
+        },
+        "STATS": {},
+        "title": "Clients Blocked",
+        "panelType": "STATS",
+        "timeRange": "1w",
+        "statConfig": {
+          "statView": "grid",
+          "baseColor": "#4CBB17",
+          "calculation": "last"
+        },
+        "timeseries": {
+          "legend": {
+            "view": "list",
+            "values": []
+          }
+        },
+        "description": "Number of clients pending on a blocking call",
+        "node_configs": [
+          {
+            "page": 1,
+            "stat": "",
+            "type": "query",
+            "hidden": false,
+            "metric": "",
+            "nodeId": "A",
+            "region": "",
+            "source": "kloudmate",
+            "dataset": "metrics",
+            "filters": [],
+            "groupBy": [],
+            "orderBy": [],
+            "interval": "",
+            "namespace": "",
+            "dimensions": [],
+            "metricType": "",
+            "time_range": {
+              "to": 0,
+              "from": 600
+            },
+            "aggregation": {
+              "stat": "LAST",
+              "type": "",
+              "unit": "{client}",
+              "field": "",
+              "value": "redis_clients_blocked",
+              "metric": "redis_clients_blocked",
+              "metricType": "Sum",
+              "temporality": "Cumulative"
+            },
+            "datasourceId": "kloudmate",
+            "responseType": "series"
+          }
+        ],
+        "time_options": {
+          "override": false,
+          "time_shift": ""
+        }
+      },
+      {
+        "id": "0plih1uahetq",
+        "tz": "local",
+        "axis": {
+          "x": {
+            "date_style": "auto"
+          },
+          "y": {
+            "format": "bytes",
+            "decimals": "1"
+          }
+        },
+        "STATS": {},
+        "title": "Memory Used",
+        "panelType": "TimeSeries",
+        "pie_chart": {
+          "legend": {
+            "mode": "list",
+            "show": true,
+            "values": [
+              "formattedPercent"
+            ],
+            "placement": "right"
+          },
+          "display": {
+            "type": "pie",
+            "labels": [
+              "name"
+            ]
+          },
+          "formatter": {},
+          "value_options": {
+            "type": "reduce",
+            "limit": 20,
+            "reduce": "last",
+            "columns": [
+              "numeric"
+            ]
+          }
+        },
+        "timeRange": "1w",
+        "TimeSeries": {},
+        "statConfig": {
+          "format": "bytes",
+          "decimals": "1",
+          "statView": "grid",
+          "baseColor": "#4CBB17",
+          "calculation": "last"
+        },
+        "timeseries": {
+          "legend": {
+            "view": "table",
+            "values": [
+              {
+                "label": "Max",
+                "value": "max"
+              },
+              {
+                "label": "Mean",
+                "value": "mean"
+              },
+              {
+                "label": "Last",
+                "value": "last"
+              }
+            ]
+          }
+        },
+        "description": "Total number of bytes allocated by Redis using its allocator",
+        "node_configs": [
+          {
+            "page": 1,
+            "stat": "",
+            "type": "query",
+            "hidden": false,
+            "metric": "",
+            "nodeId": "A",
+            "region": "",
+            "source": "kloudmate",
+            "dataset": "metrics",
+            "filters": [],
+            "groupBy": [],
+            "orderBy": [],
+            "interval": "",
+            "namespace": "",
+            "dimensions": [],
+            "metricType": "",
+            "time_range": {
+              "to": 0,
+              "from": 600
+            },
+            "aggregation": {
+              "stat": "LAST",
+              "type": "",
+              "unit": "By",
+              "field": "",
+              "value": "redis_memory_used",
+              "metric": "redis_memory_used",
+              "metricType": "Gauge",
+              "temporality": "Cumulative"
+            },
+            "datasourceId": "kloudmate",
+            "legendFormat": "Used",
+            "responseType": "series"
+          }
+        ],
+        "time_options": {
+          "override": false,
+          "time_shift": ""
+        }
+      },
+      {
+        "id": "bj2fut6vfqh",
+        "tz": "local",
+        "axis": {
+          "x": {
+            "date_style": "auto"
+          },
+          "y": {
+            "format": "number",
+            "suffix": "{ops}/s",
+            "decimals": "1"
+          }
+        },
+        "title": "Redis Commands",
+        "panelType": "TimeSeries",
+        "timeRange": "1w",
+        "statConfig": {
+          "statView": "grid",
+          "baseColor": "#4CBB17",
+          "calculation": "last"
+        },
+        "timeseries": {
+          "legend": {
+            "view": "table",
+            "values": [
+              {
+                "label": "Max",
+                "value": "max"
+              },
+              {
+                "label": "Mean",
+                "value": "mean"
+              },
+              {
+                "label": "Last",
+                "value": "last"
+              }
+            ]
+          }
+        },
+        "description": "Number of commands processed per second",
+        "node_configs": [
+          {
+            "page": 1,
+            "stat": "",
+            "type": "query",
+            "hidden": false,
+            "metric": "",
+            "nodeId": "A",
+            "region": "",
+            "source": "kloudmate",
+            "dataset": "metrics",
+            "filters": [],
+            "groupBy": [],
+            "orderBy": [],
+            "interval": "",
+            "namespace": "",
+            "dimensions": [],
+            "metricType": "",
+            "time_range": {
+              "to": 0,
+              "from": 600
+            },
+            "aggregation": {
+              "stat": "LAST",
+              "type": "",
+              "unit": "{ops}/s",
+              "field": "",
+              "value": "redis_commands",
+              "metric": "redis_commands",
+              "metricType": "Gauge",
+              "temporality": "Cumulative"
+            },
+            "datasourceId": "kloudmate",
+            "legendFormat": "Commands"
+          }
+        ],
+        "time_options": {
+          "override": false,
+          "time_shift": ""
+        }
+      },
+      {
+        "id": "limna3xfbw7",
+        "tz": "local",
+        "axis": {
+          "x": {
+            "date_style": "auto"
+          },
+          "y": {
+            "format": "number",
+            "suffix": "{connection}",
+            "decimals": 3
+          }
+        },
+        "STATS": {},
+        "title": "Connections Rejected",
+        "panelType": "STATS",
+        "timeRange": "1w",
+        "statConfig": {
+          "statView": "grid",
+          "baseColor": "#4CBB17",
+          "calculation": "last"
+        },
+        "timeseries": {
+          "legend": {
+            "view": "list",
+            "values": []
+          }
+        },
+        "description": "Number of connections rejected because of maxclients limit",
+        "node_configs": [
+          {
+            "page": 1,
+            "stat": "",
+            "type": "query",
+            "hidden": false,
+            "metric": "",
+            "nodeId": "A",
+            "region": "",
+            "source": "kloudmate",
+            "dataset": "metrics",
+            "filters": [],
+            "groupBy": [],
+            "orderBy": [],
+            "interval": "",
+            "namespace": "",
+            "dimensions": [],
+            "metricType": "",
+            "time_range": {
+              "to": 0,
+              "from": 600
+            },
+            "aggregation": {
+              "stat": "SUM",
+              "type": "",
+              "unit": "{connection}",
+              "field": "",
+              "value": "redis_connections_rejected",
+              "metric": "redis_connections_rejected",
+              "metricType": "Sum",
+              "temporality": "Delta"
+            },
+            "datasourceId": "kloudmate",
+            "responseType": "series"
+          }
+        ],
+        "time_options": {
+          "override": false,
+          "time_shift": ""
+        }
+      },
+      {
+        "id": "bv3upi1q0n9",
+        "tz": "local",
+        "axis": {
+          "x": {
+            "date_style": "auto"
+          },
+          "y": {
+            "format": "number",
+            "suffix": "{connection}",
+            "decimals": 3
+          }
+        },
+        "STATS": {},
+        "title": "Connections Received",
+        "panelType": "STATS",
+        "timeRange": "1w",
+        "statConfig": {
+          "statView": "grid",
+          "baseColor": "#4CBB17",
+          "calculation": "last"
+        },
+        "timeseries": {
+          "legend": {
+            "view": "list",
+            "values": []
+          }
+        },
+        "description": "Total number of connections accepted by the server",
+        "node_configs": [
+          {
+            "page": 1,
+            "stat": "",
+            "type": "query",
+            "hidden": false,
+            "metric": "",
+            "nodeId": "A",
+            "region": "",
+            "source": "kloudmate",
+            "dataset": "metrics",
+            "filters": [],
+            "groupBy": [],
+            "orderBy": [],
+            "interval": "",
+            "namespace": "",
+            "dimensions": [],
+            "metricType": "",
+            "time_range": {
+              "to": 0,
+              "from": 600
+            },
+            "aggregation": {
+              "stat": "SUM",
+              "type": "",
+              "unit": "{connection}",
+              "field": "",
+              "value": "redis_connections_received",
+              "metric": "redis_connections_received",
+              "metricType": "Sum",
+              "temporality": "Delta"
+            },
+            "datasourceId": "kloudmate",
+            "responseType": "series"
+          }
+        ],
+        "time_options": {
+          "override": false,
+          "time_shift": ""
+        }
+      },
+      {
+        "id": "0hrq3fgkx03d",
+        "tz": "local",
+        "axis": {
+          "x": {
+            "date_style": "auto"
+          },
+          "y": {
+            "format": "duration",
+            "decimals": 3,
+            "multiplyBy": 1000
+          }
+        },
+        "STATS": {},
+        "title": "Uptime",
+        "panelType": "STATS",
+        "timeRange": "1w",
+        "statConfig": {
+          "format": "duration",
+          "decimals": "1",
+          "statView": "grid",
+          "baseColor": "#4CBB17",
+          "multiplyBy": "1000",
+          "calculation": "last"
+        },
+        "timeseries": {
+          "legend": {
+            "view": "list",
+            "values": []
+          }
+        },
+        "description": "Number of seconds since Redis server start",
+        "node_configs": [
+          {
+            "page": 1,
+            "stat": "",
+            "type": "query",
+            "hidden": false,
+            "metric": "",
+            "nodeId": "A",
+            "region": "",
+            "source": "kloudmate",
+            "dataset": "metrics",
+            "filters": [],
+            "groupBy": [],
+            "orderBy": [],
+            "interval": "",
+            "namespace": "",
+            "dimensions": [],
+            "metricType": "",
+            "time_range": {
+              "to": 0,
+              "from": 600
+            },
+            "aggregation": {
+              "stat": "SUM",
+              "type": "",
+              "unit": "s",
+              "field": "",
+              "value": "redis_uptime",
+              "metric": "redis_uptime",
+              "metricType": "Sum",
+              "temporality": "Delta"
+            },
+            "datasourceId": "kloudmate",
+            "responseType": "series"
+          }
+        ],
+        "time_options": {
+          "override": false,
+          "time_shift": ""
+        }
+      },
+      {
+        "id": "hqi87uaj73h",
+        "tz": "local",
+        "axis": {
+          "x": {
+            "date_style": "auto"
+          },
+          "y": {
+            "format": "number",
+            "decimals": 3
+          }
+        },
+        "STATS": {},
+        "title": "Memory Fragmentation Ratio",
+        "bar_chart": {
+          "axis": {
+            "x": {
+              "date_style": "auto"
+            },
+            "y": {
+              "format": "unformatted",
+              "prefix": "",
+              "suffix": "",
+              "decimals": 3,
+              "multiplyBy": 1
+            }
+          },
+          "legend": {
+            "view": "list",
+            "values": []
+          },
+          "display": {
+            "stacking": "stacked",
+            "orientation": "vertical"
+          }
+        },
+        "panelType": "STATS",
+        "timeRange": "1w",
+        "TimeSeries": {},
+        "statConfig": {
+          "statView": "grid",
+          "baseColor": "#4CBB17",
+          "calculation": "last",
+          "value_mappings": []
+        },
+        "timeseries": {
+          "legend": {
+            "view": "list",
+            "values": []
+          }
+        },
+        "description": "Ratio between used_memory_rss and used_memory",
+        "node_configs": [
+          {
+            "page": 1,
+            "stat": "",
+            "type": "query",
+            "hidden": false,
+            "metric": "",
+            "nodeId": "A",
+            "region": "",
+            "source": "kloudmate",
+            "dataset": "metrics",
+            "filters": [],
+            "groupBy": [],
+            "orderBy": [],
+            "interval": "",
+            "namespace": "",
+            "dimensions": [],
+            "metricType": "",
+            "time_range": {
+              "to": 0,
+              "from": 600
+            },
+            "aggregation": {
+              "stat": "COUNT",
+              "type": "",
+              "unit": "1",
+              "field": "",
+              "value": "redis_memory_fragmentation_ratio",
+              "metric": "redis_memory_fragmentation_ratio",
+              "metricType": "Gauge",
+              "temporality": "Cumulative"
+            },
+            "datasourceId": "kloudmate",
+            "legendFormat": "",
+            "responseType": "series"
+          }
+        ],
+        "time_options": {
+          "override": false,
+          "time_shift": ""
+        }
+      },
+      {
+        "id": "9siz2qh63",
+        "tz": "local",
+        "axis": {
+          "x": {
+            "date_style": "auto"
+          },
+          "y": {
+            "format": "duration",
+            "decimals": 3
+          }
+        },
+        "table": {
+          "columns": [
+            {
+              "key": "A:LAST()",
+              "format": {
+                "format": "duration"
+              },
+              "rename": "Time"
+            },
+            {
+              "key": "db",
+              "rename": "DB"
+            }
+          ]
+        },
+        "title": "DB Avg TTL",
+        "panelType": "table",
+        "timeRange": "1w",
+        "statConfig": {
+          "statView": "grid",
+          "baseColor": "#4CBB17",
+          "calculation": "last"
+        },
+        "timeseries": {
+          "legend": {
+            "view": "list",
+            "values": []
+          }
+        },
+        "description": "Average keyspace keys TTL",
+        "node_configs": [
+          {
+            "page": 1,
+            "stat": "",
+            "type": "query",
+            "hidden": false,
+            "metric": "",
+            "nodeId": "A",
+            "region": "",
+            "source": "kloudmate",
+            "dataset": "metrics",
+            "filters": [],
+            "groupBy": [
+              {
+                "type": "string",
+                "field": "db"
+              }
+            ],
+            "orderBy": [],
+            "interval": "",
+            "namespace": "",
+            "dimensions": [],
+            "metricType": "",
+            "time_range": {
+              "to": 0,
+              "from": 600
+            },
+            "aggregation": {
+              "stat": "LAST",
+              "type": "",
+              "unit": "ms",
+              "field": "",
+              "value": "redis_db_avg_ttl",
+              "metric": "redis_db_avg_ttl",
+              "metricType": "Gauge",
+              "temporality": "Cumulative"
+            },
+            "datasourceId": "kloudmate",
+            "responseType": "number"
+          }
+        ],
+        "time_options": {
+          "override": false,
+          "time_shift": ""
+        }
+      },
+      {
+        "id": "a9x6lprcp3c",
+        "tz": "local",
+        "axis": {
+          "x": {
+            "date_style": "auto"
+          },
+          "y": {
+            "format": "duration",
+            "decimals": 3
+          }
+        },
+        "table": {
+          "columns": [
+            {
+              "key": "A:AVG()",
+              "format": {
+                "format": "number",
+                "suffix": "",
+                "decimals": "1"
+              },
+              "rename": "Keys"
+            },
+            {
+              "key": "db",
+              "rename": "DB"
+            },
+            {
+              "key": "B:AVG()",
+              "rename": "Expires"
+            }
+          ]
+        },
+        "title": "DB Keys",
+        "panelType": "table",
+        "timeRange": "1w",
+        "statConfig": {
+          "statView": "grid",
+          "baseColor": "#4CBB17",
+          "calculation": "last"
+        },
+        "timeseries": {
+          "legend": {
+            "view": "list",
+            "values": []
+          }
+        },
+        "description": "Number of keyspace keys and keys with an expiration",
+        "node_configs": [
+          {
+            "page": 1,
+            "stat": "",
+            "type": "query",
+            "hidden": false,
+            "metric": "",
+            "nodeId": "A",
+            "region": "",
+            "source": "kloudmate",
+            "dataset": "metrics",
+            "filters": [],
+            "groupBy": [
+              {
+                "type": "string",
+                "field": "db"
+              }
+            ],
+            "orderBy": [],
+            "interval": "",
+            "namespace": "",
+            "dimensions": [],
+            "metricType": "",
+            "time_range": {
+              "to": 0,
+              "from": 600
+            },
+            "aggregation": {
+              "stat": "AVG",
+              "type": "",
+              "unit": "{key}",
+              "field": "",
+              "value": "redis_db_keys",
+              "metric": "redis_db_keys",
+              "metricType": "Gauge",
+              "temporality": "Cumulative"
+            },
+            "datasourceId": "kloudmate",
+            "responseType": "number"
+          },
+          {
+            "page": 1,
+            "stat": "",
+            "type": "query",
+            "hidden": false,
+            "metric": "",
+            "nodeId": "B",
+            "region": "",
+            "source": "kloudmate",
+            "dataset": "metrics",
+            "filters": [],
+            "groupBy": [
+              {
+                "type": "string",
+                "field": "db"
+              }
+            ],
+            "orderBy": [],
+            "interval": "",
+            "namespace": "",
+            "dimensions": [],
+            "metricType": "",
+            "time_range": {
+              "to": 0,
+              "from": 600
+            },
+            "aggregation": {
+              "stat": "AVG",
+              "type": "",
+              "unit": "{key}",
+              "field": "",
+              "value": "redis_db_expires",
+              "metric": "redis_db_expires",
+              "metricType": "Gauge",
+              "temporality": "Cumulative"
+            },
+            "datasourceId": "kloudmate",
+            "responseType": "number"
+          }
+        ],
+        "time_options": {
+          "override": false,
+          "time_shift": ""
+        }
+      },
+      {
+        "id": "5zhnc7rclwa",
+        "tz": "local",
+        "axis": {
+          "x": {
+            "date_style": "auto"
+          },
+          "y": {
+            "format": "bytes",
+            "decimals": "1"
+          }
+        },
+        "title": "Network IO",
+        "panelType": "TimeSeries",
+        "timeRange": "1w",
+        "statConfig": {
+          "statView": "grid",
+          "baseColor": "#4CBB17",
+          "calculation": "last"
+        },
+        "timeseries": {
+          "legend": {
+            "view": "table",
+            "values": [
+              {
+                "label": "Max",
+                "value": "max"
+              },
+              {
+                "label": "Mean",
+                "value": "mean"
+              },
+              {
+                "label": "Last",
+                "value": "last"
+              }
+            ]
+          }
+        },
+        "description": "The total number of bytes read and write from the network",
+        "node_configs": [
+          {
+            "page": 1,
+            "stat": "",
+            "type": "query",
+            "hidden": false,
+            "metric": "",
+            "nodeId": "A",
+            "region": "",
+            "source": "kloudmate",
+            "dataset": "metrics",
+            "filters": [],
+            "groupBy": [],
+            "orderBy": [],
+            "interval": "",
+            "namespace": "",
+            "dimensions": [],
+            "metricType": "",
+            "time_range": {
+              "to": 0,
+              "from": 600
+            },
+            "aggregation": {
+              "stat": "SUM",
+              "type": "",
+              "unit": "By",
+              "field": "",
+              "value": "redis_net_input",
+              "metric": "redis_net_input",
+              "metricType": "Sum",
+              "temporality": "Delta"
+            },
+            "datasourceId": "kloudmate",
+            "legendFormat": "Read"
+          },
+          {
+            "page": 1,
+            "stat": "",
+            "type": "query",
+            "hidden": false,
+            "metric": "",
+            "nodeId": "B",
+            "region": "",
+            "source": "kloudmate",
+            "dataset": "metrics",
+            "filters": [],
+            "groupBy": [],
+            "orderBy": [],
+            "interval": "",
+            "namespace": "",
+            "dimensions": [],
+            "metricType": "",
+            "time_range": {
+              "to": 0,
+              "from": 600
+            },
+            "aggregation": {
+              "stat": "AVG",
+              "type": "",
+              "unit": "By",
+              "field": "",
+              "value": "redis_net_output",
+              "metric": "redis_net_output",
+              "metricType": "Sum",
+              "temporality": "Delta"
+            },
+            "datasourceId": "kloudmate",
+            "legendFormat": "Write"
+          }
+        ],
+        "time_options": {
+          "override": false,
+          "time_shift": ""
+        }
+      },
+      {
+        "id": "1vj42q0htjl",
+        "tz": "local",
+        "axis": {
+          "x": {
+            "date_style": "auto"
+          },
+          "y": {
+            "format": "bytes",
+            "decimals": "1"
+          }
+        },
+        "title": "Replica Offset",
+        "panelType": "TimeSeries",
+        "timeRange": "1w",
+        "statConfig": {
+          "statView": "grid",
+          "baseColor": "#4CBB17",
+          "calculation": "last"
+        },
+        "timeseries": {
+          "legend": {
+            "view": "list",
+            "values": []
+          }
+        },
+        "description": "The server's current replication offset",
+        "node_configs": [
+          {
+            "page": 1,
+            "stat": "",
+            "type": "query",
+            "hidden": false,
+            "metric": "",
+            "nodeId": "A",
+            "region": "",
+            "source": "kloudmate",
+            "dataset": "metrics",
+            "filters": [],
+            "groupBy": [],
+            "orderBy": [],
+            "interval": "",
+            "namespace": "",
+            "dimensions": [],
+            "metricType": "",
+            "time_range": {
+              "to": 0,
+              "from": 600
+            },
+            "aggregation": {
+              "stat": "LAST",
+              "type": "",
+              "unit": "By",
+              "field": "",
+              "value": "redis_replication_offset",
+              "metric": "redis_replication_offset",
+              "metricType": "Gauge",
+              "temporality": "Cumulative"
+            },
+            "datasourceId": "kloudmate"
+          }
+        ],
+        "time_options": {
+          "override": false,
+          "time_shift": ""
+        }
+      }
+    ],
+    "timeRange": "1w",
+    "variables": [],
+    "panel_layouts": [
+      {
+        "h": 9,
+        "i": "lmprnm9d6lq",
+        "w": 12,
+        "x": 0,
+        "y": 6,
+        "minH": 1,
+        "minW": 1,
+        "moved": false,
+        "static": false
+      },
+      {
+        "h": 6,
+        "i": "rf5qc8994bc",
+        "w": 4,
+        "x": 4,
+        "y": 0,
+        "minH": 1,
+        "minW": 1,
+        "moved": false,
+        "static": false
+      },
+      {
+        "h": 6,
+        "i": "cgjpa7rne9q",
+        "w": 4,
+        "x": 8,
+        "y": 0,
+        "minH": 1,
+        "minW": 1,
+        "moved": false,
+        "static": false
+      },
+      {
+        "h": 9,
+        "i": "0plih1uahetq",
+        "w": 12,
+        "x": 12,
+        "y": 6,
+        "minH": 1,
+        "minW": 1,
+        "moved": false,
+        "static": false
+      },
+      {
+        "h": 10,
+        "i": "bj2fut6vfqh",
+        "w": 12,
+        "x": 0,
+        "y": 15,
+        "minH": 1,
+        "minW": 1,
+        "moved": false,
+        "static": false
+      },
+      {
+        "h": 6,
+        "i": "limna3xfbw7",
+        "w": 4,
+        "x": 16,
+        "y": 0,
+        "minH": 1,
+        "minW": 1,
+        "moved": false,
+        "static": false
+      },
+      {
+        "h": 6,
+        "i": "bv3upi1q0n9",
+        "w": 4,
+        "x": 12,
+        "y": 0,
+        "minH": 1,
+        "minW": 1,
+        "moved": false,
+        "static": false
+      },
+      {
+        "h": 6,
+        "i": "0hrq3fgkx03d",
+        "w": 4,
+        "x": 0,
+        "y": 0,
+        "minH": 1,
+        "minW": 1,
+        "moved": false,
+        "static": false
+      },
+      {
+        "h": 6,
+        "i": "hqi87uaj73h",
+        "w": 4,
+        "x": 20,
+        "y": 0,
+        "minH": 1,
+        "minW": 1,
+        "moved": false,
+        "static": false
+      },
+      {
+        "h": 10,
+        "i": "9siz2qh63",
+        "w": 8,
+        "x": 8,
+        "y": 25,
+        "minH": 1,
+        "minW": 1,
+        "moved": false,
+        "static": false
+      },
+      {
+        "h": 10,
+        "i": "a9x6lprcp3c",
+        "w": 8,
+        "x": 16,
+        "y": 25,
+        "minH": 1,
+        "minW": 1,
+        "moved": false,
+        "static": false
+      },
+      {
+        "h": 10,
+        "i": "5zhnc7rclwa",
+        "w": 12,
+        "x": 12,
+        "y": 15,
+        "minH": 1,
+        "minW": 1,
+        "moved": false,
+        "static": false
+      },
+      {
+        "h": 10,
+        "i": "1vj42q0htjl",
+        "w": 8,
+        "x": 0,
+        "y": 25,
+        "minH": 1,
+        "minW": 1,
+        "moved": false,
+        "static": false
+      }
+    ],
+    "default_region": "us-east-1"
+  },
+  "tags": []
+}
