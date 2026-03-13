@@ -30,7 +30,7 @@
         },
         "node_configs": [
           {
-            "exp": "sum by(job) (system_memory_usage{job=\"$hostname\",state=\"used\"}) / sum by(job) (system_memory_usage{job=\"$hostname\"})",
+            "exp": "sum by(host_name) (system_memory_usage{host_name=\"$hostname\",state=\"used\"}) / sum by(host_name) (system_memory_usage{host_name=\"$hostname\"})",
             "stat": "",
             "type": "query",
             "limit": "",
@@ -88,7 +88,7 @@
         },
         "node_configs": [
           {
-            "exp": "1 - (avg by(job) (irate(system_cpu_time{job=\"$hostname\",state=\"idle\"}[5m])))",
+            "exp": "1 - (avg by(host_name) (irate(system_cpu_time{host_name=\"$hostname\",state=\"idle\"}[5m])))",
             "stat": "",
             "type": "query",
             "limit": "",
@@ -146,7 +146,7 @@
         },
         "node_configs": [
           {
-            "exp": "sum by(job) (system_filesystem_usage{job=\"$hostname\",state=\"used\",device!~\"/dev/loop.*\", device!~\"tmpfs|nsfs\"}) / sum by(job) (system_filesystem_usage{job=\"$hostname\",device!~\"/dev/loop.*\", device!~\"tmpfs|nsfs\"})",
+            "exp": "sum by(host_name) (system_filesystem_usage{host_name=\"$hostname\",state=\"used\",device!~\"/dev/loop.*\", device!~\"tmpfs|nsfs\"}) / sum by(host_name) (system_filesystem_usage{host_name=\"$hostname\",device!~\"/dev/loop.*\", device!~\"tmpfs|nsfs\"})",
             "stat": "",
             "type": "query",
             "limit": "",
@@ -205,7 +205,7 @@
         },
         "node_configs": [
           {
-            "exp": "avg by(job) (irate(system_disk_io{job=\"$hostname\",direction=\"read\",device!~\"loop.*\", device!~\"tmpfs|nsfs\"}[5m]))",
+            "exp": "avg by(host_name) (irate(system_disk_io{host_name=\"$hostname\",direction=\"read\",device!~\"loop.*\", device!~\"tmpfs|nsfs\"}[5m]))",
             "stat": "",
             "type": "query",
             "limit": "",
@@ -264,7 +264,7 @@
         },
         "node_configs": [
           {
-            "exp": "avg by(job) (irate(system_disk_io{job=\"$hostname\",direction=\"write\",device!~\"loop.*\", device!~\"tmpfs|nsfs\"}[5m]))",
+            "exp": "avg by(host_name) (irate(system_disk_io{host_name=\"$hostname\",direction=\"write\",device!~\"loop.*\", device!~\"tmpfs|nsfs\"}[5m]))",
             "stat": "",
             "type": "query",
             "limit": "",
@@ -324,7 +324,7 @@
         },
         "node_configs": [
           {
-            "exp": "system_memory_usage{job=\"$hostname\",state=~\"buffered|cached|free|used\"}",
+            "exp": "system_memory_usage{host_name=\"$hostname\",state=~\"buffered|cached|free|used\"}",
             "stat": "",
             "type": "query",
             "limit": "",
@@ -385,7 +385,7 @@
         },
         "node_configs": [
           {
-            "exp": "avg by(state) (irate(system_cpu_time{job=\"$hostname\",state!=\"idle\"}[5m]))",
+            "exp": "avg by(state) (irate(system_cpu_time{host_name=\"$hostname\",state!=\"idle\"}[5m]))",
             "stat": "",
             "type": "query",
             "limit": "",
@@ -446,7 +446,7 @@
         },
         "node_configs": [
           {
-            "exp": "avg by(state) (irate(system_cpu_time{job=\"$hostname\",state=\"idle\"}[5m]))",
+            "exp": "avg by(state) (irate(system_cpu_time{host_name=\"$hostname\",state=\"idle\"}[5m]))",
             "stat": "",
             "type": "query",
             "limit": "",
@@ -507,7 +507,7 @@
         },
         "node_configs": [
           {
-            "exp": "system_filesystem_usage{job=\"$hostname\",state=\"free\",device!~\"/dev/loop.*\", device!~\"tmpfs | nsfs\"}",
+            "exp": "system_filesystem_usage{host_name=\"$hostname\",state=\"free\",device!~\"/dev/loop.*\", device!~\"tmpfs | nsfs\"}",
             "stat": "",
             "type": "query",
             "limit": "",
@@ -568,7 +568,7 @@
         },
         "node_configs": [
           {
-            "exp": "system_filesystem_usage{job=\"$hostname\",state=\"used\",device!~\"/dev/loop.*\", device!~\"tmpfs | nsfs\"}",
+            "exp": "system_filesystem_usage{host_name=\"$hostname\",state=\"used\",device!~\"/dev/loop.*\", device!~\"tmpfs | nsfs\"}",
             "stat": "",
             "type": "query",
             "limit": "",
@@ -629,7 +629,7 @@
         },
         "node_configs": [
           {
-            "exp": "system_cpu_load_average_1m{job=\"$hostname\"}",
+            "exp": "system_cpu_load_average_1m{host_name=\"$hostname\"}",
             "stat": "",
             "type": "query",
             "limit": "",
@@ -661,7 +661,7 @@
             "responseType": "series"
           },
           {
-            "exp": "system_cpu_load_average_5m{job=\"$hostname\"}",
+            "exp": "system_cpu_load_average_5m{host_name=\"$hostname\"}",
             "stat": "",
             "type": "query",
             "limit": "",
@@ -693,7 +693,7 @@
             "responseType": "series"
           },
           {
-            "exp": "system_cpu_load_average_15m{job=\"$hostname\"}",
+            "exp": "system_cpu_load_average_15m{host_name=\"$hostname\"}",
             "stat": "",
             "type": "query",
             "limit": "",
@@ -754,7 +754,7 @@
         },
         "node_configs": [
           {
-            "exp": "avg by(direction) (irate(system_network_io{job=\"$hostname\"}[5m]))",
+            "exp": "avg by(direction) (irate(system_network_io{host_name=\"$hostname\"}[5m]))",
             "stat": "",
             "type": "query",
             "limit": "",
@@ -815,7 +815,7 @@
         },
         "node_configs": [
           {
-            "exp": "avg by(direction) (irate(system_disk_io{job=\"$hostname\",device!~\"loop.*\", device!~\"tmpfs|nsfs\"}[5m]))",
+            "exp": "avg by(direction) (irate(system_disk_io{host_name=\"$hostname\",device!~\"loop.*\", device!~\"tmpfs|nsfs\"}[5m]))",
             "stat": "",
             "type": "query",
             "limit": "",
@@ -875,7 +875,7 @@
         },
         "node_configs": [
           {
-            "exp": "sum by(state) (system_filesystem_usage{job=\"$hostname\",device!~\"/dev/loop.*\", device!~\"tmpfs | nsfs\"})",
+            "exp": "sum by(state) (system_filesystem_usage{host_name=\"$hostname\",device!~\"/dev/loop.*\", device!~\"tmpfs | nsfs\"})",
             "stat": "",
             "type": "query",
             "limit": "",
@@ -936,7 +936,7 @@
         },
         "node_configs": [
           {
-            "exp": "avg by(direction) (irate(system_disk_operations{job=\"$hostname\",device!~\"loop.*\",device!~\"tmpfs|nsfs\"}[5m]))",
+            "exp": "avg by(direction) (irate(system_disk_operations{host_name=\"$hostname\",device!~\"loop.*\",device!~\"tmpfs|nsfs\"}[5m]))",
             "stat": "",
             "type": "query",
             "limit": "",
@@ -981,7 +981,7 @@
           "otel": {
             "key": {
               "type": "string",
-              "field": "job"
+              "field": "host_name"
             },
             "dataset": "metrics",
             "filters": []
