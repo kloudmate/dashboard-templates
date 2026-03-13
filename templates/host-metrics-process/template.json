@@ -1151,7 +1151,7 @@
             "filters": [
               {
                 "type": "string",
-                "field": "job",
+                "field": "host_name",
                 "value": "$hostname",
                 "operator": "="
               }
@@ -1266,7 +1266,7 @@
             "filters": [
               {
                 "type": "string",
-                "field": "job",
+                "field": "host_name",
                 "value": "$hostname",
                 "operator": "="
               }
@@ -1327,7 +1327,7 @@
           "otel": {
             "key": {
               "type": "string",
-              "field": "job"
+              "field": "host_name"
             },
             "dataset": "metrics",
             "filters": []

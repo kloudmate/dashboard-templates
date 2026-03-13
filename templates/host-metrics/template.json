@@ -1099,7 +1099,7 @@
           "otel": {
             "key": {
               "type": "string",
-              "field": "job"
+              "field": "host_name"
             },
             "dataset": "metrics",
             "filters": []
