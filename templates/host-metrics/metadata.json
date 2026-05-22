@@ -1,6 +1,6 @@
 {
-  "title": "Host Metrics (Linux)",
-  "description": "Gather various system-level performance indicators directly from a Linux host's operating system. These metrics provide insights into the resource utilization and health of the physical or virtual server where the Collector is deployed as an agent.",
+  "title": "Host Metrics",
+  "description": "Gather various system-level performance indicators directly from host's operating system. These metrics provide insights into the resource utilization and health of the physical or virtual server where the Collector is deployed as an agent.",
   "tags": ["metrics", "vm"],
   "author": "KloudMate",
   "verified": true
