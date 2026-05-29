@@ -1,7 +1,0 @@
-{
-  "title": "Host Metrics (with process usage)",
-  "description": "Gather various system-level performance indicators directly from a VM which has  process usage metrics enabled. These metrics provide insights into the resource utilization and health of the physical or virtual server where the Collector is deployed as an agent.",
-  "tags": ["metrics", "vm"],
-  "author": "KloudMate",
-  "verified": true
-}
