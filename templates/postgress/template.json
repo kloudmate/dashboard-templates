@@ -3,49 +3,719 @@
   "description": "",
   "data": {
     "tz": "local",
+    "links": [],
     "panels": [
       {
-        "id": "dsbsb8q5lo",
+        "id": "7t5vrd93qiri8",
+        "tz": "local",
+        "title": "Backends",
+        "overrides": [],
+        "panelType": "STATS",
+        "timeRange": "1h",
+        "statConfig": {
+          "rename": [],
+          "statView": "grid",
+          "baseColor": "#4CBB17",
+          "calculation": "last",
+          "value_mappings": []
+        },
+        "description": "no. of backends",
+        "node_configs": [
+          {
+            "exp": "postgresql_backends{host_name=\"$DBHOST\", postgresql_database_name=\"$Database\"}",
+            "page": 1,
+            "stat": "",
+            "type": "query",
+            "limit": null,
+            "hidden": false,
+            "metric": "",
+            "nodeId": "A",
+            "region": "",
+            "source": "kloudmate",
+            "columns": [],
+            "dataset": "metrics",
+            "filters": [
+              {
+                "type": "string",
+                "field": "host_name",
+                "value": "$DBHOST",
+                "operator": "="
+              },
+              {
+                "type": "string",
+                "field": "postgresql_database_name",
+                "value": "$Database",
+                "operator": "="
+              }
+            ],
+            "groupBy": [],
+            "orderBy": [],
+            "interval": "",
+            "namespace": "",
+            "dimensions": [],
+            "distinctBy": null,
+            "metricType": "",
+            "query_type": "promql",
+            "time_range": {
+              "to": 0,
+              "from": 600
+            },
+            "aggregation": {
+              "stat": "AVG",
+              "type": "",
+              "unit": "1",
+              "field": "",
+              "value": "postgresql_backends",
+              "metric": "postgresql_backends",
+              "spatial": "LAST",
+              "temporal": "AVG",
+              "metricType": "gauge",
+              "temporality": "unspecified"
+            },
+            "datasourceId": "kloudmate",
+            "responseType": "series",
+            "promql_query_type": "instant"
+          }
+        ],
+        "time_options": {
+          "override": false,
+          "time_shift": ""
+        }
+      },
+      {
+        "id": "u9ttgoeayufew",
+        "tz": "local",
+        "title": "Max Connections",
+        "overrides": [],
+        "panelType": "STATS",
+        "timeRange": "1h",
+        "statConfig": {
+          "rename": [],
+          "statView": "grid",
+          "baseColor": "#4CBB17",
+          "calculation": "last",
+          "value_mappings": []
+        },
+        "description": "configured max no. of client connections allowed",
+        "node_configs": [
+          {
+            "exp": "postgresql_connection_max",
+            "page": 1,
+            "stat": "",
+            "type": "query",
+            "limit": null,
+            "hidden": false,
+            "metric": "",
+            "nodeId": "A",
+            "region": "",
+            "source": "kloudmate",
+            "columns": [],
+            "dataset": "metrics",
+            "filters": [
+              {
+                "type": "string",
+                "field": "host_name",
+                "value": "$DBHOST",
+                "operator": "="
+              }
+            ],
+            "groupBy": [],
+            "orderBy": [],
+            "interval": "",
+            "namespace": "",
+            "dimensions": [],
+            "distinctBy": null,
+            "metricType": "",
+            "query_type": "qb",
+            "time_range": {
+              "to": 0,
+              "from": 600
+            },
+            "aggregation": {
+              "stat": "AVG",
+              "type": "",
+              "unit": "{connections}",
+              "field": "",
+              "value": "postgresql_connection_max",
+              "metric": "postgresql_connection_max",
+              "spatial": "LAST",
+              "temporal": "AVG",
+              "metricType": "gauge",
+              "temporality": "unspecified"
+            },
+            "datasourceId": "kloudmate",
+            "responseType": "series"
+          }
+        ],
+        "time_options": {
+          "override": false,
+          "time_shift": ""
+        }
+      },
+      {
+        "id": "knmxw8x4hcsfo",
+        "tz": "local",
+        "title": "Database Count",
+        "overrides": [],
+        "panelType": "STATS",
+        "timeRange": "1h",
+        "statConfig": {
+          "rename": [],
+          "statView": "grid",
+          "baseColor": "#4CBB17",
+          "calculation": "last",
+          "value_mappings": []
+        },
+        "description": "no. of user databases",
+        "node_configs": [
+          {
+            "page": 1,
+            "stat": "",
+            "type": "query",
+            "limit": null,
+            "hidden": false,
+            "metric": "",
+            "nodeId": "A",
+            "region": "",
+            "source": "kloudmate",
+            "columns": [],
+            "dataset": "metrics",
+            "filters": [
+              {
+                "type": "string",
+                "field": "host_name",
+                "value": "$DBHOST",
+                "operator": "="
+              }
+            ],
+            "groupBy": [],
+            "orderBy": [],
+            "interval": "",
+            "namespace": "",
+            "dimensions": [],
+            "distinctBy": null,
+            "metricType": "",
+            "query_type": "qb",
+            "time_range": {
+              "to": 0,
+              "from": 600
+            },
+            "aggregation": {
+              "stat": "AVG",
+              "type": "",
+              "unit": "{databases}",
+              "field": "",
+              "value": "postgresql_database_count",
+              "metric": "postgresql_database_count",
+              "spatial": "LAST",
+              "temporal": "AVG",
+              "metricType": "gauge",
+              "temporality": "unspecified"
+            },
+            "datasourceId": "kloudmate",
+            "responseType": "series"
+          }
+        ],
+        "time_options": {
+          "override": false,
+          "time_shift": ""
+        }
+      },
+      {
+        "id": "osi5pfuk5md31",
+        "tz": "local",
+        "title": "Database Size",
+        "overrides": [],
+        "panelType": "STATS",
+        "timeRange": "1h",
+        "statConfig": {
+          "format": "bytes",
+          "rename": [],
+          "decimals": "1",
+          "statView": "grid",
+          "baseColor": "#4CBB17",
+          "calculation": "last",
+          "value_mappings": []
+        },
+        "description": "database disk usage",
+        "node_configs": [
+          {
+            "exp": "postgresql_db_size",
+            "page": 1,
+            "stat": "",
+            "type": "query",
+            "limit": null,
+            "hidden": false,
+            "metric": "",
+            "nodeId": "A",
+            "region": "",
+            "source": "kloudmate",
+            "columns": [],
+            "dataset": "metrics",
+            "filters": [
+              {
+                "type": "string",
+                "field": "host_name",
+                "value": "$DBHOST",
+                "operator": "="
+              },
+              {
+                "type": "string",
+                "field": "postgresql_database_name",
+                "value": "$Database",
+                "operator": "="
+              }
+            ],
+            "groupBy": [],
+            "orderBy": [],
+            "interval": "",
+            "namespace": "",
+            "dimensions": [],
+            "distinctBy": null,
+            "metricType": "",
+            "query_type": "qb",
+            "time_range": {
+              "to": 0,
+              "from": 600
+            },
+            "aggregation": {
+              "stat": "AVG",
+              "type": "",
+              "unit": "By",
+              "field": "",
+              "value": "postgresql_db_size",
+              "metric": "postgresql_db_size",
+              "ranking": {
+                "func": "None"
+              },
+              "spatial": "LAST",
+              "temporal": "AVG",
+              "metricType": "gauge",
+              "temporality": "unspecified"
+            },
+            "datasourceId": "kloudmate",
+            "responseType": "series"
+          }
+        ],
+        "time_options": {
+          "override": false,
+          "time_shift": ""
+        }
+      },
+      {
+        "id": "jpw7rmf7qzuei",
+        "tz": "local",
+        "title": "Table Count",
+        "overrides": [],
+        "panelType": "STATS",
+        "timeRange": "1h",
+        "statConfig": {
+          "rename": [],
+          "statView": "grid",
+          "baseColor": "#4CBB17",
+          "calculation": "last",
+          "value_mappings": []
+        },
+        "description": "no. of user tables in a database",
+        "node_configs": [
+          {
+            "exp": "postgresql_table_count",
+            "page": 1,
+            "stat": "",
+            "type": "query",
+            "limit": null,
+            "hidden": false,
+            "metric": "",
+            "nodeId": "A",
+            "region": "",
+            "source": "kloudmate",
+            "columns": [],
+            "dataset": "metrics",
+            "filters": [
+              {
+                "type": "string",
+                "field": "host_name",
+                "value": "$DBHOST",
+                "operator": "="
+              },
+              {
+                "type": "string",
+                "field": "postgresql_database_name",
+                "value": "$Database",
+                "operator": "="
+              }
+            ],
+            "groupBy": [],
+            "orderBy": [],
+            "interval": "",
+            "namespace": "",
+            "dimensions": [],
+            "distinctBy": null,
+            "metricType": "",
+            "query_type": "qb",
+            "time_range": {
+              "to": 0,
+              "from": 600
+            },
+            "aggregation": {
+              "stat": "AVG",
+              "type": "",
+              "unit": "{table}",
+              "field": "",
+              "value": "postgresql_table_count",
+              "metric": "postgresql_table_count",
+              "ranking": {
+                "func": "None"
+              },
+              "spatial": "LAST",
+              "temporal": "AVG",
+              "metricType": "gauge",
+              "temporality": "unspecified"
+            },
+            "datasourceId": "kloudmate",
+            "responseType": "series"
+          }
+        ],
+        "time_options": {
+          "override": false,
+          "time_shift": ""
+        }
+      },
+      {
+        "id": "ai4rzms41duoh",
         "tz": "local",
         "axis": {
           "x": {
-            "date_style": "auto"
+            "max": "",
+            "min": "",
+            "date_style": "auto",
+            "bucketCount": "30",
+            "bucketOffset": "0"
           },
           "y": {
             "format": "number",
-            "decimals": 3
+            "suffix": " ops/s",
+            "decimals": ""
           }
         },
-        "title": "Operations",
-        "panelType": "TimeSeries",
-        "timeRange": "1h",
-        "statConfig": {
-          "statView": "grid",
-          "baseColor": "#4CBB17",
-          "calculation": "last"
+        "title": "Blocks Read",
+        "tooltip": {
+          "mode": "all"
         },
+        "overrides": [],
+        "panelType": "TimeSeries",
+        "timeRange": "3h",
         "timeseries": {
           "legend": {
             "view": "list",
             "values": []
           }
         },
+        "description": "rate of heap and index buffer operations",
         "node_configs": [
           {
+            "page": 1,
             "stat": "",
             "type": "query",
-            "limit": "",
+            "limit": null,
             "hidden": false,
             "metric": "",
             "nodeId": "A",
             "region": "",
             "source": "kloudmate",
+            "columns": [],
             "dataset": "metrics",
             "filters": [
               {
-                "type": "root",
-                "field": "serviceName",
-                "value": "$hostname",
+                "type": "string",
+                "field": "source",
+                "value": "tidx_hit",
+                "operator": "!="
+              },
+              {
+                "type": "string",
+                "field": "source",
+                "value": "tidx_read",
+                "operator": "!="
+              },
+              {
+                "type": "string",
+                "field": "source",
+                "value": "toast_hit",
+                "operator": "!="
+              },
+              {
+                "type": "string",
+                "field": "source",
+                "value": "toast_read",
+                "operator": "!="
+              },
+              {
+                "type": "string",
+                "field": "host_name",
+                "value": "$DBHOST",
+                "operator": "="
+              },
+              {
+                "type": "string",
+                "field": "postgresql_database_name",
+                "value": "$Database",
+                "operator": "="
+              }
+            ],
+            "groupBy": [
+              {
+                "type": "string",
+                "field": "source"
+              }
+            ],
+            "orderBy": [],
+            "interval": "",
+            "namespace": "",
+            "dimensions": [],
+            "distinctBy": null,
+            "metricType": "",
+            "query_type": "qb",
+            "time_range": {
+              "to": 0,
+              "from": 600
+            },
+            "aggregation": {
+              "stat": "AVG",
+              "type": "",
+              "unit": "1",
+              "field": "",
+              "value": "postgresql_blocks_read",
+              "metric": "postgresql_blocks_read",
+              "ranking": {
+                "func": "None"
+              },
+              "spatial": "SUM",
+              "temporal": "RATE",
+              "metricType": "sum",
+              "temporality": "cumulative"
+            },
+            "datasourceId": "kloudmate",
+            "legendFormat": "{{source}}",
+            "responseType": "series"
+          }
+        ],
+        "time_options": {
+          "override": false,
+          "time_shift": ""
+        }
+      },
+      {
+        "id": "lxqmirn204ac0",
+        "tz": "local",
+        "axis": {
+          "x": {
+            "max": "",
+            "min": "",
+            "date_style": "auto",
+            "bucketCount": "30",
+            "bucketOffset": "0"
+          },
+          "y": {
+            "format": "number",
+            "prefix": "",
+            "suffix": " ops/s",
+            "decimals": "1",
+            "multiplyBy": 1
+          },
+          "y1": {
+            "suffix": "",
+            "multiplyBy": ""
+          }
+        },
+        "title": "Commits & Rollbacks",
+        "tooltip": {
+          "mode": "all"
+        },
+        "overrides": [],
+        "panelType": "TimeSeries",
+        "timeRange": "1h",
+        "timeseries": {
+          "legend": {
+            "view": "list",
+            "values": []
+          }
+        },
+        "description": "db commits and rollbacks operations",
+        "node_configs": [
+          {
+            "exp": "postgresql_commits",
+            "page": 1,
+            "stat": "",
+            "type": "query",
+            "limit": null,
+            "hidden": false,
+            "metric": "",
+            "nodeId": "A",
+            "region": "",
+            "source": "kloudmate",
+            "columns": [],
+            "dataset": "metrics",
+            "filters": [
+              {
+                "type": "string",
+                "field": "host_name",
+                "value": "$DBHOST",
+                "operator": "="
+              },
+              {
+                "type": "string",
+                "field": "postgresql_database_name",
+                "value": "$Database",
+                "operator": "="
+              }
+            ],
+            "groupBy": [],
+            "orderBy": [],
+            "interval": "",
+            "namespace": "",
+            "dimensions": [],
+            "distinctBy": null,
+            "metricType": "",
+            "query_type": "qb",
+            "time_range": {
+              "to": 0,
+              "from": 600
+            },
+            "aggregation": {
+              "stat": "AVG",
+              "type": "",
+              "unit": "1",
+              "field": "",
+              "value": "postgresql_commits",
+              "metric": "postgresql_commits",
+              "ranking": {
+                "func": "None"
+              },
+              "spatial": "SUM",
+              "temporal": "RATE",
+              "metricType": "sum",
+              "temporality": "cumulative"
+            },
+            "datasourceId": "kloudmate",
+            "legendFormat": "commits",
+            "responseType": "series"
+          },
+          {
+            "page": 1,
+            "stat": "",
+            "type": "query",
+            "limit": null,
+            "hidden": false,
+            "metric": "",
+            "nodeId": "B",
+            "region": "",
+            "source": "kloudmate",
+            "columns": [],
+            "dataset": "metrics",
+            "filters": [
+              {
+                "type": "string",
+                "field": "host_name",
+                "value": "$DBHOST",
+                "operator": "="
+              },
+              {
+                "type": "string",
+                "field": "postgresql_database_name",
+                "value": "$Database",
+                "operator": "="
+              }
+            ],
+            "groupBy": [],
+            "orderBy": [],
+            "interval": "",
+            "namespace": "",
+            "dimensions": [],
+            "distinctBy": null,
+            "metricType": "",
+            "query_type": "qb",
+            "time_range": {
+              "to": 0,
+              "from": 600
+            },
+            "aggregation": {
+              "stat": "AVG",
+              "type": "",
+              "unit": "1",
+              "field": "",
+              "value": "postgresql_rollbacks",
+              "metric": "postgresql_rollbacks",
+              "spatial": "SUM",
+              "temporal": "RATE",
+              "metricType": "sum",
+              "temporality": "cumulative"
+            },
+            "datasourceId": "kloudmate",
+            "legendFormat": "rollbacks",
+            "responseType": "series"
+          }
+        ],
+        "time_options": {
+          "override": false,
+          "time_shift": ""
+        }
+      },
+      {
+        "id": "vtmt7jjybi1f2",
+        "tz": "local",
+        "axis": {
+          "x": {
+            "max": "",
+            "min": "",
+            "date_style": "auto",
+            "bucketCount": "30",
+            "bucketOffset": "0"
+          },
+          "y": {
+            "format": "number",
+            "suffix": " ops/s",
+            "decimals": "1"
+          }
+        },
+        "title": "Row Operations",
+        "tooltip": {
+          "mode": "all"
+        },
+        "overrides": [],
+        "panelType": "TimeSeries",
+        "timeRange": "1h",
+        "timeseries": {
+          "legend": {
+            "view": "list",
+            "values": []
+          }
+        },
+        "description": "no. of db row operations",
+        "node_configs": [
+          {
+            "page": 1,
+            "stat": "",
+            "type": "query",
+            "limit": null,
+            "hidden": false,
+            "metric": "",
+            "nodeId": "A",
+            "region": "",
+            "source": "kloudmate",
+            "columns": [],
+            "dataset": "metrics",
+            "filters": [
+              {
+                "type": "string",
+                "field": "host_name",
+                "value": "$DBHOST",
+                "operator": "="
+              },
+              {
+                "type": "string",
+                "field": "postgresql_database_name",
+                "value": "$Database",
                 "operator": "="
               }
             ],
@@ -59,7 +729,9 @@
             "interval": "",
             "namespace": "",
             "dimensions": [],
+            "distinctBy": null,
             "metricType": "",
+            "query_type": "qb",
             "time_range": {
               "to": 0,
               "from": 600
@@ -71,8 +743,13 @@
               "field": "",
               "value": "postgresql_operations",
               "metric": "postgresql_operations",
-              "metricType": "Sum",
-              "temporality": "Delta"
+              "ranking": {
+                "func": "None"
+              },
+              "spatial": "SUM",
+              "temporal": "RATE",
+              "metricType": "sum",
+              "temporality": "cumulative"
             },
             "datasourceId": "kloudmate",
             "legendFormat": "{{operation}}",
@@ -85,740 +762,52 @@
         }
       },
       {
-        "id": "denz4pnhynb",
+        "id": "l4iq33r6bi0x6",
         "tz": "local",
-        "axis": {
-          "x": {
-            "date_style": "auto"
-          },
-          "y": {
-            "format": "number",
-            "suffix": "{deadlock}",
-            "decimals": 3
-          }
-        },
-        "title": "Deadlock",
-        "panelType": "TimeSeries",
-        "timeRange": "1h",
-        "statConfig": {
-          "statView": "grid",
-          "baseColor": "#4CBB17",
-          "calculation": "last"
-        },
-        "timeseries": {
-          "legend": {
-            "view": "list",
-            "values": []
-          }
-        },
-        "node_configs": [
-          {
-            "stat": "",
-            "type": "query",
-            "limit": "",
-            "hidden": false,
-            "metric": "",
-            "nodeId": "A",
-            "region": "",
-            "source": "kloudmate",
-            "dataset": "metrics",
-            "filters": [
-              {
-                "type": "root",
-                "field": "serviceName",
-                "value": "$hostname",
-                "operator": "="
-              }
-            ],
-            "groupBy": [
-              {
-                "type": "string",
-                "field": "postgresql_database_name"
-              }
-            ],
-            "orderBy": [],
-            "interval": "",
-            "namespace": "",
-            "dimensions": [],
-            "metricType": "",
-            "time_range": {
-              "to": 0,
-              "from": 600
-            },
-            "aggregation": {
-              "stat": "SUM",
-              "type": "",
-              "unit": "{deadlock}",
-              "field": "",
-              "range": "1m",
-              "value": "postgresql_deadlocks",
-              "metric": "postgresql_deadlocks",
-              "metricType": "Sum",
-              "temporality": "Delta"
-            },
-            "datasourceId": "kloudmate",
-            "legendFormat": "{{postgresql_database_name}}",
-            "responseType": "series"
-          }
-        ],
-        "time_options": {
-          "override": false,
-          "time_shift": ""
-        }
-      },
-      {
-        "id": "4fn3njcz4qc",
-        "tz": "local",
-        "axis": {
-          "x": {
-            "date_style": "auto"
-          },
-          "y": {
-            "format": "number",
-            "suffix": "{lock}",
-            "decimals": 3
-          }
-        },
-        "title": "Databaselock_relation",
-        "panelType": "TimeSeries",
-        "timeRange": "1h",
-        "statConfig": {
-          "statView": "grid",
-          "baseColor": "#4CBB17",
-          "calculation": "last"
-        },
-        "timeseries": {
-          "legend": {
-            "view": "list",
-            "values": []
-          }
-        },
-        "description": "OID of the relation targeted by the lock, or null if the target is not a relation or part of a relation",
-        "node_configs": [
-          {
-            "stat": "",
-            "type": "query",
-            "limit": "",
-            "hidden": false,
-            "metric": "",
-            "nodeId": "A",
-            "region": "",
-            "source": "kloudmate",
-            "dataset": "metrics",
-            "filters": [
-              {
-                "type": "root",
-                "field": "serviceName",
-                "value": "$hostname",
-                "operator": "="
-              }
-            ],
-            "groupBy": [
-              {
-                "type": "string",
-                "field": "relation"
-              }
-            ],
-            "orderBy": [],
-            "interval": "",
-            "namespace": "",
-            "dimensions": [],
-            "metricType": "",
-            "time_range": {
-              "to": 0,
-              "from": 600
-            },
-            "aggregation": {
-              "stat": "SUM",
-              "type": "",
-              "unit": "{lock}",
-              "field": "",
-              "value": "postgresql_database_locks",
-              "metric": "postgresql_database_locks",
-              "metricType": "Gauge",
-              "temporality": "Cumulative"
-            },
-            "datasourceId": "kloudmate",
-            "legendFormat": "{{relation}}",
-            "responseType": "series"
-          },
-          {
-            "stat": "",
-            "type": "query",
-            "limit": "",
-            "hidden": true,
-            "metric": "",
-            "nodeId": "B",
-            "region": "",
-            "source": "kloudmate",
-            "dataset": "metrics",
-            "filters": [
-              {
-                "type": "root",
-                "field": "serviceName",
-                "value": "$hostname",
-                "operator": "="
-              }
-            ],
-            "groupBy": [
-              {
-                "type": "string",
-                "field": "mode"
-              }
-            ],
-            "orderBy": [],
-            "interval": "",
-            "namespace": "",
-            "dimensions": [],
-            "metricType": "",
-            "time_range": {
-              "to": 0,
-              "from": 600
-            },
-            "aggregation": {
-              "stat": "SUM",
-              "type": "",
-              "unit": "{lock}",
-              "field": "",
-              "value": "postgresql_database_locks",
-              "metric": "postgresql_database_locks",
-              "metricType": "Gauge",
-              "temporality": "Cumulative"
-            },
-            "datasourceId": "kloudmate",
-            "legendFormat": "{{mode}}",
-            "responseType": "series"
-          },
-          {
-            "stat": "",
-            "type": "query",
-            "limit": "",
-            "hidden": true,
-            "metric": "",
-            "nodeId": "C",
-            "region": "",
-            "source": "kloudmate",
-            "dataset": "metrics",
-            "filters": [
-              {
-                "type": "root",
-                "field": "serviceName",
-                "value": "$hostname",
-                "operator": "="
-              }
-            ],
-            "groupBy": [
-              {
-                "type": "string",
-                "field": "lock_type"
-              }
-            ],
-            "orderBy": [],
-            "interval": "",
-            "namespace": "",
-            "dimensions": [],
-            "metricType": "",
-            "time_range": {
-              "to": 0,
-              "from": 600
-            },
-            "aggregation": {
-              "stat": "SUM",
-              "type": "",
-              "unit": "{lock}",
-              "field": "",
-              "value": "postgresql_database_locks",
-              "metric": "postgresql_database_locks",
-              "metricType": "Gauge",
-              "temporality": "Cumulative"
-            },
-            "datasourceId": "kloudmate",
-            "legendFormat": "{{lock_type}}",
-            "responseType": "series"
-          }
-        ],
-        "time_options": {
-          "override": false,
-          "time_shift": ""
-        }
-      },
-      {
-        "id": "8zrul4pwsk",
-        "tz": "local",
-        "axis": {
-          "x": {
-            "date_style": "auto"
-          },
-          "y": {
-            "format": "number",
-            "decimals": 3
-          }
-        },
-        "title": "Block Read",
-        "panelType": "TimeSeries",
-        "timeRange": "1h",
-        "statConfig": {
-          "statView": "grid",
-          "baseColor": "#4CBB17",
-          "calculation": "last"
-        },
-        "timeseries": {
-          "legend": {
-            "view": "list",
-            "values": []
-          }
-        },
-        "description": "The number of blocks read",
-        "node_configs": [
-          {
-            "stat": "",
-            "type": "query",
-            "limit": "",
-            "hidden": false,
-            "metric": "",
-            "nodeId": "A",
-            "region": "",
-            "source": "kloudmate",
-            "dataset": "metrics",
-            "filters": [
-              {
-                "type": "root",
-                "field": "serviceName",
-                "value": "$hostname",
-                "operator": "="
-              }
-            ],
-            "groupBy": [
-              {
-                "type": "string",
-                "field": "source"
-              }
-            ],
-            "orderBy": [],
-            "interval": "",
-            "namespace": "",
-            "dimensions": [],
-            "metricType": "",
-            "time_range": {
-              "to": 0,
-              "from": 600
-            },
-            "aggregation": {
-              "stat": "SUM",
-              "type": "",
-              "unit": "1",
-              "field": "",
-              "value": "postgresql_blocks_read",
-              "metric": "postgresql_blocks_read",
-              "metricType": "Sum",
-              "temporality": "Delta"
-            },
-            "datasourceId": "kloudmate",
-            "legendFormat": "{{source}}",
-            "responseType": "series"
-          }
-        ],
-        "time_options": {
-          "override": false,
-          "time_shift": ""
-        }
-      },
-      {
-        "id": "guajfdwqa8r",
-        "tz": "local",
-        "axis": {
-          "x": {
-            "date_style": "auto"
-          },
-          "y": {
-            "format": "bytes",
-            "decimals": 3
-          }
-        },
-        "title": "Database size",
-        "panelType": "TimeSeries",
-        "timeRange": "1h",
-        "statConfig": {
-          "statView": "grid",
-          "baseColor": "#4CBB17",
-          "calculation": "last"
-        },
-        "timeseries": {
-          "legend": {
-            "view": "table",
-            "values": [
-              {
-                "label": "Last",
-                "value": "last"
-              }
-            ]
-          }
-        },
-        "node_configs": [
-          {
-            "stat": "",
-            "type": "query",
-            "limit": "",
-            "hidden": false,
-            "metric": "",
-            "nodeId": "A",
-            "region": "",
-            "source": "kloudmate",
-            "dataset": "metrics",
-            "filters": [
-              {
-                "type": "root",
-                "field": "serviceName",
-                "value": "$hostname",
-                "operator": "="
-              }
-            ],
-            "groupBy": [
-              {
-                "type": "string",
-                "field": "postgresql_database_name"
-              }
-            ],
-            "orderBy": [],
-            "interval": "",
-            "namespace": "",
-            "dimensions": [],
-            "metricType": "",
-            "time_range": {
-              "to": 0,
-              "from": 600
-            },
-            "aggregation": {
-              "stat": "AVG",
-              "type": "",
-              "unit": "By",
-              "field": "",
-              "value": "postgresql_db_size",
-              "metric": "postgresql_db_size",
-              "metricType": "Sum",
-              "temporality": "Cumulative"
-            },
-            "datasourceId": "kloudmate",
-            "legendFormat": "{{postgresql_database_name}}",
-            "responseType": "series"
-          }
-        ],
-        "time_options": {
-          "override": false,
-          "time_shift": ""
-        }
-      },
-      {
-        "id": "2s28u2trtc2",
-        "tz": "local",
-        "axis": {
-          "x": {
-            "date_style": "auto"
-          },
-          "y": {
-            "format": "number",
-            "suffix": "{connections}",
-            "decimals": 3
-          }
-        },
-        "title": "Maximum connections",
-        "panelType": "STATS",
-        "timeRange": "1h",
-        "statConfig": {
-          "statView": "grid",
-          "baseColor": "#4CBB17",
-          "calculation": "last"
-        },
-        "timeseries": {
-          "legend": {
-            "view": "list",
-            "values": []
-          }
-        },
-        "node_configs": [
-          {
-            "stat": "",
-            "type": "query",
-            "limit": "",
-            "hidden": false,
-            "metric": "",
-            "nodeId": "A",
-            "region": "",
-            "source": "kloudmate",
-            "dataset": "metrics",
-            "filters": [
-              {
-                "type": "root",
-                "field": "serviceName",
-                "value": "$hostname",
-                "operator": "="
-              }
-            ],
-            "groupBy": [
-              {
-                "type": "root",
-                "field": "serviceName"
-              }
-            ],
-            "orderBy": [],
-            "interval": "",
-            "namespace": "",
-            "dimensions": [],
-            "metricType": "",
-            "time_range": {
-              "to": 0,
-              "from": 600
-            },
-            "aggregation": {
-              "stat": "SUM",
-              "type": "",
-              "unit": "{connections}",
-              "field": "",
-              "value": "postgresql_connection_max",
-              "metric": "postgresql_connection_max",
-              "metricType": "Gauge",
-              "temporality": "Cumulative"
-            },
-            "datasourceId": "kloudmate",
-            "legendFormat": "{{serviceName}}",
-            "responseType": "series"
-          }
-        ],
-        "time_options": {
-          "override": false,
-          "time_shift": ""
-        }
-      },
-      {
-        "id": "gn0a256xiun",
-        "tz": "local",
-        "axis": {
-          "x": {
-            "date_style": "auto"
-          },
-          "y": {
-            "format": "number",
-            "suffix": "{connections}",
-            "decimals": 3
-          }
-        },
         "table": {
           "columns": [
-            {
-              "key": "A:COUNT()",
-              "rename": ""
-            }
-          ]
-        },
-        "title": "Database count",
-        "overrides": [],
-        "panelType": "STATS",
-        "timeRange": "1h",
-        "statConfig": {
-          "format": "number",
-          "suffix": "",
-          "decimals": 3,
-          "statView": "grid",
-          "baseColor": "#4CBB17",
-          "calculation": "last"
-        },
-        "timeseries": {
-          "legend": {
-            "view": "list",
-            "values": []
-          }
-        },
-        "node_configs": [
-          {
-            "stat": "",
-            "type": "query",
-            "limit": "",
-            "hidden": false,
-            "metric": "",
-            "nodeId": "A",
-            "region": "",
-            "source": "kloudmate",
-            "dataset": "metrics",
-            "filters": [
-              {
-                "type": "root",
-                "field": "serviceName",
-                "value": "$hostname",
-                "operator": "="
-              }
-            ],
-            "groupBy": [],
-            "orderBy": [],
-            "interval": "",
-            "namespace": "",
-            "dimensions": [],
-            "metricType": "",
-            "time_range": {
-              "to": 0,
-              "from": 600
-            },
-            "aggregation": {
-              "stat": "SUM",
-              "type": "",
-              "unit": "{databases}",
-              "field": "",
-              "value": "postgresql_database_count",
-              "metric": "postgresql_database_count",
-              "metricType": "Sum",
-              "temporality": "Cumulative"
-            },
-            "datasourceId": "kloudmate",
-            "legendFormat": "",
-            "responseType": "series"
-          }
-        ],
-        "time_options": {
-          "override": false,
-          "time_shift": ""
-        }
-      },
-      {
-        "id": "34goz12p2l6",
-        "tz": "local",
-        "axis": {
-          "x": {
-            "date_style": "auto"
-          },
-          "y": {
-            "format": "number",
-            "suffix": "{connections}",
-            "decimals": 3
-          }
-        },
-        "title": "Total Rows",
-        "panelType": "STATS",
-        "timeRange": "1h",
-        "statConfig": {
-          "format": "number",
-          "decimals": 3,
-          "statView": "grid",
-          "baseColor": "#4CBB17",
-          "calculation": "last"
-        },
-        "timeseries": {
-          "legend": {
-            "view": "list",
-            "values": []
-          }
-        },
-        "node_configs": [
-          {
-            "stat": "",
-            "type": "query",
-            "limit": "",
-            "hidden": false,
-            "metric": "",
-            "nodeId": "A",
-            "region": "",
-            "source": "kloudmate",
-            "dataset": "metrics",
-            "filters": [
-              {
-                "type": "root",
-                "field": "serviceName",
-                "value": "$hostname",
-                "operator": "="
-              }
-            ],
-            "groupBy": [
-              {
-                "type": "root",
-                "field": "serviceName"
-              }
-            ],
-            "orderBy": [],
-            "interval": "",
-            "namespace": "",
-            "dimensions": [],
-            "metricType": "",
-            "time_range": {
-              "to": 0,
-              "from": 600
-            },
-            "aggregation": {
-              "stat": "SUM",
-              "type": "",
-              "unit": "1",
-              "field": "",
-              "value": "postgresql_rows",
-              "metric": "postgresql_rows",
-              "metricType": "Sum",
-              "temporality": "Cumulative"
-            },
-            "datasourceId": "kloudmate",
-            "legendFormat": "{{serviceName}}",
-            "responseType": "series"
-          }
-        ],
-        "time_options": {
-          "override": false,
-          "time_shift": ""
-        }
-      },
-      {
-        "id": "jra8s3hgd9d",
-        "tz": "local",
-        "axis": {
-          "x": {
-            "date_style": "auto"
-          },
-          "y": {
-            "format": "bytes",
-            "decimals": 3
-          }
-        },
-        "table": {
-          "columns": [
-            {
-              "key": "A:AVG()",
-              "rename": ""
-            },
             {
               "key": "postgresql_table_name",
-              "rename": ""
+              "rename": "Table"
+            },
+            {
+              "key": "A:LAST()",
+              "format": {
+                "format": "bytes",
+                "decimals": "1"
+              },
+              "rename": "Size"
             }
           ]
         },
-        "title": "Table size",
-        "panelType": "TimeSeries",
+        "title": "Top Tables by Size",
+        "panelType": "table",
         "timeRange": "1h",
-        "statConfig": {
-          "statView": "grid",
-          "baseColor": "#4CBB17",
-          "calculation": "last"
-        },
-        "timeseries": {
-          "legend": {
-            "view": "table",
-            "values": [
-              {
-                "label": "Last",
-                "value": "last"
-              }
-            ]
-          }
-        },
+        "description": "disk space used by a table",
         "node_configs": [
           {
+            "page": 1,
             "stat": "",
             "type": "query",
-            "limit": "",
+            "limit": null,
             "hidden": false,
             "metric": "",
             "nodeId": "A",
             "region": "",
             "source": "kloudmate",
+            "columns": [],
             "dataset": "metrics",
             "filters": [
               {
-                "type": "root",
-                "field": "serviceName",
-                "value": "$hostname",
+                "type": "string",
+                "field": "host_name",
+                "value": "$DBHOST",
+                "operator": "="
+              },
+              {
+                "type": "string",
+                "field": "postgresql_database_name",
+                "value": "$Database",
                 "operator": "="
               }
             ],
@@ -832,24 +821,31 @@
             "interval": "",
             "namespace": "",
             "dimensions": [],
+            "distinctBy": null,
             "metricType": "",
+            "query_type": "qb",
             "time_range": {
               "to": 0,
               "from": 600
             },
             "aggregation": {
-              "stat": "AVG",
+              "stat": "LAST",
               "type": "",
               "unit": "By",
               "field": "",
               "value": "postgresql_table_size",
               "metric": "postgresql_table_size",
-              "metricType": "Sum",
-              "temporality": "Cumulative"
+              "ranking": {
+                "func": "TopK",
+                "value": 10
+              },
+              "spatial": "LAST",
+              "temporal": "AVG",
+              "metricType": "gauge",
+              "temporality": "unspecified"
             },
             "datasourceId": "kloudmate",
-            "legendFormat": "{{postgresql_table_name}}",
-            "responseType": "series"
+            "responseType": "number"
           }
         ],
         "time_options": {
@@ -858,140 +854,51 @@
         }
       },
       {
-        "id": "ijxhe8umdlj",
+        "id": "6p5eigzdfivdr",
         "tz": "local",
-        "axis": {
-          "x": {
-            "date_style": "auto"
-          },
-          "y": {
-            "format": "number",
-            "suffix": "{connections}",
-            "decimals": 3
-          }
-        },
         "table": {
           "columns": [
             {
-              "key": "A:COUNT()",
-              "rename": ""
+              "key": "postgresql_index_name",
+              "rename": "Index"
+            },
+            {
+              "key": "A:LAST()",
+              "format": {
+                "format": "bytes"
+              },
+              "rename": "Size"
             }
           ]
         },
-        "title": "Table count",
-        "overrides": [],
-        "panelType": "STATS",
+        "title": "Top Indices by Size",
+        "panelType": "table",
         "timeRange": "1h",
-        "statConfig": {
-          "format": "number",
-          "suffix": "",
-          "decimals": 3,
-          "statView": "grid",
-          "baseColor": "#4CBB17",
-          "calculation": "last"
-        },
-        "timeseries": {
-          "legend": {
-            "view": "list",
-            "values": []
-          }
-        },
+        "description": "size of the index on disk",
         "node_configs": [
           {
+            "page": 1,
             "stat": "",
             "type": "query",
-            "limit": "",
+            "limit": null,
             "hidden": false,
             "metric": "",
             "nodeId": "A",
             "region": "",
             "source": "kloudmate",
+            "columns": [],
             "dataset": "metrics",
             "filters": [
               {
-                "type": "root",
-                "field": "serviceName",
-                "value": "$hostname",
+                "type": "string",
+                "field": "host_name",
+                "value": "$DBHOST",
                 "operator": "="
-              }
-            ],
-            "groupBy": [],
-            "orderBy": [],
-            "interval": "",
-            "namespace": "",
-            "dimensions": [],
-            "metricType": "",
-            "time_range": {
-              "to": 0,
-              "from": 600
-            },
-            "aggregation": {
-              "stat": "SUM",
-              "type": "",
-              "unit": "{table}",
-              "field": "",
-              "value": "postgresql_table_count",
-              "metric": "postgresql_table_count",
-              "metricType": "Sum",
-              "temporality": "Cumulative"
-            },
-            "datasourceId": "kloudmate",
-            "legendFormat": "",
-            "responseType": "series"
-          }
-        ],
-        "time_options": {
-          "override": false,
-          "time_shift": ""
-        }
-      },
-      {
-        "id": "5xkogyi2szm",
-        "tz": "local",
-        "axis": {
-          "x": {
-            "date_style": "auto"
-          },
-          "y": {
-            "format": "bytes",
-            "decimals": 3
-          }
-        },
-        "title": "Index size",
-        "panelType": "TimeSeries",
-        "timeRange": "1h",
-        "statConfig": {
-          "statView": "grid",
-          "baseColor": "#4CBB17",
-          "calculation": "last"
-        },
-        "timeseries": {
-          "legend": {
-            "view": "table",
-            "values": [
+              },
               {
-                "label": "Mean",
-                "value": "mean"
-              }
-            ]
-          }
-        },
-        "node_configs": [
-          {
-            "stat": "",
-            "type": "query",
-            "limit": "",
-            "hidden": false,
-            "metric": "",
-            "nodeId": "A",
-            "region": "",
-            "source": "kloudmate",
-            "dataset": "metrics",
-            "filters": [
-              {
-                "type": "root",
-                "field": "serviceName",
-                "value": "$hostname",
+                "type": "string",
+                "field": "postgresql_database_name",
+                "value": "$Database",
                 "operator": "="
               }
             ],
@@ -1005,24 +912,31 @@
             "interval": "",
             "namespace": "",
             "dimensions": [],
+            "distinctBy": null,
             "metricType": "",
+            "query_type": "qb",
             "time_range": {
               "to": 0,
               "from": 600
             },
             "aggregation": {
-              "stat": "MAX",
+              "stat": "LAST",
               "type": "",
               "unit": "By",
               "field": "",
               "value": "postgresql_index_size",
               "metric": "postgresql_index_size",
-              "metricType": "Gauge",
-              "temporality": "Cumulative"
+              "ranking": {
+                "func": "TopK",
+                "value": 10
+              },
+              "spatial": "LAST",
+              "temporal": "AVG",
+              "metricType": "gauge",
+              "temporality": "unspecified"
             },
             "datasourceId": "kloudmate",
-            "legendFormat": "{{postgresql_index_name}}",
-            "responseType": "series"
+            "responseType": "number"
           }
         ],
         "time_options": {
@@ -1031,78 +945,161 @@
         }
       },
       {
-        "id": "5mq81kj94fm",
+        "id": "2p7scbn9c655p",
         "tz": "local",
-        "axis": {
-          "x": {
-            "date_style": "auto"
-          },
-          "y": {
-            "format": "number",
-            "decimals": 3
-          }
+        "table": {
+          "columns": [
+            {
+              "key": "postgresql_table_name",
+              "rename": "Table"
+            },
+            {
+              "key": "A:LAST()",
+              "rename": "Live rows"
+            },
+            {
+              "key": "B:LAST()",
+              "rename": "Dead rows"
+            }
+          ]
         },
-        "title": "Rollback",
-        "panelType": "TimeSeries",
-        "timeRange": "1h",
-        "statConfig": {
-          "statView": "grid",
-          "baseColor": "#4CBB17",
-          "calculation": "last"
-        },
-        "timeseries": {
-          "legend": {
-            "view": "list",
-            "values": []
-          }
-        },
+        "title": "New Panel",
+        "panelType": "table",
+        "timeRange": "3h",
         "node_configs": [
           {
+            "page": 1,
             "stat": "",
             "type": "query",
-            "limit": "",
+            "limit": null,
             "hidden": false,
             "metric": "",
             "nodeId": "A",
             "region": "",
             "source": "kloudmate",
+            "columns": [],
             "dataset": "metrics",
             "filters": [
               {
-                "type": "root",
-                "field": "serviceName",
-                "value": "$hostname",
+                "type": "string",
+                "field": "host_name",
+                "value": "$DBHOST",
+                "operator": "="
+              },
+              {
+                "type": "string",
+                "field": "postgresql_database_name",
+                "value": "$Database",
+                "operator": "="
+              },
+              {
+                "type": "string",
+                "field": "state",
+                "value": "live",
                 "operator": "="
               }
             ],
             "groupBy": [
               {
                 "type": "string",
-                "field": "postgresql_database_name"
+                "field": "postgresql_table_name"
               }
             ],
             "orderBy": [],
             "interval": "",
             "namespace": "",
             "dimensions": [],
+            "distinctBy": null,
             "metricType": "",
+            "query_type": "qb",
             "time_range": {
               "to": 0,
               "from": 600
             },
             "aggregation": {
-              "stat": "SUM",
+              "stat": "LAST",
               "type": "",
               "unit": "1",
               "field": "",
-              "value": "postgresql_rollbacks",
-              "metric": "postgresql_rollbacks",
-              "metricType": "Sum",
-              "temporality": "Delta"
+              "value": "postgresql_rows",
+              "metric": "postgresql_rows",
+              "ranking": {
+                "func": "None"
+              },
+              "spatial": "LAST",
+              "temporal": "AVG",
+              "metricType": "gauge",
+              "temporality": "unspecified"
             },
             "datasourceId": "kloudmate",
-            "legendFormat": "{{postgresql_database_name}}",
-            "responseType": "series"
+            "responseType": "number"
+          },
+          {
+            "page": 1,
+            "stat": "",
+            "type": "query",
+            "limit": null,
+            "hidden": false,
+            "metric": "",
+            "nodeId": "B",
+            "region": "",
+            "source": "kloudmate",
+            "columns": [],
+            "dataset": "metrics",
+            "filters": [
+              {
+                "type": "string",
+                "field": "host_name",
+                "value": "$DBHOST",
+                "operator": "="
+              },
+              {
+                "type": "string",
+                "field": "postgresql_database_name",
+                "value": "$Database",
+                "operator": "="
+              },
+              {
+                "type": "string",
+                "field": "state",
+                "value": "dead",
+                "operator": "="
+              }
+            ],
+            "groupBy": [
+              {
+                "type": "string",
+                "field": "postgresql_table_name"
+              }
+            ],
+            "orderBy": [],
+            "interval": "",
+            "namespace": "",
+            "dimensions": [],
+            "distinctBy": null,
+            "metricType": "",
+            "query_type": "qb",
+            "time_range": {
+              "to": 0,
+              "from": 600
+            },
+            "aggregation": {
+              "stat": "LAST",
+              "type": "",
+              "unit": "1",
+              "field": "",
+              "value": "postgresql_rows",
+              "metric": "postgresql_rows",
+              "ranking": {
+                "func": "None"
+              },
+              "spatial": "AVG",
+              "temporal": "AVG",
+              "metricType": "gauge",
+              "temporality": "unspecified"
+            },
+            "datasourceId": "kloudmate",
+            "responseType": "number"
           }
         ],
         "time_options": {
@@ -1111,48 +1108,60 @@
         }
       },
       {
-        "id": "awx2hxmvijv",
+        "id": "n44io7nz28l4y",
         "tz": "local",
         "axis": {
           "x": {
-            "date_style": "auto"
+            "max": "",
+            "min": "",
+            "date_style": "auto",
+            "bucketCount": "30",
+            "bucketOffset": "0"
           },
           "y": {
             "format": "number",
-            "suffix": "{buffers}",
-            "decimals": 3
+            "suffix": " dl/s",
+            "decimals": "1"
           }
         },
-        "title": "Background Writer Buffer Allocated",
-        "panelType": "TimeSeries",
-        "timeRange": "1h",
-        "statConfig": {
-          "statView": "grid",
-          "baseColor": "#4CBB17",
-          "calculation": "last"
+        "title": "Deadlocks",
+        "tooltip": {
+          "mode": "single"
         },
+        "overrides": [],
+        "panelType": "TimeSeries",
+        "timeRange": "8h",
         "timeseries": {
           "legend": {
             "view": "list",
             "values": []
           }
         },
+        "description": "no. of deadlocks per sec",
         "node_configs": [
           {
+            "page": 1,
             "stat": "",
             "type": "query",
-            "limit": "",
+            "limit": null,
             "hidden": false,
             "metric": "",
             "nodeId": "A",
             "region": "",
             "source": "kloudmate",
+            "columns": [],
             "dataset": "metrics",
             "filters": [
               {
-                "type": "root",
-                "field": "serviceName",
-                "value": "$hostname",
+                "type": "string",
+                "field": "host_name",
+                "value": "$DBHOST",
+                "operator": "="
+              },
+              {
+                "type": "string",
+                "field": "postgresql_database_name",
+                "value": "$Database",
                 "operator": "="
               }
             ],
@@ -1161,189 +1170,7 @@
             "interval": "",
             "namespace": "",
             "dimensions": [],
-            "metricType": "",
-            "time_range": {
-              "to": 0,
-              "from": 600
-            },
-            "aggregation": {
-              "stat": "SUM",
-              "type": "",
-              "unit": "{buffers}",
-              "field": "",
-              "value": "postgresql_bgwriter_buffers_allocated",
-              "metric": "postgresql_bgwriter_buffers_allocated",
-              "metricType": "Sum",
-              "temporality": "Delta"
-            },
-            "datasourceId": "kloudmate",
-            "legendFormat": "Buffers allocated",
-            "responseType": "series"
-          }
-        ],
-        "time_options": {
-          "override": false,
-          "time_shift": ""
-        }
-      },
-      {
-        "id": "qc8x2k345ya",
-        "tz": "local",
-        "axis": {
-          "x": {
-            "date_style": "auto"
-          },
-          "y": {
-            "format": "number",
-            "suffix": "{buffers}",
-            "decimals": 3
-          }
-        },
-        "title": "Background Writer Buffer Writes",
-        "panelType": "TimeSeries",
-        "timeRange": "1h",
-        "statConfig": {
-          "statView": "grid",
-          "baseColor": "#4CBB17",
-          "calculation": "last"
-        },
-        "timeseries": {
-          "legend": {
-            "view": "list",
-            "values": []
-          }
-        },
-        "description": "Number of buffers written",
-        "node_configs": [
-          {
-            "stat": "",
-            "type": "query",
-            "limit": "",
-            "hidden": false,
-            "metric": "",
-            "nodeId": "A",
-            "region": "",
-            "source": "kloudmate",
-            "dataset": "metrics",
-            "filters": [
-              {
-                "type": "root",
-                "field": "serviceName",
-                "value": "$hostname",
-                "operator": "="
-              }
-            ],
-            "groupBy": [
-              {
-                "type": "string",
-                "field": "source"
-              }
-            ],
-            "orderBy": [],
-            "interval": "",
-            "namespace": "",
-            "dimensions": [],
-            "metricType": "",
-            "time_range": {
-              "to": 0,
-              "from": 600
-            },
-            "aggregation": {
-              "stat": "AVG",
-              "type": "",
-              "unit": "{buffers}",
-              "field": "",
-              "value": "postgresql_bgwriter_buffers_writes",
-              "metric": "postgresql_bgwriter_buffers_writes",
-              "metricType": "Sum",
-              "temporality": "Delta"
-            },
-            "datasourceId": "kloudmate",
-            "legendFormat": "{{source}}",
-            "responseType": "series"
-          }
-        ],
-        "time_options": {
-          "override": false,
-          "time_shift": ""
-        }
-      },
-      {
-        "id": "dxaqnhgpyd",
-        "tz": "local",
-        "axis": {
-          "x": {
-            "date_style": "auto"
-          },
-          "y": {
-            "format": "bytes",
-            "decimals": 3
-          }
-        },
-        "table": {
-          "columns": [
-            {
-              "key": "A:AVG()",
-              "format": {
-                "format": "bytes"
-              },
-              "rename": "DatabaseSize"
-            },
-            {
-              "key": "postgresql_database_name",
-              "rename": "DatabaseName"
-            }
-          ]
-        },
-        "title": "Database sizes Order by Desc",
-        "panelType": "table",
-        "timeRange": "1h",
-        "statConfig": {
-          "statView": "grid",
-          "baseColor": "#4CBB17",
-          "calculation": "last"
-        },
-        "timeseries": {
-          "legend": {
-            "view": "list",
-            "values": []
-          }
-        },
-        "node_configs": [
-          {
-            "stat": "",
-            "type": "query",
-            "limit": null,
-            "hidden": false,
-            "metric": "",
-            "nodeId": "A",
-            "region": "",
-            "source": "kloudmate",
-            "columns": [],
-            "dataset": "metrics",
-            "filters": [
-              {
-                "type": "root",
-                "field": "serviceName",
-                "value": "$hostname",
-                "operator": "="
-              }
-            ],
-            "groupBy": [
-              {
-                "type": "string",
-                "field": "postgresql_database_name"
-              }
-            ],
-            "orderBy": [
-              {
-                "field": "postgresql_database_name",
-                "order": "desc"
-              }
-            ],
-            "interval": "",
-            "namespace": "",
-            "dimensions": [],
+            "distinctBy": null,
             "metricType": "",
             "query_type": "qb",
             "time_range": {
@@ -1353,13 +1180,18 @@
             "aggregation": {
               "stat": "AVG",
               "type": "",
+              "unit": "{deadlock}",
               "field": "",
-              "value": "postgresql_db_size",
-              "metric": "postgresql_db_size"
+              "value": "postgresql_deadlocks",
+              "metric": "postgresql_deadlocks",
+              "spatial": "SUM",
+              "temporal": "RATE",
+              "metricType": "sum",
+              "temporality": "cumulative"
             },
             "datasourceId": "kloudmate",
-            "legendFormat": "{{postgresql_database_name}}",
-            "responseType": "number"
+            "legendFormat": "deadlocks",
+            "responseType": "series"
           }
         ],
         "time_options": {
@@ -1368,1052 +1200,61 @@
         }
       },
       {
-        "id": "lf9ttx3jzll",
+        "id": "lzehrigf6r565",
         "tz": "local",
         "axis": {
           "x": {
-            "date_style": "auto"
-          },
-          "y": {
-            "format": "bytes",
-            "decimals": 3
-          }
-        },
-        "table": {
-          "columns": [
-            {
-              "key": "A:AVG()",
-              "format": {
-                "format": "bytes",
-                "decimals": 3
-              },
-              "rename": "table size"
-            },
-            {
-              "key": "postgresql_database_name",
-              "rename": ""
-            },
-            {
-              "key": "postgresql_table_name",
-              "rename": ""
-            }
-          ]
-        },
-        "title": "Table size Order by Desc",
-        "panelType": "table",
-        "timeRange": "1h",
-        "statConfig": {
-          "statView": "grid",
-          "baseColor": "#4CBB17",
-          "calculation": "last"
-        },
-        "timeseries": {
-          "legend": {
-            "view": "list",
-            "values": [
-              {
-                "label": "Last",
-                "value": "last"
-              }
-            ]
-          }
-        },
-        "node_configs": [
-          {
-            "stat": "",
-            "type": "query",
-            "limit": null,
-            "hidden": false,
-            "metric": "",
-            "nodeId": "A",
-            "region": "",
-            "source": "kloudmate",
-            "columns": [],
-            "dataset": "metrics",
-            "filters": [
-              {
-                "type": "root",
-                "field": "serviceName",
-                "value": "$hostname",
-                "operator": "="
-              }
-            ],
-            "groupBy": [
-              {
-                "type": "string",
-                "field": "postgresql_database_name"
-              },
-              {
-                "type": "string",
-                "field": "postgresql_table_name"
-              }
-            ],
-            "orderBy": [],
-            "interval": "",
-            "namespace": "",
-            "dimensions": [],
-            "metricType": "",
-            "query_type": "qb",
-            "time_range": {
-              "to": 0,
-              "from": 600
-            },
-            "aggregation": {
-              "stat": "AVG",
-              "type": "",
-              "field": "",
-              "value": "postgresql_table_size",
-              "metric": "postgresql_table_size"
-            },
-            "datasourceId": "kloudmate",
-            "legendFormat": "{{postgresql_table_name}}",
-            "responseType": "number"
-          }
-        ],
-        "time_options": {
-          "override": false,
-          "time_shift": ""
-        }
-      },
-      {
-        "id": "c2onm6efuc",
-        "tz": "local",
-        "axis": {
-          "x": {
-            "date_style": "auto"
-          },
-          "y": {
-            "format": "bytes",
-            "decimals": 3
-          }
-        },
-        "table": {
-          "columns": [
-            {
-              "key": "A:AVG()",
-              "format": {
-                "format": "bytes"
-              },
-              "rename": "Index Size"
-            },
-            {
-              "key": "postgresql_database_name",
-              "rename": "DatabaseName"
-            },
-            {
-              "key": "postgresql_index_name",
-              "rename": "IndexName"
-            },
-            {
-              "key": "postgresql_table_name",
-              "rename": "TableName"
-            }
-          ]
-        },
-        "title": "Index size Order by Desc",
-        "panelType": "table",
-        "timeRange": "1h",
-        "statConfig": {
-          "statView": "grid",
-          "baseColor": "#4CBB17",
-          "calculation": "last"
-        },
-        "timeseries": {
-          "legend": {
-            "view": "table",
-            "values": [
-              {
-                "label": "Mean",
-                "value": "mean"
-              }
-            ]
-          }
-        },
-        "node_configs": [
-          {
-            "stat": "",
-            "type": "query",
-            "limit": null,
-            "hidden": false,
-            "metric": "",
-            "nodeId": "A",
-            "region": "",
-            "source": "kloudmate",
-            "columns": [],
-            "dataset": "metrics",
-            "filters": [
-              {
-                "type": "root",
-                "field": "serviceName",
-                "value": "$hostname",
-                "operator": "="
-              }
-            ],
-            "groupBy": [
-              {
-                "type": "string",
-                "field": "postgresql_database_name"
-              },
-              {
-                "type": "string",
-                "field": "postgresql_index_name"
-              },
-              {
-                "type": "string",
-                "field": "postgresql_table_name"
-              }
-            ],
-            "orderBy": [],
-            "interval": "",
-            "namespace": "",
-            "dimensions": [],
-            "metricType": "",
-            "query_type": "qb",
-            "time_range": {
-              "to": 0,
-              "from": 600
-            },
-            "aggregation": {
-              "stat": "AVG",
-              "type": "",
-              "field": "",
-              "value": "postgresql_index_size",
-              "metric": "postgresql_index_size"
-            },
-            "datasourceId": "kloudmate",
-            "legendFormat": "{{postgresql_index_name}}",
-            "responseType": "number"
-          }
-        ],
-        "time_options": {
-          "override": false,
-          "time_shift": ""
-        }
-      },
-      {
-        "id": "omikp205qyo",
-        "tz": "local",
-        "axis": {
-          "x": {
-            "date_style": "auto"
+            "max": "",
+            "min": "",
+            "date_style": "auto",
+            "bucketCount": "30",
+            "bucketOffset": "0"
           },
           "y": {
             "format": "number",
-            "decimals": 3
-          }
-        },
-        "title": "Backend",
-        "panelType": "TimeSeries",
-        "timeRange": "1h",
-        "statConfig": {
-          "statView": "grid",
-          "baseColor": "#4CBB17",
-          "calculation": "last"
-        },
-        "timeseries": {
-          "legend": {
-            "view": "list",
-            "values": []
-          }
-        },
-        "node_configs": [
-          {
-            "page": 1,
-            "stat": "",
-            "type": "query",
-            "hidden": false,
-            "metric": "",
-            "nodeId": "A",
-            "region": "",
-            "source": "kloudmate",
-            "dataset": "metrics",
-            "filters": [
-              {
-                "type": "root",
-                "field": "serviceName",
-                "value": "$hostname",
-                "operator": "="
-              }
-            ],
-            "groupBy": [
-              {
-                "type": "string",
-                "field": "postgresql_database_name"
-              }
-            ],
-            "orderBy": [],
-            "interval": "",
-            "namespace": "",
-            "dimensions": [],
-            "metricType": "",
-            "time_range": {
-              "to": 0,
-              "from": 600
-            },
-            "aggregation": {
-              "stat": "SUM",
-              "type": "",
-              "unit": "1",
-              "field": "",
-              "value": "postgresql_backends",
-              "metric": "postgresql_backends",
-              "metricType": "Sum",
-              "temporality": "Cumulative"
-            },
-            "datasourceId": "kloudmate",
-            "legendFormat": "{{postgresql_database_name}}"
-          }
-        ],
-        "time_options": {
-          "override": false,
-          "time_shift": ""
-        }
-      },
-      {
-        "id": "gyj6ieu52yl",
-        "tz": "local",
-        "axis": {
-          "x": {
-            "date_style": "auto"
-          },
-          "y": {
-            "format": "unformatted",
-            "decimals": 3
-          }
-        },
-        "title": "Total Rows",
-        "panelType": "TimeSeries",
-        "timeRange": "1h",
-        "statConfig": {
-          "format": "number",
-          "decimals": 3,
-          "statView": "grid",
-          "baseColor": "#4CBB17",
-          "calculation": "last"
-        },
-        "timeseries": {
-          "legend": {
-            "view": "list",
-            "values": []
-          }
-        },
-        "node_configs": [
-          {
-            "stat": "",
-            "type": "query",
-            "limit": null,
-            "hidden": false,
-            "metric": "",
-            "nodeId": "A",
-            "region": "",
-            "source": "kloudmate",
-            "columns": [],
-            "dataset": "metrics",
-            "filters": [
-              {
-                "type": "root",
-                "field": "serviceName",
-                "value": "$hostname",
-                "operator": "="
-              }
-            ],
-            "groupBy": [
-              {
-                "type": "string",
-                "field": "state"
-              }
-            ],
-            "orderBy": [],
-            "interval": "",
-            "namespace": "",
-            "dimensions": [],
-            "metricType": "",
-            "query_type": "qb",
-            "time_range": {
-              "to": 0,
-              "from": 600
-            },
-            "aggregation": {
-              "stat": "SUM",
-              "type": "",
-              "field": "",
-              "value": "postgresql_rows",
-              "metric": "postgresql_rows"
-            },
-            "datasourceId": "kloudmate",
-            "legendFormat": "{{state}}",
-            "responseType": "series"
-          }
-        ],
-        "time_options": {
-          "override": false,
-          "time_shift": ""
-        }
-      },
-      {
-        "id": "gh1laandu9s",
-        "tz": "local",
-        "axis": {
-          "x": {
-            "date_style": "auto"
-          },
-          "y": {
-            "format": "number",
-            "suffix": "{lock}",
-            "decimals": 3
-          }
-        },
-        "title": "Databaselock_mode",
-        "panelType": "TimeSeries",
-        "timeRange": "1h",
-        "statConfig": {
-          "statView": "grid",
-          "baseColor": "#4CBB17",
-          "calculation": "last"
-        },
-        "timeseries": {
-          "legend": {
-            "view": "list",
-            "values": []
-          }
-        },
-        "description": "Name of the lock mode held or desired by the process",
-        "node_configs": [
-          {
-            "stat": "",
-            "type": "query",
-            "limit": "",
-            "hidden": true,
-            "metric": "",
-            "nodeId": "A",
-            "region": "",
-            "source": "kloudmate",
-            "dataset": "metrics",
-            "filters": [
-              {
-                "type": "root",
-                "field": "serviceName",
-                "value": "$hostname",
-                "operator": "="
-              }
-            ],
-            "groupBy": [
-              {
-                "type": "string",
-                "field": "relation"
-              }
-            ],
-            "orderBy": [],
-            "interval": "",
-            "namespace": "",
-            "dimensions": [],
-            "metricType": "",
-            "time_range": {
-              "to": 0,
-              "from": 600
-            },
-            "aggregation": {
-              "stat": "SUM",
-              "type": "",
-              "unit": "{lock}",
-              "field": "",
-              "value": "postgresql_database_locks",
-              "metric": "postgresql_database_locks",
-              "metricType": "Gauge",
-              "temporality": "Cumulative"
-            },
-            "datasourceId": "kloudmate",
-            "legendFormat": "{{relation}}",
-            "responseType": "series"
-          },
-          {
-            "stat": "",
-            "type": "query",
-            "limit": "",
-            "hidden": false,
-            "metric": "",
-            "nodeId": "B",
-            "region": "",
-            "source": "kloudmate",
-            "dataset": "metrics",
-            "filters": [
-              {
-                "type": "root",
-                "field": "serviceName",
-                "value": "$hostname",
-                "operator": "="
-              }
-            ],
-            "groupBy": [
-              {
-                "type": "string",
-                "field": "mode"
-              }
-            ],
-            "orderBy": [],
-            "interval": "",
-            "namespace": "",
-            "dimensions": [],
-            "metricType": "",
-            "time_range": {
-              "to": 0,
-              "from": 600
-            },
-            "aggregation": {
-              "stat": "SUM",
-              "type": "",
-              "unit": "{lock}",
-              "field": "",
-              "value": "postgresql_database_locks",
-              "metric": "postgresql_database_locks",
-              "metricType": "Gauge",
-              "temporality": "Cumulative"
-            },
-            "datasourceId": "kloudmate",
-            "legendFormat": "{{mode}}",
-            "responseType": "series"
-          },
-          {
-            "stat": "",
-            "type": "query",
-            "limit": "",
-            "hidden": true,
-            "metric": "",
-            "nodeId": "C",
-            "region": "",
-            "source": "kloudmate",
-            "dataset": "metrics",
-            "filters": [
-              {
-                "type": "root",
-                "field": "serviceName",
-                "value": "$hostname",
-                "operator": "="
-              }
-            ],
-            "groupBy": [
-              {
-                "type": "string",
-                "field": "lock_type"
-              }
-            ],
-            "orderBy": [],
-            "interval": "",
-            "namespace": "",
-            "dimensions": [],
-            "metricType": "",
-            "time_range": {
-              "to": 0,
-              "from": 600
-            },
-            "aggregation": {
-              "stat": "SUM",
-              "type": "",
-              "unit": "{lock}",
-              "field": "",
-              "value": "postgresql_database_locks",
-              "metric": "postgresql_database_locks",
-              "metricType": "Gauge",
-              "temporality": "Cumulative"
-            },
-            "datasourceId": "kloudmate",
-            "legendFormat": "{{lock_type}}",
-            "responseType": "series"
-          }
-        ],
-        "time_options": {
-          "override": false,
-          "time_shift": ""
-        }
-      },
-      {
-        "id": "5js8wcx4u17",
-        "tz": "local",
-        "axis": {
-          "x": {
-            "date_style": "auto"
-          },
-          "y": {
-            "format": "number",
-            "suffix": "{lock}",
-            "decimals": 3
-          }
-        },
-        "title": "Databaselock_locktype",
-        "panelType": "TimeSeries",
-        "timeRange": "1h",
-        "statConfig": {
-          "statView": "grid",
-          "baseColor": "#4CBB17",
-          "calculation": "last"
-        },
-        "timeseries": {
-          "legend": {
-            "view": "list",
-            "values": []
-          }
-        },
-        "description": "Type of the lockable object",
-        "node_configs": [
-          {
-            "stat": "",
-            "type": "query",
-            "limit": "",
-            "hidden": true,
-            "metric": "",
-            "nodeId": "A",
-            "region": "",
-            "source": "kloudmate",
-            "dataset": "metrics",
-            "filters": [
-              {
-                "type": "root",
-                "field": "serviceName",
-                "value": "$hostname",
-                "operator": "="
-              }
-            ],
-            "groupBy": [
-              {
-                "type": "string",
-                "field": "relation"
-              }
-            ],
-            "orderBy": [],
-            "interval": "",
-            "namespace": "",
-            "dimensions": [],
-            "metricType": "",
-            "time_range": {
-              "to": 0,
-              "from": 600
-            },
-            "aggregation": {
-              "stat": "SUM",
-              "type": "",
-              "unit": "{lock}",
-              "field": "",
-              "value": "postgresql_database_locks",
-              "metric": "postgresql_database_locks",
-              "metricType": "Gauge",
-              "temporality": "Cumulative"
-            },
-            "datasourceId": "kloudmate",
-            "legendFormat": "{{relation}}",
-            "responseType": "series"
-          },
-          {
-            "stat": "",
-            "type": "query",
-            "limit": "",
-            "hidden": true,
-            "metric": "",
-            "nodeId": "B",
-            "region": "",
-            "source": "kloudmate",
-            "dataset": "metrics",
-            "filters": [
-              {
-                "type": "root",
-                "field": "serviceName",
-                "value": "$hostname",
-                "operator": "="
-              }
-            ],
-            "groupBy": [
-              {
-                "type": "string",
-                "field": "mode"
-              }
-            ],
-            "orderBy": [],
-            "interval": "",
-            "namespace": "",
-            "dimensions": [],
-            "metricType": "",
-            "time_range": {
-              "to": 0,
-              "from": 600
-            },
-            "aggregation": {
-              "stat": "SUM",
-              "type": "",
-              "unit": "{lock}",
-              "field": "",
-              "value": "postgresql_database_locks",
-              "metric": "postgresql_database_locks",
-              "metricType": "Gauge",
-              "temporality": "Cumulative"
-            },
-            "datasourceId": "kloudmate",
-            "legendFormat": "{{mode}}",
-            "responseType": "series"
-          },
-          {
-            "stat": "",
-            "type": "query",
-            "limit": "",
-            "hidden": false,
-            "metric": "",
-            "nodeId": "C",
-            "region": "",
-            "source": "kloudmate",
-            "dataset": "metrics",
-            "filters": [
-              {
-                "type": "root",
-                "field": "serviceName",
-                "value": "$hostname",
-                "operator": "="
-              }
-            ],
-            "groupBy": [
-              {
-                "type": "string",
-                "field": "lock_type"
-              }
-            ],
-            "orderBy": [],
-            "interval": "",
-            "namespace": "",
-            "dimensions": [],
-            "metricType": "",
-            "time_range": {
-              "to": 0,
-              "from": 600
-            },
-            "aggregation": {
-              "stat": "SUM",
-              "type": "",
-              "unit": "{lock}",
-              "field": "",
-              "value": "postgresql_database_locks",
-              "metric": "postgresql_database_locks",
-              "metricType": "Gauge",
-              "temporality": "Cumulative"
-            },
-            "datasourceId": "kloudmate",
-            "legendFormat": "{{lock_type}}",
-            "responseType": "series"
-          }
-        ],
-        "time_options": {
-          "override": false,
-          "time_shift": ""
-        }
-      },
-      {
-        "id": "ff6tp0xsp9v",
-        "tz": "local",
-        "axis": {
-          "x": {
-            "date_style": "auto"
-          },
-          "y": {
-            "format": "unformatted",
-            "decimals": 3
+            "suffix": " sc/s",
+            "decimals": "1"
           }
         },
         "title": "Index Scans",
+        "tooltip": {
+          "mode": "single"
+        },
+        "overrides": [],
         "panelType": "TimeSeries",
         "timeRange": "1h",
-        "statConfig": {
-          "statView": "grid",
-          "baseColor": "#4CBB17",
-          "calculation": "last"
-        },
         "timeseries": {
           "legend": {
             "view": "list",
             "values": []
           }
         },
-        "description": "The number of index scans on a table",
+        "description": "no. of index scans on a table",
         "node_configs": [
           {
             "page": 1,
             "stat": "",
             "type": "query",
+            "limit": null,
             "hidden": false,
             "metric": "",
             "nodeId": "A",
             "region": "",
             "source": "kloudmate",
+            "columns": [],
             "dataset": "metrics",
             "filters": [
               {
-                "type": "root",
-                "field": "serviceName",
-                "value": "$hostname",
-                "operator": "="
-              }
-            ],
-            "groupBy": [
-              {
                 "type": "string",
-                "field": "postgresql_database_name"
-              }
-            ],
-            "orderBy": [],
-            "interval": "",
-            "namespace": "",
-            "dimensions": [],
-            "metricType": "",
-            "time_range": {
-              "to": 0,
-              "from": 600
-            },
-            "aggregation": {
-              "stat": "SUM",
-              "type": "",
-              "field": "",
-              "value": "postgresql_index_scans",
-              "metric": "postgresql_index_scans"
-            },
-            "datasourceId": "kloudmate",
-            "legendFormat": "{{postgresql_database_name}}"
-          }
-        ],
-        "time_options": {
-          "override": false,
-          "time_shift": ""
-        }
-      },
-      {
-        "id": "082b2y9cvxbf",
-        "tz": "local",
-        "axis": {
-          "x": {
-            "date_style": "auto"
-          },
-          "y": {
-            "format": "number",
-            "suffix": "{checkpoints}",
-            "decimals": 3
-          }
-        },
-        "title": "Background Writer Checkpoint Count",
-        "panelType": "TimeSeries",
-        "timeRange": "1h",
-        "statConfig": {
-          "statView": "grid",
-          "baseColor": "#4CBB17",
-          "calculation": "last"
-        },
-        "timeseries": {
-          "legend": {
-            "view": "list",
-            "values": []
-          }
-        },
-        "node_configs": [
-          {
-            "page": 1,
-            "stat": "",
-            "type": "query",
-            "hidden": false,
-            "metric": "",
-            "nodeId": "A",
-            "region": "",
-            "source": "kloudmate",
-            "dataset": "metrics",
-            "filters": [
-              {
-                "type": "root",
-                "field": "serviceName",
-                "value": "$hostname",
-                "operator": "="
-              }
-            ],
-            "groupBy": [
-              {
-                "type": "string",
-                "field": "type"
-              }
-            ],
-            "orderBy": [],
-            "interval": "",
-            "namespace": "",
-            "dimensions": [],
-            "metricType": "",
-            "time_range": {
-              "to": 0,
-              "from": 600
-            },
-            "aggregation": {
-              "stat": "SUM",
-              "type": "",
-              "unit": "{checkpoints}",
-              "field": "",
-              "value": "postgresql_bgwriter_checkpoint_count",
-              "metric": "postgresql_bgwriter_checkpoint_count",
-              "metricType": "Sum",
-              "temporality": "Delta"
-            },
-            "datasourceId": "kloudmate",
-            "legendFormat": "{{type}}"
-          }
-        ],
-        "time_options": {
-          "override": false,
-          "time_shift": ""
-        }
-      },
-      {
-        "id": "30ts9uw2ttc",
-        "tz": "local",
-        "axis": {
-          "x": {
-            "date_style": "auto"
-          },
-          "y": {
-            "format": "duration",
-            "decimals": 3
-          }
-        },
-        "title": "Background Writer Duration",
-        "panelType": "TimeSeries",
-        "timeRange": "1h",
-        "statConfig": {
-          "statView": "grid",
-          "baseColor": "#4CBB17",
-          "calculation": "last"
-        },
-        "timeseries": {
-          "legend": {
-            "view": "list",
-            "values": []
-          }
-        },
-        "node_configs": [
-          {
-            "page": 1,
-            "stat": "",
-            "type": "query",
-            "hidden": false,
-            "metric": "",
-            "nodeId": "A",
-            "region": "",
-            "source": "kloudmate",
-            "dataset": "metrics",
-            "filters": [
-              {
-                "type": "root",
-                "field": "serviceName",
-                "value": "$hostname",
-                "operator": "="
-              }
-            ],
-            "groupBy": [
-              {
-                "type": "string",
-                "field": "type"
-              }
-            ],
-            "orderBy": [],
-            "interval": "",
-            "namespace": "",
-            "dimensions": [],
-            "metricType": "",
-            "time_range": {
-              "to": 0,
-              "from": 600
-            },
-            "aggregation": {
-              "stat": "SUM",
-              "type": "",
-              "unit": "ms",
-              "field": "",
-              "value": "postgresql_bgwriter_duration",
-              "metric": "postgresql_bgwriter_duration",
-              "metricType": "Sum",
-              "temporality": "Delta"
-            },
-            "datasourceId": "kloudmate",
-            "legendFormat": "{{type}}"
-          }
-        ],
-        "time_options": {
-          "override": false,
-          "time_shift": ""
-        }
-      },
-      {
-        "id": "5e69wg4fr08",
-        "tz": "local",
-        "axis": {
-          "x": {
-            "date_style": "auto"
-          }
-        },
-        "table": {
-          "columns": [
-            {
-              "key": "timestamp",
-              "rename": ""
-            },
-            {
-              "key": "@message.query",
-              "rename": "QUERY"
-            },
-            {
-              "key": "@message.duration",
-              "rename": "duration (in milisecond)"
-            }
-          ]
-        },
-        "title": "Slow Query",
-        "panelType": "logs",
-        "timeRange": "30m",
-        "statConfig": {
-          "statView": "grid",
-          "baseColor": "#4CBB17",
-          "calculation": "last"
-        },
-        "timeseries": {
-          "legend": {
-            "view": "list",
-            "values": []
-          }
-        },
-        "node_configs": [
-          {
-            "page": 1,
-            "stat": "",
-            "type": "query",
-            "limit": "100",
-            "hidden": false,
-            "metric": "",
-            "nodeId": "A",
-            "region": "",
-            "source": "kloudmate",
-            "columns": [
-              {
-                "type": "root",
-                "field": "timestamp"
-              },
-              {
-                "type": "string",
-                "field": "@message.query"
-              },
-              {
-                "type": "string",
-                "field": "@message.duration"
-              }
-            ],
-            "dataset": "logs",
-            "filters": [
-              {
-                "type": "root",
-                "field": "serviceName",
-                "value": "$hostname",
+                "field": "host_name",
+                "value": "$DBHOST",
                 "operator": "="
               },
               {
                 "type": "string",
-                "field": "@message.duration",
-                "value": "1000",
-                "operator": ">"
+                "field": "postgresql_database_name",
+                "value": "$Database",
+                "operator": "="
               }
             ],
             "groupBy": [],
@@ -2421,8 +1262,9 @@
             "interval": "",
             "namespace": "",
             "dimensions": [],
+            "distinctBy": null,
             "metricType": "",
-            "query_type": "raw",
+            "query_type": "qb",
             "time_range": {
               "to": 0,
               "from": 600
@@ -2430,9 +1272,111 @@
             "aggregation": {
               "stat": "AVG",
               "type": "",
-              "field": ""
+              "unit": "{scans}",
+              "field": "",
+              "value": "postgresql_index_scans",
+              "metric": "postgresql_index_scans",
+              "spatial": "SUM",
+              "temporal": "RATE",
+              "metricType": "sum",
+              "temporality": "cumulative"
             },
             "datasourceId": "kloudmate",
+            "legendFormat": "index scans",
+            "responseType": "series"
+          }
+        ],
+        "time_options": {
+          "override": false,
+          "time_shift": ""
+        }
+      },
+      {
+        "id": "3uegua44fjjrq",
+        "tz": "local",
+        "axis": {
+          "x": {
+            "max": "",
+            "min": "",
+            "date_style": "auto",
+            "bucketCount": "30",
+            "bucketOffset": "0"
+          },
+          "y": {
+            "format": "number",
+            "suffix": "",
+            "decimals": ""
+          }
+        },
+        "title": "Database Locks",
+        "tooltip": {
+          "mode": "all"
+        },
+        "overrides": [],
+        "panelType": "TimeSeries",
+        "timeRange": "1h",
+        "timeseries": {
+          "legend": {
+            "view": "list",
+            "values": []
+          }
+        },
+        "description": "no. of database locks",
+        "node_configs": [
+          {
+            "page": 1,
+            "stat": "",
+            "type": "query",
+            "limit": null,
+            "hidden": false,
+            "metric": "",
+            "nodeId": "A",
+            "region": "",
+            "source": "kloudmate",
+            "columns": [],
+            "dataset": "metrics",
+            "filters": [
+              {
+                "type": "string",
+                "field": "host_name",
+                "value": "$DBHOST",
+                "operator": "="
+              }
+            ],
+            "groupBy": [
+              {
+                "type": "string",
+                "field": "relation"
+              }
+            ],
+            "orderBy": [],
+            "interval": "",
+            "namespace": "",
+            "dimensions": [],
+            "distinctBy": null,
+            "metricType": "",
+            "query_type": "qb",
+            "time_range": {
+              "to": 0,
+              "from": 600
+            },
+            "aggregation": {
+              "stat": "AVG",
+              "type": "",
+              "unit": "{lock}",
+              "field": "",
+              "value": "postgresql_database_locks",
+              "metric": "postgresql_database_locks",
+              "ranking": {
+                "func": "None"
+              },
+              "spatial": "LAST",
+              "temporal": "AVG",
+              "metricType": "gauge",
+              "temporality": "unspecified"
+            },
+            "datasourceId": "kloudmate",
+            "legendFormat": "{{relation}}",
             "responseType": "series"
           }
         ],
@@ -2445,14 +1389,33 @@
     "timeRange": "1h",
     "variables": [
       {
-        "id": "9c594b7a-66b1-4d0e-b3ab-9d953bd09d0c",
-        "name": "hostname",
+        "name": "DBHOST",
         "type": "query",
+        "label": "DB_HOST",
         "config": {
           "otel": {
             "key": {
-              "type": "root",
-              "field": "serviceName"
+              "type": "string",
+              "field": "host_name"
+            },
+            "dataset": "metrics"
+          },
+          "source": "cloudwatch",
+          "queryType": "otel.values"
+        },
+        "is_multi": false,
+        "description": "",
+        "show_all_option": false
+      },
+      {
+        "name": "Database",
+        "type": "query",
+        "label": "Database",
+        "config": {
+          "otel": {
+            "key": {
+              "type": "string",
+              "field": "postgresql_database_name"
             },
             "dataset": "metrics"
           },
@@ -2466,277 +1429,156 @@
     ],
     "panel_layouts": [
       {
-        "h": 3,
-        "i": "dsbsb8q5lo",
-        "w": 7,
-        "x": 5,
-        "y": 7,
-        "minH": 1,
-        "minW": 2,
-        "moved": false,
-        "static": false
-      },
-      {
-        "h": 3,
-        "i": "denz4pnhynb",
-        "w": 6,
-        "x": 6,
-        "y": 15,
-        "minH": 1,
-        "minW": 2,
-        "moved": false,
-        "static": false
-      },
-      {
-        "h": 3,
-        "i": "4fn3njcz4qc",
-        "w": 4,
-        "x": 0,
-        "y": 12,
-        "minH": 1,
-        "minW": 2,
-        "moved": false,
-        "static": false
-      },
-      {
-        "h": 3,
-        "i": "8zrul4pwsk",
-        "w": 6,
-        "x": 0,
-        "y": 15,
-        "minH": 1,
-        "minW": 2,
-        "moved": false,
-        "static": false
-      },
-      {
-        "h": 3,
-        "i": "guajfdwqa8r",
-        "w": 4,
-        "x": 0,
-        "y": 1,
-        "minH": 1,
-        "minW": 2,
-        "moved": false,
-        "static": false
-      },
-      {
-        "h": 1,
-        "i": "2s28u2trtc2",
-        "w": 3,
-        "x": 6,
-        "y": 0,
-        "minH": 1,
-        "minW": 2,
-        "moved": false,
-        "static": false
-      },
-      {
-        "h": 1,
-        "i": "gn0a256xiun",
-        "w": 3,
-        "x": 0,
-        "y": 0,
-        "minH": 1,
-        "minW": 2,
-        "moved": false,
-        "static": false
-      },
-      {
-        "h": 1,
-        "i": "34goz12p2l6",
-        "w": 3,
+        "h": 6,
+        "i": "7t5vrd93qiri8",
+        "w": 5,
         "x": 9,
         "y": 0,
         "minH": 1,
-        "minW": 2,
+        "minW": 1,
         "moved": false,
         "static": false
       },
       {
-        "h": 3,
-        "i": "jra8s3hgd9d",
-        "w": 4,
+        "h": 6,
+        "i": "u9ttgoeayufew",
+        "w": 5,
         "x": 4,
-        "y": 1,
-        "minH": 1,
-        "minW": 2,
-        "moved": false,
-        "static": false
-      },
-      {
-        "h": 1,
-        "i": "ijxhe8umdlj",
-        "w": 3,
-        "x": 3,
         "y": 0,
         "minH": 1,
-        "minW": 2,
+        "minW": 1,
         "moved": false,
         "static": false
       },
       {
-        "h": 3,
-        "i": "5xkogyi2szm",
-        "w": 4,
-        "x": 8,
-        "y": 1,
-        "minH": 1,
-        "minW": 2,
-        "moved": false,
-        "static": false
-      },
-      {
-        "h": 2,
-        "i": "5mq81kj94fm",
-        "w": 6,
-        "x": 0,
-        "y": 20,
-        "minH": 1,
-        "minW": 2,
-        "moved": false,
-        "static": false
-      },
-      {
-        "h": 2,
-        "i": "awx2hxmvijv",
-        "w": 6,
-        "x": 0,
-        "y": 18,
-        "minH": 1,
-        "minW": 2,
-        "moved": false,
-        "static": false
-      },
-      {
-        "h": 2,
-        "i": "qc8x2k345ya",
-        "w": 6,
-        "x": 6,
-        "y": 18,
-        "minH": 1,
-        "minW": 2,
-        "moved": false,
-        "static": false
-      },
-      {
-        "h": 3,
-        "i": "dxaqnhgpyd",
+        "h": 6,
+        "i": "knmxw8x4hcsfo",
         "w": 4,
         "x": 0,
-        "y": 4,
+        "y": 0,
         "minH": 1,
-        "minW": 2,
+        "minW": 1,
         "moved": false,
         "static": false
       },
       {
-        "h": 3,
-        "i": "lf9ttx3jzll",
-        "w": 4,
-        "x": 4,
-        "y": 4,
-        "minH": 1,
-        "minW": 2,
-        "moved": false,
-        "static": false
-      },
-      {
-        "h": 3,
-        "i": "c2onm6efuc",
-        "w": 4,
-        "x": 8,
-        "y": 4,
-        "minH": 1,
-        "minW": 2,
-        "moved": false,
-        "static": false
-      },
-      {
-        "h": 2,
-        "i": "omikp205qyo",
-        "w": 6,
-        "x": 6,
-        "y": 20,
-        "minH": 1,
-        "minW": 2,
-        "moved": false,
-        "static": false
-      },
-      {
-        "h": 2,
-        "i": "gyj6ieu52yl",
-        "w": 3,
-        "x": 5,
-        "y": 10,
-        "minH": 1,
-        "minW": 2,
-        "moved": false,
-        "static": false
-      },
-      {
-        "h": 3,
-        "i": "gh1laandu9s",
-        "w": 4,
-        "x": 4,
-        "y": 12,
-        "minH": 1,
-        "minW": 2,
-        "moved": false,
-        "static": false
-      },
-      {
-        "h": 3,
-        "i": "5js8wcx4u17",
-        "w": 4,
-        "x": 8,
-        "y": 12,
-        "minH": 1,
-        "minW": 2,
-        "moved": false,
-        "static": false
-      },
-      {
-        "h": 2,
-        "i": "ff6tp0xsp9v",
-        "w": 4,
-        "x": 8,
-        "y": 10,
-        "minH": 1,
-        "minW": 2,
-        "moved": false,
-        "static": false
-      },
-      {
-        "h": 2,
-        "i": "082b2y9cvxbf",
-        "w": 6,
-        "x": 0,
-        "y": 22,
-        "minH": 1,
-        "minW": 2,
-        "moved": false,
-        "static": false
-      },
-      {
-        "h": 2,
-        "i": "30ts9uw2ttc",
-        "w": 6,
-        "x": 6,
-        "y": 22,
-        "minH": 1,
-        "minW": 2,
-        "moved": false,
-        "static": false
-      },
-      {
-        "h": 5,
-        "i": "5e69wg4fr08",
+        "h": 6,
+        "i": "osi5pfuk5md31",
         "w": 5,
-        "x": 0,
-        "y": 7,
+        "x": 14,
+        "y": 0,
         "minH": 1,
-        "minW": 2,
+        "minW": 1,
+        "moved": false,
+        "static": false
+      },
+      {
+        "h": 6,
+        "i": "jpw7rmf7qzuei",
+        "w": 5,
+        "x": 19,
+        "y": 0,
+        "minH": 1,
+        "minW": 1,
+        "moved": false,
+        "static": false
+      },
+      {
+        "h": 10,
+        "i": "ai4rzms41duoh",
+        "w": 8,
+        "x": 0,
+        "y": 6,
+        "minH": 1,
+        "minW": 1,
+        "moved": false,
+        "static": false
+      },
+      {
+        "h": 10,
+        "i": "lxqmirn204ac0",
+        "w": 8,
+        "x": 8,
+        "y": 6,
+        "minH": 1,
+        "minW": 1,
+        "moved": false,
+        "static": false
+      },
+      {
+        "h": 10,
+        "i": "vtmt7jjybi1f2",
+        "w": 8,
+        "x": 16,
+        "y": 6,
+        "minH": 1,
+        "minW": 1,
+        "moved": false,
+        "static": false
+      },
+      {
+        "h": 10,
+        "i": "l4iq33r6bi0x6",
+        "w": 8,
+        "x": 0,
+        "y": 16,
+        "minH": 1,
+        "minW": 1,
+        "moved": false,
+        "static": false
+      },
+      {
+        "h": 10,
+        "i": "6p5eigzdfivdr",
+        "w": 8,
+        "x": 8,
+        "y": 16,
+        "minH": 1,
+        "minW": 1,
+        "moved": false,
+        "static": false
+      },
+      {
+        "h": 10,
+        "i": "2p7scbn9c655p",
+        "w": 8,
+        "x": 16,
+        "y": 16,
+        "minH": 1,
+        "minW": 1,
+        "moved": false,
+        "static": false
+      },
+      {
+        "h": 10,
+        "i": "n44io7nz28l4y",
+        "w": 8,
+        "x": 0,
+        "y": 26,
+        "minH": 1,
+        "minW": 1,
+        "moved": false,
+        "static": false
+      },
+      {
+        "h": 10,
+        "i": "lzehrigf6r565",
+        "w": 8,
+        "x": 8,
+        "y": 26,
+        "minH": 1,
+        "minW": 1,
+        "moved": false,
+        "static": false
+      },
+      {
+        "h": 10,
+        "i": "3uegua44fjjrq",
+        "w": 8,
+        "x": 16,
+        "y": 26,
+        "minH": 1,
+        "minW": 1,
         "moved": false,
         "static": false
       }
