@@ -1,126 +1,28 @@
 {
   "name": "MongoDB",
-  "description": "",
+  "description": null,
   "data": {
     "tz": "local",
     "panels": [
       {
-        "id": "07qc22vyvmoo",
+        "id": "t5q5q4uweq40q",
         "tz": "local",
-        "axis": {
-          "x": {
-            "date_style": "auto"
-          },
-          "y": {
-            "format": "duration",
-            "decimals": 3
-          },
-          "y1": {
-            "format": "unformatted"
-          }
-        },
-        "STATS": {},
-        "title": "MongoDB Uptime",
+        "title": "Server Uptime",
+        "overrides": [],
         "panelType": "STATS",
         "timeRange": "1h",
-        "TimeSeries": {},
         "statConfig": {
           "format": "duration",
-          "suffix": "",
-          "decimals": 0,
+          "rename": [],
+          "decimals": "0",
           "statView": "grid",
           "baseColor": "#4CBB17",
-          "multiplyBy": "",
-          "calculation": "last"
+          "calculation": "last",
+          "value_mappings": []
         },
-        "timeseries": {
-          "legend": {
-            "view": "list",
-            "values": []
-          }
-        },
-        "description": "The amount of time that the server has been running.",
+        "description": "amount of time the server has been running",
         "node_configs": [
           {
-            "page": 1,
-            "stat": "",
-            "type": "query",
-            "hidden": false,
-            "metric": "",
-            "nodeId": "A",
-            "region": "",
-            "source": "kloudmate",
-            "dataset": "metrics",
-            "filters": [],
-            "groupBy": [
-              {
-                "type": "string",
-                "field": "server_address"
-              }
-            ],
-            "orderBy": [],
-            "interval": "",
-            "namespace": "",
-            "dimensions": [],
-            "metricType": "",
-            "time_range": {
-              "to": 0,
-              "from": 600
-            },
-            "aggregation": {
-              "stat": "LAST",
-              "type": "",
-              "unit": "ms",
-              "field": "",
-              "value": "mongodb_uptime",
-              "metric": "mongodb_uptime",
-              "metricType": "Sum",
-              "temporality": "Cumulative"
-            },
-            "datasourceId": "kloudmate",
-            "legendFormat": "",
-            "responseType": "series"
-          }
-        ],
-        "time_options": {
-          "override": false,
-          "time_shift": ""
-        }
-      },
-      {
-        "id": "2ol0io3pkbw",
-        "tz": "local",
-        "axis": {
-          "x": {
-            "date_style": "auto"
-          },
-          "y": {
-            "format": "number",
-            "suffix": "{connections}",
-            "decimals": ""
-          }
-        },
-        "STATS": {},
-        "table": {},
-        "title": "Active Connections",
-        "panelType": "STATS",
-        "timeRange": "1h",
-        "TimeSeries": {},
-        "statConfig": {
-          "statView": "grid",
-          "baseColor": "#4CBB17",
-          "calculation": "last"
-        },
-        "timeseries": {
-          "legend": {
-            "view": "list",
-            "values": []
-          }
-        },
-        "description": "Established active client connections on MongoDB server",
-        "node_configs": [
-          {
-            "exp": "mongodb_connection_count",
             "page": 1,
             "stat": "",
             "type": "query",
@@ -130,6 +32,738 @@
             "nodeId": "A",
             "region": "",
             "source": "kloudmate",
+            "columns": [],
+            "dataset": "metrics",
+            "filters": [
+              {
+                "type": "string",
+                "field": "server_address",
+                "value": "$Serveraddress",
+                "operator": "="
+              }
+            ],
+            "groupBy": [],
+            "orderBy": [],
+            "interval": "",
+            "namespace": "",
+            "dimensions": [],
+            "distinctBy": null,
+            "metricType": "",
+            "query_type": "qb",
+            "time_range": {
+              "to": 0,
+              "from": 600
+            },
+            "aggregation": {
+              "stat": "AVG",
+              "type": "",
+              "unit": "ms",
+              "field": "",
+              "value": "mongodb_uptime",
+              "metric": "mongodb_uptime",
+              "spatial": "SUM",
+              "temporal": "LAST",
+              "metricType": "sum",
+              "temporality": "cumulative"
+            },
+            "datasourceId": "kloudmate",
+            "responseType": "series"
+          }
+        ],
+        "time_options": {
+          "override": false,
+          "time_shift": ""
+        }
+      },
+      {
+        "id": "lpoeodx1yhzhv",
+        "tz": "local",
+        "title": "Database Count",
+        "overrides": [],
+        "panelType": "STATS",
+        "timeRange": "1h",
+        "statConfig": {
+          "rename": [],
+          "statView": "grid",
+          "baseColor": "#4CBB17",
+          "calculation": "last",
+          "value_mappings": []
+        },
+        "description": "no. of existing databases",
+        "node_configs": [
+          {
+            "page": 1,
+            "stat": "",
+            "type": "query",
+            "limit": null,
+            "hidden": false,
+            "metric": "",
+            "nodeId": "A",
+            "region": "",
+            "source": "kloudmate",
+            "columns": [],
+            "dataset": "metrics",
+            "filters": [
+              {
+                "type": "string",
+                "field": "server_address",
+                "value": "$Serveraddress",
+                "operator": "="
+              }
+            ],
+            "groupBy": [],
+            "orderBy": [],
+            "interval": "",
+            "namespace": "",
+            "dimensions": [],
+            "distinctBy": null,
+            "metricType": "",
+            "query_type": "qb",
+            "time_range": {
+              "to": 0,
+              "from": 600
+            },
+            "aggregation": {
+              "stat": "AVG",
+              "type": "",
+              "unit": "{databases}",
+              "field": "",
+              "value": "mongodb_database_count",
+              "metric": "mongodb_database_count",
+              "spatial": "LAST",
+              "temporal": "AVG",
+              "metricType": "gauge",
+              "temporality": "unspecified"
+            },
+            "datasourceId": "kloudmate",
+            "responseType": "series"
+          }
+        ],
+        "time_options": {
+          "override": false,
+          "time_shift": ""
+        }
+      },
+      {
+        "id": "xr43v8hkm4azo",
+        "tz": "local",
+        "title": "Session Count",
+        "overrides": [],
+        "panelType": "STATS",
+        "timeRange": "1h",
+        "statConfig": {
+          "rename": [],
+          "statView": "grid",
+          "baseColor": "#4CBB17",
+          "calculation": "last",
+          "value_mappings": []
+        },
+        "description": "total number of active sessions",
+        "node_configs": [
+          {
+            "page": 1,
+            "stat": "",
+            "type": "query",
+            "limit": null,
+            "hidden": false,
+            "metric": "",
+            "nodeId": "A",
+            "region": "",
+            "source": "kloudmate",
+            "columns": [],
+            "dataset": "metrics",
+            "filters": [
+              {
+                "type": "string",
+                "field": "server_address",
+                "value": "$Serveraddress",
+                "operator": "="
+              }
+            ],
+            "groupBy": [],
+            "orderBy": [],
+            "interval": "",
+            "namespace": "",
+            "dimensions": [],
+            "distinctBy": null,
+            "metricType": "",
+            "query_type": "qb",
+            "time_range": {
+              "to": 0,
+              "from": 600
+            },
+            "aggregation": {
+              "stat": "AVG",
+              "type": "",
+              "unit": "{sessions}",
+              "field": "",
+              "value": "mongodb_session_count",
+              "metric": "mongodb_session_count",
+              "spatial": "LAST",
+              "temporal": "AVG",
+              "metricType": "gauge",
+              "temporality": "unspecified"
+            },
+            "datasourceId": "kloudmate",
+            "responseType": "series"
+          }
+        ],
+        "time_options": {
+          "override": false,
+          "time_shift": ""
+        }
+      },
+      {
+        "id": "upi0fphyn0an7",
+        "tz": "local",
+        "title": "Cursor Count",
+        "overrides": [],
+        "panelType": "STATS",
+        "timeRange": "1h",
+        "statConfig": {
+          "rename": [],
+          "statView": "grid",
+          "baseColor": "#4CBB17",
+          "calculation": "last",
+          "value_mappings": []
+        },
+        "description": "no. of open cursors maintained for clients",
+        "node_configs": [
+          {
+            "page": 1,
+            "stat": "",
+            "type": "query",
+            "limit": null,
+            "hidden": false,
+            "metric": "",
+            "nodeId": "A",
+            "region": "",
+            "source": "kloudmate",
+            "columns": [],
+            "dataset": "metrics",
+            "filters": [
+              {
+                "type": "string",
+                "field": "server_address",
+                "value": "$Serveraddress",
+                "operator": "="
+              }
+            ],
+            "groupBy": [],
+            "orderBy": [],
+            "interval": "",
+            "namespace": "",
+            "dimensions": [],
+            "distinctBy": null,
+            "metricType": "",
+            "query_type": "qb",
+            "time_range": {
+              "to": 0,
+              "from": 600
+            },
+            "aggregation": {
+              "stat": "AVG",
+              "type": "",
+              "unit": "{cursors}",
+              "field": "",
+              "value": "mongodb_cursor_count",
+              "metric": "mongodb_cursor_count",
+              "spatial": "LAST",
+              "temporal": "AVG",
+              "metricType": "gauge",
+              "temporality": "unspecified"
+            },
+            "datasourceId": "kloudmate",
+            "responseType": "series"
+          }
+        ],
+        "time_options": {
+          "override": false,
+          "time_shift": ""
+        }
+      },
+      {
+        "id": "3m7dkkzypg32b",
+        "tz": "local",
+        "title": "Cache Hit",
+        "overrides": [],
+        "panelType": "STATS",
+        "timeRange": "1h",
+        "statConfig": {
+          "format": "percentage",
+          "rename": [],
+          "statView": "grid",
+          "baseColor": "#4CBB17",
+          "calculation": "last",
+          "value_mappings": []
+        },
+        "description": "cache hit to miss ratio",
+        "node_configs": [
+          {
+            "page": 1,
+            "stat": "",
+            "type": "query",
+            "limit": null,
+            "hidden": true,
+            "metric": "",
+            "nodeId": "A",
+            "region": "",
+            "source": "kloudmate",
+            "columns": [],
+            "dataset": "metrics",
+            "filters": [
+              {
+                "type": "string",
+                "field": "type",
+                "value": "hit",
+                "operator": "="
+              },
+              {
+                "type": "string",
+                "field": "server_address",
+                "value": "$Serveraddress",
+                "operator": "="
+              }
+            ],
+            "groupBy": [],
+            "orderBy": [],
+            "interval": "",
+            "namespace": "",
+            "dimensions": [],
+            "distinctBy": null,
+            "metricType": "",
+            "query_type": "qb",
+            "time_range": {
+              "to": 0,
+              "from": 600
+            },
+            "aggregation": {
+              "stat": "AVG",
+              "type": "",
+              "unit": "{operations}",
+              "field": "",
+              "value": "mongodb_cache_operations",
+              "metric": "mongodb_cache_operations",
+              "ranking": {
+                "func": "None"
+              },
+              "spatial": "SUM",
+              "temporal": "RATE",
+              "metricType": "sum",
+              "temporality": "cumulative"
+            },
+            "datasourceId": "kloudmate",
+            "legendFormat": "hit",
+            "responseType": "series"
+          },
+          {
+            "page": 1,
+            "stat": "",
+            "type": "query",
+            "limit": null,
+            "hidden": true,
+            "metric": "",
+            "nodeId": "B",
+            "region": "",
+            "source": "kloudmate",
+            "columns": [],
+            "dataset": "metrics",
+            "filters": [
+              {
+                "type": "string",
+                "field": "type",
+                "value": "miss",
+                "operator": "="
+              },
+              {
+                "type": "string",
+                "field": "server_address",
+                "value": "$Serveraddress",
+                "operator": "="
+              }
+            ],
+            "groupBy": [],
+            "orderBy": [],
+            "interval": "",
+            "namespace": "",
+            "dimensions": [],
+            "distinctBy": null,
+            "metricType": "",
+            "query_type": "qb",
+            "time_range": {
+              "to": 0,
+              "from": 600
+            },
+            "aggregation": {
+              "stat": "AVG",
+              "type": "",
+              "unit": "{operations}",
+              "field": "",
+              "value": "mongodb_cache_operations",
+              "metric": "mongodb_cache_operations",
+              "spatial": "SUM",
+              "temporal": "RATE",
+              "metricType": "sum",
+              "temporality": "cumulative"
+            },
+            "datasourceId": "kloudmate",
+            "legendFormat": "miss",
+            "responseType": "series"
+          },
+          {
+            "type": "expression",
+            "hidden": false,
+            "nodeId": "C",
+            "reducer": "last",
+            "expression": "$A/($A+$B)",
+            "expressionType": "math"
+          }
+        ],
+        "time_options": {
+          "override": false,
+          "time_shift": ""
+        }
+      },
+      {
+        "id": "htttjxa07hsrk",
+        "tz": "local",
+        "title": "Collection Count",
+        "overrides": [],
+        "panelType": "STATS",
+        "timeRange": "1h",
+        "statConfig": {
+          "rename": [],
+          "statView": "grid",
+          "baseColor": "#4CBB17",
+          "calculation": "last",
+          "value_mappings": []
+        },
+        "description": "no. of collections in database",
+        "node_configs": [
+          {
+            "page": 1,
+            "stat": "",
+            "type": "query",
+            "limit": null,
+            "hidden": false,
+            "metric": "",
+            "nodeId": "A",
+            "region": "",
+            "source": "kloudmate",
+            "columns": [],
+            "dataset": "metrics",
+            "filters": [
+              {
+                "type": "string",
+                "field": "server_address",
+                "value": "$Serveraddress",
+                "operator": "="
+              },
+              {
+                "type": "string",
+                "field": "db_namespace",
+                "value": "$database",
+                "operator": "="
+              }
+            ],
+            "groupBy": [],
+            "orderBy": [],
+            "interval": "",
+            "namespace": "",
+            "dimensions": [],
+            "distinctBy": null,
+            "metricType": "",
+            "query_type": "qb",
+            "time_range": {
+              "to": 0,
+              "from": 600
+            },
+            "aggregation": {
+              "stat": "AVG",
+              "type": "",
+              "unit": "{collections}",
+              "field": "",
+              "value": "mongodb_collection_count",
+              "metric": "mongodb_collection_count",
+              "ranking": {
+                "func": "None"
+              },
+              "spatial": "LAST",
+              "temporal": "AVG",
+              "metricType": "gauge",
+              "temporality": "unspecified"
+            },
+            "datasourceId": "kloudmate",
+            "responseType": "series"
+          }
+        ],
+        "time_options": {
+          "override": false,
+          "time_shift": ""
+        }
+      },
+      {
+        "id": "nawebe4ez6eb0",
+        "tz": "local",
+        "title": "Database Size",
+        "overrides": [],
+        "panelType": "STATS",
+        "timeRange": "1h",
+        "statConfig": {
+          "format": "bytes",
+          "rename": [],
+          "decimals": "1",
+          "statView": "grid",
+          "baseColor": "#4CBB17",
+          "calculation": "last",
+          "value_mappings": []
+        },
+        "description": "size of the collection, data compression does not affect this value",
+        "node_configs": [
+          {
+            "page": 1,
+            "stat": "",
+            "type": "query",
+            "limit": null,
+            "hidden": false,
+            "metric": "",
+            "nodeId": "A",
+            "region": "",
+            "source": "kloudmate",
+            "columns": [],
+            "dataset": "metrics",
+            "filters": [
+              {
+                "type": "string",
+                "field": "server_address",
+                "value": "$Serveraddress",
+                "operator": "="
+              },
+              {
+                "type": "string",
+                "field": "db_namespace",
+                "value": "$database",
+                "operator": "="
+              }
+            ],
+            "groupBy": [],
+            "orderBy": [],
+            "interval": "",
+            "namespace": "",
+            "dimensions": [],
+            "distinctBy": null,
+            "metricType": "",
+            "query_type": "qb",
+            "time_range": {
+              "to": 0,
+              "from": 600
+            },
+            "aggregation": {
+              "stat": "AVG",
+              "type": "",
+              "unit": "By",
+              "field": "",
+              "value": "mongodb_data_size",
+              "metric": "mongodb_data_size",
+              "spatial": "LAST",
+              "temporal": "AVG",
+              "metricType": "gauge",
+              "temporality": "unspecified"
+            },
+            "datasourceId": "kloudmate",
+            "responseType": "series"
+          }
+        ],
+        "time_options": {
+          "override": false,
+          "time_shift": ""
+        }
+      },
+      {
+        "id": "buytc0lxx7mg6",
+        "tz": "local",
+        "title": "Index Count",
+        "overrides": [],
+        "panelType": "STATS",
+        "timeRange": "1h",
+        "statConfig": {
+          "rename": [],
+          "statView": "grid",
+          "baseColor": "#4CBB17",
+          "calculation": "last",
+          "value_mappings": []
+        },
+        "description": "no. of indexes in database",
+        "node_configs": [
+          {
+            "page": 1,
+            "stat": "",
+            "type": "query",
+            "limit": null,
+            "hidden": false,
+            "metric": "",
+            "nodeId": "A",
+            "region": "",
+            "source": "kloudmate",
+            "columns": [],
+            "dataset": "metrics",
+            "filters": [
+              {
+                "type": "string",
+                "field": "server_address",
+                "value": "$Serveraddress",
+                "operator": "="
+              },
+              {
+                "type": "string",
+                "field": "db_namespace",
+                "value": "$database",
+                "operator": "="
+              }
+            ],
+            "groupBy": [],
+            "orderBy": [],
+            "interval": "",
+            "namespace": "",
+            "dimensions": [],
+            "distinctBy": null,
+            "metricType": "",
+            "query_type": "qb",
+            "time_range": {
+              "to": 0,
+              "from": 600
+            },
+            "aggregation": {
+              "stat": "AVG",
+              "type": "",
+              "unit": "{indexes}",
+              "field": "",
+              "value": "mongodb_index_count",
+              "metric": "mongodb_index_count",
+              "ranking": {
+                "func": "None"
+              },
+              "spatial": "LAST",
+              "temporal": "AVG",
+              "metricType": "gauge",
+              "temporality": "unspecified"
+            },
+            "datasourceId": "kloudmate",
+            "responseType": "series"
+          }
+        ],
+        "time_options": {
+          "override": false,
+          "time_shift": ""
+        }
+      },
+      {
+        "id": "kfnqnn0b3qjww",
+        "tz": "local",
+        "title": "Index Size ",
+        "overrides": [],
+        "panelType": "STATS",
+        "timeRange": "1h",
+        "statConfig": {
+          "format": "bytes",
+          "rename": [],
+          "decimals": "1",
+          "statView": "grid",
+          "baseColor": "#4CBB17",
+          "calculation": "last",
+          "value_mappings": []
+        },
+        "description": "sum of the space allocated to all indexes in the database, including free index space",
+        "node_configs": [
+          {
+            "page": 1,
+            "stat": "",
+            "type": "query",
+            "limit": null,
+            "hidden": false,
+            "metric": "",
+            "nodeId": "A",
+            "region": "",
+            "source": "kloudmate",
+            "columns": [],
+            "dataset": "metrics",
+            "filters": [
+              {
+                "type": "string",
+                "field": "server_address",
+                "value": "$Serveraddress",
+                "operator": "="
+              },
+              {
+                "type": "string",
+                "field": "db_namespace",
+                "value": "$database",
+                "operator": "="
+              }
+            ],
+            "groupBy": [],
+            "orderBy": [],
+            "interval": "",
+            "namespace": "",
+            "dimensions": [],
+            "distinctBy": null,
+            "metricType": "",
+            "query_type": "qb",
+            "time_range": {
+              "to": 0,
+              "from": 600
+            },
+            "aggregation": {
+              "stat": "AVG",
+              "type": "",
+              "unit": "By",
+              "field": "",
+              "value": "mongodb_index_size",
+              "metric": "mongodb_index_size",
+              "ranking": {
+                "func": "None"
+              },
+              "spatial": "LAST",
+              "temporal": "AVG",
+              "metricType": "gauge",
+              "temporality": "unspecified"
+            },
+            "datasourceId": "kloudmate",
+            "responseType": "series"
+          }
+        ],
+        "time_options": {
+          "override": false,
+          "time_shift": ""
+        }
+      },
+      {
+        "id": "j6hpupv8ubcgj",
+        "tz": "local",
+        "title": "Active Connection Count",
+        "overrides": [],
+        "panelType": "STATS",
+        "timeRange": "1h",
+        "statConfig": {
+          "rename": [],
+          "statView": "grid",
+          "baseColor": "#4CBB17",
+          "calculation": "last",
+          "value_mappings": []
+        },
+        "description": "no. of active connections",
+        "node_configs": [
+          {
+            "page": 1,
+            "stat": "",
+            "type": "query",
+            "limit": null,
+            "hidden": false,
+            "metric": "",
+            "nodeId": "A",
+            "region": "",
+            "source": "kloudmate",
+            "columns": [],
             "dataset": "metrics",
             "filters": [
               {
@@ -140,21 +774,23 @@
               },
               {
                 "type": "string",
-                "field": "database",
+                "field": "server_address",
+                "value": "$Serveraddress",
+                "operator": "="
+              },
+              {
+                "type": "string",
+                "field": "db_namespace",
                 "value": "$database",
                 "operator": "="
               }
             ],
-            "groupBy": [
-              {
-                "type": "string",
-                "field": "database"
-              }
-            ],
+            "groupBy": [],
             "orderBy": [],
             "interval": "",
             "namespace": "",
             "dimensions": [],
+            "distinctBy": null,
             "metricType": "",
             "query_type": "qb",
             "time_range": {
@@ -162,14 +798,19 @@
               "from": 600
             },
             "aggregation": {
-              "stat": "LAST",
+              "stat": "AVG",
               "type": "",
               "unit": "{connections}",
               "field": "",
               "value": "mongodb_connection_count",
               "metric": "mongodb_connection_count",
-              "metricType": "Sum",
-              "temporality": "Cumulative"
+              "ranking": {
+                "func": "None"
+              },
+              "spatial": "LAST",
+              "temporal": "AVG",
+              "metricType": "gauge",
+              "temporality": "unspecified"
             },
             "datasourceId": "kloudmate",
             "responseType": "series"
@@ -181,57 +822,56 @@
         }
       },
       {
-        "id": "l30v4d90p1d",
+        "id": "3g1y9n09w9xkt",
         "tz": "local",
         "axis": {
           "x": {
-            "date_style": "auto"
+            "max": "",
+            "min": "",
+            "date_style": "auto",
+            "bucketCount": "30",
+            "bucketOffset": "0"
           },
           "y": {
             "format": "bytes",
-            "decimals": "1"
+            "prefix": "",
+            "suffix": "",
+            "decimals": "1",
+            "multiplyBy": 1
           }
         },
-        "title": "Memory Usage",
+        "title": "Server Memory Usage",
         "tooltip": {
-          "mode": "all"
+          "mode": "single"
         },
+        "overrides": [],
         "panelType": "TimeSeries",
         "timeRange": "1h",
-        "statConfig": {
-          "statView": "grid",
-          "baseColor": "#4CBB17",
-          "calculation": "last"
-        },
         "timeseries": {
           "legend": {
             "view": "list",
             "values": []
           }
         },
-        "description": "The amount of memory used.\n\n",
+        "description": "amount of memory used",
         "node_configs": [
           {
             "page": 1,
             "stat": "",
             "type": "query",
+            "limit": null,
             "hidden": false,
             "metric": "",
             "nodeId": "A",
             "region": "",
             "source": "kloudmate",
+            "columns": [],
             "dataset": "metrics",
             "filters": [
               {
                 "type": "string",
-                "field": "type",
-                "value": "resident",
-                "operator": "="
-              },
-              {
-                "type": "string",
-                "field": "database",
-                "value": "$database",
+                "field": "server_address",
+                "value": "$Serveraddress",
                 "operator": "="
               }
             ],
@@ -245,72 +885,27 @@
             "interval": "",
             "namespace": "",
             "dimensions": [],
+            "distinctBy": null,
             "metricType": "",
+            "query_type": "qb",
             "time_range": {
               "to": 0,
               "from": 600
             },
             "aggregation": {
-              "stat": "SUM",
+              "stat": "AVG",
               "type": "",
               "unit": "By",
               "field": "",
               "value": "mongodb_memory_usage",
               "metric": "mongodb_memory_usage",
-              "metricType": "Sum",
-              "temporality": "Cumulative"
-            },
-            "datasourceId": "kloudmate",
-            "legendFormat": "{{type}}"
-          },
-          {
-            "page": 1,
-            "stat": "",
-            "type": "query",
-            "hidden": false,
-            "metric": "",
-            "nodeId": "B",
-            "region": "",
-            "source": "kloudmate",
-            "dataset": "metrics",
-            "filters": [
-              {
-                "type": "string",
-                "field": "type",
-                "value": "virtual",
-                "operator": "="
+              "ranking": {
+                "func": "None"
               },
-              {
-                "type": "string",
-                "field": "database",
-                "value": "$database",
-                "operator": "="
-              }
-            ],
-            "groupBy": [
-              {
-                "type": "string",
-                "field": "type"
-              }
-            ],
-            "orderBy": [],
-            "interval": "",
-            "namespace": "",
-            "dimensions": [],
-            "metricType": "",
-            "time_range": {
-              "to": 0,
-              "from": 600
-            },
-            "aggregation": {
-              "stat": "SUM",
-              "type": "",
-              "unit": "By",
-              "field": "",
-              "value": "mongodb_memory_usage",
-              "metric": "mongodb_memory_usage",
-              "metricType": "Sum",
-              "temporality": "Cumulative"
+              "spatial": "LAST",
+              "temporal": "AVG",
+              "metricType": "gauge",
+              "temporality": "unspecified"
             },
             "datasourceId": "kloudmate",
             "legendFormat": "{{type}}",
@@ -323,53 +918,38 @@
         }
       },
       {
-        "id": "57gbcd5udwa",
+        "id": "aowuw0mxypags",
         "tz": "local",
         "axis": {
           "x": {
-            "date_style": "auto"
+            "max": "",
+            "min": "",
+            "date_style": "auto",
+            "bucketCount": "30",
+            "bucketOffset": "0"
           },
           "y": {
             "format": "number",
-            "suffix": "{documents}",
-            "decimals": 3
+            "suffix": " op/s",
+            "decimals": "1"
           }
         },
-        "table": {
-          "columns": [
-            {
-              "key": "A:LAST()",
-              "rename": "Count"
-            },
-            {
-              "key": "database",
-              "rename": ""
-            },
-            {
-              "key": "operation",
-              "rename": ""
-            }
-          ]
+        "title": "Operation Count",
+        "tooltip": {
+          "mode": "single"
         },
-        "title": "Document Operation Count",
-        "panelType": "table",
+        "overrides": [],
+        "panelType": "TimeSeries",
         "timeRange": "1h",
-        "TimeSeries": {},
-        "statConfig": {
-          "statView": "grid",
-          "baseColor": "#4CBB17",
-          "calculation": "last"
-        },
         "timeseries": {
           "legend": {
             "view": "list",
             "values": []
           }
         },
-        "description": "Total number of document-level operations performed on a collection.",
+        "description": "no. of operations executed",
         "node_configs": [
           {
-            "exp": "avg by (database,operation) (mongodb_document_operation_count{database=\"admin\"})",
             "page": 1,
             "stat": "",
             "type": "query",
@@ -379,34 +959,27 @@
             "nodeId": "A",
             "region": "",
             "source": "kloudmate",
+            "columns": [],
             "dataset": "metrics",
             "filters": [
               {
                 "type": "string",
-                "field": "database",
-                "value": "$database",
+                "field": "server_address",
+                "value": "$Serveraddress",
                 "operator": "="
               }
             ],
             "groupBy": [
               {
                 "type": "string",
-                "field": "database"
-              },
-              {
-                "type": "string",
                 "field": "operation"
               }
             ],
-            "orderBy": [
-              {
-                "field": "LAST",
-                "order": "desc"
-              }
-            ],
+            "orderBy": [],
             "interval": "",
             "namespace": "",
             "dimensions": [],
+            "distinctBy": null,
             "metricType": "",
             "query_type": "qb",
             "time_range": {
@@ -414,90 +987,22 @@
               "from": 600
             },
             "aggregation": {
-              "stat": "LAST",
+              "stat": "AVG",
               "type": "",
-              "unit": "{documents}",
+              "unit": "{operations}",
               "field": "",
-              "value": "mongodb_document_operation_count",
-              "metric": "mongodb_document_operation_count",
-              "metricType": "Sum",
-              "temporality": "Cumulative"
+              "value": "mongodb_operation_count",
+              "metric": "mongodb_operation_count",
+              "ranking": {
+                "func": "None"
+              },
+              "spatial": "SUM",
+              "temporal": "RATE",
+              "metricType": "sum",
+              "temporality": "cumulative"
             },
             "datasourceId": "kloudmate",
-            "responseType": "number"
-          }
-        ],
-        "time_options": {
-          "override": false,
-          "time_shift": ""
-        }
-      },
-      {
-        "id": "7ihn0n9bn6n",
-        "tz": "local",
-        "axis": {
-          "x": {
-            "date_style": "auto"
-          },
-          "y": {
-            "format": "number",
-            "suffix": "{cursors}",
-            "decimals": 1
-          },
-          "y1": {
-            "format": "number",
-            "decimals": 1
-          }
-        },
-        "STATS": {},
-        "title": "Open Cursor Count",
-        "panelType": "STATS",
-        "timeRange": "10m",
-        "statConfig": {
-          "statView": "grid",
-          "baseColor": "#4CBB17",
-          "calculation": "last"
-        },
-        "timeseries": {
-          "legend": {
-            "view": "list",
-            "values": []
-          }
-        },
-        "description": "The number of open cursors maintained for clients.",
-        "node_configs": [
-          {
-            "page": 1,
-            "stat": "",
-            "type": "query",
-            "hidden": false,
-            "metric": "",
-            "nodeId": "A",
-            "region": "",
-            "source": "kloudmate",
-            "dataset": "metrics",
-            "filters": [],
-            "groupBy": [],
-            "orderBy": [],
-            "interval": "",
-            "namespace": "",
-            "dimensions": [],
-            "metricType": "",
-            "time_range": {
-              "to": 0,
-              "from": 600
-            },
-            "aggregation": {
-              "stat": "LAST",
-              "type": "",
-              "unit": "{cursors}",
-              "field": "",
-              "value": "mongodb_cursor_count",
-              "metric": "mongodb_cursor_count",
-              "metricType": "Sum",
-              "temporality": "Cumulative"
-            },
-            "datasourceId": "kloudmate",
+            "legendFormat": "{{operation}}",
             "responseType": "series"
           }
         ],
@@ -507,38 +1012,38 @@
         }
       },
       {
-        "id": "douzzuq9u6q",
+        "id": "kvjls6mw8dqt2",
         "tz": "local",
         "axis": {
           "x": {
-            "date_style": "auto"
+            "max": "",
+            "min": "",
+            "date_style": "auto",
+            "bucketCount": "30",
+            "bucketOffset": "0"
           },
           "y": {
             "format": "number",
-            "suffix": "{databases}",
-            "decimals": 3
+            "suffix": " {query}/s",
+            "decimals": "1"
           }
         },
-        "STATS": {},
-        "table": {},
-        "title": "Database Count",
-        "panelType": "STATS",
-        "timeRange": "1h",
-        "statConfig": {
-          "statView": "grid",
-          "baseColor": "#4CBB17",
-          "calculation": "last"
+        "title": "Query Rate",
+        "tooltip": {
+          "mode": "single"
         },
+        "overrides": [],
+        "panelType": "TimeSeries",
+        "timeRange": "1h",
         "timeseries": {
           "legend": {
             "view": "list",
             "values": []
           }
         },
-        "description": "Total number of Database count",
+        "description": "no. of queries executed per second",
         "node_configs": [
           {
-            "exp": "mongodb_database_count",
             "page": 1,
             "stat": "",
             "type": "query",
@@ -548,8 +1053,16 @@
             "nodeId": "A",
             "region": "",
             "source": "kloudmate",
+            "columns": [],
             "dataset": "metrics",
-            "filters": [],
+            "filters": [
+              {
+                "type": "string",
+                "field": "server_address",
+                "value": "$Serveraddress",
+                "operator": "="
+              }
+            ],
             "groupBy": [
               {
                 "type": "string",
@@ -560,6 +1073,217 @@
             "interval": "",
             "namespace": "",
             "dimensions": [],
+            "distinctBy": null,
+            "metricType": "",
+            "query_type": "qb",
+            "time_range": {
+              "to": 0,
+              "from": 600
+            },
+            "aggregation": {
+              "stat": "AVG",
+              "type": "",
+              "unit": "{query}/s",
+              "field": "",
+              "value": "mongodb_queries_rate",
+              "metric": "mongodb_queries_rate",
+              "ranking": {
+                "func": "None"
+              },
+              "spatial": "LAST",
+              "temporal": "AVG",
+              "metricType": "gauge",
+              "temporality": "unspecified"
+            },
+            "datasourceId": "kloudmate",
+            "legendFormat": "{{server_address}}",
+            "responseType": "series"
+          }
+        ],
+        "time_options": {
+          "override": false,
+          "time_shift": ""
+        }
+      },
+      {
+        "id": "i5syz05gueinf",
+        "tz": "local",
+        "axis": {
+          "x": {
+            "max": "",
+            "min": "",
+            "date_style": "auto",
+            "bucketCount": "30",
+            "bucketOffset": "0"
+          },
+          "y": {
+            "format": "bytes",
+            "suffix": "/s",
+            "decimals": "1"
+          }
+        },
+        "title": "Network IO",
+        "tooltip": {
+          "mode": "all"
+        },
+        "overrides": [],
+        "panelType": "TimeSeries",
+        "timeRange": "6h",
+        "timeseries": {
+          "legend": {
+            "view": "list",
+            "values": []
+          }
+        },
+        "description": "no. of bytes received and transmit",
+        "node_configs": [
+          {
+            "exp": "rate(mongodb_network_io_receive{server_address=\"$Serveraddress\"}[5m])",
+            "page": 1,
+            "stat": "",
+            "type": "query",
+            "limit": null,
+            "hidden": false,
+            "metric": "",
+            "nodeId": "A",
+            "region": "",
+            "source": "kloudmate",
+            "columns": [],
+            "dataset": "metrics",
+            "filters": [],
+            "groupBy": [],
+            "orderBy": [],
+            "interval": "",
+            "namespace": "",
+            "dimensions": [],
+            "distinctBy": null,
+            "metricType": "",
+            "query_type": "promql",
+            "time_range": {
+              "to": 0,
+              "from": 600
+            },
+            "aggregation": {
+              "stat": "AVG",
+              "type": "",
+              "unit": "By",
+              "field": "",
+              "value": "mongodb_network_io_receive",
+              "metric": "mongodb_network_io_receive",
+              "spatial": "SUM",
+              "temporal": "AVG",
+              "metricType": "gauge",
+              "temporality": "unspecified"
+            },
+            "datasourceId": "kloudmate",
+            "legendFormat": "receive",
+            "responseType": "series"
+          },
+          {
+            "exp": "rate(mongodb_network_io_transmit{server_address=\"$Serveraddress\"}[5m])",
+            "page": 1,
+            "stat": "",
+            "type": "query",
+            "limit": null,
+            "hidden": false,
+            "metric": "",
+            "nodeId": "B",
+            "region": "",
+            "source": "kloudmate",
+            "columns": [],
+            "dataset": "metrics",
+            "filters": [],
+            "groupBy": [],
+            "orderBy": [],
+            "interval": "",
+            "namespace": "",
+            "dimensions": [],
+            "distinctBy": null,
+            "metricType": "",
+            "query_type": "promql",
+            "time_range": {
+              "to": 0,
+              "from": 600
+            },
+            "aggregation": {
+              "stat": "AVG",
+              "type": "",
+              "unit": "By",
+              "field": "",
+              "value": "mongodb_network_io_transmit",
+              "metric": "mongodb_network_io_transmit",
+              "spatial": "AVG",
+              "temporal": "AVG",
+              "metricType": "gauge",
+              "temporality": "unspecified"
+            },
+            "datasourceId": "kloudmate",
+            "legendFormat": "transmit",
+            "responseType": "series"
+          }
+        ],
+        "time_options": {
+          "override": false,
+          "time_shift": ""
+        }
+      },
+      {
+        "id": "7lfwgbte9ewuf",
+        "tz": "local",
+        "table": {
+          "columns": [
+            {
+              "key": "collection",
+              "rename": ""
+            },
+            {
+              "key": "A:LAST()",
+              "rename": "count"
+            }
+          ]
+        },
+        "title": "Index Access Count",
+        "panelType": "table",
+        "timeRange": "1h",
+        "description": "no. of times an index has been accessed",
+        "node_configs": [
+          {
+            "page": 1,
+            "stat": "",
+            "type": "query",
+            "limit": null,
+            "hidden": false,
+            "metric": "",
+            "nodeId": "A",
+            "region": "",
+            "source": "kloudmate",
+            "columns": [],
+            "dataset": "metrics",
+            "filters": [
+              {
+                "type": "string",
+                "field": "server_address",
+                "value": "$Serveraddress",
+                "operator": "="
+              },
+              {
+                "type": "string",
+                "field": "db_namespace",
+                "value": "$database",
+                "operator": "="
+              }
+            ],
+            "groupBy": [
+              {
+                "type": "string",
+                "field": "collection"
+              }
+            ],
+            "orderBy": [],
+            "interval": "",
+            "namespace": "",
+            "dimensions": [],
+            "distinctBy": null,
             "metricType": "",
             "query_type": "qb",
             "time_range": {
@@ -569,358 +1293,18 @@
             "aggregation": {
               "stat": "LAST",
               "type": "",
-              "unit": "{databases}",
+              "unit": "{accesses}",
               "field": "",
-              "value": "mongodb_database_count",
-              "metric": "mongodb_database_count",
-              "metricType": "Sum",
-              "temporality": "Cumulative"
-            },
-            "datasourceId": "kloudmate",
-            "responseType": "series"
-          }
-        ],
-        "time_options": {
-          "override": false,
-          "time_shift": ""
-        }
-      },
-      {
-        "id": "26suw9jgyfs",
-        "tz": "local",
-        "axis": {
-          "x": {
-            "date_style": "auto"
-          },
-          "y": {
-            "format": "number",
-            "suffix": "{connections}",
-            "decimals": ""
-          }
-        },
-        "STATS": {},
-        "title": "Current Connections ",
-        "panelType": "STATS",
-        "timeRange": "1h",
-        "statConfig": {
-          "statView": "grid",
-          "baseColor": "#4CBB17",
-          "calculation": "last"
-        },
-        "timeseries": {
-          "legend": {
-            "view": "list",
-            "values": []
-          }
-        },
-        "description": "Current Open active client connections on MongoDB server.",
-        "node_configs": [
-          {
-            "page": 1,
-            "stat": "",
-            "type": "query",
-            "hidden": false,
-            "metric": "",
-            "nodeId": "A",
-            "region": "",
-            "source": "kloudmate",
-            "dataset": "metrics",
-            "filters": [
-              {
-                "type": "string",
-                "field": "type",
-                "value": "current",
-                "operator": "="
+              "value": "mongodb_index_access_count",
+              "metric": "mongodb_index_access_count",
+              "ranking": {
+                "func": "TopK",
+                "value": 10
               },
-              {
-                "type": "string",
-                "field": "database",
-                "value": "$database",
-                "operator": "="
-              }
-            ],
-            "groupBy": [
-              {
-                "type": "string",
-                "field": "database"
-              }
-            ],
-            "orderBy": [],
-            "interval": "",
-            "namespace": "",
-            "dimensions": [],
-            "metricType": "",
-            "time_range": {
-              "to": 0,
-              "from": 600
-            },
-            "aggregation": {
-              "stat": "LAST",
-              "type": "",
-              "unit": "{connections}",
-              "field": "",
-              "value": "mongodb_connection_count",
-              "metric": "mongodb_connection_count",
-              "metricType": "Sum",
-              "temporality": "Cumulative"
-            },
-            "datasourceId": "kloudmate",
-            "responseType": "series"
-          }
-        ],
-        "time_options": {
-          "override": false,
-          "time_shift": ""
-        }
-      },
-      {
-        "id": "7qi3g625xov",
-        "tz": "local",
-        "axis": {
-          "x": {
-            "date_style": "auto"
-          },
-          "y": {
-            "format": "number",
-            "suffix": "{connections}",
-            "decimals": ""
-          }
-        },
-        "STATS": {},
-        "title": "Available Connections",
-        "panelType": "STATS",
-        "timeRange": "1h",
-        "statConfig": {
-          "format": "number",
-          "decimals": 1,
-          "statView": "grid",
-          "baseColor": "#4CBB17",
-          "calculation": "last"
-        },
-        "timeseries": {
-          "legend": {
-            "view": "list",
-            "values": []
-          }
-        },
-        "description": "Available active client connections on MongoDB server",
-        "node_configs": [
-          {
-            "page": 1,
-            "stat": "",
-            "type": "query",
-            "hidden": false,
-            "metric": "",
-            "nodeId": "A",
-            "region": "",
-            "source": "kloudmate",
-            "dataset": "metrics",
-            "filters": [
-              {
-                "type": "string",
-                "field": "type",
-                "value": "available",
-                "operator": "="
-              },
-              {
-                "type": "string",
-                "field": "database",
-                "value": "$database",
-                "operator": "="
-              }
-            ],
-            "groupBy": [
-              {
-                "type": "string",
-                "field": "database"
-              }
-            ],
-            "orderBy": [],
-            "interval": "",
-            "namespace": "",
-            "dimensions": [],
-            "metricType": "",
-            "time_range": {
-              "to": 0,
-              "from": 600
-            },
-            "aggregation": {
-              "stat": "LAST",
-              "type": "",
-              "unit": "{connections}",
-              "field": "",
-              "value": "mongodb_connection_count",
-              "metric": "mongodb_connection_count",
-              "metricType": "Sum",
-              "temporality": "Cumulative"
-            },
-            "datasourceId": "kloudmate",
-            "responseType": "series"
-          }
-        ],
-        "time_options": {
-          "override": false,
-          "time_shift": ""
-        }
-      },
-      {
-        "id": "4s9n99vadgo",
-        "tz": "local",
-        "axis": {
-          "x": {
-            "date_style": "auto"
-          },
-          "y": {
-            "format": "number",
-            "suffix": "{objects}",
-            "decimals": 3
-          }
-        },
-        "STATS": {},
-        "title": "Object Count",
-        "panelType": "STATS",
-        "timeRange": "1h",
-        "statConfig": {
-          "format": "number",
-          "decimals": 1,
-          "statView": "grid",
-          "baseColor": "#4CBB17",
-          "calculation": "last"
-        },
-        "timeseries": {
-          "legend": {
-            "view": "list",
-            "values": []
-          }
-        },
-        "description": "Total number of documents (objects) stored in a collection",
-        "node_configs": [
-          {
-            "page": 1,
-            "stat": "",
-            "type": "query",
-            "hidden": false,
-            "metric": "",
-            "nodeId": "A",
-            "region": "",
-            "source": "kloudmate",
-            "dataset": "metrics",
-            "filters": [
-              {
-                "type": "string",
-                "field": "database",
-                "value": "$database",
-                "operator": "="
-              }
-            ],
-            "groupBy": [],
-            "orderBy": [],
-            "interval": "",
-            "namespace": "",
-            "dimensions": [],
-            "metricType": "",
-            "time_range": {
-              "to": 0,
-              "from": 600
-            },
-            "aggregation": {
-              "stat": "SUM",
-              "type": "",
-              "unit": "{objects}",
-              "field": "",
-              "value": "mongodb_object_count",
-              "metric": "mongodb_object_count",
-              "metricType": "Sum",
-              "temporality": "Cumulative"
-            },
-            "datasourceId": "kloudmate",
-            "responseType": "series"
-          }
-        ],
-        "time_options": {
-          "override": false,
-          "time_shift": ""
-        }
-      },
-      {
-        "id": "059b6ei3ny4c",
-        "tz": "local",
-        "axis": {
-          "x": {
-            "date_style": "auto"
-          },
-          "y": {
-            "format": "bytes",
-            "decimals": 3
-          }
-        },
-        "table": {
-          "columns": [
-            {
-              "key": "A:SUM()",
-              "format": {
-                "format": "bytes",
-                "decimals": 1
-              },
-              "rename": "storage"
-            },
-            {
-              "key": "database",
-              "rename": ""
-            }
-          ]
-        },
-        "title": "Storage Size",
-        "panelType": "table",
-        "timeRange": "1h",
-        "statConfig": {
-          "statView": "grid",
-          "baseColor": "#4CBB17",
-          "calculation": "last"
-        },
-        "timeseries": {
-          "legend": {
-            "view": "list",
-            "values": []
-          }
-        },
-        "description": "The total amount of storage allocated to this collection.",
-        "node_configs": [
-          {
-            "page": 1,
-            "stat": "",
-            "type": "query",
-            "hidden": false,
-            "metric": "",
-            "nodeId": "A",
-            "region": "",
-            "source": "kloudmate",
-            "dataset": "metrics",
-            "filters": [],
-            "groupBy": [
-              {
-                "type": "string",
-                "field": "database"
-              }
-            ],
-            "orderBy": [],
-            "interval": "",
-            "namespace": "",
-            "dimensions": [],
-            "metricType": "",
-            "time_range": {
-              "to": 0,
-              "from": 600
-            },
-            "aggregation": {
-              "stat": "SUM",
-              "type": "",
-              "unit": "By",
-              "field": "",
-              "value": "mongodb_storage_size",
-              "metric": "mongodb_storage_size",
-              "metricType": "Sum",
-              "temporality": "Cumulative"
+              "spatial": "LAST",
+              "temporal": "AVG",
+              "metricType": "gauge",
+              "temporality": "unspecified"
             },
             "datasourceId": "kloudmate",
             "responseType": "number"
@@ -932,119 +1316,39 @@
         }
       },
       {
-        "id": "565n8d7bec8",
+        "id": "4bpj4yupfzi6l",
         "tz": "local",
         "axis": {
           "x": {
-            "date_style": "auto"
+            "max": "",
+            "min": "",
+            "date_style": "auto",
+            "bucketCount": "30",
+            "bucketOffset": "0"
           },
           "y": {
             "format": "number",
-            "suffix": "{operations}",
-            "decimals": 1
+            "suffix": " req/s",
+            "decimals": "1"
           }
         },
-        "STATS": {},
-        "title": "Cache Operations",
+        "title": "Network Request",
         "tooltip": {
-          "mode": "all"
+          "mode": "single"
         },
+        "overrides": [],
         "panelType": "TimeSeries",
-        "timeRange": "1h",
-        "TimeSeries": {},
-        "statConfig": {
-          "format": "number",
-          "decimals": 1,
-          "statView": "grid",
-          "baseColor": "#4CBB17",
-          "calculation": "last"
-        },
+        "timeRange": "6h",
         "timeseries": {
           "legend": {
             "view": "list",
             "values": []
           }
         },
-        "description": "The total number of cache operations performed on a MongoDB instance or collection.",
+        "description": "no. of requests received by the server",
         "node_configs": [
           {
-            "page": 1,
-            "stat": "",
-            "type": "query",
-            "hidden": false,
-            "metric": "",
-            "nodeId": "A",
-            "region": "",
-            "source": "kloudmate",
-            "dataset": "metrics",
-            "filters": [],
-            "groupBy": [
-              {
-                "type": "string",
-                "field": "type"
-              }
-            ],
-            "orderBy": [],
-            "interval": "",
-            "namespace": "",
-            "dimensions": [],
-            "metricType": "",
-            "time_range": {
-              "to": 0,
-              "from": 600
-            },
-            "aggregation": {
-              "stat": "SUM",
-              "type": "",
-              "unit": "{operations}",
-              "field": "",
-              "value": "mongodb_cache_operations",
-              "metric": "mongodb_cache_operations",
-              "metricType": "Sum",
-              "temporality": "Cumulative"
-            },
-            "datasourceId": "kloudmate",
-            "responseType": "series"
-          }
-        ],
-        "time_options": {
-          "override": false,
-          "time_shift": ""
-        }
-      },
-      {
-        "id": "05bto6xew16e",
-        "tz": "local",
-        "axis": {
-          "x": {
-            "date_style": "auto"
-          },
-          "y": {
-            "format": "number",
-            "suffix": "{collections}",
-            "decimals": 3
-          }
-        },
-        "STATS": {},
-        "table": {},
-        "title": "Collection Count",
-        "panelType": "STATS",
-        "timeRange": "5m",
-        "statConfig": {
-          "statView": "grid",
-          "baseColor": "#4CBB17",
-          "calculation": "last"
-        },
-        "timeseries": {
-          "legend": {
-            "view": "list",
-            "values": []
-          }
-        },
-        "description": "Total number of collections in a database.",
-        "node_configs": [
-          {
-            "exp": "mongodb_collection_count",
+            "exp": "rate(mongodb_network_request_count{server_address=\"$Serveraddress\"}[5m])",
             "page": 1,
             "stat": "",
             "type": "query",
@@ -1054,252 +1358,36 @@
             "nodeId": "A",
             "region": "",
             "source": "kloudmate",
+            "columns": [],
             "dataset": "metrics",
-            "filters": [
-              {
-                "type": "string",
-                "field": "database",
-                "value": "$database",
-                "operator": "="
-              }
-            ],
-            "groupBy": [
-              {
-                "type": "string",
-                "field": "database"
-              }
-            ],
+            "filters": [],
+            "groupBy": [],
             "orderBy": [],
             "interval": "",
             "namespace": "",
             "dimensions": [],
+            "distinctBy": null,
             "metricType": "",
-            "query_type": "qb",
+            "query_type": "promql",
             "time_range": {
               "to": 0,
               "from": 600
             },
             "aggregation": {
-              "stat": "LAST",
+              "stat": "AVG",
               "type": "",
-              "unit": "{collections}",
+              "unit": "{requests}",
               "field": "",
-              "value": "mongodb_collection_count",
-              "metric": "mongodb_collection_count",
-              "metricType": "Sum",
-              "temporality": "Cumulative"
+              "value": "mongodb_network_request_count",
+              "metric": "mongodb_network_request_count",
+              "spatial": "LAST",
+              "temporal": "AVG",
+              "metricType": "gauge",
+              "temporality": "unspecified"
             },
             "datasourceId": "kloudmate",
+            "legendFormat": "requests",
             "responseType": "series"
-          }
-        ],
-        "time_options": {
-          "override": false,
-          "time_shift": ""
-        }
-      },
-      {
-        "id": "1sa418lc70f",
-        "tz": "local",
-        "axis": {
-          "x": {
-            "date_style": "auto"
-          },
-          "y": {
-            "format": "number",
-            "suffix": "{sessions}",
-            "decimals": 3
-          }
-        },
-        "STATS": {},
-        "title": "Active Sessions Count",
-        "panelType": "STATS",
-        "timeRange": "1h",
-        "statConfig": {
-          "statView": "grid",
-          "baseColor": "#4CBB17",
-          "calculation": "last"
-        },
-        "timeseries": {
-          "legend": {
-            "view": "list",
-            "values": []
-          }
-        },
-        "description": "The total number of active sessions.",
-        "node_configs": [
-          {
-            "page": 1,
-            "stat": "",
-            "type": "query",
-            "hidden": false,
-            "metric": "",
-            "nodeId": "A",
-            "region": "",
-            "source": "kloudmate",
-            "dataset": "metrics",
-            "filters": [],
-            "groupBy": [],
-            "orderBy": [],
-            "interval": "",
-            "namespace": "",
-            "dimensions": [],
-            "metricType": "",
-            "time_range": {
-              "to": 0,
-              "from": 600
-            },
-            "aggregation": {
-              "stat": "SUM",
-              "type": "",
-              "unit": "{sessions}",
-              "field": "",
-              "value": "mongodb_session_count",
-              "metric": "mongodb_session_count",
-              "metricType": "Sum",
-              "temporality": "Cumulative"
-            },
-            "datasourceId": "kloudmate",
-            "responseType": "series"
-          }
-        ],
-        "time_options": {
-          "override": false,
-          "time_shift": ""
-        }
-      },
-      {
-        "id": "3mp18rt3up7",
-        "tz": "local",
-        "axis": {
-          "x": {
-            "date_style": "auto"
-          },
-          "y": {
-            "format": "bytes",
-            "suffix": "/s",
-            "decimals": "1"
-          }
-        },
-        "title": "Network Receive Bytes/s",
-        "panelType": "TimeSeries",
-        "timeRange": "1h",
-        "statConfig": {
-          "statView": "grid",
-          "baseColor": "#4CBB17",
-          "calculation": "last"
-        },
-        "timeseries": {
-          "legend": {
-            "view": "list",
-            "values": []
-          }
-        },
-        "description": "The number of bytes received per seconds over 5 minutes range",
-        "node_configs": [
-          {
-            "page": 1,
-            "stat": "",
-            "type": "query",
-            "hidden": false,
-            "metric": "",
-            "nodeId": "A",
-            "region": "",
-            "source": "kloudmate",
-            "dataset": "metrics",
-            "filters": [],
-            "groupBy": [],
-            "orderBy": [],
-            "interval": "",
-            "namespace": "",
-            "dimensions": [],
-            "metricType": "",
-            "time_range": {
-              "to": 0,
-              "from": 600
-            },
-            "aggregation": {
-              "stat": "RATE",
-              "type": "",
-              "unit": "By",
-              "field": "",
-              "range": "5m",
-              "value": "mongodb_network_io_receive",
-              "metric": "mongodb_network_io_receive",
-              "metricType": "Sum",
-              "temporality": "Cumulative"
-            },
-            "datasourceId": "kloudmate",
-            "legendFormat": "Recieve"
-          }
-        ],
-        "time_options": {
-          "override": false,
-          "time_shift": ""
-        }
-      },
-      {
-        "id": "b2zvjqo1e9l",
-        "tz": "local",
-        "axis": {
-          "x": {
-            "date_style": "auto"
-          },
-          "y": {
-            "format": "bytes",
-            "decimals": 3
-          }
-        },
-        "title": "Network Transmit Bytes/s ",
-        "panelType": "TimeSeries",
-        "timeRange": "1h",
-        "statConfig": {
-          "statView": "grid",
-          "baseColor": "#4CBB17",
-          "calculation": "last"
-        },
-        "timeseries": {
-          "legend": {
-            "view": "list",
-            "values": []
-          }
-        },
-        "description": "The number of bytes transmitted per seconds over 5 minutes range",
-        "node_configs": [
-          {
-            "page": 1,
-            "stat": "",
-            "type": "query",
-            "hidden": false,
-            "metric": "",
-            "nodeId": "A",
-            "region": "",
-            "source": "kloudmate",
-            "dataset": "metrics",
-            "filters": [],
-            "groupBy": [],
-            "orderBy": [],
-            "interval": "",
-            "namespace": "",
-            "dimensions": [],
-            "metricType": "",
-            "time_range": {
-              "to": 0,
-              "from": 600
-            },
-            "aggregation": {
-              "stat": "RATE",
-              "type": "",
-              "unit": "By",
-              "field": "",
-              "range": "5m",
-              "value": "mongodb_network_io_transmit",
-              "metric": "mongodb_network_io_transmit",
-              "metricType": "Sum",
-              "temporality": "Cumulative"
-            },
-            "datasourceId": "kloudmate",
-            "legendFormat": "Transmit"
           }
         ],
         "time_options": {
@@ -1311,6 +1399,25 @@
     "timeRange": "1h",
     "variables": [
       {
+        "name": "Serveraddress",
+        "type": "query",
+        "label": "Server_Address",
+        "config": {
+          "otel": {
+            "key": {
+              "type": "string",
+              "field": "server_address"
+            },
+            "dataset": "metrics"
+          },
+          "source": "cloudwatch",
+          "queryType": "otel.values"
+        },
+        "is_multi": false,
+        "description": "",
+        "show_all_option": false
+      },
+      {
         "name": "database",
         "type": "query",
         "label": "database",
@@ -1318,7 +1425,7 @@
           "otel": {
             "key": {
               "type": "string",
-              "field": "database"
+              "field": "db_namespace"
             },
             "dataset": "metrics"
           },
@@ -1332,10 +1439,43 @@
     ],
     "panel_layouts": [
       {
-        "h": 5,
-        "i": "07qc22vyvmoo",
+        "h": 6,
+        "i": "t5q5q4uweq40q",
+        "w": 5,
+        "x": 0,
+        "y": 0,
+        "minH": 1,
+        "minW": 1,
+        "moved": false,
+        "static": false
+      },
+      {
+        "h": 6,
+        "i": "lpoeodx1yhzhv",
+        "w": 5,
+        "x": 5,
+        "y": 0,
+        "minH": 1,
+        "minW": 1,
+        "moved": false,
+        "static": false
+      },
+      {
+        "h": 6,
+        "i": "xr43v8hkm4azo",
+        "w": 5,
+        "x": 10,
+        "y": 0,
+        "minH": 1,
+        "minW": 1,
+        "moved": false,
+        "static": false
+      },
+      {
+        "h": 6,
+        "i": "upi0fphyn0an7",
         "w": 4,
-        "x": 0,
+        "x": 15,
         "y": 0,
         "minH": 1,
         "minW": 1,
@@ -1343,129 +1483,8 @@
         "static": false
       },
       {
-        "h": 5,
-        "i": "2ol0io3pkbw",
-        "w": 5,
-        "x": 4,
-        "y": 0,
-        "minH": 1,
-        "minW": 1,
-        "moved": false,
-        "static": false
-      },
-      {
-        "h": 10,
-        "i": "l30v4d90p1d",
-        "w": 12,
-        "x": 12,
-        "y": 18,
-        "minH": 1,
-        "minW": 1,
-        "moved": false,
-        "static": false
-      },
-      {
-        "h": 8,
-        "i": "57gbcd5udwa",
-        "w": 12,
-        "x": 0,
-        "y": 10,
-        "minH": 1,
-        "minW": 1,
-        "moved": false,
-        "static": false
-      },
-      {
-        "h": 5,
-        "i": "7ihn0n9bn6n",
-        "w": 6,
-        "x": 6,
-        "y": 5,
-        "minH": 1,
-        "minW": 1,
-        "moved": false,
-        "static": false
-      },
-      {
-        "h": 5,
-        "i": "douzzuq9u6q",
-        "w": 6,
-        "x": 0,
-        "y": 5,
-        "minH": 1,
-        "minW": 1,
-        "moved": false,
-        "static": false
-      },
-      {
-        "h": 5,
-        "i": "26suw9jgyfs",
-        "w": 5,
-        "x": 9,
-        "y": 0,
-        "minH": 1,
-        "minW": 1,
-        "moved": false,
-        "static": false
-      },
-      {
-        "h": 5,
-        "i": "7qi3g625xov",
-        "w": 5,
-        "x": 14,
-        "y": 0,
-        "minH": 1,
-        "minW": 1,
-        "moved": false,
-        "static": false
-      },
-      {
-        "h": 5,
-        "i": "4s9n99vadgo",
-        "w": 6,
-        "x": 12,
-        "y": 5,
-        "minH": 1,
-        "minW": 1,
-        "moved": false,
-        "static": false
-      },
-      {
-        "h": 8,
-        "i": "059b6ei3ny4c",
-        "w": 12,
-        "x": 12,
-        "y": 10,
-        "minH": 1,
-        "minW": 1,
-        "moved": false,
-        "static": false
-      },
-      {
-        "h": 10,
-        "i": "565n8d7bec8",
-        "w": 12,
-        "x": 0,
-        "y": 18,
-        "minH": 1,
-        "minW": 1,
-        "moved": false,
-        "static": false
-      },
-      {
-        "h": 5,
-        "i": "05bto6xew16e",
-        "w": 6,
-        "x": 18,
-        "y": 5,
-        "minH": 1,
-        "minW": 1,
-        "moved": false,
-        "static": false
-      },
-      {
-        "h": 5,
-        "i": "1sa418lc70f",
+        "h": 6,
+        "i": "3m7dkkzypg32b",
         "w": 5,
         "x": 19,
         "y": 0,
@@ -1475,11 +1494,55 @@
         "static": false
       },
       {
-        "h": 10,
-        "i": "3mp18rt3up7",
-        "w": 12,
+        "h": 6,
+        "i": "htttjxa07hsrk",
+        "w": 4,
         "x": 0,
-        "y": 28,
+        "y": 6,
+        "minH": 1,
+        "minW": 1,
+        "moved": false,
+        "static": false
+      },
+      {
+        "h": 6,
+        "i": "nawebe4ez6eb0",
+        "w": 5,
+        "x": 4,
+        "y": 6,
+        "minH": 1,
+        "minW": 1,
+        "moved": false,
+        "static": false
+      },
+      {
+        "h": 6,
+        "i": "buytc0lxx7mg6",
+        "w": 5,
+        "x": 9,
+        "y": 6,
+        "minH": 1,
+        "minW": 1,
+        "moved": false,
+        "static": false
+      },
+      {
+        "h": 6,
+        "i": "kfnqnn0b3qjww",
+        "w": 5,
+        "x": 14,
+        "y": 6,
+        "minH": 1,
+        "minW": 1,
+        "moved": false,
+        "static": false
+      },
+      {
+        "h": 6,
+        "i": "j6hpupv8ubcgj",
+        "w": 5,
+        "x": 19,
+        "y": 6,
         "minH": 1,
         "minW": 1,
         "moved": false,
@@ -1487,10 +1550,65 @@
       },
       {
         "h": 10,
-        "i": "b2zvjqo1e9l",
-        "w": 12,
-        "x": 12,
-        "y": 28,
+        "i": "3g1y9n09w9xkt",
+        "w": 8,
+        "x": 8,
+        "y": 12,
+        "minH": 1,
+        "minW": 1,
+        "moved": false,
+        "static": false
+      },
+      {
+        "h": 10,
+        "i": "aowuw0mxypags",
+        "w": 8,
+        "x": 0,
+        "y": 12,
+        "minH": 1,
+        "minW": 1,
+        "moved": false,
+        "static": false
+      },
+      {
+        "h": 10,
+        "i": "kvjls6mw8dqt2",
+        "w": 8,
+        "x": 16,
+        "y": 12,
+        "minH": 1,
+        "minW": 1,
+        "moved": false,
+        "static": false
+      },
+      {
+        "h": 10,
+        "i": "i5syz05gueinf",
+        "w": 8,
+        "x": 0,
+        "y": 22,
+        "minH": 1,
+        "minW": 1,
+        "moved": false,
+        "static": false
+      },
+      {
+        "h": 10,
+        "i": "7lfwgbte9ewuf",
+        "w": 8,
+        "x": 8,
+        "y": 22,
+        "minH": 1,
+        "minW": 1,
+        "moved": false,
+        "static": false
+      },
+      {
+        "h": 10,
+        "i": "4bpj4yupfzi6l",
+        "w": 8,
+        "x": 16,
+        "y": 22,
         "minH": 1,
         "minW": 1,
         "moved": false,
