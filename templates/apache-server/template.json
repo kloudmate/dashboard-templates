@@ -1,51 +1,45 @@
 {
-  "name": "Apache server",
-  "description": "This usages OpenTelemetry as a Datasource. The variable is the hostname of the server where Apache is installed.",
+  "name": "Apache",
+  "description": null,
   "data": {
     "tz": "local",
     "panels": [
       {
-        "id": "k5lbgkppgp",
+        "id": "3nbb04o0gxpde",
         "tz": "local",
-        "axis": {
-          "x": {
-            "date_style": "auto"
-          },
-          "y": {
-            "format": "unformatted",
-            "decimals": 3
-          }
-        },
-        "title": "Scoreboard",
-        "panelType": "TimeSeries",
+        "title": "Server Uptime",
+        "overrides": [],
+        "panelType": "STATS",
         "timeRange": "1h",
         "statConfig": {
+          "format": "duration",
+          "rename": [],
           "statView": "grid",
           "baseColor": "#4CBB17",
-          "calculation": "last"
+          "multiplyBy": 1000,
+          "calculation": "last",
+          "value_mappings": []
         },
-        "timeseries": {
-          "legend": {
-            "view": "list",
-            "values": []
-          }
-        },
+        "description": "amount of time that the server has been running",
         "node_configs": [
           {
+            "exp": "apache_uptime",
+            "page": 1,
             "stat": "",
             "type": "query",
-            "limit": "",
+            "limit": null,
             "hidden": false,
             "metric": "",
             "nodeId": "A",
             "region": "",
             "source": "kloudmate",
+            "columns": [],
             "dataset": "metrics",
             "filters": [
               {
                 "type": "string",
-                "field": "host_name",
-                "value": "$hostname",
+                "field": "apache_server_name",
+                "value": "$Host",
                 "operator": "="
               }
             ],
@@ -53,69 +47,74 @@
             "orderBy": [],
             "interval": "",
             "namespace": "",
-            "dimensions": {},
+            "dimensions": [],
+            "distinctBy": null,
             "metricType": "",
+            "query_type": "qb",
             "time_range": {
               "to": 0,
               "from": 600
             },
             "aggregation": {
-              "stat": "SUM",
+              "stat": "AVG",
               "type": "",
-              "unit": "",
+              "unit": "s",
               "field": "",
-              "metric": "apache_scoreboard",
-              "metricType": "Gauge",
-              "temporality": ""
+              "value": "apache_uptime",
+              "metric": "apache_uptime",
+              "spatial": "SUM",
+              "temporal": "LAST",
+              "metricType": "sum",
+              "temporality": "cumulative"
             },
             "datasourceId": "kloudmate",
             "responseType": "series"
           }
-        ]
+        ],
+        "time_options": {
+          "override": false,
+          "time_shift": ""
+        }
       },
       {
-        "id": "a67a4cic9d",
+        "id": "1br1wpregv1hf",
         "tz": "local",
-        "axis": {
-          "x": {
-            "date_style": "auto"
-          },
-          "y": {
-            "format": "number",
-            "suffix": "{connections}",
-            "decimals": 3
-          }
-        },
-        "title": "Connections",
-        "panelType": "TimeSeries",
+        "title": "Idle Worker Count",
+        "overrides": [],
+        "panelType": "STATS",
         "timeRange": "1h",
         "statConfig": {
+          "rename": [],
           "statView": "grid",
           "baseColor": "#4CBB17",
-          "calculation": "last"
+          "calculation": "last",
+          "value_mappings": []
         },
-        "timeseries": {
-          "legend": {
-            "view": "list",
-            "values": []
-          }
-        },
+        "description": "number of  idle workers currently attached to the HTTP server",
         "node_configs": [
           {
+            "page": 1,
             "stat": "",
             "type": "query",
-            "limit": "",
+            "limit": null,
             "hidden": false,
             "metric": "",
             "nodeId": "A",
             "region": "",
             "source": "kloudmate",
+            "columns": [],
             "dataset": "metrics",
             "filters": [
               {
                 "type": "string",
-                "field": "host_name",
-                "value": "$hostname",
+                "field": "apache_server_name",
+                "value": "$Host",
+                "operator": "="
+              },
+              {
+                "type": "string",
+                "field": "state",
+                "value": "idle",
                 "operator": "="
               }
             ],
@@ -123,33 +122,267 @@
             "orderBy": [],
             "interval": "",
             "namespace": "",
-            "dimensions": {},
+            "dimensions": [],
+            "distinctBy": null,
             "metricType": "",
+            "query_type": "qb",
             "time_range": {
               "to": 0,
               "from": 600
             },
             "aggregation": {
-              "stat": "COUNT",
+              "stat": "AVG",
               "type": "",
-              "unit": "{connections}",
+              "unit": "{workers}",
               "field": "",
-              "metric": "apache_current_connections",
-              "metricType": "Sum",
-              "temporality": "Cumulative"
+              "value": "apache_workers",
+              "metric": "apache_workers",
+              "ranking": {
+                "func": "None"
+              },
+              "spatial": "LAST",
+              "temporal": "AVG",
+              "metricType": "gauge",
+              "temporality": "unspecified"
             },
             "datasourceId": "kloudmate",
-            "legendFormat": "Connections",
             "responseType": "series"
           }
-        ]
+        ],
+        "time_options": {
+          "override": false,
+          "time_shift": ""
+        }
       },
       {
-        "id": "abnjbg1ix4d",
+        "id": "dhxignvcpjhau",
+        "tz": "local",
+        "title": "Busy Worker Count",
+        "overrides": [],
+        "panelType": "STATS",
+        "timeRange": "1h",
+        "statConfig": {
+          "rename": [],
+          "statView": "grid",
+          "baseColor": "#4CBB17",
+          "calculation": "last",
+          "value_mappings": []
+        },
+        "description": "number of busy workers currently attached to the HTTP server",
+        "node_configs": [
+          {
+            "page": 1,
+            "stat": "",
+            "type": "query",
+            "limit": null,
+            "hidden": false,
+            "metric": "",
+            "nodeId": "A",
+            "region": "",
+            "source": "kloudmate",
+            "columns": [],
+            "dataset": "metrics",
+            "filters": [
+              {
+                "type": "string",
+                "field": "apache_server_name",
+                "value": "$Host",
+                "operator": "="
+              },
+              {
+                "type": "string",
+                "field": "state",
+                "value": "busy",
+                "operator": "="
+              }
+            ],
+            "groupBy": [],
+            "orderBy": [],
+            "interval": "",
+            "namespace": "",
+            "dimensions": [],
+            "distinctBy": null,
+            "metricType": "",
+            "query_type": "qb",
+            "time_range": {
+              "to": 0,
+              "from": 600
+            },
+            "aggregation": {
+              "stat": "AVG",
+              "type": "",
+              "unit": "{workers}",
+              "field": "",
+              "value": "apache_workers",
+              "metric": "apache_workers",
+              "spatial": "LAST",
+              "temporal": "AVG",
+              "metricType": "gauge",
+              "temporality": "unspecified"
+            },
+            "datasourceId": "kloudmate",
+            "responseType": "series"
+          }
+        ],
+        "time_options": {
+          "override": false,
+          "time_shift": ""
+        }
+      },
+      {
+        "id": "7jc1lg1kgvxhu",
+        "tz": "local",
+        "title": "Server Load (1 min)",
+        "overrides": [],
+        "panelType": "STATS",
+        "timeRange": "1h",
+        "statConfig": {
+          "format": "number",
+          "rename": [],
+          "suffix": "%",
+          "decimals": 2,
+          "statView": "grid",
+          "baseColor": "#4CBB17",
+          "calculation": "last",
+          "value_mappings": []
+        },
+        "description": "average server load during the last minute",
+        "node_configs": [
+          {
+            "page": 1,
+            "stat": "",
+            "type": "query",
+            "limit": null,
+            "hidden": false,
+            "metric": "",
+            "nodeId": "A",
+            "region": "",
+            "source": "kloudmate",
+            "columns": [],
+            "dataset": "metrics",
+            "filters": [
+              {
+                "type": "string",
+                "field": "apache_server_name",
+                "value": "$Host",
+                "operator": "="
+              }
+            ],
+            "groupBy": [],
+            "orderBy": [],
+            "interval": "",
+            "namespace": "",
+            "dimensions": [],
+            "distinctBy": null,
+            "metricType": "",
+            "query_type": "qb",
+            "time_range": {
+              "to": 0,
+              "from": 600
+            },
+            "aggregation": {
+              "stat": "AVG",
+              "type": "",
+              "unit": "%",
+              "field": "",
+              "value": "apache_load_1",
+              "metric": "apache_load_1",
+              "spatial": "LAST",
+              "temporal": "AVG",
+              "metricType": "gauge",
+              "temporality": "unspecified"
+            },
+            "datasourceId": "kloudmate",
+            "responseType": "series"
+          }
+        ],
+        "time_options": {
+          "override": false,
+          "time_shift": ""
+        }
+      },
+      {
+        "id": "y86jzzsv15lx5",
+        "tz": "local",
+        "title": "Server Load Avg (5 mins)",
+        "overrides": [],
+        "panelType": "STATS",
+        "timeRange": "1h",
+        "statConfig": {
+          "format": "number",
+          "rename": [],
+          "suffix": "%",
+          "decimals": 2,
+          "statView": "grid",
+          "baseColor": "#4CBB17",
+          "calculation": "last",
+          "value_mappings": []
+        },
+        "description": "average server load during the five minutes",
+        "node_configs": [
+          {
+            "page": 1,
+            "stat": "",
+            "type": "query",
+            "limit": null,
+            "hidden": false,
+            "metric": "",
+            "nodeId": "A",
+            "region": "",
+            "source": "kloudmate",
+            "columns": [],
+            "dataset": "metrics",
+            "filters": [
+              {
+                "type": "string",
+                "field": "apache_server_name",
+                "value": "$Host",
+                "operator": "="
+              }
+            ],
+            "groupBy": [],
+            "orderBy": [],
+            "interval": "",
+            "namespace": "",
+            "dimensions": [],
+            "distinctBy": null,
+            "metricType": "",
+            "query_type": "qb",
+            "time_range": {
+              "to": 0,
+              "from": 600
+            },
+            "aggregation": {
+              "stat": "AVG",
+              "type": "",
+              "unit": "%",
+              "field": "",
+              "value": "apache_load_5",
+              "metric": "apache_load_5",
+              "spatial": "LAST",
+              "temporal": "AVG",
+              "metricType": "gauge",
+              "temporality": "unspecified"
+            },
+            "datasourceId": "kloudmate",
+            "responseType": "series"
+          }
+        ],
+        "time_options": {
+          "override": false,
+          "time_shift": ""
+        }
+      },
+      {
+        "id": "042ax9ya90dlp",
         "tz": "local",
         "axis": {
           "x": {
-            "date_style": "auto"
+            "max": "",
+            "min": "",
+            "date_style": "auto",
+            "bucketCount": "30",
+            "bucketOffset": "0"
           },
           "y": {
             "format": "number",
@@ -157,260 +390,38 @@
             "decimals": 3
           }
         },
-        "title": "apache Load",
+        "title": "Server Load",
+        "tooltip": {
+          "mode": "single"
+        },
+        "overrides": [],
         "panelType": "TimeSeries",
         "timeRange": "1h",
-        "statConfig": {
-          "statView": "grid",
-          "baseColor": "#4CBB17",
-          "calculation": "last"
-        },
         "timeseries": {
           "legend": {
             "view": "list",
             "values": []
           }
         },
+        "description": "current load of the CPU",
         "node_configs": [
           {
+            "page": 1,
             "stat": "",
             "type": "query",
-            "limit": "",
+            "limit": null,
             "hidden": false,
             "metric": "",
             "nodeId": "A",
             "region": "",
             "source": "kloudmate",
+            "columns": [],
             "dataset": "metrics",
             "filters": [
               {
                 "type": "string",
-                "field": "host_name",
-                "value": "$hostname",
-                "operator": "="
-              }
-            ],
-            "groupBy": [],
-            "orderBy": [],
-            "interval": "",
-            "namespace": "",
-            "dimensions": {},
-            "metricType": "",
-            "time_range": {
-              "to": 0,
-              "from": 600
-            },
-            "aggregation": {
-              "stat": "AVG",
-              "type": "",
-              "unit": "%",
-              "field": "",
-              "metric": "apache_load_1",
-              "metricType": "Gauge",
-              "temporality": "Cumulative"
-            },
-            "datasourceId": "kloudmate",
-            "legendFormat": "1m-average",
-            "responseType": "series"
-          },
-          {
-            "stat": "",
-            "type": "query",
-            "limit": "",
-            "hidden": false,
-            "metric": "",
-            "nodeId": "B",
-            "region": "",
-            "source": "kloudmate",
-            "dataset": "metrics",
-            "filters": [
-              {
-                "type": "string",
-                "field": "host_name",
-                "value": "$hostname",
-                "operator": "="
-              }
-            ],
-            "groupBy": [],
-            "orderBy": [],
-            "interval": "",
-            "namespace": "",
-            "dimensions": {},
-            "metricType": "",
-            "time_range": {
-              "to": 0,
-              "from": 600
-            },
-            "aggregation": {
-              "stat": "AVG",
-              "type": "",
-              "unit": "%",
-              "field": "",
-              "metric": "apache_load_5",
-              "metricType": "Gauge",
-              "temporality": "Cumulative"
-            },
-            "datasourceId": "kloudmate",
-            "legendFormat": "5m-average",
-            "responseType": "series"
-          },
-          {
-            "stat": "",
-            "type": "query",
-            "limit": "",
-            "hidden": false,
-            "metric": "",
-            "nodeId": "C",
-            "region": "",
-            "source": "kloudmate",
-            "dataset": "metrics",
-            "filters": [
-              {
-                "type": "string",
-                "field": "host_name",
-                "value": "$hostname",
-                "operator": "="
-              }
-            ],
-            "groupBy": [],
-            "orderBy": [],
-            "interval": "",
-            "namespace": "",
-            "dimensions": {},
-            "metricType": "",
-            "time_range": {
-              "to": 0,
-              "from": 600
-            },
-            "aggregation": {
-              "stat": "AVG",
-              "type": "",
-              "unit": "%",
-              "field": "",
-              "metric": "apache_load_15",
-              "metricType": "Gauge",
-              "temporality": "Cumulative"
-            },
-            "datasourceId": "kloudmate",
-            "legendFormat": "15m-average",
-            "responseType": "series"
-          }
-        ]
-      },
-      {
-        "id": "4c0ybvf6wlb",
-        "tz": "local",
-        "axis": {
-          "x": {
-            "date_style": "auto"
-          },
-          "y": {
-            "format": "number",
-            "suffix": "{jiff}",
-            "decimals": 3
-          }
-        },
-        "title": "Apache CPU Time",
-        "panelType": "TimeSeries",
-        "timeRange": "1h",
-        "statConfig": {
-          "statView": "grid",
-          "baseColor": "#4CBB17",
-          "calculation": "last"
-        },
-        "timeseries": {
-          "legend": {
-            "view": "list",
-            "values": []
-          }
-        },
-        "node_configs": [
-          {
-            "stat": "",
-            "type": "query",
-            "limit": "",
-            "hidden": false,
-            "metric": "",
-            "nodeId": "A",
-            "region": "",
-            "source": "kloudmate",
-            "dataset": "metrics",
-            "filters": [
-              {
-                "type": "string",
-                "field": "host_name",
-                "value": "$hostname",
-                "operator": "="
-              }
-            ],
-            "groupBy": [],
-            "orderBy": [],
-            "interval": "",
-            "namespace": "",
-            "dimensions": {},
-            "metricType": "",
-            "time_range": {
-              "to": 0,
-              "from": 600
-            },
-            "aggregation": {
-              "stat": "AVG",
-              "type": "",
-              "unit": "{jiff}",
-              "field": "",
-              "metric": "apache_cpu_time",
-              "metricType": "Sum",
-              "temporality": "Cumulative"
-            },
-            "datasourceId": "kloudmate",
-            "legendFormat": "Average",
-            "responseType": "series"
-          }
-        ]
-      },
-      {
-        "id": "3zkkitv2fq",
-        "tz": "local",
-        "axis": {
-          "x": {
-            "date_style": "auto"
-          },
-          "y": {
-            "format": "number",
-            "suffix": "{requests}",
-            "decimals": 3
-          }
-        },
-        "title": "Number of Requests",
-        "panelType": "TimeSeries",
-        "timeRange": "1h",
-        "statConfig": {
-          "statView": "grid",
-          "baseColor": "#4CBB17",
-          "calculation": "last"
-        },
-        "timeseries": {
-          "legend": {
-            "view": "list",
-            "values": []
-          }
-        },
-        "node_configs": [
-          {
-            "stat": "",
-            "type": "query",
-            "limit": "",
-            "hidden": false,
-            "metric": "",
-            "nodeId": "A",
-            "region": "",
-            "source": "kloudmate",
-            "dataset": "metrics",
-            "filters": [
-              {
-                "type": "string",
-                "field": "host_name",
-                "value": "$hostname",
+                "field": "apache_server_name",
+                "value": "$Host",
                 "operator": "="
               }
             ],
@@ -419,7 +430,174 @@
             "interval": "",
             "namespace": "",
             "dimensions": [],
+            "distinctBy": null,
             "metricType": "",
+            "query_type": "qb",
+            "time_range": {
+              "to": 0,
+              "from": 600
+            },
+            "aggregation": {
+              "stat": "AVG",
+              "type": "",
+              "unit": "%",
+              "field": "",
+              "value": "apache_cpu_load",
+              "metric": "apache_cpu_load",
+              "spatial": "LAST",
+              "temporal": "AVG",
+              "metricType": "gauge",
+              "temporality": "unspecified"
+            },
+            "datasourceId": "kloudmate",
+            "legendFormat": "cpu",
+            "responseType": "series"
+          }
+        ],
+        "time_options": {
+          "override": false,
+          "time_shift": ""
+        }
+      },
+      {
+        "id": "7uai1zzn9np9i",
+        "tz": "local",
+        "axis": {
+          "x": {
+            "max": "",
+            "min": "",
+            "date_style": "auto",
+            "bucketCount": "30",
+            "bucketOffset": "0"
+          },
+          "y": {
+            "format": "duration"
+          }
+        },
+        "title": "Server Request Time",
+        "tooltip": {
+          "mode": "single"
+        },
+        "overrides": [],
+        "panelType": "TimeSeries",
+        "timeRange": "1h",
+        "timeseries": {
+          "legend": {
+            "view": "list",
+            "values": []
+          }
+        },
+        "description": "total time spent on handling requests",
+        "node_configs": [
+          {
+            "exp": "rate(apache_request_time[5m])",
+            "page": 1,
+            "stat": "",
+            "type": "query",
+            "limit": null,
+            "hidden": false,
+            "metric": "",
+            "nodeId": "A",
+            "region": "",
+            "source": "kloudmate",
+            "columns": [],
+            "dataset": "metrics",
+            "filters": [],
+            "groupBy": [],
+            "orderBy": [],
+            "interval": "",
+            "namespace": "",
+            "dimensions": [],
+            "distinctBy": null,
+            "metricType": "",
+            "query_type": "qb",
+            "time_range": {
+              "to": 0,
+              "from": 600
+            },
+            "aggregation": {
+              "stat": "AVG",
+              "type": "",
+              "unit": "ms",
+              "field": "",
+              "value": "apache_request_time",
+              "metric": "apache_request_time",
+              "spatial": "SUM",
+              "temporal": "RATE",
+              "metricType": "sum",
+              "temporality": "cumulative"
+            },
+            "datasourceId": "kloudmate",
+            "legendFormat": "time",
+            "responseType": "series"
+          }
+        ],
+        "time_options": {
+          "override": false,
+          "time_shift": ""
+        }
+      },
+      {
+        "id": "ckdhfuwrit3wu",
+        "tz": "local",
+        "axis": {
+          "x": {
+            "max": "",
+            "min": "",
+            "date_style": "auto",
+            "bucketCount": "30",
+            "bucketOffset": "0"
+          },
+          "y": {
+            "format": "number",
+            "suffix": " req/s",
+            "decimals": 1
+          }
+        },
+        "title": "Server Requests",
+        "tooltip": {
+          "mode": "single"
+        },
+        "overrides": [],
+        "panelType": "TimeSeries",
+        "timeRange": "1h",
+        "timeseries": {
+          "legend": {
+            "view": "list",
+            "values": []
+          }
+        },
+        "description": "number of requests serviced by the HTTP server per second",
+        "node_configs": [
+          {
+            "exp": "apache_requests",
+            "page": 1,
+            "stat": "",
+            "type": "query",
+            "limit": null,
+            "hidden": false,
+            "metric": "",
+            "nodeId": "A",
+            "region": "",
+            "source": "kloudmate",
+            "columns": [],
+            "dataset": "metrics",
+            "filters": [
+              {
+                "type": "string",
+                "field": "apache_server_name",
+                "value": "$Host",
+                "operator": "="
+              }
+            ],
+            "groupBy": [],
+            "orderBy": [],
+            "interval": "",
+            "namespace": "",
+            "dimensions": [],
+            "distinctBy": null,
+            "metricType": "",
+            "query_type": "qb",
             "time_range": {
               "to": 0,
               "from": 600
@@ -429,178 +607,71 @@
               "type": "",
               "unit": "{requests}",
               "field": "",
+              "value": "apache_requests",
               "metric": "apache_requests",
-              "metricType": "Sum",
-              "temporality": "Cumulative"
+              "spatial": "SUM",
+              "temporal": "RATE",
+              "metricType": "sum",
+              "temporality": "cumulative"
             },
             "datasourceId": "kloudmate",
-            "legendFormat": "Requests",
+            "legendFormat": "request/s",
             "responseType": "series"
-          },
-          {
-            "type": "expression",
-            "query": "A",
-            "hidden": false,
-            "nodeId": "B",
-            "reducer": "max",
-            "expressionType": "reducer"
           }
-        ]
+        ],
+        "time_options": {
+          "override": false,
+          "time_shift": ""
+        }
       },
       {
-        "id": "btpvoxv9mbr",
+        "id": "4st40zxcs55dp",
         "tz": "local",
         "axis": {
           "x": {
-            "date_style": "auto"
-          },
-          "y": {
-            "format": "unformatted",
-            "suffix": "",
-            "decimals": 3
-          }
-        },
-        "title": "Apache CPU Load",
-        "panelType": "TimeSeries",
-        "timeRange": "1h",
-        "statConfig": {
-          "statView": "grid",
-          "baseColor": "#4CBB17",
-          "calculation": "last"
-        },
-        "timeseries": {
-          "legend": {
-            "view": "list",
-            "values": []
-          }
-        },
-        "node_configs": [
-          {
-            "stat": "",
-            "type": "query",
-            "limit": "",
-            "hidden": false,
-            "metric": "",
-            "nodeId": "A",
-            "region": "",
-            "source": "kloudmate",
-            "dataset": "metrics",
-            "filters": [
-              {
-                "type": "string",
-                "field": "host_name",
-                "value": "$hostname",
-                "operator": "="
-              }
-            ],
-            "groupBy": [],
-            "orderBy": [],
-            "interval": "",
-            "namespace": "",
-            "dimensions": {},
-            "metricType": "",
-            "time_range": {
-              "to": 0,
-              "from": 600
-            },
-            "aggregation": {
-              "stat": "MAX",
-              "type": "",
-              "unit": "%",
-              "field": "",
-              "metric": "apache_cpu_load",
-              "metricType": "Gauge",
-              "temporality": "Cumulative"
-            },
-            "datasourceId": "kloudmate",
-            "legendFormat": "Maximum",
-            "responseType": "series"
-          },
-          {
-            "stat": "",
-            "type": "query",
-            "limit": "",
-            "hidden": false,
-            "metric": "",
-            "nodeId": "B",
-            "region": "",
-            "source": "kloudmate",
-            "dataset": "metrics",
-            "filters": [
-              {
-                "type": "string",
-                "field": "host_name",
-                "value": "$hostname",
-                "operator": "="
-              }
-            ],
-            "groupBy": [],
-            "orderBy": [],
-            "interval": "",
-            "namespace": "",
-            "dimensions": {},
-            "metricType": "",
-            "time_range": {
-              "to": 0,
-              "from": 600
-            },
-            "aggregation": {
-              "stat": "MIN",
-              "type": "",
-              "unit": "%",
-              "field": "",
-              "metric": "apache_cpu_load",
-              "metricType": "Gauge",
-              "temporality": "Cumulative"
-            },
-            "datasourceId": "kloudmate",
-            "legendFormat": "Minimum",
-            "responseType": "series"
-          }
-        ]
-      },
-      {
-        "id": "32h97fe8yl8",
-        "tz": "local",
-        "axis": {
-          "x": {
-            "date_style": "auto"
+            "max": "",
+            "min": "",
+            "date_style": "auto",
+            "bucketCount": "30",
+            "bucketOffset": "0"
           },
           "y": {
             "format": "bytes",
-            "decimals": 3
+            "suffix": "/s"
           }
         },
-        "title": "Apache Traffic",
+        "title": "Server Traffic",
+        "tooltip": {
+          "mode": "single"
+        },
+        "overrides": [],
         "panelType": "TimeSeries",
         "timeRange": "1h",
-        "statConfig": {
-          "statView": "grid",
-          "baseColor": "#4CBB17",
-          "calculation": "last"
-        },
         "timeseries": {
           "legend": {
             "view": "list",
             "values": []
           }
         },
+        "description": "total HTTP server traffic",
         "node_configs": [
           {
+            "page": 1,
             "stat": "",
             "type": "query",
-            "limit": "",
+            "limit": null,
             "hidden": false,
             "metric": "",
             "nodeId": "A",
             "region": "",
             "source": "kloudmate",
+            "columns": [],
             "dataset": "metrics",
             "filters": [
               {
                 "type": "string",
-                "field": "host_name",
-                "value": "$hostname",
+                "field": "apache_server_name",
+                "value": "$Host",
                 "operator": "="
               }
             ],
@@ -609,78 +680,99 @@
             "interval": "",
             "namespace": "",
             "dimensions": [],
+            "distinctBy": null,
             "metricType": "",
+            "query_type": "qb",
             "time_range": {
               "to": 0,
               "from": 600
             },
             "aggregation": {
-              "stat": "RATE",
+              "stat": "AVG",
               "type": "",
               "unit": "By",
               "field": "",
+              "value": "apache_traffic",
               "metric": "apache_traffic",
-              "metricType": "Sum",
-              "temporality": "Cumulative"
+              "spatial": "SUM",
+              "temporal": "RATE",
+              "metricType": "sum",
+              "temporality": "cumulative"
             },
             "datasourceId": "kloudmate",
-            "legendFormat": "apache traffic",
+            "legendFormat": "bytes/s",
             "responseType": "series"
           }
-        ]
+        ],
+        "time_options": {
+          "override": false,
+          "time_shift": ""
+        }
       },
       {
-        "id": "u60xg65jzcj",
+        "id": "ekpjtlg633ile",
         "tz": "local",
         "axis": {
           "x": {
-            "date_style": "auto"
+            "max": "",
+            "min": "",
+            "date_style": "auto",
+            "bucketCount": "30",
+            "bucketOffset": "0"
           },
           "y": {
             "format": "number",
-            "suffix": "{workers}",
-            "decimals": 3
+            "suffix": ""
           }
         },
-        "title": "Apache Workers",
+        "title": "Scoreboard",
+        "tooltip": {
+          "mode": "all"
+        },
+        "overrides": [],
         "panelType": "TimeSeries",
         "timeRange": "1h",
-        "statConfig": {
-          "statView": "grid",
-          "baseColor": "#4CBB17",
-          "calculation": "last"
-        },
         "timeseries": {
           "legend": {
             "view": "list",
             "values": []
           }
         },
+        "description": "number of workers in each state",
         "node_configs": [
           {
+            "page": 1,
             "stat": "",
             "type": "query",
-            "limit": "",
+            "limit": null,
             "hidden": false,
             "metric": "",
             "nodeId": "A",
             "region": "",
             "source": "kloudmate",
+            "columns": [],
             "dataset": "metrics",
             "filters": [
               {
                 "type": "string",
-                "field": "host_name",
-                "value": "$hostname",
+                "field": "apache_server_name",
+                "value": "$Host",
                 "operator": "="
               }
             ],
-            "groupBy": [],
+            "groupBy": [
+              {
+                "type": "string",
+                "field": "state"
+              }
+            ],
             "orderBy": [],
             "interval": "",
             "namespace": "",
             "dimensions": [],
+            "distinctBy": null,
             "metricType": "",
+            "query_type": "qb",
             "time_range": {
               "to": 0,
               "from": 600
@@ -690,141 +782,40 @@
               "type": "",
               "unit": "{workers}",
               "field": "",
-              "metric": "apache_workers",
-              "metricType": "Sum",
-              "temporality": "Cumulative"
+              "value": "apache_scoreboard",
+              "metric": "apache_scoreboard",
+              "ranking": {
+                "func": "None"
+              },
+              "spatial": "LAST",
+              "temporal": "AVG",
+              "metricType": "gauge",
+              "temporality": "unspecified"
             },
             "datasourceId": "kloudmate",
-            "legendFormat": "Workers",
+            "legendFormat": "{{state}}",
             "responseType": "series"
           }
-        ]
-      },
-      {
-        "id": "220mkhbrw16",
-        "tz": "local",
-        "axis": {
-          "x": {
-            "date_style": "auto"
-          },
-          "y": {
-            "format": "number",
-            "suffix": "{workers}",
-            "decimals": 3
-          }
-        },
-        "title": "Concurrency Efficiency",
-        "panelType": "TimeSeries",
-        "timeRange": "1h",
-        "statConfig": {
-          "statView": "grid",
-          "baseColor": "#4CBB17",
-          "calculation": "last"
-        },
-        "timeseries": {
-          "legend": {
-            "view": "list",
-            "values": []
-          }
-        },
-        "node_configs": [
-          {
-            "stat": "",
-            "type": "query",
-            "limit": "",
-            "hidden": false,
-            "metric": "",
-            "nodeId": "A",
-            "region": "",
-            "source": "kloudmate",
-            "dataset": "metrics",
-            "filters": [
-              {
-                "type": "string",
-                "field": "host_name",
-                "value": "$hostname",
-                "operator": "="
-              }
-            ],
-            "groupBy": [],
-            "orderBy": [],
-            "interval": "",
-            "namespace": "",
-            "dimensions": [],
-            "metricType": "",
-            "time_range": {
-              "to": 0,
-              "from": 600
-            },
-            "aggregation": {
-              "stat": "AVG",
-              "type": "",
-              "unit": "{workers}",
-              "field": "",
-              "metric": "apache_workers",
-              "metricType": "Sum",
-              "temporality": "Cumulative"
-            },
-            "datasourceId": "kloudmate",
-            "responseType": "series"
-          },
-          {
-            "stat": "",
-            "type": "query",
-            "limit": "",
-            "hidden": false,
-            "metric": "",
-            "nodeId": "B",
-            "region": "",
-            "source": "kloudmate",
-            "dataset": "metrics",
-            "filters": [
-              {
-                "type": "string",
-                "field": "host_name",
-                "value": "$hostname",
-                "operator": "="
-              }
-            ],
-            "groupBy": [],
-            "orderBy": [],
-            "interval": "",
-            "namespace": "",
-            "dimensions": [],
-            "metricType": "",
-            "time_range": {
-              "to": 0,
-              "from": 600
-            },
-            "aggregation": {
-              "stat": "COUNT",
-              "type": "",
-              "unit": "{requests}",
-              "field": "",
-              "metric": "apache_requests",
-              "metricType": "Sum",
-              "temporality": "Cumulative"
-            },
-            "datasourceId": "kloudmate",
-            "responseType": "series"
-          }
-        ]
+        ],
+        "time_options": {
+          "override": false,
+          "time_shift": ""
+        }
       }
     ],
     "timeRange": "1h",
     "variables": [
       {
-        "id": "589e1dcd-67a1-423f-b659-54eafcbd214a",
-        "name": "hostname",
+        "name": "Host",
         "type": "query",
+        "label": "Host",
         "config": {
           "otel": {
             "key": {
               "type": "string",
-              "field": "host_name"
+              "field": "apache_server_name"
             },
-            "dataset": "metrics",
-            "filters": []
+            "dataset": "metrics"
           },
           "source": "cloudwatch",
           "queryType": "otel.values"
@@ -836,101 +827,112 @@
     ],
     "panel_layouts": [
       {
-        "h": 2,
-        "i": "k5lbgkppgp",
-        "w": 4,
-        "x": 0,
-        "y": 0,
-        "minH": 1,
-        "minW": 2,
-        "moved": false,
-        "static": false
-      },
-      {
-        "h": 2,
-        "i": "a67a4cic9d",
-        "w": 4,
-        "x": 8,
-        "y": 0,
-        "minH": 1,
-        "minW": 2,
-        "moved": false,
-        "static": false
-      },
-      {
-        "h": 2,
-        "i": "abnjbg1ix4d",
+        "h": 6,
+        "i": "3nbb04o0gxpde",
         "w": 6,
         "x": 0,
-        "y": 2,
-        "minH": 1,
-        "minW": 2,
-        "moved": false,
-        "static": false
-      },
-      {
-        "h": 2,
-        "i": "4c0ybvf6wlb",
-        "w": 3,
-        "x": 9,
-        "y": 2,
-        "minH": 1,
-        "minW": 2,
-        "moved": false,
-        "static": false
-      },
-      {
-        "h": 2,
-        "i": "3zkkitv2fq",
-        "w": 4,
-        "x": 4,
         "y": 0,
         "minH": 1,
-        "minW": 2,
+        "minW": 1,
         "moved": false,
         "static": false
       },
       {
-        "h": 2,
-        "i": "btpvoxv9mbr",
-        "w": 3,
+        "h": 6,
+        "i": "1br1wpregv1hf",
+        "w": 4,
+        "x": 10,
+        "y": 0,
+        "minH": 1,
+        "minW": 1,
+        "moved": false,
+        "static": false
+      },
+      {
+        "h": 6,
+        "i": "dhxignvcpjhau",
+        "w": 4,
         "x": 6,
-        "y": 2,
+        "y": 0,
         "minH": 1,
-        "minW": 2,
+        "minW": 1,
         "moved": false,
         "static": false
       },
       {
-        "h": 2,
-        "i": "32h97fe8yl8",
-        "w": 4,
+        "h": 6,
+        "i": "7jc1lg1kgvxhu",
+        "w": 5,
+        "x": 14,
+        "y": 0,
+        "minH": 1,
+        "minW": 1,
+        "moved": false,
+        "static": false
+      },
+      {
+        "h": 6,
+        "i": "y86jzzsv15lx5",
+        "w": 5,
+        "x": 19,
+        "y": 0,
+        "minH": 1,
+        "minW": 1,
+        "moved": false,
+        "static": false
+      },
+      {
+        "h": 10,
+        "i": "042ax9ya90dlp",
+        "w": 8,
         "x": 0,
-        "y": 4,
+        "y": 6,
         "minH": 1,
-        "minW": 2,
+        "minW": 1,
         "moved": false,
         "static": false
       },
       {
-        "h": 2,
-        "i": "u60xg65jzcj",
-        "w": 4,
-        "x": 4,
-        "y": 4,
-        "minH": 1,
-        "minW": 2,
-        "moved": false,
-        "static": false
-      },
-      {
-        "h": 2,
-        "i": "220mkhbrw16",
-        "w": 4,
+        "h": 10,
+        "i": "7uai1zzn9np9i",
+        "w": 8,
         "x": 8,
-        "y": 4,
+        "y": 6,
         "minH": 1,
-        "minW": 2,
+        "minW": 1,
+        "moved": false,
+        "static": false
+      },
+      {
+        "h": 10,
+        "i": "ckdhfuwrit3wu",
+        "w": 8,
+        "x": 16,
+        "y": 6,
+        "minH": 1,
+        "minW": 1,
+        "moved": false,
+        "static": false
+      },
+      {
+        "h": 10,
+        "i": "4st40zxcs55dp",
+        "w": 11,
+        "x": 0,
+        "y": 16,
+        "minH": 1,
+        "minW": 1,
+        "moved": false,
+        "static": false
+      },
+      {
+        "h": 10,
+        "i": "ekpjtlg633ile",
+        "w": 13,
+        "x": 11,
+        "y": 16,
+        "minH": 1,
+        "minW": 1,
         "moved": false,
         "static": false
       }
