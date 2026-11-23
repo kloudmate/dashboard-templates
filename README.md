@@ -28,5 +28,5 @@ npx serve --single --listen 8090 site
 ```
 
 Open <http://localhost:8090>. `--single` serves `index.html` at every path, as GitHub Pages does
-with `404.html`. On `localhost` the site reads the API at `http://localhost:4000` and links to
-the app at `http://localhost:3001`.
+with `404.html`. On `localhost` the site reads dev's gallery at `https://api.kloudmate.dev` and links
+to the dev app at `https://app.kloudmate.dev`.

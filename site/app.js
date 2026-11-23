@@ -3,8 +3,9 @@ import { marked } from 'https://cdn.jsdelivr.net/npm/marked@15.0.12/+esm';
 import DOMPurify from 'https://cdn.jsdelivr.net/npm/dompurify@3.5.0/+esm';
 
 const LOCAL = ['localhost', '127.0.0.1'].includes(location.hostname);
-const API = LOCAL ? 'http://localhost:4000' : 'https://api.kloudmate.com';
-const APP = LOCAL ? 'http://localhost:3001' : 'https://app.kloudmate.com';
+// A local preview reads dev's gallery.
+const API = LOCAL ? 'https://api.kloudmate.dev' : 'https://api.kloudmate.com';
+const APP = LOCAL ? 'https://app.kloudmate.dev' : 'https://app.kloudmate.com';
 const PAGE = 100; // the API's largest page
 
 const TYPES = [
