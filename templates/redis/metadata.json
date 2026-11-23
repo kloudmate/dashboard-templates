@@ -1,7 +1,0 @@
-{
-  "title": "Redis",
-  "description": " Monitoring Redis with KM Agents provides insights into memory usage, command performance, keyspace statistics, and connection details ",
-  "tags": ["metrics", "db"],
-  "author": "KloudMate",
-  "verified": true
-}
