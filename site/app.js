@@ -52,11 +52,7 @@ const esc = (value) =>
 const typeOf = (item) => TYPES.find((t) => t.kinds.some((k) => item.kinds.includes(k)));
 
 const badge = (b) =>
-  b === 'official'
-    ? `<span class="badge badge-official">${icon('shield')}Official</span>`
-    : b === 'verified'
-      ? `<span class="badge badge-verified">${icon('check')}Verified</span>`
-      : '';
+  b === 'official' ? `<span class="badge badge-official">${icon('shield')}Official</span>` : '';
 
 const plural = (n, word) => `${n.toLocaleString()} ${word}${n === 1 ? '' : 's'}`;
 
@@ -69,13 +65,30 @@ const get = async (path) => {
   return res.json();
 };
 
-const allItems = async () => {
+const isOfficial = (item) => item.publisher.badge === 'official';
+
+// Pages of one group, newest first, up to `max` pages.
+const pagesOf = async (official, max) => {
   const items = [];
-  for (let offset = 0; ; offset += PAGE) {
-    const page = (await get(`/gallery/items?limit=${PAGE}&offset=${offset}`)).items;
+  for (let offset = 0, n = 0; n < max; offset += PAGE, n++) {
+    const page = (await get(`/gallery/items?official=${official}&limit=${PAGE}&offset=${offset}`)).items;
     items.push(...page);
-    if (page.length < PAGE) return items;
+    if (page.length < PAGE) break;
   }
+  return items;
+};
+
+// ponytail: search and filters run in the browser, so they see every Official
+// item but only the newest community ones. Search on the API if that cap bites.
+const MAX_COMMUNITY_PAGES = 5;
+
+// KloudMate's own items first, then the community's.
+const allItems = async () => {
+  const [official, community] = await Promise.all([
+    pagesOf(true, Infinity),
+    pagesOf(false, MAX_COMMUNITY_PAGES),
+  ]);
+  return [...official, ...community];
 };
 
 const main = document.getElementById('main');
@@ -191,8 +204,8 @@ const card = (item) => {
   const type = typeOf(item);
   return `<a class="card" href="/${encodeURIComponent(item.slug)}/">
     ${
-      item.screenshot
-        ? `<div class="thumb"><img src="${esc(API + item.screenshot)}" alt="" loading="lazy" /></div>`
+      item.screenshots.length
+        ? `<div class="thumb"><img src="${esc(API + item.screenshots[0])}" alt="" loading="lazy" /></div>`
         : `<div class="thumb thumb-${type?.key ?? 'dashboard'}">${icon(type?.key ?? 'dashboard', '')}</div>`
     }
     <div class="card-body">
@@ -246,7 +259,26 @@ const showItem = async (slug) => {
         ${item.description ? `<p class="lead">${esc(item.description)}</p>` : ''}
       </header>
       <article class="item-body">
-        ${item.screenshot ? `<div class="shot"><img src="${esc(API + item.screenshot)}" alt="${esc(item.name)}" /></div>` : ''}
+        ${
+          isOfficial(item)
+            ? ''
+            : `<p class="note">Published by ${esc(item.publisher.name)}, not by KloudMate. Check what it holds before you install it.</p>`
+        }
+        ${
+          item.screenshots.length
+            ? `<div class="shot"><img id="shot" src="${esc(API + item.screenshots[0])}" alt="${esc(item.name)}" /></div>
+               ${
+                 item.screenshots.length > 1
+                   ? `<div class="shots">${item.screenshots
+                       .map(
+                         (s, i) => `<button type="button" class="shot-pick${i ? '' : ' on'}" data-src="${esc(API + s)}"
+                           aria-label="Screenshot ${i + 1}"><img src="${esc(API + s)}" alt="" loading="lazy" /></button>`,
+                       )
+                       .join('')}</div>`
+                   : ''
+               }`
+            : ''
+        }
         ${
           item.setup
             ? `<section class="section"><h2>Before you install</h2>
@@ -299,6 +331,13 @@ const showItem = async (slug) => {
         <div class="panel-foot">Installing makes a copy in your workspace. A later version doesn't change it until you install again.</div>
       </aside>
     </div>`;
+
+  for (const pick of document.querySelectorAll('.shot-pick')) {
+    pick.onclick = () => {
+      document.getElementById('shot').src = pick.dataset.src;
+      for (const p of document.querySelectorAll('.shot-pick')) p.classList.toggle('on', p === pick);
+    };
+  }
 
   const copy = document.getElementById('copy');
   copy.onclick = async () => {
