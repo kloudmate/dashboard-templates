@@ -1,7 +1,0 @@
-{
-  "title": "VMWare",
-  "description": "The MySQL dashboard provides real-time visibility into database performance and resource utilization by leveraging OpenTelemetry (Otel) for metric collection.",
-  "tags": ["metrics", "vm"],
-  "author": "KloudMate",
-  "verified": true
-}
