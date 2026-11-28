@@ -1,387 +1,51 @@
-
-  <!DOCTYPE html>
-  <html lang="en" class="dark">
-  
+<!doctype html>
+<html lang="en">
   <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="icon" href="https://app.kloudmate.com/favicon.ico">
-    <title>Gallery | KloudMate Dashboard Templates Gallery</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script>
-      tailwind.config = { darkMode: 'class' }
-    </script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/atom-one-dark.min.css">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>KloudMate templates</title>
+    <meta
+      name="description"
+      content="Ready-made dashboards, alert rules and workflows for KloudMate. Copy an ID, paste it into Import, and it's in your workspace."
+    />
+    <link rel="icon" href="https://app.kloudmate.com/favicon.ico" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600&family=Geist+Mono&display=swap"
+    />
+    <!-- Absolute paths: GitHub Pages serves this page as 404.html at every item URL. -->
+    <link rel="stylesheet" href="/style.css" />
+    <script type="module" src="/app.js"></script>
   </head>
-  <body class="bg-gray-900 text-gray-100 flex flex-col min-h-screen">
-    
-  <header class="bg-gray-800 text-white">
-    <div class="container mx-auto px-4 py-4 flex justify-between items-center">
-      <a href="https://kloudmate.com/" target="_blank" rel="noopener noreferrer">
-        <img src="https://app.kloudmate.com/assets/images/logo_full_white.svg" alt="KloudMate Logo" class="h-8">
-      </a>
-      <nav>
-        <a href="https://github.com/kloudmate/dashboard-templates" target="_blank" rel="noopener noreferrer" class="hover:text-gray-300">GitHub</a>
-      </nav>
-    </div>
-  </header>
-    <main class="flex-grow">
-      <div class="container mx-auto px-4">
-        <div class="text-center my-12">
-            <h1 class="text-5xl font-extrabold mb-4">KloudMate Dashboard Templates</h1>
-            <p class="text-xl text-gray-400">A collection of community-driven, open-source dashboard templates for KloudMate.</p>
-        </div>
-        <div class="mb-8">
-            <input type="search" id="search-input" placeholder="Search templates..." class="w-full px-4 py-2 rounded-md bg-gray-800 text-white border border-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500">
-        </div>
-        <div class="mb-8 text-center">
-          <span class="mr-4 font-semibold">Filter by tag:</span>
-          <button class="bg-blue-600 hover:bg-blue-700 text-white text-sm font-semibold py-1 px-3 rounded-full m-1 filter-btn active" data-tag="all">All</button>
-          <button class="bg-gray-700 hover:bg-gray-600 text-white text-sm font-semibold py-1 px-3 rounded-full m-1 filter-btn" data-tag="metrics">metrics</button><button class="bg-gray-700 hover:bg-gray-600 text-white text-sm font-semibold py-1 px-3 rounded-full m-1 filter-btn" data-tag="db">db</button><button class="bg-gray-700 hover:bg-gray-600 text-white text-sm font-semibold py-1 px-3 rounded-full m-1 filter-btn" data-tag="vm">vm</button><button class="bg-gray-700 hover:bg-gray-600 text-white text-sm font-semibold py-1 px-3 rounded-full m-1 filter-btn" data-tag="Device">Device</button><button class="bg-gray-700 hover:bg-gray-600 text-white text-sm font-semibold py-1 px-3 rounded-full m-1 filter-btn" data-tag="app">app</button><button class="bg-gray-700 hover:bg-gray-600 text-white text-sm font-semibold py-1 px-3 rounded-full m-1 filter-btn" data-tag="K8s">K8s</button><button class="bg-gray-700 hover:bg-gray-600 text-white text-sm font-semibold py-1 px-3 rounded-full m-1 filter-btn" data-tag="event streaming">event streaming</button>
-        </div>
-        <div id="template-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          
-  <div class="template-card bg-gray-800 rounded-lg shadow-lg overflow-hidden transform hover:scale-105 transition-transform duration-300" data-tags="metrics db" data-title="MySql" data-description="The MySQL dashboard provides real-time visibility into database performance and resource utilization by leveraging OpenTelemetry (Otel) for metric collection.">
-    <a href="MySql/index.html" class="block">
-      <img src="MySql/screenshot.png" alt="MySql" class="w-full h-48 object-cover">
-      <div class="p-6">
-        <div class="flex items-center mb-2">
-          <h2 class="text-2xl font-bold">MySql</h2>
-          <svg class="w-6 h-6 text-blue-500 ml-2" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path></svg>
-        </div>
-        <p class="text-sm text-gray-500 mb-2">By KloudMate</p>
-        <p class="text-gray-400 mb-4">The MySQL dashboard provides real-time visibility into database performance and resource utilization by leveraging OpenTelemetry (Otel) for metric collection.</p>
-        <div>
-          <span class="inline-block bg-blue-600 text-white text-xs font-semibold mr-2 px-2.5 py-0.5 rounded-full">metrics</span><span class="inline-block bg-blue-600 text-white text-xs font-semibold mr-2 px-2.5 py-0.5 rounded-full">db</span>
-        </div>
-      </div>
-    </a>
-  </div>
-  <div class="template-card bg-gray-800 rounded-lg shadow-lg overflow-hidden transform hover:scale-105 transition-transform duration-300" data-tags="metrics vm" data-title="VMWare" data-description="The MySQL dashboard provides real-time visibility into database performance and resource utilization by leveraging OpenTelemetry (Otel) for metric collection.">
-    <a href="VMWare/index.html" class="block">
-      <div class="w-full h-48 bg-gray-700 flex items-center justify-center"><span class="text-gray-500">No Screenshot</span></div>
-      <div class="p-6">
-        <div class="flex items-center mb-2">
-          <h2 class="text-2xl font-bold">VMWare</h2>
-          <svg class="w-6 h-6 text-blue-500 ml-2" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path></svg>
-        </div>
-        <p class="text-sm text-gray-500 mb-2">By KloudMate</p>
-        <p class="text-gray-400 mb-4">The MySQL dashboard provides real-time visibility into database performance and resource utilization by leveraging OpenTelemetry (Otel) for metric collection.</p>
-        <div>
-          <span class="inline-block bg-blue-600 text-white text-xs font-semibold mr-2 px-2.5 py-0.5 rounded-full">metrics</span><span class="inline-block bg-blue-600 text-white text-xs font-semibold mr-2 px-2.5 py-0.5 rounded-full">vm</span>
-        </div>
-      </div>
-    </a>
-  </div>
-  <div class="template-card bg-gray-800 rounded-lg shadow-lg overflow-hidden transform hover:scale-105 transition-transform duration-300" data-tags="metrics vm" data-title="Apache Server" data-description="The Apache server dashboard offers end-to-end visibility into web server health, performance, resource utilization and traffic insights by integrating with OpenTelemetry (Otel)">
-    <a href="apache-server/index.html" class="block">
-      <img src="apache-server/screenshot.png" alt="Apache Server" class="w-full h-48 object-cover">
-      <div class="p-6">
-        <div class="flex items-center mb-2">
-          <h2 class="text-2xl font-bold">Apache Server</h2>
-          <svg class="w-6 h-6 text-blue-500 ml-2" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path></svg>
-        </div>
-        <p class="text-sm text-gray-500 mb-2">By KloudMate</p>
-        <p class="text-gray-400 mb-4">The Apache server dashboard offers end-to-end visibility into web server health, performance, resource utilization and traffic insights by integrating with OpenTelemetry (Otel)</p>
-        <div>
-          <span class="inline-block bg-blue-600 text-white text-xs font-semibold mr-2 px-2.5 py-0.5 rounded-full">metrics</span><span class="inline-block bg-blue-600 text-white text-xs font-semibold mr-2 px-2.5 py-0.5 rounded-full">vm</span>
-        </div>
-      </div>
-    </a>
-  </div>
-  <div class="template-card bg-gray-800 rounded-lg shadow-lg overflow-hidden transform hover:scale-105 transition-transform duration-300" data-tags="metrics vm" data-title="Azure VM" data-description="The Azure Virtual Machine (VM) dashboard provides visibility into the compute performance, availability, and resource utilization of virtual machines through OpenTelemetry (Otel) integration.">
-    <a href="azure-vm/index.html" class="block">
-      <div class="w-full h-48 bg-gray-700 flex items-center justify-center"><span class="text-gray-500">No Screenshot</span></div>
-      <div class="p-6">
-        <div class="flex items-center mb-2">
-          <h2 class="text-2xl font-bold">Azure VM</h2>
-          <svg class="w-6 h-6 text-blue-500 ml-2" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path></svg>
-        </div>
-        <p class="text-sm text-gray-500 mb-2">By KloudMate</p>
-        <p class="text-gray-400 mb-4">The Azure Virtual Machine (VM) dashboard provides visibility into the compute performance, availability, and resource utilization of virtual machines through OpenTelemetry (Otel) integration.</p>
-        <div>
-          <span class="inline-block bg-blue-600 text-white text-xs font-semibold mr-2 px-2.5 py-0.5 rounded-full">metrics</span><span class="inline-block bg-blue-600 text-white text-xs font-semibold mr-2 px-2.5 py-0.5 rounded-full">vm</span>
-        </div>
-      </div>
-    </a>
-  </div>
-  <div class="template-card bg-gray-800 rounded-lg shadow-lg overflow-hidden transform hover:scale-105 transition-transform duration-300" data-tags="metrics Device" data-title="Remote Device (SNMP)-battery" data-description="Remote device monitoring through SNMP (Simple Network Management Protocol) provides a standardized way to observe and manage the health, performance, and availability of network-connected devices such as batteries, routers, switches, firewalls, servers, and IoT endpoints.">
-    <a href="device/index.html" class="block">
-      <img src="device/screenshot.png" alt="Remote Device (SNMP)-battery" class="w-full h-48 object-cover">
-      <div class="p-6">
-        <div class="flex items-center mb-2">
-          <h2 class="text-2xl font-bold">Remote Device (SNMP)-battery</h2>
-          <svg class="w-6 h-6 text-blue-500 ml-2" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path></svg>
-        </div>
-        <p class="text-sm text-gray-500 mb-2">By KloudMate</p>
-        <p class="text-gray-400 mb-4">Remote device monitoring through SNMP (Simple Network Management Protocol) provides a standardized way to observe and manage the health, performance, and availability of network-connected devices such as batteries, routers, switches, firewalls, servers, and IoT endpoints.</p>
-        <div>
-          <span class="inline-block bg-blue-600 text-white text-xs font-semibold mr-2 px-2.5 py-0.5 rounded-full">metrics</span><span class="inline-block bg-blue-600 text-white text-xs font-semibold mr-2 px-2.5 py-0.5 rounded-full">Device</span>
-        </div>
-      </div>
-    </a>
-  </div>
-  <div class="template-card bg-gray-800 rounded-lg shadow-lg overflow-hidden transform hover:scale-105 transition-transform duration-300" data-tags="metrics vm" data-title="Host Metrics" data-description="Gather various system-level performance indicators directly from host's operating system. These metrics provide insights into the resource utilization and health of the physical or virtual server where the Collector is deployed as an agent.">
-    <a href="host-metrics/index.html" class="block">
-      <img src="host-metrics/screenshot.png" alt="Host Metrics" class="w-full h-48 object-cover">
-      <div class="p-6">
-        <div class="flex items-center mb-2">
-          <h2 class="text-2xl font-bold">Host Metrics</h2>
-          <svg class="w-6 h-6 text-blue-500 ml-2" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path></svg>
-        </div>
-        <p class="text-sm text-gray-500 mb-2">By KloudMate</p>
-        <p class="text-gray-400 mb-4">Gather various system-level performance indicators directly from host's operating system. These metrics provide insights into the resource utilization and health of the physical or virtual server where the Collector is deployed as an agent.</p>
-        <div>
-          <span class="inline-block bg-blue-600 text-white text-xs font-semibold mr-2 px-2.5 py-0.5 rounded-full">metrics</span><span class="inline-block bg-blue-600 text-white text-xs font-semibold mr-2 px-2.5 py-0.5 rounded-full">vm</span>
-        </div>
-      </div>
-    </a>
-  </div>
-  <div class="template-card bg-gray-800 rounded-lg shadow-lg overflow-hidden transform hover:scale-105 transition-transform duration-300" data-tags="metrics vm" data-title="Host Metrics (AWS Hostname)" data-description="Gather various system-level performance indicators directly from a AWS VM which has name tag enabled. These metrics provide insights into the resource utilization and health of the physical or virtual server where the Collector is deployed as an agent.">
-    <a href="host-metrics-aws/index.html" class="block">
-      <img src="host-metrics-aws/screenshot.png" alt="Host Metrics (AWS Hostname)" class="w-full h-48 object-cover">
-      <div class="p-6">
-        <div class="flex items-center mb-2">
-          <h2 class="text-2xl font-bold">Host Metrics (AWS Hostname)</h2>
-          <svg class="w-6 h-6 text-blue-500 ml-2" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path></svg>
-        </div>
-        <p class="text-sm text-gray-500 mb-2">By KloudMate</p>
-        <p class="text-gray-400 mb-4">Gather various system-level performance indicators directly from a AWS VM which has name tag enabled. These metrics provide insights into the resource utilization and health of the physical or virtual server where the Collector is deployed as an agent.</p>
-        <div>
-          <span class="inline-block bg-blue-600 text-white text-xs font-semibold mr-2 px-2.5 py-0.5 rounded-full">metrics</span><span class="inline-block bg-blue-600 text-white text-xs font-semibold mr-2 px-2.5 py-0.5 rounded-full">vm</span>
-        </div>
-      </div>
-    </a>
-  </div>
-  <div class="template-card bg-gray-800 rounded-lg shadow-lg overflow-hidden transform hover:scale-105 transition-transform duration-300" data-tags="metrics app" data-title="JVM Metrics" data-description="The JVM dashboard provides comprehensive visibility into Java application performance and runtime behavior like memory, CPU, threads and I/O by integrating with OpenTelemetry (Otel).">
-    <a href="jvm/index.html" class="block">
-      <div class="w-full h-48 bg-gray-700 flex items-center justify-center"><span class="text-gray-500">No Screenshot</span></div>
-      <div class="p-6">
-        <div class="flex items-center mb-2">
-          <h2 class="text-2xl font-bold">JVM Metrics</h2>
-          <svg class="w-6 h-6 text-blue-500 ml-2" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path></svg>
-        </div>
-        <p class="text-sm text-gray-500 mb-2">By KloudMate</p>
-        <p class="text-gray-400 mb-4">The JVM dashboard provides comprehensive visibility into Java application performance and runtime behavior like memory, CPU, threads and I/O by integrating with OpenTelemetry (Otel).</p>
-        <div>
-          <span class="inline-block bg-blue-600 text-white text-xs font-semibold mr-2 px-2.5 py-0.5 rounded-full">metrics</span><span class="inline-block bg-blue-600 text-white text-xs font-semibold mr-2 px-2.5 py-0.5 rounded-full">app</span>
-        </div>
-      </div>
-    </a>
-  </div>
-  <div class="template-card bg-gray-800 rounded-lg shadow-lg overflow-hidden transform hover:scale-105 transition-transform duration-300" data-tags="metrics app" data-title="JVM V2" data-description="Monitoring JVM runtime metrics for java applicatoin running in kubernetes and integrated using KM Agent. You can collect runtime metrics such as memory utilization and limit, garbage collection activity, thread counts, class loading, and CPU consumption.">
-    <a href="jvm-v2/index.html" class="block">
-      <img src="jvm-v2/screenshot.png" alt="JVM V2" class="w-full h-48 object-cover">
-      <div class="p-6">
-        <div class="flex items-center mb-2">
-          <h2 class="text-2xl font-bold">JVM V2</h2>
-          <svg class="w-6 h-6 text-blue-500 ml-2" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path></svg>
-        </div>
-        <p class="text-sm text-gray-500 mb-2">By KloudMate</p>
-        <p class="text-gray-400 mb-4">Monitoring JVM runtime metrics for java applicatoin running in kubernetes and integrated using KM Agent. You can collect runtime metrics such as memory utilization and limit, garbage collection activity, thread counts, class loading, and CPU consumption.</p>
-        <div>
-          <span class="inline-block bg-blue-600 text-white text-xs font-semibold mr-2 px-2.5 py-0.5 rounded-full">metrics</span><span class="inline-block bg-blue-600 text-white text-xs font-semibold mr-2 px-2.5 py-0.5 rounded-full">app</span>
-        </div>
-      </div>
-    </a>
-  </div>
-  <div class="template-card bg-gray-800 rounded-lg shadow-lg overflow-hidden transform hover:scale-105 transition-transform duration-300" data-tags="metrics K8s" data-title="Kubernetes Cluster Dashboard" data-description="Kubernetes cluster monitoring using KM Agent, provides visibility into key metrics including CPU and memory utilization by nodes, resources inside the cluster like no.of nodes, pods, namespace, deployments, containers.">
-    <a href="k8s-cluster-dashboard/index.html" class="block">
-      <img src="k8s-cluster-dashboard/screenshot.png" alt="Kubernetes Cluster Dashboard" class="w-full h-48 object-cover">
-      <div class="p-6">
-        <div class="flex items-center mb-2">
-          <h2 class="text-2xl font-bold">Kubernetes Cluster Dashboard</h2>
-          <svg class="w-6 h-6 text-blue-500 ml-2" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path></svg>
-        </div>
-        <p class="text-sm text-gray-500 mb-2">By KloudMate</p>
-        <p class="text-gray-400 mb-4">Kubernetes cluster monitoring using KM Agent, provides visibility into key metrics including CPU and memory utilization by nodes, resources inside the cluster like no.of nodes, pods, namespace, deployments, containers.</p>
-        <div>
-          <span class="inline-block bg-blue-600 text-white text-xs font-semibold mr-2 px-2.5 py-0.5 rounded-full">metrics</span><span class="inline-block bg-blue-600 text-white text-xs font-semibold mr-2 px-2.5 py-0.5 rounded-full">K8s</span>
-        </div>
-      </div>
-    </a>
-  </div>
-  <div class="template-card bg-gray-800 rounded-lg shadow-lg overflow-hidden transform hover:scale-105 transition-transform duration-300" data-tags="metrics K8s" data-title="Kubernetes Namespace Dashboard" data-description="Kubernetes namespaces monitoring using KM Agent, provides visibility into key metrics including CPU and memory utilization, pod counts, network traffic aggregated per namespace.">
-    <a href="k8s-namespace-dashboard/index.html" class="block">
-      <img src="k8s-namespace-dashboard/screenshot.png" alt="Kubernetes Namespace Dashboard" class="w-full h-48 object-cover">
-      <div class="p-6">
-        <div class="flex items-center mb-2">
-          <h2 class="text-2xl font-bold">Kubernetes Namespace Dashboard</h2>
-          <svg class="w-6 h-6 text-blue-500 ml-2" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path></svg>
-        </div>
-        <p class="text-sm text-gray-500 mb-2">By KloudMate</p>
-        <p class="text-gray-400 mb-4">Kubernetes namespaces monitoring using KM Agent, provides visibility into key metrics including CPU and memory utilization, pod counts, network traffic aggregated per namespace.</p>
-        <div>
-          <span class="inline-block bg-blue-600 text-white text-xs font-semibold mr-2 px-2.5 py-0.5 rounded-full">metrics</span><span class="inline-block bg-blue-600 text-white text-xs font-semibold mr-2 px-2.5 py-0.5 rounded-full">K8s</span>
-        </div>
-      </div>
-    </a>
-  </div>
-  <div class="template-card bg-gray-800 rounded-lg shadow-lg overflow-hidden transform hover:scale-105 transition-transform duration-300" data-tags="metrics K8s" data-title="Kubernetes Node Dashboard" data-description=" Monitoring Kubernetes nodes with KM Agents provides critical insights into the health and performance of the underlying infrastructure that powers your cluster, including key node-level metrics such as CPU utilization, memory consumption, disk I/O, filesystem usage, and network throughput..">
-    <a href="k8s-node-dashboard/index.html" class="block">
-      <img src="k8s-node-dashboard/screenshot.png" alt="Kubernetes Node Dashboard" class="w-full h-48 object-cover">
-      <div class="p-6">
-        <div class="flex items-center mb-2">
-          <h2 class="text-2xl font-bold">Kubernetes Node Dashboard</h2>
-          <svg class="w-6 h-6 text-blue-500 ml-2" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path></svg>
-        </div>
-        <p class="text-sm text-gray-500 mb-2">By KloudMate</p>
-        <p class="text-gray-400 mb-4"> Monitoring Kubernetes nodes with KM Agents provides critical insights into the health and performance of the underlying infrastructure that powers your cluster, including key node-level metrics such as CPU utilization, memory consumption, disk I/O, filesystem usage, and network throughput..</p>
-        <div>
-          <span class="inline-block bg-blue-600 text-white text-xs font-semibold mr-2 px-2.5 py-0.5 rounded-full">metrics</span><span class="inline-block bg-blue-600 text-white text-xs font-semibold mr-2 px-2.5 py-0.5 rounded-full">K8s</span>
-        </div>
-      </div>
-    </a>
-  </div>
-  <div class="template-card bg-gray-800 rounded-lg shadow-lg overflow-hidden transform hover:scale-105 transition-transform duration-300" data-tags="metrics K8s" data-title="Kubernetes Pod Dashboard" data-description="Monitoring Kubernetes pods with KM Agent provides deep visibility into the performance and health of the smallest deployable units in a cluster, you can collect pod-level metrics such as CPU and memory requests vs. usage and network traffic.">
-    <a href="k8s-pod-dashboard/index.html" class="block">
-      <img src="k8s-pod-dashboard/screenshot.png" alt="Kubernetes Pod Dashboard" class="w-full h-48 object-cover">
-      <div class="p-6">
-        <div class="flex items-center mb-2">
-          <h2 class="text-2xl font-bold">Kubernetes Pod Dashboard</h2>
-          <svg class="w-6 h-6 text-blue-500 ml-2" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path></svg>
-        </div>
-        <p class="text-sm text-gray-500 mb-2">By KloudMate</p>
-        <p class="text-gray-400 mb-4">Monitoring Kubernetes pods with KM Agent provides deep visibility into the performance and health of the smallest deployable units in a cluster, you can collect pod-level metrics such as CPU and memory requests vs. usage and network traffic.</p>
-        <div>
-          <span class="inline-block bg-blue-600 text-white text-xs font-semibold mr-2 px-2.5 py-0.5 rounded-full">metrics</span><span class="inline-block bg-blue-600 text-white text-xs font-semibold mr-2 px-2.5 py-0.5 rounded-full">K8s</span>
-        </div>
-      </div>
-    </a>
-  </div>
-  <div class="template-card bg-gray-800 rounded-lg shadow-lg overflow-hidden transform hover:scale-105 transition-transform duration-300" data-tags="metrics event streaming" data-title="Kafka" data-description="Kafka Monitoring using OpenTelemetry (OTel) provides unified observability into Kafka producers, consumers, brokers, and the data pipelines that depend on them">
-    <a href="kafka/index.html" class="block">
-      <img src="kafka/screenshot.png" alt="Kafka" class="w-full h-48 object-cover">
-      <div class="p-6">
-        <div class="flex items-center mb-2">
-          <h2 class="text-2xl font-bold">Kafka</h2>
-          <svg class="w-6 h-6 text-blue-500 ml-2" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path></svg>
-        </div>
-        <p class="text-sm text-gray-500 mb-2">By KloudMate</p>
-        <p class="text-gray-400 mb-4">Kafka Monitoring using OpenTelemetry (OTel) provides unified observability into Kafka producers, consumers, brokers, and the data pipelines that depend on them</p>
-        <div>
-          <span class="inline-block bg-blue-600 text-white text-xs font-semibold mr-2 px-2.5 py-0.5 rounded-full">metrics</span><span class="inline-block bg-blue-600 text-white text-xs font-semibold mr-2 px-2.5 py-0.5 rounded-full">event streaming</span>
-        </div>
-      </div>
-    </a>
-  </div>
-  <div class="template-card bg-gray-800 rounded-lg shadow-lg overflow-hidden transform hover:scale-105 transition-transform duration-300" data-tags="metrics db" data-title="MongoDB" data-description="MongoDB dashboard helps in tracking the health, performance, and availability of MongoDB databases to ensure reliability, optimize performance">
-    <a href="mongo-db/index.html" class="block">
-      <img src="mongo-db/screenshot.png" alt="MongoDB" class="w-full h-48 object-cover">
-      <div class="p-6">
-        <div class="flex items-center mb-2">
-          <h2 class="text-2xl font-bold">MongoDB</h2>
-          <svg class="w-6 h-6 text-blue-500 ml-2" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path></svg>
-        </div>
-        <p class="text-sm text-gray-500 mb-2">By KloudMate</p>
-        <p class="text-gray-400 mb-4">MongoDB dashboard helps in tracking the health, performance, and availability of MongoDB databases to ensure reliability, optimize performance</p>
-        <div>
-          <span class="inline-block bg-blue-600 text-white text-xs font-semibold mr-2 px-2.5 py-0.5 rounded-full">metrics</span><span class="inline-block bg-blue-600 text-white text-xs font-semibold mr-2 px-2.5 py-0.5 rounded-full">db</span>
-        </div>
-      </div>
-    </a>
-  </div>
-  <div class="template-card bg-gray-800 rounded-lg shadow-lg overflow-hidden transform hover:scale-105 transition-transform duration-300" data-tags="metrics db" data-title="MSSQL" data-description="The Microsoft SQL Server (MSSQL) dashboard provides full-stack observability into database performance, availability, and resource utilization through OpenTelemetry (Otel) integration.">
-    <a href="mssql/index.html" class="block">
-      <div class="w-full h-48 bg-gray-700 flex items-center justify-center"><span class="text-gray-500">No Screenshot</span></div>
-      <div class="p-6">
-        <div class="flex items-center mb-2">
-          <h2 class="text-2xl font-bold">MSSQL</h2>
-          <svg class="w-6 h-6 text-blue-500 ml-2" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path></svg>
-        </div>
-        <p class="text-sm text-gray-500 mb-2">By KloudMate</p>
-        <p class="text-gray-400 mb-4">The Microsoft SQL Server (MSSQL) dashboard provides full-stack observability into database performance, availability, and resource utilization through OpenTelemetry (Otel) integration.</p>
-        <div>
-          <span class="inline-block bg-blue-600 text-white text-xs font-semibold mr-2 px-2.5 py-0.5 rounded-full">metrics</span><span class="inline-block bg-blue-600 text-white text-xs font-semibold mr-2 px-2.5 py-0.5 rounded-full">db</span>
-        </div>
-      </div>
-    </a>
-  </div>
-  <div class="template-card bg-gray-800 rounded-lg shadow-lg overflow-hidden transform hover:scale-105 transition-transform duration-300" data-tags="metrics db" data-title="PostgreSQL" data-description="The PostgreSQL dashboard provides deep visibility into database health, performance, and resource usage by integrating with OpenTelemetry (Otel).">
-    <a href="postgress/index.html" class="block">
-      <img src="postgress/screenshot.png" alt="PostgreSQL" class="w-full h-48 object-cover">
-      <div class="p-6">
-        <div class="flex items-center mb-2">
-          <h2 class="text-2xl font-bold">PostgreSQL</h2>
-          <svg class="w-6 h-6 text-blue-500 ml-2" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path></svg>
-        </div>
-        <p class="text-sm text-gray-500 mb-2">By KloudMate</p>
-        <p class="text-gray-400 mb-4">The PostgreSQL dashboard provides deep visibility into database health, performance, and resource usage by integrating with OpenTelemetry (Otel).</p>
-        <div>
-          <span class="inline-block bg-blue-600 text-white text-xs font-semibold mr-2 px-2.5 py-0.5 rounded-full">metrics</span><span class="inline-block bg-blue-600 text-white text-xs font-semibold mr-2 px-2.5 py-0.5 rounded-full">db</span>
-        </div>
-      </div>
-    </a>
-  </div>
-  <div class="template-card bg-gray-800 rounded-lg shadow-lg overflow-hidden transform hover:scale-105 transition-transform duration-300" data-tags="metrics db" data-title="Redis" data-description=" Monitoring Redis with KM Agents provides insights into memory usage, command performance, keyspace statistics, and connection details ">
-    <a href="redis/index.html" class="block">
-      <div class="w-full h-48 bg-gray-700 flex items-center justify-center"><span class="text-gray-500">No Screenshot</span></div>
-      <div class="p-6">
-        <div class="flex items-center mb-2">
-          <h2 class="text-2xl font-bold">Redis</h2>
-          <svg class="w-6 h-6 text-blue-500 ml-2" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path></svg>
-        </div>
-        <p class="text-sm text-gray-500 mb-2">By KloudMate</p>
-        <p class="text-gray-400 mb-4"> Monitoring Redis with KM Agents provides insights into memory usage, command performance, keyspace statistics, and connection details </p>
-        <div>
-          <span class="inline-block bg-blue-600 text-white text-xs font-semibold mr-2 px-2.5 py-0.5 rounded-full">metrics</span><span class="inline-block bg-blue-600 text-white text-xs font-semibold mr-2 px-2.5 py-0.5 rounded-full">db</span>
-        </div>
-      </div>
-    </a>
-  </div>
-        </div>
-      </div>
-    </main>
-    
-  <footer class="bg-gray-800 text-gray-400 mt-16">
-    <div class="container mx-auto px-4 py-8 flex flex-col md:flex-row justify-between items-center">
-      <div class="mb-4 md:mb-0">
-        <a href="https://kloudmate.com/" target="_blank" rel="noopener noreferrer">
-          <img src="https://app.kloudmate.com/assets/images/logo_full_white.svg" alt="KloudMate Logo" class="h-8">
+  <body>
+    <header class="top">
+      <div class="wrap top-row">
+        <a href="/" class="brand" aria-label="KloudMate templates home">
+          <picture>
+            <source
+              srcset="https://app.kloudmate.com/assets/images/logo_full_white.svg"
+              media="(prefers-color-scheme: dark)"
+            />
+            <img src="https://app.kloudmate.com/assets/images/logo_full.svg" alt="KloudMate" height="24" />
+          </picture>
+          <span class="brand-name">Templates</span>
         </a>
+        <nav class="top-nav">
+          <a href="https://docs.kloudmate.com/docs/platform/gallery/" target="_blank" rel="noopener">Docs</a>
+          <a href="https://app.kloudmate.com" target="_blank" rel="noopener" class="btn btn-small">Open KloudMate</a>
+        </nav>
       </div>
-      <div class="flex space-x-6">
-        <a href="https://app.kloudmate.com/login" target="_blank" rel="noopener noreferrer" class="hover:text-white">Login</a>
-        <a href="https://github.com/kloudmate/dashboard-templates" target="_blank" rel="noopener noreferrer" class="hover:text-white">GitHub</a>
+    </header>
+    <main id="main" class="wrap">
+      <p class="muted loading">Loading…</p>
+    </main>
+    <footer class="foot">
+      <div class="wrap foot-row">
+        <span>© KloudMate</span>
+        <a href="https://kloudmate.com" target="_blank" rel="noopener">kloudmate.com</a>
       </div>
-    </div>
-  </footer>
-    <script>
-      // Search and filter logic...
-      const searchInput = document.getElementById('search-input');
-      const filterButtons = document.querySelectorAll('.filter-btn');
-      const templateCards = document.querySelectorAll('.template-card');
-      let currentTag = 'all';
-
-      function filterAndSearch() {
-          const searchTerm = searchInput.value.toLowerCase();
-          templateCards.forEach(card => {
-              const title = card.dataset.title.toLowerCase();
-              const description = card.dataset.description.toLowerCase();
-              const tags = card.dataset.tags;
-              const tagMatch = currentTag === 'all' || tags.includes(currentTag);
-              const searchMatch = title.includes(searchTerm) || description.includes(searchTerm);
-              if (tagMatch && searchMatch) {
-                  card.style.display = 'block';
-              } else {
-                  card.style.display = 'none';
-              }
-          });
-      }
-      filterButtons.forEach(button => {
-        button.addEventListener('click', () => {
-          currentTag = button.dataset.tag;
-          filterButtons.forEach(btn => {
-              btn.classList.remove('bg-blue-600', 'hover:bg-blue-700');
-              btn.classList.add('bg-gray-700', 'hover:bg-gray-600');
-          });
-          button.classList.add('bg-blue-600', 'hover:bg-blue-700');
-          button.classList.remove('bg-gray-700', 'hover:bg-gray-600');
-          filterAndSearch();
-        });
-      });
-      searchInput.addEventListener('input', filterAndSearch);
-    </script>
+    </footer>
   </body>
-  </html>
+</html>
